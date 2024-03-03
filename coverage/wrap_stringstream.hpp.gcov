@@ -1,0 +1,223 @@
+        -:    0:Source:/usr/include/boost/test/utils/wrap_stringstream.hpp
+        -:    0:Graph:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcno
+        -:    0:Data:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcda
+        -:    0:Runs:1
+        -:    1://  (C) Copyright Gennadiy Rozental 2001.
+        -:    2://  Distributed under the Boost Software License, Version 1.0.
+        -:    3://  (See accompanying file LICENSE_1_0.txt or copy at
+        -:    4://  http://www.boost.org/LICENSE_1_0.txt)
+        -:    5:
+        -:    6://  See http://www.boost.org/libs/test for the library home page.
+        -:    7://
+        -:    8://  File        : $RCSfile$
+        -:    9://
+        -:   10://  Version     : $Revision$
+        -:   11://
+        -:   12://  Description : wraps strstream and stringstream (depends with one is present)
+        -:   13://                to provide the unified interface
+        -:   14:// ***************************************************************************
+        -:   15:
+        -:   16:#ifndef BOOST_TEST_UTILS_WRAP_STRINGSTREAM_HPP
+        -:   17:#define BOOST_TEST_UTILS_WRAP_STRINGSTREAM_HPP
+        -:   18:
+        -:   19:// Boost.Test
+        -:   20:#include <boost/test/detail/config.hpp>
+        -:   21:
+        -:   22:// STL
+        -:   23:#ifdef BOOST_NO_STRINGSTREAM
+        -:   24:#include <strstream>        // for std::ostrstream
+        -:   25:#else
+        -:   26:#include <sstream>          // for std::ostringstream
+        -:   27:#endif // BOOST_NO_STRINGSTREAM
+        -:   28:
+        -:   29:#include <boost/test/detail/suppress_warnings.hpp>
+        -:   30:
+        -:   31://____________________________________________________________________________//
+        -:   32:
+        -:   33:namespace boost {
+        -:   34:
+        -:   35:// ************************************************************************** //
+        -:   36:// **************            basic_wrap_stringstream           ************** //
+        -:   37:// ************************************************************************** //
+        -:   38:
+        -:   39:template<typename CharT>
+        -:   40:class basic_wrap_stringstream {
+        -:   41:public:
+        -:   42:#if defined(BOOST_CLASSIC_IOSTREAMS)
+        -:   43:    typedef std::ostringstream               wrapped_stream;
+        -:   44:#elif defined(BOOST_NO_STRINGSTREAM)
+        -:   45:    typedef std::basic_ostrstream<CharT>     wrapped_stream;
+        -:   46:#else
+        -:   47:    typedef std::basic_ostringstream<CharT>  wrapped_stream;
+        -:   48:#endif // BOOST_NO_STRINGSTREAM
+        -:   49:    // Access methods
+        -:   50:    basic_wrap_stringstream&        ref();
+        -:   51:    wrapped_stream&                 stream();
+        -:   52:    std::basic_string<CharT> const& str();
+        -:   53:
+        -:   54:private:
+        -:   55:    // Data members
+        -:   56:    wrapped_stream                  m_stream;
+        -:   57:    std::basic_string<CharT>        m_str;
+        -:   58:};
+        -:   59:
+        -:   60://____________________________________________________________________________//
+        -:   61:
+        -:   62:template <typename CharT, typename T>
+        -:   63:inline basic_wrap_stringstream<CharT>&
+       60:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
+        -:   65:{
+       60:   66:    targ.stream() << t;
+       60:   67:    return targ;
+        -:   68:}
+------------------
+_ZN5boostlsIcA27_cEERNS_23basic_wrap_stringstreamIT_EES5_RKT0_:
+       10:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
+        -:   65:{
+       10:   66:    targ.stream() << t;
+       10:   67:    return targ;
+        -:   68:}
+------------------
+_ZN5boostlsIcA30_cEERNS_23basic_wrap_stringstreamIT_EES5_RKT0_:
+        5:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
+        -:   65:{
+        5:   66:    targ.stream() << t;
+        5:   67:    return targ;
+        -:   68:}
+------------------
+_ZN5boostlsIcA19_cEERNS_23basic_wrap_stringstreamIT_EES5_RKT0_:
+        4:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
+        -:   65:{
+        4:   66:    targ.stream() << t;
+        4:   67:    return targ;
+        -:   68:}
+------------------
+_ZN5boostlsIcA13_cEERNS_23basic_wrap_stringstreamIT_EES5_RKT0_:
+        4:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
+        -:   65:{
+        4:   66:    targ.stream() << t;
+        4:   67:    return targ;
+        -:   68:}
+------------------
+_ZN5boostlsIcA16_cEERNS_23basic_wrap_stringstreamIT_EES5_RKT0_:
+        4:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
+        -:   65:{
+        4:   66:    targ.stream() << t;
+        4:   67:    return targ;
+        -:   68:}
+------------------
+_ZN5boostlsIcA15_cEERNS_23basic_wrap_stringstreamIT_EES5_RKT0_:
+        8:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
+        -:   65:{
+        8:   66:    targ.stream() << t;
+        8:   67:    return targ;
+        -:   68:}
+------------------
+_ZN5boostlsIcA17_cEERNS_23basic_wrap_stringstreamIT_EES5_RKT0_:
+        5:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
+        -:   65:{
+        5:   66:    targ.stream() << t;
+        5:   67:    return targ;
+        -:   68:}
+------------------
+_ZN5boostlsIccEERNS_23basic_wrap_stringstreamIT_EES4_RKT0_:
+       20:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
+        -:   65:{
+       20:   66:    targ.stream() << t;
+       20:   67:    return targ;
+        -:   68:}
+------------------
+        -:   69:
+        -:   70://____________________________________________________________________________//
+        -:   71:
+        -:   72:template <typename CharT>
+        -:   73:inline typename basic_wrap_stringstream<CharT>::wrapped_stream&
+       60:   74:basic_wrap_stringstream<CharT>::stream()
+        -:   75:{
+       60:   76:    return m_stream;
+        -:   77:}
+        -:   78:
+        -:   79://____________________________________________________________________________//
+        -:   80:
+        -:   81:template <typename CharT>
+        -:   82:inline basic_wrap_stringstream<CharT>&
+       20:   83:basic_wrap_stringstream<CharT>::ref()
+        -:   84:{
+       20:   85:    return *this;
+        -:   86:}
+        -:   87:
+        -:   88://____________________________________________________________________________//
+        -:   89:
+        -:   90:template <typename CharT>
+        -:   91:inline std::basic_string<CharT> const&
+       20:   92:basic_wrap_stringstream<CharT>::str()
+        -:   93:{
+        -:   94:
+        -:   95:#ifdef BOOST_NO_STRINGSTREAM
+        -:   96:    m_str.assign( m_stream.str(), m_stream.pcount() );
+        -:   97:    m_stream.freeze( false );
+        -:   98:#else
+       20:   99:    m_str = m_stream.str();
+        -:  100:#endif
+        -:  101:
+       20:  102:    return m_str;
+        -:  103:}
+        -:  104:
+        -:  105://____________________________________________________________________________//
+        -:  106:
+        -:  107:template <typename CharT>
+        -:  108:inline basic_wrap_stringstream<CharT>&
+        -:  109:operator<<( basic_wrap_stringstream<CharT>& targ, basic_wrap_stringstream<CharT>& src )
+        -:  110:{
+        -:  111:    targ << src.str();
+        -:  112:    return targ;
+        -:  113:}
+        -:  114:
+        -:  115://____________________________________________________________________________//
+        -:  116:
+        -:  117:#if BOOST_TEST_USE_STD_LOCALE
+        -:  118:
+        -:  119:template <typename CharT>
+        -:  120:inline basic_wrap_stringstream<CharT>&
+        -:  121:operator<<( basic_wrap_stringstream<CharT>& targ, std::ios_base& (BOOST_TEST_CALL_DECL *man)(std::ios_base&) )
+        -:  122:{
+        -:  123:    targ.stream() << man;
+        -:  124:    return targ;
+        -:  125:}
+        -:  126:
+        -:  127://____________________________________________________________________________//
+        -:  128:
+        -:  129:template<typename CharT,typename Elem,typename Tr>
+        -:  130:inline basic_wrap_stringstream<CharT>&
+        -:  131:operator<<( basic_wrap_stringstream<CharT>& targ, std::basic_ostream<Elem,Tr>& (BOOST_TEST_CALL_DECL *man)(std::basic_ostream<Elem, Tr>&) )
+        -:  132:{
+        -:  133:    targ.stream() << man;
+        -:  134:    return targ;
+        -:  135:}
+        -:  136:
+        -:  137://____________________________________________________________________________//
+        -:  138:
+        -:  139:template<typename CharT,typename Elem,typename Tr>
+        -:  140:inline basic_wrap_stringstream<CharT>&
+        -:  141:operator<<( basic_wrap_stringstream<CharT>& targ, std::basic_ios<Elem, Tr>& (BOOST_TEST_CALL_DECL *man)(std::basic_ios<Elem, Tr>&) )
+        -:  142:{
+        -:  143:    targ.stream() << man;
+        -:  144:    return targ;
+        -:  145:}
+        -:  146:
+        -:  147://____________________________________________________________________________//
+        -:  148:
+        -:  149:#endif
+        -:  150:
+        -:  151:// ************************************************************************** //
+        -:  152:// **************               wrap_stringstream              ************** //
+        -:  153:// ************************************************************************** //
+        -:  154:
+        -:  155:typedef basic_wrap_stringstream<char>       wrap_stringstream;
+        -:  156:typedef basic_wrap_stringstream<wchar_t>    wrap_wstringstream;
+        -:  157:
+        -:  158:}  // namespace boost
+        -:  159:
+        -:  160:#include <boost/test/detail/enable_warnings.hpp>
+        -:  161:
+        -:  162:#endif  // BOOST_TEST_UTILS_WRAP_STRINGSTREAM_HPP

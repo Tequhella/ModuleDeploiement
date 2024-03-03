@@ -1,0 +1,125 @@
+        -:    0:Source:/usr/include/boost/test/tools/detail/fwd.hpp
+        -:    0:Graph:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcno
+        -:    0:Data:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcda
+        -:    0:Runs:1
+        -:    1://  (C) Copyright Gennadiy Rozental 2001.
+        -:    2://  Distributed under the Boost Software License, Version 1.0.
+        -:    3://  (See accompanying file LICENSE_1_0.txt or copy at
+        -:    4://  http://www.boost.org/LICENSE_1_0.txt)
+        -:    5:
+        -:    6://  See http://www.boost.org/libs/test for the library home page.
+        -:    7://
+        -:    8://  File        : $RCSfile$
+        -:    9://
+        -:   10://  Version     : $Revision: 74248 $
+        -:   11://
+        -:   12://  Description : toolbox implementation types and forward declarations
+        -:   13:// ***************************************************************************
+        -:   14:
+        -:   15:#ifndef BOOST_TEST_TOOLS_DETAIL_FWD_HPP_012705GER
+        -:   16:#define BOOST_TEST_TOOLS_DETAIL_FWD_HPP_012705GER
+        -:   17:
+        -:   18:// Boost.Test
+        -:   19:#include <boost/test/detail/config.hpp>
+        -:   20:#include <boost/test/utils/basic_cstring/io.hpp>
+        -:   21:
+        -:   22:// STL
+        -:   23:#include <cstddef>          // for std::size_t
+        -:   24:
+        -:   25:#include <boost/test/detail/suppress_warnings.hpp>
+        -:   26:
+        -:   27://____________________________________________________________________________//
+        -:   28:
+        -:   29:namespace boost {
+        -:   30:namespace unit_test {
+        -:   31:
+        -:   32:class lazy_ostream;
+        -:   33:
+        -:   34:} // namespace unit_test
+        -:   35:
+        -:   36:namespace test_tools {
+        -:   37:
+        -:   38:using unit_test::const_string;
+        -:   39:class assertion_result;
+        -:   40:
+        -:   41://____________________________________________________________________________//
+        -:   42:
+        -:   43:namespace tt_detail {
+        -:   44:
+       12:   45:inline bool dummy_cond() { return false; }
+        -:   46:
+        -:   47:// ************************************************************************** //
+        -:   48:// **************        types of supported assertions         ************** //
+        -:   49:// ************************************************************************** //
+        -:   50:
+        -:   51://____________________________________________________________________________//
+        -:   52:
+        -:   53:enum check_type {
+        -:   54:    CHECK_PRED,
+        -:   55:    CHECK_MSG,
+        -:   56:    CHECK_EQUAL,
+        -:   57:    CHECK_NE,
+        -:   58:    CHECK_LT,
+        -:   59:    CHECK_LE,
+        -:   60:    CHECK_GT,
+        -:   61:    CHECK_GE,
+        -:   62:    CHECK_CLOSE,
+        -:   63:    CHECK_CLOSE_FRACTION,
+        -:   64:    CHECK_SMALL,
+        -:   65:    CHECK_BITWISE_EQUAL,
+        -:   66:    CHECK_PRED_WITH_ARGS,
+        -:   67:    CHECK_EQUAL_COLL,
+        -:   68:    CHECK_BUILT_ASSERTION
+        -:   69:};
+        -:   70:
+        -:   71://____________________________________________________________________________//
+        -:   72:
+        -:   73:// ************************************************************************** //
+        -:   74:// **************        levels of supported assertions        ************** //
+        -:   75:// ************************************************************************** //
+        -:   76:
+        -:   77:enum tool_level {
+        -:   78:    WARN, CHECK, REQUIRE, PASS
+        -:   79:};
+        -:   80:
+        -:   81://____________________________________________________________________________//
+        -:   82:
+        -:   83:// ************************************************************************** //
+        -:   84:// **************         Tools offline implementation         ************** //
+        -:   85:// ************************************************************************** //
+        -:   86:
+        -:   87:BOOST_TEST_DECL bool
+        -:   88:report_assertion( assertion_result const& pr, unit_test::lazy_ostream const& assertion_descr,
+        -:   89:                  const_string file_name, std::size_t line_num,
+        -:   90:                  tool_level tl, check_type ct,
+        -:   91:                  std::size_t num_args, ... );
+        -:   92:
+        -:   93://____________________________________________________________________________//
+        -:   94:
+        -:   95:BOOST_TEST_DECL assertion_result
+        -:   96:format_assertion_result( const_string expr_val, const_string details );
+        -:   97:
+        -:   98://____________________________________________________________________________//
+        -:   99:
+        -:  100:BOOST_TEST_DECL assertion_result
+        -:  101:format_fpc_report( const_string expr_val, const_string details );
+        -:  102:
+        -:  103://____________________________________________________________________________//
+        -:  104:
+        -:  105:BOOST_TEST_DECL bool
+        -:  106:is_defined_impl( const_string symbol_name, const_string symbol_value );
+        -:  107:
+        -:  108://____________________________________________________________________________//
+        -:  109:
+        -:  110:BOOST_TEST_DECL assertion_result
+        -:  111:equal_impl( char const* left, char const* right );
+        -:  112:
+        -:  113://____________________________________________________________________________//
+        -:  114:
+        -:  115:} // namespace tt_detail
+        -:  116:} // namespace test_tools
+        -:  117:} // namespace boost
+        -:  118:
+        -:  119:#include <boost/test/detail/enable_warnings.hpp>
+        -:  120:
+        -:  121:#endif // BOOST_TEST_TOOLS_DETAIL_FWD_HPP_012705GER

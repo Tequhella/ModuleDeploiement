@@ -1,0 +1,284 @@
+        -:    0:Source:/usr/include/boost/test/unit_test_log.hpp
+        -:    0:Graph:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcno
+        -:    0:Data:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcda
+        -:    0:Runs:1
+        -:    1://  (C) Copyright Gennadiy Rozental 2001.
+        -:    2://  Distributed under the Boost Software License, Version 1.0.
+        -:    3://  (See accompanying file LICENSE_1_0.txt or copy at
+        -:    4://  http://www.boost.org/LICENSE_1_0.txt)
+        -:    5:
+        -:    6://  See http://www.boost.org/libs/test for the library home page.
+        -:    7://
+        -:    8:/// @file
+        -:    9:/// @brief defines singleton class unit_test_log and all manipulators.
+        -:   10:/// unit_test_log has output stream like interface. It's implementation is
+        -:   11:/// completely hidden with pimple idiom
+        -:   12:// ***************************************************************************
+        -:   13:
+        -:   14:#ifndef BOOST_TEST_UNIT_TEST_LOG_HPP_071894GER
+        -:   15:#define BOOST_TEST_UNIT_TEST_LOG_HPP_071894GER
+        -:   16:
+        -:   17:// Boost.Test
+        -:   18:#include <boost/test/tree/observer.hpp>
+        -:   19:
+        -:   20:#include <boost/test/detail/global_typedef.hpp>
+        -:   21:#include <boost/test/detail/log_level.hpp>
+        -:   22:#include <boost/test/detail/fwd_decl.hpp>
+        -:   23:
+        -:   24:#include <boost/test/utils/wrap_stringstream.hpp>
+        -:   25:#include <boost/test/utils/lazy_ostream.hpp>
+        -:   26:
+        -:   27:// Boost
+        -:   28:
+        -:   29:// STL
+        -:   30:#include <iosfwd>   // for std::ostream&
+        -:   31:
+        -:   32:#include <boost/test/detail/suppress_warnings.hpp>
+        -:   33:
+        -:   34://____________________________________________________________________________//
+        -:   35:
+        -:   36:namespace boost {
+        -:   37:namespace unit_test {
+        -:   38:
+        -:   39:// ************************************************************************** //
+        -:   40:// **************                log manipulators              ************** //
+        -:   41:// ************************************************************************** //
+        -:   42:
+        -:   43:namespace log {
+        -:   44:
+        -:   45:struct BOOST_TEST_DECL begin {
+        3:   46:    begin( const_string fn, std::size_t ln )
+        3:   47:    : m_file_name( fn )
+        3:   48:    , m_line_num( ln )
+        3:   49:    {}
+        -:   50:
+        -:   51:    const_string m_file_name;
+        -:   52:    std::size_t m_line_num;
+        -:   53:};
+        -:   54:
+        -:   55:struct end {};
+        -:   56:
+        -:   57:} // namespace log
+        -:   58:
+        -:   59:// ************************************************************************** //
+        -:   60:// **************             entry_value_collector            ************** //
+        -:   61:// ************************************************************************** //
+        -:   62:
+        -:   63:namespace ut_detail {
+        -:   64:
+        -:   65:class BOOST_TEST_DECL entry_value_collector {
+        -:   66:public:
+        -:   67:    // Constructors
+        -:   68:    entry_value_collector() : m_last( true ) {}
+        -:   69:    entry_value_collector( entry_value_collector const& rhs ) : m_last( true ) { rhs.m_last = false; }
+        -:   70:    ~entry_value_collector();
+        -:   71:
+        -:   72:    // collection interface
+        -:   73:    entry_value_collector const& operator<<( lazy_ostream const& ) const;
+        -:   74:    entry_value_collector const& operator<<( const_string ) const;
+        -:   75:
+        -:   76:private:
+        -:   77:    // Data members
+        -:   78:    mutable bool    m_last;
+        -:   79:};
+        -:   80:
+        -:   81:} // namespace ut_detail
+        -:   82:
+        -:   83:// ************************************************************************** //
+        -:   84:// **************                 unit_test_log                ************** //
+        -:   85:// ************************************************************************** //
+        -:   86:
+        -:   87:/// @brief Manages the sets of loggers, their streams and log levels
+        -:   88:///
+        -:   89:/// The Boost.Test framework allows for having several formatters/loggers at the same time, each of which
+        -:   90:/// having their own log level and output stream.
+        -:   91:///
+        -:   92:/// This class serves the purpose of
+        -:   93:/// - exposing an interface to the test framework (as a boost::unit_test::test_observer)
+        -:   94:/// - exposing an interface to the testing tools
+        -:   95:/// - managing several loggers
+        -:   96:///
+        -:   97:/// @note Accesses to the functions exposed by this class are made through the singleton
+        -:   98:///   @c boost::unit_test::unit_test_log.
+        -:   99:///
+        -:  100:/// Users/developers willing to implement their own formatter need to:
+        -:  101:/// - implement a boost::unit_test::unit_test_log_formatter that will output the desired format
+        -:  102:/// - register the formatter during a eg. global fixture using the method @c set_formatter (though the framework singleton).
+        -:  103:///
+        -:  104:/// @warning this observer has a higher priority than the @ref boost::unit_test::results_collector_t. This means
+        -:  105:/// that the various @ref boost::unit_test::test_results associated to each test unit may not be available at the time
+        -:  106:/// the @c test_unit_start, @c test_unit_finish ... are called.
+        -:  107:///
+        -:  108:/// @see
+        -:  109:/// - boost::unit_test::test_observer
+        -:  110:/// - boost::unit_test::unit_test_log_formatter
+        -:  111:class BOOST_TEST_DECL unit_test_log_t : public test_observer {
+        -:  112:public:
+        -:  113:    // test_observer interface implementation
+        -:  114:    void        test_start( counter_t test_cases_amount, test_unit_id ) BOOST_OVERRIDE;
+        -:  115:    void        test_finish() BOOST_OVERRIDE;
+        -:  116:    void        test_aborted() BOOST_OVERRIDE;
+        -:  117:
+        -:  118:    void        test_unit_start( test_unit const& ) BOOST_OVERRIDE;
+        -:  119:    void        test_unit_finish( test_unit const&, unsigned long elapsed ) BOOST_OVERRIDE;
+        -:  120:    void        test_unit_skipped( test_unit const&, const_string ) BOOST_OVERRIDE;
+        -:  121:    void        test_unit_aborted( test_unit const& ) BOOST_OVERRIDE;
+        -:  122:    void        test_unit_timed_out( test_unit const& ) BOOST_OVERRIDE;
+        -:  123:
+        -:  124:    void        exception_caught( execution_exception const& ex ) BOOST_OVERRIDE;
+        -:  125:
+        -:  126:    int         priority() BOOST_OVERRIDE { return 2; }
+        -:  127:
+        -:  128:    // log configuration methods
+        -:  129:    //! Sets the stream for all loggers
+        -:  130:    //!
+        -:  131:    //! This will override the log sink/stream of all loggers, whether enabled or not.
+        -:  132:    void                set_stream( std::ostream& );
+        -:  133:
+        -:  134:    //! Sets the stream for specific logger
+        -:  135:    //!
+        -:  136:    //! @note Has no effect if the specified format is not found
+        -:  137:    //! @par Since Boost 1.62
+        -:  138:    void                set_stream( output_format, std::ostream& );
+        -:  139:
+        -:  140:    //! Returns a pointer to the stream associated to specific logger
+        -:  141:    //!
+        -:  142:    //! @note Returns a null pointer if the format is not found
+        -:  143:    //! @par Since Boost 1.67
+        -:  144:    std::ostream*       get_stream( output_format ) const;
+        -:  145:
+        -:  146:
+        -:  147:    //! Sets the threshold level for all loggers/formatters.
+        -:  148:    //!
+        -:  149:    //! This will override the log level of all loggers, whether enabled or not.
+        -:  150:    //! @return the minimum of the previous log level of all formatters (new in Boost 1.73)
+        -:  151:    log_level           set_threshold_level( log_level );
+        -:  152:
+        -:  153:    //! Sets the threshold/log level of a specific format
+        -:  154:    //!
+        -:  155:    //! @note Has no effect if the specified format is not found
+        -:  156:    //! @par Since Boost 1.62
+        -:  157:    //! @return the previous log level of the corresponding formatter (new in Boost 1.73)
+        -:  158:    log_level           set_threshold_level( output_format, log_level );
+        -:  159:
+        -:  160:    //! Add a format to the set of loggers
+        -:  161:    //!
+        -:  162:    //! Adding a logger means that the specified logger is enabled. The log level is managed by the formatter itself
+        -:  163:    //! and specifies what events are forwarded to the underlying formatter.
+        -:  164:    //! @par Since Boost 1.62
+        -:  165:    void                add_format( output_format );
+        -:  166:
+        -:  167:    //! Sets the format of the logger
+        -:  168:    //!
+        -:  169:    //! This will become the only active format of the logs.
+        -:  170:    void                set_format( output_format );
+        -:  171:
+        -:  172:    //! Returns the logger instance for a specific format.
+        -:  173:    //!
+        -:  174:    //! @returns the logger/formatter instance, or @c (unit_test_log_formatter*)0 if the format is not found.
+        -:  175:    //! @par Since Boost 1.62
+        -:  176:    unit_test_log_formatter* get_formatter( output_format );
+        -:  177:
+        -:  178:    //! Sets the logger instance
+        -:  179:    //!
+        -:  180:    //! The specified logger becomes the unique active one. The custom log formatter has the
+        -:  181:    //! format @c OF_CUSTOM_LOGGER. If such a format exists already, its formatter gets replaced by the one
+        -:  182:    //! given in argument.
+        -:  183:    //!
+        -:  184:    //! The log level and output stream of the new formatter are taken from the currently active logger. In case
+        -:  185:    //! several loggers are active, the order of priority is CUSTOM, HRF, XML, and JUNIT.
+        -:  186:    //! If (unit_test_log_formatter*)0 is given as argument, the custom logger (if any) is removed.
+        -:  187:    //!
+        -:  188:    //! @note The ownership of the pointer is transferred to the Boost.Test framework. This call is equivalent to
+        -:  189:    //! - a call to @c add_formatter
+        -:  190:    //! - a call to @c set_format(OF_CUSTOM_LOGGER)
+        -:  191:    //! - a configuration of the newly added logger with a previously configured stream and log level.
+        -:  192:    void                set_formatter( unit_test_log_formatter* );
+        -:  193:
+        -:  194:    //! Adds a custom log formatter to the set of formatters
+        -:  195:    //!
+        -:  196:    //! The specified logger is added with the format @c OF_CUSTOM_LOGGER, such that it can
+        -:  197:    //! be futher selected or its stream/log level can be specified.
+        -:  198:    //! If there is already a custom logger (with @c OF_CUSTOM_LOGGER), then
+        -:  199:    //! the existing one gets replaced by the one given in argument.
+        -:  200:    //! The provided logger is added with an enabled state.
+        -:  201:    //! If (unit_test_log_formatter*)0 is given as argument, the custom logger (if any) is removed and
+        -:  202:    //! no other action is performed.
+        -:  203:    //!
+        -:  204:    //! @note The ownership of the pointer is transferred to the Boost.Test framework.
+        -:  205:    //! @par Since Boost 1.62
+        -:  206:    void                add_formatter( unit_test_log_formatter* the_formatter );
+        -:  207:
+        -:  208:    // test progress logging
+        -:  209:    void                set_checkpoint( const_string file, std::size_t line_num, const_string msg = const_string() );
+        -:  210:
+        -:  211:    // entry logging
+        -:  212:    unit_test_log_t&    operator<<( log::begin const& );        // begin entry
+        -:  213:    unit_test_log_t&    operator<<( log::end const& );          // end entry
+        -:  214:    unit_test_log_t&    operator<<( log_level );                // set entry level
+        -:  215:    unit_test_log_t&    operator<<( const_string );             // log entry value
+        -:  216:    unit_test_log_t&    operator<<( lazy_ostream const& );      // log entry value
+        -:  217:
+        -:  218:    ut_detail::entry_value_collector operator()( log_level );   // initiate entry collection
+        -:  219:
+        -:  220:    //! Prepares internal states after log levels, streams and format has been set up
+        -:  221:    void                configure();
+        -:  222:private:
+        -:  223:    // Singleton
+        -:  224:    BOOST_TEST_SINGLETON_CONS( unit_test_log_t )
+        -:  225:}; // unit_test_log_t
+        -:  226:
+        -:  227:BOOST_TEST_SINGLETON_INST( unit_test_log )
+        -:  228:
+        -:  229:// helper macros
+        -:  230:#define BOOST_TEST_LOG_ENTRY( ll )                                                  \
+        -:  231:    (::boost::unit_test::unit_test_log                                              \
+        -:  232:        << ::boost::unit_test::log::begin( BOOST_TEST_L(__FILE__), __LINE__ ))(ll)  \
+        -:  233:/**/
+        -:  234:
+        -:  235:} // namespace unit_test
+        -:  236:} // namespace boost
+        -:  237:
+        -:  238:// ************************************************************************** //
+        -:  239:// **************       Unit test log interface helpers        ************** //
+        -:  240:// ************************************************************************** //
+        -:  241:
+        -:  242:// messages sent by the framework
+        -:  243:#define BOOST_TEST_FRAMEWORK_MESSAGE( M )                       \
+        -:  244:   (::boost::unit_test::unit_test_log                           \
+        -:  245:        << ::boost::unit_test::log::begin(                      \
+        -:  246:                "boost.test framework",                         \
+        -:  247:                0 ))                                     \
+        -:  248:             ( ::boost::unit_test::log_messages )               \
+        -:  249:    << BOOST_TEST_LAZY_MSG( M )                                 \
+        -:  250:/**/
+        -:  251:
+        -:  252:
+        -:  253:#define BOOST_TEST_MESSAGE( M )                                 \
+        -:  254:    BOOST_TEST_LOG_ENTRY( ::boost::unit_test::log_messages )    \
+        -:  255:    << BOOST_TEST_LAZY_MSG( M )                                 \
+        -:  256:/**/
+        -:  257:
+        -:  258://____________________________________________________________________________//
+        -:  259:
+        -:  260:#define BOOST_TEST_PASSPOINT()                                  \
+        -:  261:    ::boost::unit_test::unit_test_log.set_checkpoint(           \
+        -:  262:        BOOST_TEST_L(__FILE__),                                 \
+        -:  263:        static_cast<std::size_t>(__LINE__) )                    \
+        -:  264:/**/
+        -:  265:
+        -:  266://____________________________________________________________________________//
+        -:  267:
+        -:  268:#define BOOST_TEST_CHECKPOINT( M )                              \
+        -:  269:    ::boost::unit_test::unit_test_log.set_checkpoint(           \
+        -:  270:        BOOST_TEST_L(__FILE__),                                 \
+        -:  271:        static_cast<std::size_t>(__LINE__),                     \
+        -:  272:        (::boost::wrap_stringstream().ref() << M).str() )       \
+        -:  273:/**/
+        -:  274:
+        -:  275://____________________________________________________________________________//
+        -:  276:
+        -:  277:#include <boost/test/detail/enable_warnings.hpp>
+        -:  278:
+        -:  279:#endif // BOOST_TEST_UNIT_TEST_LOG_HPP_071894GER
+        -:  280:

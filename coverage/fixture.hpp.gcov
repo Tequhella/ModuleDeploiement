@@ -1,0 +1,242 @@
+        -:    0:Source:/usr/include/boost/test/tree/fixture.hpp
+        -:    0:Graph:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcno
+        -:    0:Data:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcda
+        -:    0:Runs:1
+        -:    1://  (C) Copyright Gennadiy Rozental 2001.
+        -:    2://  Distributed under the Boost Software License, Version 1.0.
+        -:    3://  (See accompanying file LICENSE_1_0.txt or copy at
+        -:    4://  http://www.boost.org/LICENSE_1_0.txt)
+        -:    5:
+        -:    6://  See http://www.boost.org/libs/test for the library home page.
+        -:    7://
+        -:    8:/// @file
+        -:    9:/// Defines fixture interface and object makers
+        -:   10:// ***************************************************************************
+        -:   11:
+        -:   12:#ifndef BOOST_TEST_TREE_FIXTURE_HPP_100311GER
+        -:   13:#define BOOST_TEST_TREE_FIXTURE_HPP_100311GER
+        -:   14:
+        -:   15:// Boost.Test
+        -:   16:#include <boost/test/detail/config.hpp>
+        -:   17:
+        -:   18:// Boost
+        -:   19:#include <boost/shared_ptr.hpp>
+        -:   20:#include <boost/scoped_ptr.hpp>
+        -:   21:#include <boost/function/function0.hpp>
+        -:   22:#include <boost/utility/declval.hpp>
+        -:   23:
+        -:   24:#include <boost/test/detail/suppress_warnings.hpp>
+        -:   25:
+        -:   26://____________________________________________________________________________//
+        -:   27:
+        -:   28:namespace boost {
+        -:   29:namespace unit_test {
+        -:   30:
+        -:   31:// ************************************************************************** //
+        -:   32:// **************               test_unit_fixture              ************** //
+        -:   33:// ************************************************************************** //
+        -:   34:
+        -:   35:class BOOST_TEST_DECL test_unit_fixture {
+        -:   36:public:
+        -:   37:    virtual ~test_unit_fixture() {}
+        -:   38:
+        -:   39:    // Fixture interface
+        -:   40:    virtual void    setup() = 0;
+        -:   41:    virtual void    teardown() = 0;
+        -:   42:};
+        -:   43:
+        -:   44:typedef shared_ptr<test_unit_fixture> test_unit_fixture_ptr;
+        -:   45:
+        -:   46:// ************************************************************************** //
+        -:   47:// **************               fixture helper functions       ************** //
+        -:   48:// ************************************************************************** //
+        -:   49:
+        -:   50:namespace impl_fixture {
+        -:   51:
+        -:   52:#if defined(BOOST_NO_CXX11_DECLTYPE) || defined(BOOST_NO_CXX11_TRAILING_RESULT_TYPES)
+        -:   53:
+        -:   54:    template<typename U, void (U::*)()> struct fixture_detect {};
+        -:   55:
+        -:   56:    template<typename T>
+        -:   57:    struct has_setup {
+        -:   58:    private:
+        -:   59:        template<typename U> static char Test(fixture_detect<U, &U::setup>*);
+        -:   60:        template<typename U> static int Test(...);
+        -:   61:    public:
+        -:   62:        static const bool value = sizeof(Test<T>(0)) == sizeof(char);
+        -:   63:    };
+        -:   64:
+        -:   65:    template<typename T>
+        -:   66:    struct has_teardown {
+        -:   67:    private:
+        -:   68:        template<typename U> static char Test(fixture_detect<U, &U::teardown>*);
+        -:   69:        template<typename U> static int Test(...);
+        -:   70:    public:
+        -:   71:        static const bool value = sizeof(Test<T>(0)) == sizeof(char);
+        -:   72:    };
+        -:   73:
+        -:   74:#else
+        -:   75:
+        -:   76:    template<typename U> struct fixture_detect { typedef char type; };
+        -:   77:    template<typename T>
+        -:   78:    struct has_setup {
+        -:   79:    private:
+        -:   80:        template<typename U> static auto Test(U*) -> typename fixture_detect<decltype(boost::declval<U>().setup())>::type;
+        -:   81:        template<typename U> static int Test(...);
+        -:   82:    public:
+        -:   83:        static const bool value = sizeof(Test<T>(0)) == sizeof(char);
+        -:   84:    };
+        -:   85:
+        -:   86:    template<typename T>
+        -:   87:    struct has_teardown {
+        -:   88:    private:
+        -:   89:        template<typename U> static auto Test(U*) -> typename fixture_detect<decltype(boost::declval<U>().teardown())>::type;
+        -:   90:        template<typename U> static int Test(...);
+        -:   91:    public:
+        -:   92:        static const bool value = sizeof(Test<T>(0)) == sizeof(char);
+        -:   93:    };
+        -:   94:
+        -:   95:#endif
+        -:   96:
+        -:   97:    template <bool has_setup = false>
+        4:   98:    struct call_setup          { template <class U> void operator()(U& ) { }                };
+------------------
+_ZN5boost9unit_test12impl_fixture10call_setupILb0EEclIN18AdditionalAgeTests26TestCalculateAgeFutureDateEEEvRT_:
+        1:   98:    struct call_setup          { template <class U> void operator()(U& ) { }                };
+------------------
+_ZN5boost9unit_test12impl_fixture10call_setupILb0EEclIN18AdditionalAgeTests26TestCalculateAgeNoArgumentEEEvRT_:
+        1:   98:    struct call_setup          { template <class U> void operator()(U& ) { }                };
+------------------
+_ZN5boost9unit_test12impl_fixture10call_setupILb0EEclIN18AdditionalAgeTests29TestCalculateAgeInvalidObjectEEEvRT_:
+        1:   98:    struct call_setup          { template <class U> void operator()(U& ) { }                };
+------------------
+_ZN5boost9unit_test12impl_fixture10call_setupILb0EEclIN8AgeTests16TestCalculateAgeEEEvRT_:
+        1:   98:    struct call_setup          { template <class U> void operator()(U& ) { }                };
+------------------
+        -:   99:
+        -:  100:    template <>
+        -:  101:    struct call_setup<true>    { template <class U> void operator()(U& u) { u.setup(); }    };
+        -:  102:
+        -:  103:    template <bool has_teardown = false>
+        4:  104:    struct call_teardown       { template <class U> void operator()(U& ) { }                };
+------------------
+_ZN5boost9unit_test12impl_fixture13call_teardownILb0EEclIN18AdditionalAgeTests26TestCalculateAgeFutureDateEEEvRT_:
+        1:  104:    struct call_teardown       { template <class U> void operator()(U& ) { }                };
+------------------
+_ZN5boost9unit_test12impl_fixture13call_teardownILb0EEclIN18AdditionalAgeTests26TestCalculateAgeNoArgumentEEEvRT_:
+        1:  104:    struct call_teardown       { template <class U> void operator()(U& ) { }                };
+------------------
+_ZN5boost9unit_test12impl_fixture13call_teardownILb0EEclIN18AdditionalAgeTests29TestCalculateAgeInvalidObjectEEEvRT_:
+        1:  104:    struct call_teardown       { template <class U> void operator()(U& ) { }                };
+------------------
+_ZN5boost9unit_test12impl_fixture13call_teardownILb0EEclIN8AgeTests16TestCalculateAgeEEEvRT_:
+        1:  104:    struct call_teardown       { template <class U> void operator()(U& ) { }                };
+------------------
+        -:  105:
+        -:  106:    template <>
+        -:  107:    struct call_teardown<true> { template <class U> void operator()(U& u) { u.teardown(); } };
+        -:  108:}
+        -:  109:
+        -:  110://! Calls the fixture "setup" if detected by the compiler, otherwise does nothing.
+        -:  111:template <class U>
+        4:  112:void setup_conditional(U& u) {
+        4:  113:    return impl_fixture::call_setup<impl_fixture::has_setup<U>::value>()(u);
+        -:  114:}
+------------------
+_ZN5boost9unit_test17setup_conditionalIN18AdditionalAgeTests26TestCalculateAgeFutureDateEEEvRT_:
+        1:  112:void setup_conditional(U& u) {
+        1:  113:    return impl_fixture::call_setup<impl_fixture::has_setup<U>::value>()(u);
+        -:  114:}
+------------------
+_ZN5boost9unit_test17setup_conditionalIN18AdditionalAgeTests26TestCalculateAgeNoArgumentEEEvRT_:
+        1:  112:void setup_conditional(U& u) {
+        1:  113:    return impl_fixture::call_setup<impl_fixture::has_setup<U>::value>()(u);
+        -:  114:}
+------------------
+_ZN5boost9unit_test17setup_conditionalIN18AdditionalAgeTests29TestCalculateAgeInvalidObjectEEEvRT_:
+        1:  112:void setup_conditional(U& u) {
+        1:  113:    return impl_fixture::call_setup<impl_fixture::has_setup<U>::value>()(u);
+        -:  114:}
+------------------
+_ZN5boost9unit_test17setup_conditionalIN8AgeTests16TestCalculateAgeEEEvRT_:
+        1:  112:void setup_conditional(U& u) {
+        1:  113:    return impl_fixture::call_setup<impl_fixture::has_setup<U>::value>()(u);
+        -:  114:}
+------------------
+        -:  115:
+        -:  116://! Calls the fixture "teardown" if detected by the compiler, otherwise does nothing.
+        -:  117:template <class U>
+        4:  118:void teardown_conditional(U& u) {
+        4:  119:    return impl_fixture::call_teardown<impl_fixture::has_teardown<U>::value>()(u);
+        -:  120:}
+        -:  121:
+        -:  122:
+        -:  123:// ************************************************************************** //
+        -:  124:// **************              class_based_fixture             ************** //
+        -:  125:// ************************************************************************** //
+        -:  126:
+        -:  127:template<typename F, typename Arg=void>
+        -:  128:class class_based_fixture : public test_unit_fixture {
+        -:  129:public:
+        -:  130:    // Constructor
+        -:  131:    explicit class_based_fixture( Arg const& arg ) : m_inst(), m_arg( arg ) {}
+        -:  132:
+        -:  133:private:
+        -:  134:    // Fixture interface
+        -:  135:    void    setup() BOOST_OVERRIDE         { m_inst.reset( new F( m_arg ) ); setup_conditional(*m_inst); }
+        -:  136:    void    teardown() BOOST_OVERRIDE      { teardown_conditional(*m_inst); m_inst.reset(); }
+        -:  137:
+        -:  138:    // Data members
+        -:  139:    scoped_ptr<F>   m_inst;
+        -:  140:    Arg             m_arg;
+        -:  141:};
+        -:  142:
+        -:  143://____________________________________________________________________________//
+        -:  144:
+        -:  145:template<typename F>
+        -:  146:class class_based_fixture<F,void> : public test_unit_fixture {
+        -:  147:public:
+        -:  148:    // Constructor
+        -:  149:    class_based_fixture() : m_inst( 0 ) {}
+        -:  150:
+        -:  151:private:
+        -:  152:    // Fixture interface
+        -:  153:    void    setup() BOOST_OVERRIDE         { m_inst.reset( new F ); setup_conditional(*m_inst); }
+        -:  154:    void    teardown() BOOST_OVERRIDE      { teardown_conditional(*m_inst); m_inst.reset(); }
+        -:  155:
+        -:  156:    // Data members
+        -:  157:    scoped_ptr<F>   m_inst;
+        -:  158:};
+        -:  159:
+        -:  160://____________________________________________________________________________//
+        -:  161:
+        -:  162:// ************************************************************************** //
+        -:  163:// **************            function_based_fixture            ************** //
+        -:  164:// ************************************************************************** //
+        -:  165:
+        -:  166:class function_based_fixture : public test_unit_fixture {
+        -:  167:public:
+        -:  168:    // Constructor
+        -:  169:    function_based_fixture( boost::function<void ()> const& setup_, boost::function<void ()> const& teardown_ )
+        -:  170:    : m_setup( setup_ )
+        -:  171:    , m_teardown( teardown_ )
+        -:  172:    {
+        -:  173:    }
+        -:  174:
+        -:  175:private:
+        -:  176:    // Fixture interface
+        -:  177:    void                setup() BOOST_OVERRIDE     { if( m_setup ) m_setup(); }
+        -:  178:    void                teardown() BOOST_OVERRIDE  { if( m_teardown ) m_teardown(); }
+        -:  179:
+        -:  180:    // Data members
+        -:  181:    boost::function<void ()>    m_setup;
+        -:  182:    boost::function<void ()>    m_teardown;
+        -:  183:};
+        -:  184:
+        -:  185:} // namespace unit_test
+        -:  186:} // namespace boost
+        -:  187:
+        -:  188:#include <boost/test/detail/enable_warnings.hpp>
+        -:  189:
+        -:  190:#endif // BOOST_TEST_TREE_FIXTURE_HPP_100311GER
+        -:  191:
