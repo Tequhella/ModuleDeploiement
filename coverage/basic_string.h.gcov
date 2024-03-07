@@ -1,7 +1,4 @@
         -:    0:Source:/usr/include/c++/11/bits/basic_string.h
-        -:    0:Graph:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcno
-        -:    0:Data:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcda
-        -:    0:Runs:1
         -:    1:// Components for manipulating sequences of characters -*- C++ -*-
         -:    2:
         -:    3:// Copyright (C) 1997-2021 Free Software Foundation, Inc.
@@ -165,11 +162,29 @@
         -:  161:	_Alloc_hider(pointer __dat, const _Alloc& __a = _Alloc())
         -:  162:	: allocator_type(__a), _M_p(__dat) { }
         -:  163:#else
-        3:  164:	_Alloc_hider(pointer __dat, const _Alloc& __a)
-        3:  165:	: allocator_type(__a), _M_p(__dat) { }
+   16746*:  164:	_Alloc_hider(pointer __dat, const _Alloc& __a)
+   16746*:  165:	: allocator_type(__a), _M_p(__dat) { }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12_Alloc_hiderC2EPcRKS3_:
+    16746:  164:	_Alloc_hider(pointer __dat, const _Alloc& __a)
+    16746:  165:	: allocator_type(__a), _M_p(__dat) { }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12_Alloc_hiderC2EPcRKS3_:
+    #####:  164:	_Alloc_hider(pointer __dat, const _Alloc& __a)
+    #####:  165:	: allocator_type(__a), _M_p(__dat) { }
+------------------
         -:  166:
-       20:  167:	_Alloc_hider(pointer __dat, _Alloc&& __a = _Alloc())
-       20:  168:	: allocator_type(std::move(__a)), _M_p(__dat) { }
+     960*:  167:	_Alloc_hider(pointer __dat, _Alloc&& __a = _Alloc())
+     960*:  168:	: allocator_type(std::move(__a)), _M_p(__dat) { }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12_Alloc_hiderC2EPcOS3_:
+      960:  167:	_Alloc_hider(pointer __dat, _Alloc&& __a = _Alloc())
+      960:  168:	: allocator_type(std::move(__a)), _M_p(__dat) { }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12_Alloc_hiderC2EPcOS3_:
+    #####:  167:	_Alloc_hider(pointer __dat, _Alloc&& __a = _Alloc())
+    #####:  168:	: allocator_type(std::move(__a)), _M_p(__dat) { }
+------------------
         -:  169:#endif
         -:  170:
         -:  171:	pointer _M_p; // The actual data.
@@ -187,77 +202,228 @@
         -:  183:      };
         -:  184:
         -:  185:      void
-       43:  186:      _M_data(pointer __p)
-       43:  187:      { _M_dataplus._M_p = __p; }
+     705*:  186:      _M_data(pointer __p)
+     705*:  187:      { _M_dataplus._M_p = __p; }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE7_M_dataEPc:
+      705:  186:      _M_data(pointer __p)
+      705:  187:      { _M_dataplus._M_p = __p; }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE7_M_dataEPc:
+    #####:  186:      _M_data(pointer __p)
+    #####:  187:      { _M_dataplus._M_p = __p; }
+------------------
         -:  188:
         -:  189:      void
-       67:  190:      _M_length(size_type __length)
-       67:  191:      { _M_string_length = __length; }
+   19862*:  190:      _M_length(size_type __length)
+   19862*:  191:      { _M_string_length = __length; }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_lengthEm:
+    19862:  190:      _M_length(size_type __length)
+    19862:  191:      { _M_string_length = __length; }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_lengthEm:
+    #####:  190:      _M_length(size_type __length)
+    #####:  191:      { _M_string_length = __length; }
+------------------
         -:  192:
         -:  193:      pointer
-      237:  194:      _M_data() const
-      237:  195:      { return _M_dataplus._M_p; }
+  112503*:  194:      _M_data() const
+  112503*:  195:      { return _M_dataplus._M_p; }
+------------------
+_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE7_M_dataEv:
+   112503:  194:      _M_data() const
+   112503:  195:      { return _M_dataplus._M_p; }
+------------------
+_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE7_M_dataEv:
+    #####:  194:      _M_data() const
+    #####:  195:      { return _M_dataplus._M_p; }
+------------------
         -:  196:
         -:  197:      pointer
-       23:  198:      _M_local_data()
+   17843*:  198:      _M_local_data()
         -:  199:      {
         -:  200:#if __cplusplus >= 201103L
-       23:  201:	return std::pointer_traits<pointer>::pointer_to(*_M_local_buf);
+   17843*:  201:	return std::pointer_traits<pointer>::pointer_to(*_M_local_buf);
         -:  202:#else
         -:  203:	return pointer(_M_local_buf);
         -:  204:#endif
         -:  205:      }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE13_M_local_dataEv:
+    17843:  198:      _M_local_data()
+        -:  199:      {
+        -:  200:#if __cplusplus >= 201103L
+    17843:  201:	return std::pointer_traits<pointer>::pointer_to(*_M_local_buf);
+        -:  202:#else
+        -:  203:	return pointer(_M_local_buf);
+        -:  204:#endif
+        -:  205:      }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE13_M_local_dataEv:
+    #####:  198:      _M_local_data()
+        -:  199:      {
+        -:  200:#if __cplusplus >= 201103L
+    #####:  201:	return std::pointer_traits<pointer>::pointer_to(*_M_local_buf);
+        -:  202:#else
+        -:  203:	return pointer(_M_local_buf);
+        -:  204:#endif
+        -:  205:      }
+------------------
         -:  206:
         -:  207:      const_pointer
-      111:  208:      _M_local_data() const
+   37094*:  208:      _M_local_data() const
         -:  209:      {
         -:  210:#if __cplusplus >= 201103L
-      111:  211:	return std::pointer_traits<const_pointer>::pointer_to(*_M_local_buf);
+   37094*:  211:	return std::pointer_traits<const_pointer>::pointer_to(*_M_local_buf);
         -:  212:#else
         -:  213:	return const_pointer(_M_local_buf);
         -:  214:#endif
         -:  215:      }
+------------------
+_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE13_M_local_dataEv:
+    37094:  208:      _M_local_data() const
+        -:  209:      {
+        -:  210:#if __cplusplus >= 201103L
+    37094:  211:	return std::pointer_traits<const_pointer>::pointer_to(*_M_local_buf);
+        -:  212:#else
+        -:  213:	return const_pointer(_M_local_buf);
+        -:  214:#endif
+        -:  215:      }
+------------------
+_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE13_M_local_dataEv:
+    #####:  208:      _M_local_data() const
+        -:  209:      {
+        -:  210:#if __cplusplus >= 201103L
+    #####:  211:	return std::pointer_traits<const_pointer>::pointer_to(*_M_local_buf);
+        -:  212:#else
+        -:  213:	return const_pointer(_M_local_buf);
+        -:  214:#endif
+        -:  215:      }
+------------------
         -:  216:
         -:  217:      void
-       23:  218:      _M_capacity(size_type __capacity)
-       23:  219:      { _M_allocated_capacity = __capacity; }
+     393*:  218:      _M_capacity(size_type __capacity)
+     393*:  219:      { _M_allocated_capacity = __capacity; }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE11_M_capacityEm:
+      393:  218:      _M_capacity(size_type __capacity)
+      393:  219:      { _M_allocated_capacity = __capacity; }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE11_M_capacityEm:
+    #####:  218:      _M_capacity(size_type __capacity)
+    #####:  219:      { _M_allocated_capacity = __capacity; }
+------------------
         -:  220:
         -:  221:      void
-       47:  222:      _M_set_length(size_type __n)
+   19550*:  222:      _M_set_length(size_type __n)
         -:  223:      {
-       47:  224:	_M_length(__n);
-       47:  225:	traits_type::assign(_M_data()[__n], _CharT());
-       47:  226:      }
+   19550*:  224:	_M_length(__n);
+   19550*:  225:	traits_type::assign(_M_data()[__n], _CharT());
+   19550*:  226:      }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE13_M_set_lengthEm:
+    19550:  222:      _M_set_length(size_type __n)
+        -:  223:      {
+    19550:  224:	_M_length(__n);
+    19550:  225:	traits_type::assign(_M_data()[__n], _CharT());
+    19550:  226:      }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE13_M_set_lengthEm:
+    #####:  222:      _M_set_length(size_type __n)
+        -:  223:      {
+    #####:  224:	_M_length(__n);
+    #####:  225:	traits_type::assign(_M_data()[__n], _CharT());
+    #####:  226:      }
+------------------
         -:  227:
         -:  228:      bool
-      111:  229:      _M_is_local() const
-      111:  230:      { return _M_data() == _M_local_data(); }
+   37094*:  229:      _M_is_local() const
+   37094*:  230:      { return _M_data() == _M_local_data(); }
+------------------
+_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE11_M_is_localEv:
+    37094:  229:      _M_is_local() const
+    37094:  230:      { return _M_data() == _M_local_data(); }
+------------------
+_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE11_M_is_localEv:
+    #####:  229:      _M_is_local() const
+    #####:  230:      { return _M_data() == _M_local_data(); }
+------------------
         -:  231:
         -:  232:      // Create & Destroy
         -:  233:      pointer
         -:  234:      _M_create(size_type&, size_type);
         -:  235:
         -:  236:      void
-       47:  237:      _M_dispose()
+   34567*:  237:      _M_dispose()
         -:  238:      {
-       47:  239:	if (!_M_is_local())
-       27:  240:	  _M_destroy(_M_allocated_capacity);
-       47:  241:      }
+   34567*:  239:	if (!_M_is_local())
+     245*:  240:	  _M_destroy(_M_allocated_capacity);
+   34567*:  241:      }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE10_M_disposeEv:
+    34567:  237:      _M_dispose()
+        -:  238:      {
+    34567:  239:	if (!_M_is_local())
+      245:  240:	  _M_destroy(_M_allocated_capacity);
+    34567:  241:      }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE10_M_disposeEv:
+    #####:  237:      _M_dispose()
+        -:  238:      {
+    #####:  239:	if (!_M_is_local())
+    #####:  240:	  _M_destroy(_M_allocated_capacity);
+    #####:  241:      }
+------------------
         -:  242:
         -:  243:      void
-       27:  244:      _M_destroy(size_type __size) throw()
-       27:  245:      { _Alloc_traits::deallocate(_M_get_allocator(), _M_data(), __size + 1); }
+     245*:  244:      _M_destroy(size_type __size) throw()
+     245*:  245:      { _Alloc_traits::deallocate(_M_get_allocator(), _M_data(), __size + 1); }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE10_M_destroyEm:
+      245:  244:      _M_destroy(size_type __size) throw()
+      245:  245:      { _Alloc_traits::deallocate(_M_get_allocator(), _M_data(), __size + 1); }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE10_M_destroyEm:
+    #####:  244:      _M_destroy(size_type __size) throw()
+    #####:  245:      { _Alloc_traits::deallocate(_M_get_allocator(), _M_data(), __size + 1); }
+------------------
         -:  246:
         -:  247:      // _M_construct_aux is used to implement the 21.3.1 para 15 which
         -:  248:      // requires special behaviour if _InIterator is an integral type
         -:  249:      template<typename _InIterator>
         -:  250:        void
-        -:  251:        _M_construct_aux(_InIterator __beg, _InIterator __end,
+    9416*:  251:        _M_construct_aux(_InIterator __beg, _InIterator __end,
         -:  252:			 std::__false_type)
         -:  253:	{
         -:  254:          typedef typename iterator_traits<_InIterator>::iterator_category _Tag;
-        -:  255:          _M_construct(__beg, __end, _Tag());
-        -:  256:	}
+    9416*:  255:          _M_construct(__beg, __end, _Tag());
+    9416*:  256:	}
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE16_M_construct_auxIN9__gnu_cxx17__normal_iteratorIPcS4_EEEEvT_SA_St12__false_type:
+    #####:  251:        _M_construct_aux(_InIterator __beg, _InIterator __end,
+        -:  252:			 std::__false_type)
+        -:  253:	{
+        -:  254:          typedef typename iterator_traits<_InIterator>::iterator_category _Tag;
+    #####:  255:          _M_construct(__beg, __end, _Tag());
+    #####:  256:	}
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE16_M_construct_auxIN9__gnu_cxx17__normal_iteratorIPKcS4_EEEEvT_SB_St12__false_type:
+       12:  251:        _M_construct_aux(_InIterator __beg, _InIterator __end,
+        -:  252:			 std::__false_type)
+        -:  253:	{
+        -:  254:          typedef typename iterator_traits<_InIterator>::iterator_category _Tag;
+       12:  255:          _M_construct(__beg, __end, _Tag());
+       12:  256:	}
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE16_M_construct_auxIPcEEvT_S7_St12__false_type:
+     9404:  251:        _M_construct_aux(_InIterator __beg, _InIterator __end,
+        -:  252:			 std::__false_type)
+        -:  253:	{
+        -:  254:          typedef typename iterator_traits<_InIterator>::iterator_category _Tag;
+     9404:  255:          _M_construct(__beg, __end, _Tag());
+     9404:  256:	}
+------------------
         -:  257:
         -:  258:      // _GLIBCXX_RESOLVE_LIB_DEFECTS
         -:  259:      // 438. Ambiguity in the "do the right thing" clause
@@ -272,11 +438,33 @@
         -:  268:
         -:  269:      template<typename _InIterator>
         -:  270:        void
-        -:  271:        _M_construct(_InIterator __beg, _InIterator __end)
+    9416*:  271:        _M_construct(_InIterator __beg, _InIterator __end)
         -:  272:	{
         -:  273:	  typedef typename std::__is_integer<_InIterator>::__type _Integral;
-        -:  274:	  _M_construct_aux(__beg, __end, _Integral());
-        -:  275:        }
+    9416*:  274:	  _M_construct_aux(__beg, __end, _Integral());
+    9416*:  275:        }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12_M_constructIN9__gnu_cxx17__normal_iteratorIPcS4_EEEEvT_SA_:
+    #####:  271:        _M_construct(_InIterator __beg, _InIterator __end)
+        -:  272:	{
+        -:  273:	  typedef typename std::__is_integer<_InIterator>::__type _Integral;
+    #####:  274:	  _M_construct_aux(__beg, __end, _Integral());
+    #####:  275:        }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12_M_constructIN9__gnu_cxx17__normal_iteratorIPKcS4_EEEEvT_SB_:
+       12:  271:        _M_construct(_InIterator __beg, _InIterator __end)
+        -:  272:	{
+        -:  273:	  typedef typename std::__is_integer<_InIterator>::__type _Integral;
+       12:  274:	  _M_construct_aux(__beg, __end, _Integral());
+       12:  275:        }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12_M_constructIPcEEvT_S7_:
+     9404:  271:        _M_construct(_InIterator __beg, _InIterator __end)
+        -:  272:	{
+        -:  273:	  typedef typename std::__is_integer<_InIterator>::__type _Integral;
+     9404:  274:	  _M_construct_aux(__beg, __end, _Integral());
+     9404:  275:        }
+------------------
         -:  276:
         -:  277:      // For Input Iterators, used in istreambuf_iterators, etc.
         -:  278:      template<typename _InIterator>
@@ -295,12 +483,30 @@
         -:  291:      _M_construct(size_type __req, _CharT __c);
         -:  292:
         -:  293:      allocator_type&
-      342:  294:      _M_get_allocator()
-      342:  295:      { return _M_dataplus; }
+    1509*:  294:      _M_get_allocator()
+    1509*:  295:      { return _M_dataplus; }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE16_M_get_allocatorEv:
+     1509:  294:      _M_get_allocator()
+     1509:  295:      { return _M_dataplus; }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE16_M_get_allocatorEv:
+    #####:  294:      _M_get_allocator()
+    #####:  295:      { return _M_dataplus; }
+------------------
         -:  296:
         -:  297:      const allocator_type&
-      311:  298:      _M_get_allocator() const
-      311:  299:      { return _M_dataplus; }
+    2083*:  298:      _M_get_allocator() const
+    2083*:  299:      { return _M_dataplus; }
+------------------
+_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE16_M_get_allocatorEv:
+     2083:  298:      _M_get_allocator() const
+     2083:  299:      { return _M_dataplus; }
+------------------
+_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE16_M_get_allocatorEv:
+    #####:  298:      _M_get_allocator() const
+    #####:  299:      { return _M_dataplus; }
+------------------
         -:  300:
         -:  301:    private:
         -:  302:
@@ -319,67 +525,86 @@
         -:  315:#endif
         -:  316:
         -:  317:      size_type
-        -:  318:      _M_check(size_type __pos, const char* __s) const
+    #####:  318:      _M_check(size_type __pos, const char* __s) const
         -:  319:      {
-        -:  320:	if (__pos > this->size())
-        -:  321:	  __throw_out_of_range_fmt(__N("%s: __pos (which is %zu) > "
+    #####:  320:	if (__pos > this->size())
+    #####:  321:	  __throw_out_of_range_fmt(__N("%s: __pos (which is %zu) > "
         -:  322:				       "this->size() (which is %zu)"),
         -:  323:				   __s, __pos, this->size());
-        -:  324:	return __pos;
+    #####:  324:	return __pos;
         -:  325:      }
         -:  326:
         -:  327:      void
-        -:  328:      _M_check_length(size_type __n1, size_type __n2, const char* __s) const
+      525:  328:      _M_check_length(size_type __n1, size_type __n2, const char* __s) const
         -:  329:      {
-        -:  330:	if (this->max_size() - (this->size() - __n1) < __n2)
-        -:  331:	  __throw_length_error(__N(__s));
-        -:  332:      }
+      525:  330:	if (this->max_size() - (this->size() - __n1) < __n2)
+    #####:  331:	  __throw_length_error(__N(__s));
+      525:  332:      }
         -:  333:
         -:  334:
         -:  335:      // NB: _M_limit doesn't check for a bad __pos value.
         -:  336:      size_type
-        -:  337:      _M_limit(size_type __pos, size_type __off) const _GLIBCXX_NOEXCEPT
+    #####:  337:      _M_limit(size_type __pos, size_type __off) const _GLIBCXX_NOEXCEPT
         -:  338:      {
-        -:  339:	const bool __testoff =  __off < this->size() - __pos;
-        -:  340:	return __testoff ? __off : this->size() - __pos;
+    #####:  339:	const bool __testoff =  __off < this->size() - __pos;
+    #####:  340:	return __testoff ? __off : this->size() - __pos;
         -:  341:      }
         -:  342:
         -:  343:      // True if _Rep and source do not overlap.
         -:  344:      bool
-        -:  345:      _M_disjunct(const _CharT* __s) const _GLIBCXX_NOEXCEPT
+      324:  345:      _M_disjunct(const _CharT* __s) const _GLIBCXX_NOEXCEPT
         -:  346:      {
-        -:  347:	return (less<const _CharT*>()(__s, _M_data())
-        -:  348:		|| less<const _CharT*>()(_M_data() + this->size(), __s));
+      324:  347:	return (less<const _CharT*>()(__s, _M_data())
+     324*:  348:		|| less<const _CharT*>()(_M_data() + this->size(), __s));
         -:  349:      }
         -:  350:
         -:  351:      // When __n = 1 way faster than the general multichar
         -:  352:      // traits_type::copy/move/assign.
         -:  353:      static void
-        4:  354:      _S_copy(_CharT* __d, const _CharT* __s, size_type __n)
+   18098*:  354:      _S_copy(_CharT* __d, const _CharT* __s, size_type __n)
         -:  355:      {
-        4:  356:	if (__n == 1)
+   18098*:  356:	if (__n == 1)
+   16946*:  357:	  traits_type::assign(*__d, *__s);
+        -:  358:	else
+    1152*:  359:	  traits_type::copy(__d, __s, __n);
+   18098*:  360:      }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE7_S_copyEPcPKcm:
+    18098:  354:      _S_copy(_CharT* __d, const _CharT* __s, size_type __n)
+        -:  355:      {
+    18098:  356:	if (__n == 1)
+    16946:  357:	  traits_type::assign(*__d, *__s);
+        -:  358:	else
+     1152:  359:	  traits_type::copy(__d, __s, __n);
+    18098:  360:      }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE7_S_copyEPcPKcm:
+    #####:  354:      _S_copy(_CharT* __d, const _CharT* __s, size_type __n)
+        -:  355:      {
+    #####:  356:	if (__n == 1)
     #####:  357:	  traits_type::assign(*__d, *__s);
         -:  358:	else
-        4:  359:	  traits_type::copy(__d, __s, __n);
-        4:  360:      }
+    #####:  359:	  traits_type::copy(__d, __s, __n);
+    #####:  360:      }
+------------------
         -:  361:
         -:  362:      static void
-        -:  363:      _S_move(_CharT* __d, const _CharT* __s, size_type __n)
+    #####:  363:      _S_move(_CharT* __d, const _CharT* __s, size_type __n)
         -:  364:      {
-        -:  365:	if (__n == 1)
-        -:  366:	  traits_type::assign(*__d, *__s);
+    #####:  365:	if (__n == 1)
+    #####:  366:	  traits_type::assign(*__d, *__s);
         -:  367:	else
-        -:  368:	  traits_type::move(__d, __s, __n);
-        -:  369:      }
+    #####:  368:	  traits_type::move(__d, __s, __n);
+    #####:  369:      }
         -:  370:
         -:  371:      static void
-        -:  372:      _S_assign(_CharT* __d, size_type __n, _CharT __c)
+      131:  372:      _S_assign(_CharT* __d, size_type __n, _CharT __c)
         -:  373:      {
-        -:  374:	if (__n == 1)
-        -:  375:	  traits_type::assign(*__d, __c);
+      131:  374:	if (__n == 1)
+      131:  375:	  traits_type::assign(*__d, __c);
         -:  376:	else
-        -:  377:	  traits_type::assign(__d, __n, __c);
-        -:  378:      }
+    #####:  377:	  traits_type::assign(__d, __n, __c);
+      131:  378:      }
         -:  379:
         -:  380:      // _S_copy_chars is a separate template to permit specialization
         -:  381:      // to optimize for the common case of pointers as iterators.
@@ -392,35 +617,73 @@
         -:  388:	}
         -:  389:
         -:  390:      static void
-        -:  391:      _S_copy_chars(_CharT* __p, iterator __k1, iterator __k2) _GLIBCXX_NOEXCEPT
-        -:  392:      { _S_copy_chars(__p, __k1.base(), __k2.base()); }
+    #####:  391:      _S_copy_chars(_CharT* __p, iterator __k1, iterator __k2) _GLIBCXX_NOEXCEPT
+    #####:  392:      { _S_copy_chars(__p, __k1.base(), __k2.base()); }
         -:  393:
         -:  394:      static void
-        -:  395:      _S_copy_chars(_CharT* __p, const_iterator __k1, const_iterator __k2)
+       12:  395:      _S_copy_chars(_CharT* __p, const_iterator __k1, const_iterator __k2)
         -:  396:      _GLIBCXX_NOEXCEPT
-        -:  397:      { _S_copy_chars(__p, __k1.base(), __k2.base()); }
+       12:  397:      { _S_copy_chars(__p, __k1.base(), __k2.base()); }
         -:  398:
         -:  399:      static void
-        -:  400:      _S_copy_chars(_CharT* __p, _CharT* __k1, _CharT* __k2) _GLIBCXX_NOEXCEPT
-        -:  401:      { _S_copy(__p, __k1, __k2 - __k1); }
+     9404:  400:      _S_copy_chars(_CharT* __p, _CharT* __k1, _CharT* __k2) _GLIBCXX_NOEXCEPT
+     9404:  401:      { _S_copy(__p, __k1, __k2 - __k1); }
         -:  402:
         -:  403:      static void
-        3:  404:      _S_copy_chars(_CharT* __p, const _CharT* __k1, const _CharT* __k2)
+     263*:  404:      _S_copy_chars(_CharT* __p, const _CharT* __k1, const _CharT* __k2)
         -:  405:      _GLIBCXX_NOEXCEPT
-        3:  406:      { _S_copy(__p, __k1, __k2 - __k1); }
+     263*:  406:      { _S_copy(__p, __k1, __k2 - __k1); }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE13_S_copy_charsEPcPKcS7_:
+      263:  404:      _S_copy_chars(_CharT* __p, const _CharT* __k1, const _CharT* __k2)
+        -:  405:      _GLIBCXX_NOEXCEPT
+      263:  406:      { _S_copy(__p, __k1, __k2 - __k1); }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE13_S_copy_charsEPcPKcS7_:
+    #####:  404:      _S_copy_chars(_CharT* __p, const _CharT* __k1, const _CharT* __k2)
+        -:  405:      _GLIBCXX_NOEXCEPT
+    #####:  406:      { _S_copy(__p, __k1, __k2 - __k1); }
+------------------
         -:  407:
         -:  408:      static int
-        3:  409:      _S_compare(size_type __n1, size_type __n2) _GLIBCXX_NOEXCEPT
+     197*:  409:      _S_compare(size_type __n1, size_type __n2) _GLIBCXX_NOEXCEPT
         -:  410:      {
-        3:  411:	const difference_type __d = difference_type(__n1 - __n2);
+     197*:  411:	const difference_type __d = difference_type(__n1 - __n2);
         -:  412:
-        3:  413:	if (__d > __gnu_cxx::__numeric_traits<int>::__max)
+     197*:  413:	if (__d > __gnu_cxx::__numeric_traits<int>::__max)
     #####:  414:	  return __gnu_cxx::__numeric_traits<int>::__max;
-        3:  415:	else if (__d < __gnu_cxx::__numeric_traits<int>::__min)
+     197*:  415:	else if (__d < __gnu_cxx::__numeric_traits<int>::__min)
     #####:  416:	  return __gnu_cxx::__numeric_traits<int>::__min;
         -:  417:	else
-        3:  418:	  return int(__d);
+     197*:  418:	  return int(__d);
         -:  419:      }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE10_S_compareEmm:
+      197:  409:      _S_compare(size_type __n1, size_type __n2) _GLIBCXX_NOEXCEPT
+        -:  410:      {
+      197:  411:	const difference_type __d = difference_type(__n1 - __n2);
+        -:  412:
+      197:  413:	if (__d > __gnu_cxx::__numeric_traits<int>::__max)
+    #####:  414:	  return __gnu_cxx::__numeric_traits<int>::__max;
+      197:  415:	else if (__d < __gnu_cxx::__numeric_traits<int>::__min)
+    #####:  416:	  return __gnu_cxx::__numeric_traits<int>::__min;
+        -:  417:	else
+      197:  418:	  return int(__d);
+        -:  419:      }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE10_S_compareEmm:
+    #####:  409:      _S_compare(size_type __n1, size_type __n2) _GLIBCXX_NOEXCEPT
+        -:  410:      {
+    #####:  411:	const difference_type __d = difference_type(__n1 - __n2);
+        -:  412:
+    #####:  413:	if (__d > __gnu_cxx::__numeric_traits<int>::__max)
+    #####:  414:	  return __gnu_cxx::__numeric_traits<int>::__max;
+    #####:  415:	else if (__d < __gnu_cxx::__numeric_traits<int>::__min)
+    #####:  416:	  return __gnu_cxx::__numeric_traits<int>::__min;
+        -:  417:	else
+    #####:  418:	  return int(__d);
+        -:  419:      }
+------------------
         -:  420:
         -:  421:      void
         -:  422:      _M_assign(const basic_string&);
@@ -440,10 +703,23 @@
         -:  436:      /**
         -:  437:       *  @brief  Default constructor creates an empty string.
         -:  438:       */
-       20:  439:      basic_string()
+     603*:  439:      basic_string()
         -:  440:      _GLIBCXX_NOEXCEPT_IF(is_nothrow_default_constructible<_Alloc>::value)
-       20:  441:      : _M_dataplus(_M_local_data())
-       20:  442:      { _M_set_length(0); }
+     603*:  441:      : _M_dataplus(_M_local_data())
+     603*:  442:      { _M_set_length(0); }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC2Ev:
+      603:  439:      basic_string()
+        -:  440:      _GLIBCXX_NOEXCEPT_IF(is_nothrow_default_constructible<_Alloc>::value)
+      603:  441:      : _M_dataplus(_M_local_data())
+      603:  442:      { _M_set_length(0); }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC2Ev:
+    #####:  439:      basic_string()
+        -:  440:      _GLIBCXX_NOEXCEPT_IF(is_nothrow_default_constructible<_Alloc>::value)
+    #####:  441:      : _M_dataplus(_M_local_data())
+    #####:  442:      { _M_set_length(0); }
+------------------
         -:  443:
         -:  444:      /**
         -:  445:       *  @brief  Construct an empty string using allocator @a a.
@@ -457,10 +733,10 @@
         -:  453:       *  @brief  Construct string with copy of value of @a __str.
         -:  454:       *  @param  __str  Source string.
         -:  455:       */
-        -:  456:      basic_string(const basic_string& __str)
-        -:  457:      : _M_dataplus(_M_local_data(),
-        -:  458:		    _Alloc_traits::_S_select_on_copy(__str._M_get_allocator()))
-        -:  459:      { _M_construct(__str._M_data(), __str._M_data() + __str.length()); }
+      110:  456:      basic_string(const basic_string& __str)
+      110:  457:      : _M_dataplus(_M_local_data(),
+      110:  458:		    _Alloc_traits::_S_select_on_copy(__str._M_get_allocator()))
+      110:  459:      { _M_construct(__str._M_data(), __str._M_data() + __str.length()); }
         -:  460:
         -:  461:      // _GLIBCXX_RESOLVE_LIB_DEFECTS
         -:  462:      // 2583. no way to supply an allocator for basic_string(str, pos)
@@ -534,14 +810,35 @@
         -:  530:      // 3076. basic_string CTAD ambiguity
         -:  531:      template<typename = _RequireAllocator<_Alloc>>
         -:  532:#endif
-        3:  533:      basic_string(const _CharT* __s, const _Alloc& __a = _Alloc())
-        3:  534:      : _M_dataplus(_M_local_data(), __a)
+     242*:  533:      basic_string(const _CharT* __s, const _Alloc& __a = _Alloc())
+     242*:  534:      : _M_dataplus(_M_local_data(), __a)
         -:  535:      {
-       3*:  536:	const _CharT* __end = __s ? __s + traits_type::length(__s)
+     242*:  536:	const _CharT* __end = __s ? __s + traits_type::length(__s)
         -:  537:	  // We just need a non-null pointer here to get an exception:
         -:  538:	  : reinterpret_cast<const _CharT*>(__alignof__(_CharT));
-        3:  539:	_M_construct(__s, __end, random_access_iterator_tag());
-        3:  540:      }
+     242*:  539:	_M_construct(__s, __end, random_access_iterator_tag());
+     242*:  540:      }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC2IS3_EEPKcRKS3_:
+      242:  533:      basic_string(const _CharT* __s, const _Alloc& __a = _Alloc())
+      242:  534:      : _M_dataplus(_M_local_data(), __a)
+        -:  535:      {
+     242*:  536:	const _CharT* __end = __s ? __s + traits_type::length(__s)
+        -:  537:	  // We just need a non-null pointer here to get an exception:
+        -:  538:	  : reinterpret_cast<const _CharT*>(__alignof__(_CharT));
+      242:  539:	_M_construct(__s, __end, random_access_iterator_tag());
+      242:  540:      }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC2IS3_EEPKcRKS3_:
+    #####:  533:      basic_string(const _CharT* __s, const _Alloc& __a = _Alloc())
+    #####:  534:      : _M_dataplus(_M_local_data(), __a)
+        -:  535:      {
+    #####:  536:	const _CharT* __end = __s ? __s + traits_type::length(__s)
+        -:  537:	  // We just need a non-null pointer here to get an exception:
+        -:  538:	  : reinterpret_cast<const _CharT*>(__alignof__(_CharT));
+    #####:  539:	_M_construct(__s, __end, random_access_iterator_tag());
+    #####:  540:      }
+------------------
         -:  541:
         -:  542:      /**
         -:  543:       *  @brief  Construct string as multiple characters.
@@ -554,9 +851,9 @@
         -:  550:      // 3076. basic_string CTAD ambiguity
         -:  551:      template<typename = _RequireAllocator<_Alloc>>
         -:  552:#endif
-        -:  553:      basic_string(size_type __n, _CharT __c, const _Alloc& __a = _Alloc())
-        -:  554:      : _M_dataplus(_M_local_data(), __a)
-        -:  555:      { _M_construct(__n, __c); }
+       19:  553:      basic_string(size_type __n, _CharT __c, const _Alloc& __a = _Alloc())
+       19:  554:      : _M_dataplus(_M_local_data(), __a)
+       19:  555:      { _M_construct(__n, __c); }
         -:  556:
         -:  557:#if __cplusplus >= 201103L
         -:  558:      /**
@@ -566,27 +863,27 @@
         -:  562:       *  The newly-created string contains the exact contents of @a __str.
         -:  563:       *  @a __str is a valid, but unspecified string.
         -:  564:       */
-        -:  565:      basic_string(basic_string&& __str) noexcept
-        -:  566:      : _M_dataplus(_M_local_data(), std::move(__str._M_get_allocator()))
+       71:  565:      basic_string(basic_string&& __str) noexcept
+       71:  566:      : _M_dataplus(_M_local_data(), std::move(__str._M_get_allocator()))
         -:  567:      {
-        -:  568:	if (__str._M_is_local())
+       71:  568:	if (__str._M_is_local())
         -:  569:	  {
-        -:  570:	    traits_type::copy(_M_local_buf, __str._M_local_buf,
+       71:  570:	    traits_type::copy(_M_local_buf, __str._M_local_buf,
         -:  571:			      _S_local_capacity + 1);
         -:  572:	  }
         -:  573:	else
         -:  574:	  {
-        -:  575:	    _M_data(__str._M_data());
-        -:  576:	    _M_capacity(__str._M_allocated_capacity);
+    #####:  575:	    _M_data(__str._M_data());
+    #####:  576:	    _M_capacity(__str._M_allocated_capacity);
         -:  577:	  }
         -:  578:
         -:  579:	// Must use _M_length() here not _M_set_length() because
         -:  580:	// basic_stringbuf relies on writing into unallocated capacity so
         -:  581:	// we mess up the contents if we put a '\0' in the string.
-        -:  582:	_M_length(__str.length());
-        -:  583:	__str._M_data(__str._M_local_data());
-        -:  584:	__str._M_set_length(0);
-        -:  585:      }
+       71:  582:	_M_length(__str.length());
+       71:  583:	__str._M_data(__str._M_local_data());
+       71:  584:	__str._M_set_length(0);
+       71:  585:      }
         -:  586:
         -:  587:      /**
         -:  588:       *  @brief  Construct string from an initializer %list.
@@ -639,10 +936,29 @@
         -:  635:#else
         -:  636:      template<typename _InputIterator>
         -:  637:#endif
-        -:  638:        basic_string(_InputIterator __beg, _InputIterator __end,
+    9306*:  638:        basic_string(_InputIterator __beg, _InputIterator __end,
         -:  639:		     const _Alloc& __a = _Alloc())
-        -:  640:	: _M_dataplus(_M_local_data(), __a)
-        -:  641:	{ _M_construct(__beg, __end); }
+    9306*:  640:	: _M_dataplus(_M_local_data(), __a)
+    9306*:  641:	{ _M_construct(__beg, __end); }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC2IN9__gnu_cxx17__normal_iteratorIPcS4_EEvEET_SA_RKS3_:
+    #####:  638:        basic_string(_InputIterator __beg, _InputIterator __end,
+        -:  639:		     const _Alloc& __a = _Alloc())
+    #####:  640:	: _M_dataplus(_M_local_data(), __a)
+    #####:  641:	{ _M_construct(__beg, __end); }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC2IN9__gnu_cxx17__normal_iteratorIPKcS4_EEvEET_SB_RKS3_:
+       12:  638:        basic_string(_InputIterator __beg, _InputIterator __end,
+        -:  639:		     const _Alloc& __a = _Alloc())
+       12:  640:	: _M_dataplus(_M_local_data(), __a)
+       12:  641:	{ _M_construct(__beg, __end); }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC2IPcvEET_S7_RKS3_:
+     9294:  638:        basic_string(_InputIterator __beg, _InputIterator __end,
+        -:  639:		     const _Alloc& __a = _Alloc())
+     9294:  640:	: _M_dataplus(_M_local_data(), __a)
+     9294:  641:	{ _M_construct(__beg, __end); }
+------------------
         -:  642:
         -:  643:#if __cplusplus >= 201703L
         -:  644:      /**
@@ -672,17 +988,26 @@
         -:  668:      /**
         -:  669:       *  @brief  Destroy the string instance.
         -:  670:       */
-       47:  671:      ~basic_string()
-       47:  672:      { _M_dispose(); }
+   34365*:  671:      ~basic_string()
+   34365*:  672:      { _M_dispose(); }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED2Ev:
+    34365:  671:      ~basic_string()
+    34365:  672:      { _M_dispose(); }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED2Ev:
+    #####:  671:      ~basic_string()
+    #####:  672:      { _M_dispose(); }
+------------------
         -:  673:
         -:  674:      /**
         -:  675:       *  @brief  Assign the value of @a str to this string.
         -:  676:       *  @param  __str  Source string.
         -:  677:       */
         -:  678:      basic_string&
-        -:  679:      operator=(const basic_string& __str)
+      342:  679:      operator=(const basic_string& __str)
         -:  680:      {
-        -:  681:	return this->assign(__str);
+      342:  681:	return this->assign(__str);
         -:  682:      }
         -:  683:
         -:  684:      /**
@@ -690,8 +1015,8 @@
         -:  686:       *  @param  __s  Source null-terminated string.
         -:  687:       */
         -:  688:      basic_string&
-        -:  689:      operator=(const _CharT* __s)
-        -:  690:      { return this->assign(__s); }
+       91:  689:      operator=(const _CharT* __s)
+       91:  690:      { return this->assign(__s); }
         -:  691:
         -:  692:      /**
         -:  693:       *  @brief  Set value to string of length 1.
@@ -718,12 +1043,12 @@
         -:  714:      // _GLIBCXX_RESOLVE_LIB_DEFECTS
         -:  715:      // 2063. Contradictory requirements for string move assignment
         -:  716:      basic_string&
-       21:  717:      operator=(basic_string&& __str)
+     177*:  717:      operator=(basic_string&& __str)
         -:  718:      noexcept(_Alloc_traits::_S_nothrow_move())
         -:  719:      {
-      21*:  720:	if (!_M_is_local() && _Alloc_traits::_S_propagate_on_move_assign()
+     177*:  720:	if (!_M_is_local() && _Alloc_traits::_S_propagate_on_move_assign()
     #####:  721:	    && !_Alloc_traits::_S_always_equal()
-      21*:  722:	    && _M_get_allocator() != __str._M_get_allocator())
+     177*:  722:	    && _M_get_allocator() != __str._M_get_allocator())
         -:  723:	  {
         -:  724:	    // Destroy existing storage before replacing allocator.
     #####:  725:	    _M_destroy(_M_allocated_capacity);
@@ -731,28 +1056,28 @@
     #####:  727:	    _M_set_length(0);
         -:  728:	  }
         -:  729:	// Replace allocator if POCMA is true.
-       21:  730:	std::__alloc_on_move(_M_get_allocator(), __str._M_get_allocator());
+     177*:  730:	std::__alloc_on_move(_M_get_allocator(), __str._M_get_allocator());
         -:  731:
-       21:  732:	if (__str._M_is_local())
+     177*:  732:	if (__str._M_is_local())
         -:  733:	  {
         -:  734:	    // We've always got room for a short string, just copy it
         -:  735:	    // (unless this is a self-move, because that would violate the
         -:  736:	    // char_traits::copy precondition that the ranges don't overlap).
-        1:  737:	    if (__builtin_expect(std::__addressof(__str) != this, true))
+       2*:  737:	    if (__builtin_expect(std::__addressof(__str) != this, true))
         -:  738:	      {
-        1:  739:		if (__str.size())
-        1:  740:		  this->_S_copy(_M_data(), __str._M_data(), __str.size());
-        1:  741:		_M_set_length(__str.size());
+       2*:  739:		if (__str.size())
+       2*:  740:		  this->_S_copy(_M_data(), __str._M_data(), __str.size());
+       2*:  741:		_M_set_length(__str.size());
         -:  742:	      }
         -:  743:	  }
-       20:  744:	else if (_Alloc_traits::_S_propagate_on_move_assign()
+     175*:  744:	else if (_Alloc_traits::_S_propagate_on_move_assign()
     #####:  745:	    || _Alloc_traits::_S_always_equal()
-      20*:  746:	    || _M_get_allocator() == __str._M_get_allocator())
+     175*:  746:	    || _M_get_allocator() == __str._M_get_allocator())
         -:  747:	  {
         -:  748:	    // Just move the allocated pointer, our allocator can free it.
-       20:  749:	    pointer __data = nullptr;
+     175*:  749:	    pointer __data = nullptr;
         -:  750:	    size_type __capacity;
-       20:  751:	    if (!_M_is_local())
+     175*:  751:	    if (!_M_is_local())
         -:  752:	      {
     #####:  753:		if (_Alloc_traits::_S_always_equal())
         -:  754:		  {
@@ -764,22 +1089,151 @@
     #####:  760:		  _M_destroy(_M_allocated_capacity);
         -:  761:	      }
         -:  762:
-       20:  763:	    _M_data(__str._M_data());
-       20:  764:	    _M_length(__str.length());
-       20:  765:	    _M_capacity(__str._M_allocated_capacity);
-       20:  766:	    if (__data)
+     175*:  763:	    _M_data(__str._M_data());
+     175*:  764:	    _M_length(__str.length());
+     175*:  765:	    _M_capacity(__str._M_allocated_capacity);
+     175*:  766:	    if (__data)
         -:  767:	      {
     #####:  768:		__str._M_data(__data);
     #####:  769:		__str._M_capacity(__capacity);
         -:  770:	      }
         -:  771:	    else
-       20:  772:	      __str._M_data(__str._M_local_buf);
+     175*:  772:	      __str._M_data(__str._M_local_buf);
         -:  773:	  }
         -:  774:	else // Need to do a deep copy
     #####:  775:	  assign(__str);
-       21:  776:	__str.clear();
-       21:  777:	return *this;
+     177*:  776:	__str.clear();
+     177*:  777:	return *this;
         -:  778:      }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEaSEOS4_:
+      177:  717:      operator=(basic_string&& __str)
+        -:  718:      noexcept(_Alloc_traits::_S_nothrow_move())
+        -:  719:      {
+     177*:  720:	if (!_M_is_local() && _Alloc_traits::_S_propagate_on_move_assign()
+    #####:  721:	    && !_Alloc_traits::_S_always_equal()
+     177*:  722:	    && _M_get_allocator() != __str._M_get_allocator())
+        -:  723:	  {
+        -:  724:	    // Destroy existing storage before replacing allocator.
+    #####:  725:	    _M_destroy(_M_allocated_capacity);
+    #####:  726:	    _M_data(_M_local_data());
+    #####:  727:	    _M_set_length(0);
+        -:  728:	  }
+        -:  729:	// Replace allocator if POCMA is true.
+      177:  730:	std::__alloc_on_move(_M_get_allocator(), __str._M_get_allocator());
+        -:  731:
+      177:  732:	if (__str._M_is_local())
+        -:  733:	  {
+        -:  734:	    // We've always got room for a short string, just copy it
+        -:  735:	    // (unless this is a self-move, because that would violate the
+        -:  736:	    // char_traits::copy precondition that the ranges don't overlap).
+        2:  737:	    if (__builtin_expect(std::__addressof(__str) != this, true))
+        -:  738:	      {
+        2:  739:		if (__str.size())
+        2:  740:		  this->_S_copy(_M_data(), __str._M_data(), __str.size());
+        2:  741:		_M_set_length(__str.size());
+        -:  742:	      }
+        -:  743:	  }
+      175:  744:	else if (_Alloc_traits::_S_propagate_on_move_assign()
+    #####:  745:	    || _Alloc_traits::_S_always_equal()
+     175*:  746:	    || _M_get_allocator() == __str._M_get_allocator())
+        -:  747:	  {
+        -:  748:	    // Just move the allocated pointer, our allocator can free it.
+      175:  749:	    pointer __data = nullptr;
+        -:  750:	    size_type __capacity;
+      175:  751:	    if (!_M_is_local())
+        -:  752:	      {
+    #####:  753:		if (_Alloc_traits::_S_always_equal())
+        -:  754:		  {
+        -:  755:		    // __str can reuse our existing storage.
+    #####:  756:		    __data = _M_data();
+    #####:  757:		    __capacity = _M_allocated_capacity;
+        -:  758:		  }
+        -:  759:		else // __str can't use it, so free it.
+    #####:  760:		  _M_destroy(_M_allocated_capacity);
+        -:  761:	      }
+        -:  762:
+      175:  763:	    _M_data(__str._M_data());
+      175:  764:	    _M_length(__str.length());
+      175:  765:	    _M_capacity(__str._M_allocated_capacity);
+      175:  766:	    if (__data)
+        -:  767:	      {
+    #####:  768:		__str._M_data(__data);
+    #####:  769:		__str._M_capacity(__capacity);
+        -:  770:	      }
+        -:  771:	    else
+      175:  772:	      __str._M_data(__str._M_local_buf);
+        -:  773:	  }
+        -:  774:	else // Need to do a deep copy
+    #####:  775:	  assign(__str);
+      177:  776:	__str.clear();
+      177:  777:	return *this;
+        -:  778:      }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEaSEOS4_:
+    #####:  717:      operator=(basic_string&& __str)
+        -:  718:      noexcept(_Alloc_traits::_S_nothrow_move())
+        -:  719:      {
+    #####:  720:	if (!_M_is_local() && _Alloc_traits::_S_propagate_on_move_assign()
+    #####:  721:	    && !_Alloc_traits::_S_always_equal()
+    #####:  722:	    && _M_get_allocator() != __str._M_get_allocator())
+        -:  723:	  {
+        -:  724:	    // Destroy existing storage before replacing allocator.
+    #####:  725:	    _M_destroy(_M_allocated_capacity);
+    #####:  726:	    _M_data(_M_local_data());
+    #####:  727:	    _M_set_length(0);
+        -:  728:	  }
+        -:  729:	// Replace allocator if POCMA is true.
+    #####:  730:	std::__alloc_on_move(_M_get_allocator(), __str._M_get_allocator());
+        -:  731:
+    #####:  732:	if (__str._M_is_local())
+        -:  733:	  {
+        -:  734:	    // We've always got room for a short string, just copy it
+        -:  735:	    // (unless this is a self-move, because that would violate the
+        -:  736:	    // char_traits::copy precondition that the ranges don't overlap).
+    #####:  737:	    if (__builtin_expect(std::__addressof(__str) != this, true))
+        -:  738:	      {
+    #####:  739:		if (__str.size())
+    #####:  740:		  this->_S_copy(_M_data(), __str._M_data(), __str.size());
+    #####:  741:		_M_set_length(__str.size());
+        -:  742:	      }
+        -:  743:	  }
+    #####:  744:	else if (_Alloc_traits::_S_propagate_on_move_assign()
+    #####:  745:	    || _Alloc_traits::_S_always_equal()
+    #####:  746:	    || _M_get_allocator() == __str._M_get_allocator())
+        -:  747:	  {
+        -:  748:	    // Just move the allocated pointer, our allocator can free it.
+    #####:  749:	    pointer __data = nullptr;
+        -:  750:	    size_type __capacity;
+    #####:  751:	    if (!_M_is_local())
+        -:  752:	      {
+    #####:  753:		if (_Alloc_traits::_S_always_equal())
+        -:  754:		  {
+        -:  755:		    // __str can reuse our existing storage.
+    #####:  756:		    __data = _M_data();
+    #####:  757:		    __capacity = _M_allocated_capacity;
+        -:  758:		  }
+        -:  759:		else // __str can't use it, so free it.
+    #####:  760:		  _M_destroy(_M_allocated_capacity);
+        -:  761:	      }
+        -:  762:
+    #####:  763:	    _M_data(__str._M_data());
+    #####:  764:	    _M_length(__str.length());
+    #####:  765:	    _M_capacity(__str._M_allocated_capacity);
+    #####:  766:	    if (__data)
+        -:  767:	      {
+    #####:  768:		__str._M_data(__data);
+    #####:  769:		__str._M_capacity(__capacity);
+        -:  770:	      }
+        -:  771:	    else
+    #####:  772:	      __str._M_data(__str._M_local_buf);
+        -:  773:	  }
+        -:  774:	else // Need to do a deep copy
+    #####:  775:	  assign(__str);
+    #####:  776:	__str.clear();
+    #####:  777:	return *this;
+        -:  778:      }
+------------------
         -:  779:
         -:  780:      /**
         -:  781:       *  @brief  Set value to string constructed from initializer %list.
@@ -817,32 +1271,32 @@
         -:  813:       *  the %string.
         -:  814:       */
         -:  815:      iterator
-        -:  816:      begin() _GLIBCXX_NOEXCEPT
-        -:  817:      { return iterator(_M_data()); }
+       19:  816:      begin() _GLIBCXX_NOEXCEPT
+       19:  817:      { return iterator(_M_data()); }
         -:  818:
         -:  819:      /**
         -:  820:       *  Returns a read-only (constant) iterator that points to the first
         -:  821:       *  character in the %string.
         -:  822:       */
         -:  823:      const_iterator
-        -:  824:      begin() const _GLIBCXX_NOEXCEPT
-        -:  825:      { return const_iterator(_M_data()); }
+       21:  824:      begin() const _GLIBCXX_NOEXCEPT
+       21:  825:      { return const_iterator(_M_data()); }
         -:  826:
         -:  827:      /**
         -:  828:       *  Returns a read/write iterator that points one past the last
         -:  829:       *  character in the %string.
         -:  830:       */
         -:  831:      iterator
-        -:  832:      end() _GLIBCXX_NOEXCEPT
-        -:  833:      { return iterator(_M_data() + this->size()); }
+       19:  832:      end() _GLIBCXX_NOEXCEPT
+       19:  833:      { return iterator(_M_data() + this->size()); }
         -:  834:
         -:  835:      /**
         -:  836:       *  Returns a read-only (constant) iterator that points one past the
         -:  837:       *  last character in the %string.
         -:  838:       */
         -:  839:      const_iterator
-        -:  840:      end() const _GLIBCXX_NOEXCEPT
-        -:  841:      { return const_iterator(_M_data() + this->size()); }
+       21:  840:      end() const _GLIBCXX_NOEXCEPT
+       21:  841:      { return const_iterator(_M_data() + this->size()); }
         -:  842:
         -:  843:      /**
         -:  844:       *  Returns a read/write reverse iterator that points to the last
@@ -921,19 +1375,46 @@
         -:  917:      ///  Returns the number of characters in the string, not including any
         -:  918:      ///  null-termination.
         -:  919:      size_type
-       30:  920:      size() const _GLIBCXX_NOEXCEPT
-       30:  921:      { return _M_string_length; }
+   20923*:  920:      size() const _GLIBCXX_NOEXCEPT
+   20923*:  921:      { return _M_string_length; }
+------------------
+_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE4sizeEv:
+    20923:  920:      size() const _GLIBCXX_NOEXCEPT
+    20923:  921:      { return _M_string_length; }
+------------------
+_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE4sizeEv:
+    #####:  920:      size() const _GLIBCXX_NOEXCEPT
+    #####:  921:      { return _M_string_length; }
+------------------
         -:  922:
         -:  923:      ///  Returns the number of characters in the string, not including any
         -:  924:      ///  null-termination.
         -:  925:      size_type
-       22:  926:      length() const _GLIBCXX_NOEXCEPT
-       22:  927:      { return _M_string_length; }
+    1532*:  926:      length() const _GLIBCXX_NOEXCEPT
+    1532*:  927:      { return _M_string_length; }
+------------------
+_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE6lengthEv:
+     1532:  926:      length() const _GLIBCXX_NOEXCEPT
+     1532:  927:      { return _M_string_length; }
+------------------
+_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE6lengthEv:
+    #####:  926:      length() const _GLIBCXX_NOEXCEPT
+    #####:  927:      { return _M_string_length; }
+------------------
         -:  928:
         -:  929:      ///  Returns the size() of the largest possible %string.
         -:  930:      size_type
-      311:  931:      max_size() const _GLIBCXX_NOEXCEPT
-      311:  932:      { return (_Alloc_traits::max_size(_M_get_allocator()) - 1) / 2; }
+    1863*:  931:      max_size() const _GLIBCXX_NOEXCEPT
+    1863*:  932:      { return (_Alloc_traits::max_size(_M_get_allocator()) - 1) / 2; }
+------------------
+_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE8max_sizeEv:
+     1863:  931:      max_size() const _GLIBCXX_NOEXCEPT
+     1863:  932:      { return (_Alloc_traits::max_size(_M_get_allocator()) - 1) / 2; }
+------------------
+_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE8max_sizeEv:
+    #####:  931:      max_size() const _GLIBCXX_NOEXCEPT
+    #####:  932:      { return (_Alloc_traits::max_size(_M_get_allocator()) - 1) / 2; }
+------------------
         -:  933:
         -:  934:      /**
         -:  935:       *  @brief  Resizes the %string to the specified number of characters.
@@ -977,11 +1458,26 @@
         -:  973:       *  before needing to allocate more memory.
         -:  974:       */
         -:  975:      size_type
-        2:  976:      capacity() const _GLIBCXX_NOEXCEPT
+    1861*:  976:      capacity() const _GLIBCXX_NOEXCEPT
         -:  977:      {
-       2*:  978:	return _M_is_local() ? size_type(_S_local_capacity)
-        2:  979:	                     : _M_allocated_capacity;
+    1861*:  978:	return _M_is_local() ? size_type(_S_local_capacity)
+    1861*:  979:	                     : _M_allocated_capacity;
         -:  980:      }
+------------------
+_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE8capacityEv:
+     1861:  976:      capacity() const _GLIBCXX_NOEXCEPT
+        -:  977:      {
+     1861:  978:	return _M_is_local() ? size_type(_S_local_capacity)
+     1861:  979:	                     : _M_allocated_capacity;
+        -:  980:      }
+------------------
+_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE8capacityEv:
+    #####:  976:      capacity() const _GLIBCXX_NOEXCEPT
+        -:  977:      {
+    #####:  978:	return _M_is_local() ? size_type(_S_local_capacity)
+    #####:  979:	                     : _M_allocated_capacity;
+        -:  980:      }
+------------------
         -:  981:
         -:  982:      /**
         -:  983:       *  @brief  Attempt to preallocate enough memory for specified number of
@@ -1016,16 +1512,25 @@
         -: 1012:       *  Erases the string, making it empty.
         -: 1013:       */
         -: 1014:      void
-       21: 1015:      clear() _GLIBCXX_NOEXCEPT
-       21: 1016:      { _M_set_length(0); }
+     177*: 1015:      clear() _GLIBCXX_NOEXCEPT
+     177*: 1016:      { _M_set_length(0); }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE5clearEv:
+      177: 1015:      clear() _GLIBCXX_NOEXCEPT
+      177: 1016:      { _M_set_length(0); }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE5clearEv:
+    #####: 1015:      clear() _GLIBCXX_NOEXCEPT
+    #####: 1016:      { _M_set_length(0); }
+------------------
         -: 1017:
         -: 1018:      /**
         -: 1019:       *  Returns true if the %string is empty.  Equivalent to 
         -: 1020:       *  <code>*this == ""</code>.
         -: 1021:       */
         -: 1022:      _GLIBCXX_NODISCARD bool
-        -: 1023:      empty() const _GLIBCXX_NOEXCEPT
-        -: 1024:      { return this->size() == 0; }
+        7: 1023:      empty() const _GLIBCXX_NOEXCEPT
+        7: 1024:      { return this->size() == 0; }
         -: 1025:
         -: 1026:      // Element access:
         -: 1027:      /**
@@ -1039,10 +1544,10 @@
         -: 1035:       *  see at().)
         -: 1036:       */
         -: 1037:      const_reference
-        -: 1038:      operator[] (size_type __pos) const _GLIBCXX_NOEXCEPT
+    #####: 1038:      operator[] (size_type __pos) const _GLIBCXX_NOEXCEPT
         -: 1039:      {
-        -: 1040:	__glibcxx_assert(__pos <= size());
-        -: 1041:	return _M_data()[__pos];
+    #####: 1040:	__glibcxx_assert(__pos <= size());
+    #####: 1041:	return _M_data()[__pos];
         -: 1042:      }
         -: 1043:
         -: 1044:      /**
@@ -1056,14 +1561,14 @@
         -: 1052:       *  see at().)
         -: 1053:       */
         -: 1054:      reference
-        -: 1055:      operator[](size_type __pos)
+       93: 1055:      operator[](size_type __pos)
         -: 1056:      {
         -: 1057:        // Allow pos == size() both in C++98 mode, as v3 extension,
         -: 1058:	// and in C++11 mode.
-        -: 1059:	__glibcxx_assert(__pos <= size());
+      93*: 1059:	__glibcxx_assert(__pos <= size());
         -: 1060:        // In pedantic mode be strict in C++98 mode.
         -: 1061:	_GLIBCXX_DEBUG_PEDASSERT(__cplusplus >= 201103L || __pos < size());
-        -: 1062:	return _M_data()[__pos];
+       93: 1062:	return _M_data()[__pos];
         -: 1063:      }
         -: 1064:
         -: 1065:      /**
@@ -1179,10 +1684,10 @@
         -: 1175:       *  @return  Reference to this string.
         -: 1176:       */
         -: 1177:      basic_string&
-        -: 1178:      operator+=(_CharT __c)
+       31: 1178:      operator+=(_CharT __c)
         -: 1179:      {
-        -: 1180:	this->push_back(__c);
-        -: 1181:	return *this;
+       31: 1180:	this->push_back(__c);
+       31: 1181:	return *this;
         -: 1182:      }
         -: 1183:
         -: 1184:#if __cplusplus >= 201103L
@@ -1342,14 +1847,14 @@
         -: 1338:       *  @param __c  Character to append.
         -: 1339:       */
         -: 1340:      void
-        -: 1341:      push_back(_CharT __c)
+       31: 1341:      push_back(_CharT __c)
         -: 1342:      {
-        -: 1343:	const size_type __size = this->size();
-        -: 1344:	if (__size + 1 > this->capacity())
-        -: 1345:	  this->_M_mutate(__size, size_type(0), 0, size_type(1));
-        -: 1346:	traits_type::assign(this->_M_data()[__size], __c);
-        -: 1347:	this->_M_set_length(__size + 1);
-        -: 1348:      }
+       31: 1343:	const size_type __size = this->size();
+       31: 1344:	if (__size + 1 > this->capacity())
+    #####: 1345:	  this->_M_mutate(__size, size_type(0), 0, size_type(1));
+       31: 1346:	traits_type::assign(this->_M_data()[__size], __c);
+       31: 1347:	this->_M_set_length(__size + 1);
+       31: 1348:      }
         -: 1349:
         -: 1350:      /**
         -: 1351:       *  @brief  Set value to contents of another string.
@@ -1357,6 +1862,78 @@
         -: 1353:       *  @return  Reference to this string.
         -: 1354:       */
         -: 1355:      basic_string&
+     604*: 1356:      assign(const basic_string& __str)
+        -: 1357:      {
+        -: 1358:#if __cplusplus >= 201103L
+     604*: 1359:	if (_Alloc_traits::_S_propagate_on_copy_assign())
+        -: 1360:	  {
+    #####: 1361:	    if (!_Alloc_traits::_S_always_equal() && !_M_is_local()
+    #####: 1362:		&& _M_get_allocator() != __str._M_get_allocator())
+        -: 1363:	      {
+        -: 1364:		// Propagating allocator cannot free existing storage so must
+        -: 1365:		// deallocate it before replacing current allocator.
+    #####: 1366:		if (__str.size() <= _S_local_capacity)
+        -: 1367:		  {
+    #####: 1368:		    _M_destroy(_M_allocated_capacity);
+    #####: 1369:		    _M_data(_M_local_data());
+    #####: 1370:		    _M_set_length(0);
+        -: 1371:		  }
+        -: 1372:		else
+        -: 1373:		  {
+    #####: 1374:		    const auto __len = __str.size();
+    #####: 1375:		    auto __alloc = __str._M_get_allocator();
+        -: 1376:		    // If this allocation throws there are no effects:
+    #####: 1377:		    auto __ptr = _Alloc_traits::allocate(__alloc, __len + 1);
+    #####: 1378:		    _M_destroy(_M_allocated_capacity);
+    #####: 1379:		    _M_data(__ptr);
+    #####: 1380:		    _M_capacity(__len);
+    #####: 1381:		    _M_set_length(__len);
+    #####: 1382:		  }
+        -: 1383:	      }
+    #####: 1384:	    std::__alloc_on_copy(_M_get_allocator(), __str._M_get_allocator());
+        -: 1385:	  }
+        -: 1386:#endif
+     604*: 1387:	this->_M_assign(__str);
+     604*: 1388:	return *this;
+        -: 1389:      }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE6assignERKS4_:
+      604: 1356:      assign(const basic_string& __str)
+        -: 1357:      {
+        -: 1358:#if __cplusplus >= 201103L
+      604: 1359:	if (_Alloc_traits::_S_propagate_on_copy_assign())
+        -: 1360:	  {
+    #####: 1361:	    if (!_Alloc_traits::_S_always_equal() && !_M_is_local()
+    #####: 1362:		&& _M_get_allocator() != __str._M_get_allocator())
+        -: 1363:	      {
+        -: 1364:		// Propagating allocator cannot free existing storage so must
+        -: 1365:		// deallocate it before replacing current allocator.
+    #####: 1366:		if (__str.size() <= _S_local_capacity)
+        -: 1367:		  {
+    #####: 1368:		    _M_destroy(_M_allocated_capacity);
+    #####: 1369:		    _M_data(_M_local_data());
+    #####: 1370:		    _M_set_length(0);
+        -: 1371:		  }
+        -: 1372:		else
+        -: 1373:		  {
+    #####: 1374:		    const auto __len = __str.size();
+    #####: 1375:		    auto __alloc = __str._M_get_allocator();
+        -: 1376:		    // If this allocation throws there are no effects:
+    #####: 1377:		    auto __ptr = _Alloc_traits::allocate(__alloc, __len + 1);
+    #####: 1378:		    _M_destroy(_M_allocated_capacity);
+    #####: 1379:		    _M_data(__ptr);
+    #####: 1380:		    _M_capacity(__len);
+    #####: 1381:		    _M_set_length(__len);
+    #####: 1382:		  }
+        -: 1383:	      }
+    #####: 1384:	    std::__alloc_on_copy(_M_get_allocator(), __str._M_get_allocator());
+        -: 1385:	  }
+        -: 1386:#endif
+      604: 1387:	this->_M_assign(__str);
+      604: 1388:	return *this;
+        -: 1389:      }
+------------------
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE6assignERKS4_:
     #####: 1356:      assign(const basic_string& __str)
         -: 1357:      {
         -: 1358:#if __cplusplus >= 201103L
@@ -1391,6 +1968,7 @@
     #####: 1387:	this->_M_assign(__str);
     #####: 1388:	return *this;
         -: 1389:      }
+------------------
         -: 1390:
         -: 1391:#if __cplusplus >= 201103L
         -: 1392:      /**
@@ -1457,11 +2035,11 @@
         -: 1453:       *  function returns.
         -: 1454:       */
         -: 1455:      basic_string&
-        -: 1456:      assign(const _CharT* __s)
+       91: 1456:      assign(const _CharT* __s)
         -: 1457:      {
         -: 1458:	__glibcxx_requires_string(__s);
-        -: 1459:	return _M_replace(size_type(0), this->size(), __s,
-        -: 1460:			  traits_type::length(__s));
+       91: 1459:	return _M_replace(size_type(0), this->size(), __s,
+       91: 1460:			  traits_type::length(__s));
         -: 1461:      }
         -: 1462:
         -: 1463:      /**
@@ -1474,8 +2052,8 @@
         -: 1470:       *  character @a __c.
         -: 1471:       */
         -: 1472:      basic_string&
-        -: 1473:      assign(size_type __n, _CharT __c)
-        -: 1474:      { return _M_replace_aux(size_type(0), this->size(), __n, __c); }
+      112: 1473:      assign(size_type __n, _CharT __c)
+      112: 1474:      { return _M_replace_aux(size_type(0), this->size(), __n, __c); }
         -: 1475:
         -: 1476:      /**
         -: 1477:       *  @brief  Set value to a range of characters.
@@ -1828,14 +2406,14 @@
         -: 1824:       *  change if an error is thrown.
         -: 1825:      */
         -: 1826:      basic_string&
-        -: 1827:      erase(size_type __pos = 0, size_type __n = npos)
+    #####: 1827:      erase(size_type __pos = 0, size_type __n = npos)
         -: 1828:      {
-        -: 1829:	_M_check(__pos, "basic_string::erase");
-        -: 1830:	if (__n == npos)
-        -: 1831:	  this->_M_set_length(__pos);
-        -: 1832:	else if (__n != 0)
-        -: 1833:	  this->_M_erase(__pos, _M_limit(__pos, __n));
-        -: 1834:	return *this;
+    #####: 1829:	_M_check(__pos, "basic_string::erase");
+    #####: 1830:	if (__n == npos)
+    #####: 1831:	  this->_M_set_length(__pos);
+    #####: 1832:	else if (__n != 0)
+    #####: 1833:	  this->_M_erase(__pos, _M_limit(__pos, __n));
+    #####: 1834:	return *this;
         -: 1835:      }
         -: 1836:
         -: 1837:      /**
@@ -2321,8 +2899,17 @@
         -: 2317:       *  happen.
         -: 2318:      */
         -: 2319:      const _CharT*
-       24: 2320:      c_str() const _GLIBCXX_NOEXCEPT
-       24: 2321:      { return _M_data(); }
+     231*: 2320:      c_str() const _GLIBCXX_NOEXCEPT
+     231*: 2321:      { return _M_data(); }
+------------------
+_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE5c_strEv:
+      231: 2320:      c_str() const _GLIBCXX_NOEXCEPT
+      231: 2321:      { return _M_data(); }
+------------------
+_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE5c_strEv:
+    #####: 2320:      c_str() const _GLIBCXX_NOEXCEPT
+    #####: 2321:      { return _M_data(); }
+------------------
         -: 2322:
         -: 2323:      /**
         -: 2324:       *  @brief  Return const pointer to contents.
@@ -2333,8 +2920,8 @@
         -: 2329:       *  (or in C++17 the non-const @c str.data() overload).
         -: 2330:      */
         -: 2331:      const _CharT*
-        -: 2332:      data() const _GLIBCXX_NOEXCEPT
-        -: 2333:      { return _M_data(); }
+      405: 2332:      data() const _GLIBCXX_NOEXCEPT
+      405: 2333:      { return _M_data(); }
         -: 2334:
         -: 2335:#if __cplusplus >= 201703L
         -: 2336:      /**
@@ -2344,8 +2931,8 @@
         -: 2340:       *  Modifying the characters in the sequence is allowed.
         -: 2341:      */
         -: 2342:      _CharT*
-        -: 2343:      data() noexcept
-        -: 2344:      { return _M_data(); }
+    18588: 2343:      data() noexcept
+    18588: 2344:      { return _M_data(); }
         -: 2345:#endif
         -: 2346:
         -: 2347:      /**
@@ -2874,16 +3461,16 @@
         -: 2870:       *  otherwise the shorter one is ordered first.
         -: 2871:      */
         -: 2872:      int
-        -: 2873:      compare(const basic_string& __str) const
+      343: 2873:      compare(const basic_string& __str) const
         -: 2874:      {
-        -: 2875:	const size_type __size = this->size();
-        -: 2876:	const size_type __osize = __str.size();
-        -: 2877:	const size_type __len = std::min(__size, __osize);
+      343: 2875:	const size_type __size = this->size();
+      343: 2876:	const size_type __osize = __str.size();
+      343: 2877:	const size_type __len = std::min(__size, __osize);
         -: 2878:
-        -: 2879:	int __r = traits_type::compare(_M_data(), __str.data(), __len);
-        -: 2880:	if (!__r)
-        -: 2881:	  __r = _S_compare(__size, __osize);
-        -: 2882:	return __r;
+      343: 2879:	int __r = traits_type::compare(_M_data(), __str.data(), __len);
+      343: 2880:	if (!__r)
+       62: 2881:	  __r = _S_compare(__size, __osize);
+      343: 2882:	return __r;
         -: 2883:      }
         -: 2884:
         -: 2885:#if __cplusplus >= 201703L
@@ -6235,11 +6822,11 @@
         -: 6231:  template<typename _CharT>
         -: 6232:    inline
         -: 6233:    typename __gnu_cxx::__enable_if<__is_char<_CharT>::__value, bool>::__type
-        -: 6234:    operator==(const basic_string<_CharT>& __lhs,
+    #####: 6234:    operator==(const basic_string<_CharT>& __lhs,
         -: 6235:	       const basic_string<_CharT>& __rhs) _GLIBCXX_NOEXCEPT
-        -: 6236:    { return (__lhs.size() == __rhs.size()
-        -: 6237:	      && !std::char_traits<_CharT>::compare(__lhs.data(), __rhs.data(),
-        -: 6238:						    __lhs.size())); }
+    #####: 6236:    { return (__lhs.size() == __rhs.size()
+    #####: 6237:	      && !std::char_traits<_CharT>::compare(__lhs.data(), __rhs.data(),
+    #####: 6238:						    __lhs.size())); }
         -: 6239:
         -: 6240:  /**
         -: 6241:   *  @brief  Test equivalence of string and C string.
@@ -6249,9 +6836,20 @@
         -: 6245:   */
         -: 6246:  template<typename _CharT, typename _Traits, typename _Alloc>
         -: 6247:    inline bool
-        3: 6248:    operator==(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     125*: 6248:    operator==(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
         -: 6249:	       const _CharT* __rhs)
-        3: 6250:    { return __lhs.compare(__rhs) == 0; }
+     125*: 6250:    { return __lhs.compare(__rhs) == 0; }
+------------------
+_ZSteqIcSt11char_traitsIcESaIcEEbRKNSt7__cxx1112basic_stringIT_T0_T1_EEPKS5_:
+      125: 6248:    operator==(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+        -: 6249:	       const _CharT* __rhs)
+      125: 6250:    { return __lhs.compare(__rhs) == 0; }
+------------------
+_ZSteqIcSt11char_traitsIcESaIcEEbRKNSt7__cxx1112basic_stringIT_T0_T1_EEPKS5_:
+    #####: 6248:    operator==(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+        -: 6249:	       const _CharT* __rhs)
+    #####: 6250:    { return __lhs.compare(__rhs) == 0; }
+------------------
         -: 6251:
         -: 6252:#if __cpp_lib_three_way_comparison
         -: 6253:  /**
@@ -6263,10 +6861,10 @@
         -: 6259:   */
         -: 6260:  template<typename _CharT, typename _Traits, typename _Alloc>
         -: 6261:    inline auto
-        -: 6262:    operator<=>(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+      343: 6262:    operator<=>(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
         -: 6263:		const basic_string<_CharT, _Traits, _Alloc>& __rhs) noexcept
         -: 6264:    -> decltype(__detail::__char_traits_cmp_cat<_Traits>(0))
-        -: 6265:    { return __detail::__char_traits_cmp_cat<_Traits>(__lhs.compare(__rhs)); }
+      343: 6265:    { return __detail::__char_traits_cmp_cat<_Traits>(__lhs.compare(__rhs)); }
         -: 6266:
         -: 6267:  /**
         -: 6268:   *  @brief  Three-way comparison of a string and a C string.
@@ -6620,9 +7218,9 @@
         -: 6616:#if _GLIBCXX_USE_C99_STDLIB
         -: 6617:  // 21.4 Numeric Conversions [string.conversions].
         -: 6618:  inline int
-        -: 6619:  stoi(const string& __str, size_t* __idx = 0, int __base = 10)
-        -: 6620:  { return __gnu_cxx::__stoa<long, int>(&std::strtol, "stoi", __str.c_str(),
-        -: 6621:					__idx, __base); }
+       12: 6619:  stoi(const string& __str, size_t* __idx = 0, int __base = 10)
+       12: 6620:  { return __gnu_cxx::__stoa<long, int>(&std::strtol, "stoi", __str.c_str(),
+       12: 6621:					__idx, __base); }
         -: 6622:
         -: 6623:  inline long
         -: 6624:  stol(const string& __str, size_t* __idx = 0, int __base = 10)

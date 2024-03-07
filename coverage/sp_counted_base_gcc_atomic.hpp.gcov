@@ -1,7 +1,4 @@
         -:    0:Source:/usr/include/boost/smart_ptr/detail/sp_counted_base_gcc_atomic.hpp
-        -:    0:Graph:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcno
-        -:    0:Data:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcda
-        -:    0:Runs:1
         -:    1:#ifndef BOOST_SMART_PTR_DETAIL_SP_COUNTED_BASE_GCC_ATOMIC_HPP_INCLUDED
         -:    2:#define BOOST_SMART_PTR_DETAIL_SP_COUNTED_BASE_GCC_ATOMIC_HPP_INCLUDED
         -:    3:
@@ -43,6 +40,19 @@
         -:   39:{
     #####:   40:    return __atomic_fetch_sub( pw, 1, __ATOMIC_ACQ_REL );
         -:   41:}
+------------------
+_ZN5boost6detail16atomic_decrementEPj:
+    #####:   38:inline boost::uint_least32_t atomic_decrement( boost::uint_least32_t * pw )
+        -:   39:{
+    #####:   40:    return __atomic_fetch_sub( pw, 1, __ATOMIC_ACQ_REL );
+        -:   41:}
+------------------
+_ZN5boost6detail16atomic_decrementEPj:
+    #####:   38:inline boost::uint_least32_t atomic_decrement( boost::uint_least32_t * pw )
+        -:   39:{
+    #####:   40:    return __atomic_fetch_sub( pw, 1, __ATOMIC_ACQ_REL );
+        -:   41:}
+------------------
         -:   42:
         -:   43:inline boost::uint_least32_t atomic_conditional_increment( boost::uint_least32_t * pw )
         -:   44:{
@@ -125,6 +135,27 @@
     #####:  121:            weak_release();
         -:  122:        }
     #####:  123:    }
+------------------
+_ZN5boost6detail15sp_counted_base7releaseEv:
+    #####:  116:    void release() // nothrow
+        -:  117:    {
+    #####:  118:        if( atomic_decrement( &use_count_ ) == 1 )
+        -:  119:        {
+    #####:  120:            dispose();
+    #####:  121:            weak_release();
+        -:  122:        }
+    #####:  123:    }
+------------------
+_ZN5boost6detail15sp_counted_base7releaseEv:
+    #####:  116:    void release() // nothrow
+        -:  117:    {
+    #####:  118:        if( atomic_decrement( &use_count_ ) == 1 )
+        -:  119:        {
+    #####:  120:            dispose();
+    #####:  121:            weak_release();
+        -:  122:        }
+    #####:  123:    }
+------------------
         -:  124:
         -:  125:    void weak_add_ref() // nothrow
         -:  126:    {
@@ -138,6 +169,25 @@
     #####:  134:            destroy();
         -:  135:        }
     #####:  136:    }
+------------------
+_ZN5boost6detail15sp_counted_base12weak_releaseEv:
+    #####:  130:    void weak_release() // nothrow
+        -:  131:    {
+    #####:  132:        if( atomic_decrement( &weak_count_ ) == 1 )
+        -:  133:        {
+    #####:  134:            destroy();
+        -:  135:        }
+    #####:  136:    }
+------------------
+_ZN5boost6detail15sp_counted_base12weak_releaseEv:
+    #####:  130:    void weak_release() // nothrow
+        -:  131:    {
+    #####:  132:        if( atomic_decrement( &weak_count_ ) == 1 )
+        -:  133:        {
+    #####:  134:            destroy();
+        -:  135:        }
+    #####:  136:    }
+------------------
         -:  137:
         -:  138:    long use_count() const // nothrow
         -:  139:    {

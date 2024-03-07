@@ -1,0 +1,299 @@
+        -:    0:Source:/home/tequhella/Documents/VScode/ModuleDeploiement/test_Form.cpp
+        -:    1:#include <boost/test/unit_test.hpp>
+        -:    2:#include "Form.cpp"
+        -:    3:
+        -:    4:struct GtkFixture
+        -:    5:{
+        1:    6:    GtkFixture()  { gtk_init(nullptr, nullptr); }
+        1:    7:    ~GtkFixture() { }
+        -:    8:};
+        -:    9:
+        -:   10:BOOST_GLOBAL_FIXTURE(GtkFixture);
+        -:   11:
+        -:   12:BOOST_AUTO_TEST_SUITE(FormTests)
+        -:   13:
+        2:   14:BOOST_AUTO_TEST_CASE(TestSetName)
+        -:   15:{
+        1:   16:    Form form;
+        1:   17:    form.setName("John");
+        1:   18:    BOOST_CHECK_EQUAL(form.getErrors()["name"], "");
+        1:   19:}
+------------------
+_ZN9FormTests11TestSetName11test_methodEv:
+        1:   14:BOOST_AUTO_TEST_CASE(TestSetName)
+        -:   15:{
+        1:   16:    Form form;
+        1:   17:    form.setName("John");
+        1:   18:    BOOST_CHECK_EQUAL(form.getErrors()["name"], "");
+        1:   19:}
+------------------
+_ZN9FormTestsL19TestSetName_invokerEv:
+        1:   14:BOOST_AUTO_TEST_CASE(TestSetName)
+------------------
+        -:   20:
+        2:   21:BOOST_AUTO_TEST_CASE(TestSetWrongName)
+        -:   22:{
+        1:   23:    Form form;
+        1:   24:    form.setName("John1");
+        1:   25:    BOOST_CHECK_EQUAL(form.getErrors()["name"], "Invalid name");
+        1:   26:}
+------------------
+_ZN9FormTests16TestSetWrongName11test_methodEv:
+        1:   21:BOOST_AUTO_TEST_CASE(TestSetWrongName)
+        -:   22:{
+        1:   23:    Form form;
+        1:   24:    form.setName("John1");
+        1:   25:    BOOST_CHECK_EQUAL(form.getErrors()["name"], "Invalid name");
+        1:   26:}
+------------------
+_ZN9FormTestsL24TestSetWrongName_invokerEv:
+        1:   21:BOOST_AUTO_TEST_CASE(TestSetWrongName)
+------------------
+        -:   27:
+        2:   28:BOOST_AUTO_TEST_CASE(TestSetFirstName)
+        -:   29:{
+        1:   30:    Form form;
+        1:   31:    form.setFirstName("Doe");
+        1:   32:    BOOST_CHECK_EQUAL(form.getErrors()["firstName"], "");
+        1:   33:}
+------------------
+_ZN9FormTests16TestSetFirstName11test_methodEv:
+        1:   28:BOOST_AUTO_TEST_CASE(TestSetFirstName)
+        -:   29:{
+        1:   30:    Form form;
+        1:   31:    form.setFirstName("Doe");
+        1:   32:    BOOST_CHECK_EQUAL(form.getErrors()["firstName"], "");
+        1:   33:}
+------------------
+_ZN9FormTestsL24TestSetFirstName_invokerEv:
+        1:   28:BOOST_AUTO_TEST_CASE(TestSetFirstName)
+------------------
+        -:   34:
+        2:   35:BOOST_AUTO_TEST_CASE(TestSetWrongFirstName)
+        -:   36:{
+        1:   37:    Form form;
+        1:   38:    form.setFirstName("Doe1");
+        1:   39:    BOOST_CHECK_EQUAL(form.getErrors()["firstName"], "Invalid firstname");
+        1:   40:}
+------------------
+_ZN9FormTests21TestSetWrongFirstName11test_methodEv:
+        1:   35:BOOST_AUTO_TEST_CASE(TestSetWrongFirstName)
+        -:   36:{
+        1:   37:    Form form;
+        1:   38:    form.setFirstName("Doe1");
+        1:   39:    BOOST_CHECK_EQUAL(form.getErrors()["firstName"], "Invalid firstname");
+        1:   40:}
+------------------
+_ZN9FormTestsL29TestSetWrongFirstName_invokerEv:
+        1:   35:BOOST_AUTO_TEST_CASE(TestSetWrongFirstName)
+------------------
+        -:   41:
+        2:   42:BOOST_AUTO_TEST_CASE(TestSetMail)
+        -:   43:{
+        1:   44:    Form form;
+        1:   45:    form.setMail("john.doe@example.com");
+        1:   46:    BOOST_CHECK_EQUAL(form.getErrors()["email"], "");
+        1:   47:}
+------------------
+_ZN9FormTests11TestSetMail11test_methodEv:
+        1:   42:BOOST_AUTO_TEST_CASE(TestSetMail)
+        -:   43:{
+        1:   44:    Form form;
+        1:   45:    form.setMail("john.doe@example.com");
+        1:   46:    BOOST_CHECK_EQUAL(form.getErrors()["email"], "");
+        1:   47:}
+------------------
+_ZN9FormTestsL19TestSetMail_invokerEv:
+        1:   42:BOOST_AUTO_TEST_CASE(TestSetMail)
+------------------
+        -:   48:
+        2:   49:BOOST_AUTO_TEST_CASE(TestSetWrongMail)
+        -:   50:{
+        1:   51:    Form form;
+        1:   52:    form.setMail("john.doe@example");
+        1:   53:    BOOST_CHECK_EQUAL(form.getErrors()["email"], "Invalid email");
+        1:   54:}
+------------------
+_ZN9FormTests16TestSetWrongMail11test_methodEv:
+        1:   49:BOOST_AUTO_TEST_CASE(TestSetWrongMail)
+        -:   50:{
+        1:   51:    Form form;
+        1:   52:    form.setMail("john.doe@example");
+        1:   53:    BOOST_CHECK_EQUAL(form.getErrors()["email"], "Invalid email");
+        1:   54:}
+------------------
+_ZN9FormTestsL24TestSetWrongMail_invokerEv:
+        1:   49:BOOST_AUTO_TEST_CASE(TestSetWrongMail)
+------------------
+        -:   55:
+        2:   56:BOOST_AUTO_TEST_CASE(TestSetBirthday)
+        -:   57:{
+        1:   58:    Form form;
+        1:   59:    form.setBirthday("1990-01-01");
+        1:   60:    BOOST_CHECK_EQUAL(form.getErrors()["birthday"], "");
+        1:   61:}
+------------------
+_ZN9FormTests15TestSetBirthday11test_methodEv:
+        1:   56:BOOST_AUTO_TEST_CASE(TestSetBirthday)
+        -:   57:{
+        1:   58:    Form form;
+        1:   59:    form.setBirthday("1990-01-01");
+        1:   60:    BOOST_CHECK_EQUAL(form.getErrors()["birthday"], "");
+        1:   61:}
+------------------
+_ZN9FormTestsL23TestSetBirthday_invokerEv:
+        1:   56:BOOST_AUTO_TEST_CASE(TestSetBirthday)
+------------------
+        -:   62:
+        2:   63:BOOST_AUTO_TEST_CASE(TestSetWrongBirthday)
+        -:   64:{
+        1:   65:    Form form;
+        1:   66:    form.setBirthday("01-1991-01");
+        1:   67:    BOOST_CHECK_EQUAL(form.getErrors()["birthday"], "Invalid date");
+        1:   68:}
+------------------
+_ZN9FormTests20TestSetWrongBirthday11test_methodEv:
+        1:   63:BOOST_AUTO_TEST_CASE(TestSetWrongBirthday)
+        -:   64:{
+        1:   65:    Form form;
+        1:   66:    form.setBirthday("01-1991-01");
+        1:   67:    BOOST_CHECK_EQUAL(form.getErrors()["birthday"], "Invalid date");
+        1:   68:}
+------------------
+_ZN9FormTestsL28TestSetWrongBirthday_invokerEv:
+        1:   63:BOOST_AUTO_TEST_CASE(TestSetWrongBirthday)
+------------------
+        -:   69:
+        2:   70:BOOST_AUTO_TEST_CASE(TestAgeInvalidArgument)
+        -:   71:{
+        1:   72:    Form form;
+       4*:   73:    BOOST_CHECK_THROW(form.validateAge("2045-13-13"), std::invalid_argument);
+        1:   74:}
+------------------
+_ZN9FormTests22TestAgeInvalidArgument11test_methodEv:
+        1:   70:BOOST_AUTO_TEST_CASE(TestAgeInvalidArgument)
+        -:   71:{
+        1:   72:    Form form;
+       4*:   73:    BOOST_CHECK_THROW(form.validateAge("2045-13-13"), std::invalid_argument);
+        1:   74:}
+------------------
+_ZN9FormTestsL30TestAgeInvalidArgument_invokerEv:
+        1:   70:BOOST_AUTO_TEST_CASE(TestAgeInvalidArgument)
+------------------
+        -:   75:
+        2:   76:BOOST_AUTO_TEST_CASE(TestSetCity)
+        -:   77:{
+        1:   78:    Form form;
+        1:   79:    form.setCity("New York");
+        1:   80:    BOOST_CHECK_EQUAL(form.getErrors()["city"], "");
+        1:   81:}
+------------------
+_ZN9FormTests11TestSetCity11test_methodEv:
+        1:   76:BOOST_AUTO_TEST_CASE(TestSetCity)
+        -:   77:{
+        1:   78:    Form form;
+        1:   79:    form.setCity("New York");
+        1:   80:    BOOST_CHECK_EQUAL(form.getErrors()["city"], "");
+        1:   81:}
+------------------
+_ZN9FormTestsL19TestSetCity_invokerEv:
+        1:   76:BOOST_AUTO_TEST_CASE(TestSetCity)
+------------------
+        -:   82:
+        2:   83:BOOST_AUTO_TEST_CASE(TestSetZipCode)
+        -:   84:{
+        1:   85:    Form form;
+        1:   86:    form.setZipCode("12345");
+        1:   87:    BOOST_CHECK_EQUAL(form.getErrors()["zipCode"], "");
+        1:   88:}
+------------------
+_ZN9FormTests14TestSetZipCode11test_methodEv:
+        1:   83:BOOST_AUTO_TEST_CASE(TestSetZipCode)
+        -:   84:{
+        1:   85:    Form form;
+        1:   86:    form.setZipCode("12345");
+        1:   87:    BOOST_CHECK_EQUAL(form.getErrors()["zipCode"], "");
+        1:   88:}
+------------------
+_ZN9FormTestsL22TestSetZipCode_invokerEv:
+        1:   83:BOOST_AUTO_TEST_CASE(TestSetZipCode)
+------------------
+        -:   89:
+        2:   90:BOOST_AUTO_TEST_CASE(TestSetWrongZipCode)
+        -:   91:{
+        1:   92:    Form form;
+        1:   93:    form.setZipCode("1234");
+        1:   94:    BOOST_CHECK_EQUAL(form.getErrors()["zipCode"], "Invalid ZIP code");
+        1:   95:}
+------------------
+_ZN9FormTests19TestSetWrongZipCode11test_methodEv:
+        1:   90:BOOST_AUTO_TEST_CASE(TestSetWrongZipCode)
+        -:   91:{
+        1:   92:    Form form;
+        1:   93:    form.setZipCode("1234");
+        1:   94:    BOOST_CHECK_EQUAL(form.getErrors()["zipCode"], "Invalid ZIP code");
+        1:   95:}
+------------------
+_ZN9FormTestsL27TestSetWrongZipCode_invokerEv:
+        1:   90:BOOST_AUTO_TEST_CASE(TestSetWrongZipCode)
+------------------
+        -:   96:
+        2:   97:BOOST_AUTO_TEST_CASE(TestIsValid)
+        -:   98:{
+        1:   99:    Form form;
+        1:  100:    form.setName("John");
+        1:  101:    form.setFirstName("Doe");
+        1:  102:    form.setMail("john.doe@example.com");
+        1:  103:    form.setBirthday("1990-01-01");
+        1:  104:    form.setCity("New York");
+        1:  105:    form.setZipCode("12345");
+        1:  106:    BOOST_CHECK_EQUAL(form.isValid(), true);
+        1:  107:}
+------------------
+_ZN9FormTests11TestIsValid11test_methodEv:
+        1:   97:BOOST_AUTO_TEST_CASE(TestIsValid)
+        -:   98:{
+        1:   99:    Form form;
+        1:  100:    form.setName("John");
+        1:  101:    form.setFirstName("Doe");
+        1:  102:    form.setMail("john.doe@example.com");
+        1:  103:    form.setBirthday("1990-01-01");
+        1:  104:    form.setCity("New York");
+        1:  105:    form.setZipCode("12345");
+        1:  106:    BOOST_CHECK_EQUAL(form.isValid(), true);
+        1:  107:}
+------------------
+_ZN9FormTestsL19TestIsValid_invokerEv:
+        1:   97:BOOST_AUTO_TEST_CASE(TestIsValid)
+------------------
+        -:  108:
+        2:  109:BOOST_AUTO_TEST_CASE(TestIsNotValid)
+        -:  110:{
+        1:  111:    Form form;
+        1:  112:    form.setName("John");
+        1:  113:    form.setFirstName("Doe");
+        1:  114:    form.setMail("");
+        1:  115:    form.setBirthday("1990-01-01");
+        1:  116:    form.setCity("New York");
+        1:  117:    form.setZipCode("12345");
+        1:  118:    BOOST_CHECK_EQUAL(form.isValid(), false);
+        1:  119:}
+------------------
+_ZN9FormTests14TestIsNotValid11test_methodEv:
+        1:  109:BOOST_AUTO_TEST_CASE(TestIsNotValid)
+        -:  110:{
+        1:  111:    Form form;
+        1:  112:    form.setName("John");
+        1:  113:    form.setFirstName("Doe");
+        1:  114:    form.setMail("");
+        1:  115:    form.setBirthday("1990-01-01");
+        1:  116:    form.setCity("New York");
+        1:  117:    form.setZipCode("12345");
+        1:  118:    BOOST_CHECK_EQUAL(form.isValid(), false);
+        1:  119:}
+------------------
+_ZN9FormTestsL22TestIsNotValid_invokerEv:
+        1:  109:BOOST_AUTO_TEST_CASE(TestIsNotValid)
+------------------
+        -:  120:
+        -:  121:BOOST_AUTO_TEST_SUITE_END()

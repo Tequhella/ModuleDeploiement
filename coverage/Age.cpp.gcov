@@ -1,7 +1,4 @@
         -:    0:Source:/home/tequhella/Documents/VScode/ModuleDeploiement/Age.cpp
-        -:    0:Graph:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcno
-        -:    0:Data:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcda
-        -:    0:Runs:1
         -:    1:#include <iostream>
         -:    2:#include <ctime>
         -:    3:
@@ -14,9 +11,16 @@
         -:   10:    int month; /**< The month of the date. */
         -:   11:    int day; /**< The day of the date. */
         -:   12:
-        -:   13:    bool isValid;
+        -:   13:    bool isObjectValid;
         -:   14:
-       14:   15:    Date(int year, int month, int day) : year(year), month(month), day(day), isValid(true) {}
+      42*:   15:    Date(int year, int month, int day) : year(year), month(month), day(day), isObjectValid(true) {}
+------------------
+_ZN4DateC2Eiii:
+       42:   15:    Date(int year, int month, int day) : year(year), month(month), day(day), isObjectValid(true) {}
+------------------
+_ZN4DateC2Eiii:
+    #####:   15:    Date(int year, int month, int day) : year(year), month(month), day(day), isObjectValid(true) {}
+------------------
         -:   16:
         -:   17:    /**
         -:   18:     * @brief Calculate the age of a person.
@@ -24,38 +28,38 @@
         -:   20:     * @param birth The date of birth of the person.
         -:   21:     * @return int The age of the person.
         -:   22:     */
-        9:   23:    static int calculateAge(Date* birth)
+      25*:   23:    static int calculateAge(Date* birth)
         -:   24:    {
-        9:   25:        if (!birth) 
+      25*:   25:        if (!birth) 
         -:   26:        {
-        1:   27:            throw std::invalid_argument("Aucun argument envoyé");
+       2*:   27:            throw std::invalid_argument("Aucun argument envoyé");
         -:   28:        }
         -:   29:
-        8:   30:        if (!birth->isValid)
+      23*:   30:        if (!birth->isObjectValid)
         -:   31:        {
-        1:   32:            throw std::invalid_argument("Mauvais objet envoyé");
+       2*:   32:            throw std::invalid_argument("Mauvais objet envoyé");
         -:   33:        }
         -:   34:
         -:   35:        // Obtenir la date actuelle
-        7:   36:        std::time_t t = std::time(nullptr);
-        7:   37:        std::tm* now = std::localtime(&t);
-        7:   38:        Date current = { now->tm_year + 1900, now->tm_mon + 1, now->tm_mday };
+      21*:   36:        std::time_t t = std::time(nullptr);
+      21*:   37:        std::tm* now = std::localtime(&t);
+      21*:   38:        Date current = { now->tm_year + 1900, now->tm_mon + 1, now->tm_mday };
         -:   39:
         -:   40:        // La date envoyée est fausse
-        7:   41:        if (birth->year > current.year ||
-       6*:   42:            (birth->year == current.year && birth->month > current.month) ||
-       6*:   43:            (birth->year == current.year && birth->month == current.month && birth->day > current.day))
+      21*:   41:        if (birth->year > current.year ||
+      17*:   42:            (birth->year == current.year && birth->month > current.month) ||
+      17*:   43:            (birth->year == current.year && birth->month == current.month && birth->day > current.day))
         -:   44:        {
-        1:   45:            throw std::invalid_argument("La date envoyée est fausse");
+       4*:   45:            throw std::invalid_argument("La date envoyée est fausse");
         -:   46:        }
         -:   47:
         -:   48:        // Calculer l'âge
-        6:   49:        int age = current.year - birth->year;
-       6*:   50:        if (current.month < birth->month || (current.month == birth->month && current.day < birth->day)) 
+      17*:   49:        int age = current.year - birth->year;
+      17*:   50:        if (current.month < birth->month || (current.month == birth->month && current.day < birth->day)) 
         -:   51:        {
-        1:   52:            age--;
+       2*:   52:            age--;
         -:   53:        }
         -:   54:
-        6:   55:        return age;
+      17*:   55:        return age;
         -:   56:    }
         -:   57:};

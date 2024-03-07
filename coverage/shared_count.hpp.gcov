@@ -1,7 +1,4 @@
         -:    0:Source:/usr/include/boost/smart_ptr/detail/shared_count.hpp
-        -:    0:Graph:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcno
-        -:    0:Data:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcda
-        -:    0:Runs:1
         -:    1:#ifndef BOOST_SMART_PTR_DETAIL_SHARED_COUNT_HPP_INCLUDED
         -:    2:#define BOOST_SMART_PTR_DETAIL_SHARED_COUNT_HPP_INCLUDED
         -:    3:
@@ -128,12 +125,29 @@
         -:  124:
         -:  125:public:
         -:  126:
-       12:  127:    BOOST_CONSTEXPR shared_count() BOOST_SP_NOEXCEPT: pi_(0)
+      51*:  127:    BOOST_CONSTEXPR shared_count() BOOST_SP_NOEXCEPT: pi_(0)
         -:  128:#if defined(BOOST_SP_ENABLE_DEBUG_HOOKS)
         -:  129:        , id_(shared_count_id)
         -:  130:#endif
         -:  131:    {
-       12:  132:    }
+      51*:  132:    }
+------------------
+_ZN5boost6detail12shared_countC2Ev:
+       51:  127:    BOOST_CONSTEXPR shared_count() BOOST_SP_NOEXCEPT: pi_(0)
+        -:  128:#if defined(BOOST_SP_ENABLE_DEBUG_HOOKS)
+        -:  129:        , id_(shared_count_id)
+        -:  130:#endif
+        -:  131:    {
+       51:  132:    }
+------------------
+_ZN5boost6detail12shared_countC2Ev:
+    #####:  127:    BOOST_CONSTEXPR shared_count() BOOST_SP_NOEXCEPT: pi_(0)
+        -:  128:#if defined(BOOST_SP_ENABLE_DEBUG_HOOKS)
+        -:  129:        , id_(shared_count_id)
+        -:  130:#endif
+        -:  131:    {
+    #####:  132:    }
+------------------
         -:  133:
         -:  134:    BOOST_CONSTEXPR explicit shared_count( sp_counted_base * pi ) BOOST_SP_NOEXCEPT: pi_( pi )
         -:  135:#if defined(BOOST_SP_ENABLE_DEBUG_HOOKS)
@@ -431,13 +445,32 @@
         -:  427:        r.release();
         -:  428:    }
         -:  429:
-       12:  430:    ~shared_count() /*BOOST_SP_NOEXCEPT*/
+      51*:  430:    ~shared_count() /*BOOST_SP_NOEXCEPT*/
         -:  431:    {
-      12*:  432:        if( pi_ != 0 ) pi_->release();
+      51*:  432:        if( pi_ != 0 ) pi_->release();
         -:  433:#if defined(BOOST_SP_ENABLE_DEBUG_HOOKS)
         -:  434:        id_ = 0;
         -:  435:#endif
-       12:  436:    }
+      51*:  436:    }
+------------------
+_ZN5boost6detail12shared_countD2Ev:
+       51:  430:    ~shared_count() /*BOOST_SP_NOEXCEPT*/
+        -:  431:    {
+      51*:  432:        if( pi_ != 0 ) pi_->release();
+        -:  433:#if defined(BOOST_SP_ENABLE_DEBUG_HOOKS)
+        -:  434:        id_ = 0;
+        -:  435:#endif
+       51:  436:    }
+------------------
+_ZN5boost6detail12shared_countD2Ev:
+    #####:  430:    ~shared_count() /*BOOST_SP_NOEXCEPT*/
+        -:  431:    {
+    #####:  432:        if( pi_ != 0 ) pi_->release();
+        -:  433:#if defined(BOOST_SP_ENABLE_DEBUG_HOOKS)
+        -:  434:        id_ = 0;
+        -:  435:#endif
+    #####:  436:    }
+------------------
         -:  437:
         -:  438:    shared_count(shared_count const & r) BOOST_SP_NOEXCEPT: pi_(r.pi_)
         -:  439:#if defined(BOOST_SP_ENABLE_DEBUG_HOOKS)

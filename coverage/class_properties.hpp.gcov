@@ -1,7 +1,4 @@
         -:    0:Source:/usr/include/boost/test/utils/class_properties.hpp
-        -:    0:Graph:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcno
-        -:    0:Data:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcda
-        -:    0:Runs:1
         -:    1://  (C) Copyright Gennadiy Rozental 2001.
         -:    2://  Distributed under the Boost Software License, Version 1.0.
         -:    3://  (See accompanying file LICENSE_1_0.txt or copy at
@@ -55,13 +52,22 @@
         -:   51:public:
         -:   52:    // Constructor
         -:   53:                    class_property() : value( PropertyType() ) {}
-       12:   54:    explicit        class_property( write_param_t init_value )
-       12:   55:    : value( init_value ) {}
+      51*:   54:    explicit        class_property( write_param_t init_value )
+      51*:   55:    : value( init_value ) {}
+------------------
+_ZN5boost9unit_test14class_propertyIbEC2Eb:
+       51:   54:    explicit        class_property( write_param_t init_value )
+       51:   55:    : value( init_value ) {}
+------------------
+_ZN5boost9unit_test14class_propertyIbEC2Eb:
+    #####:   54:    explicit        class_property( write_param_t init_value )
+    #####:   55:    : value( init_value ) {}
+------------------
         -:   56:
         -:   57:    // Access methods
         -:   58:    operator        read_access_t() const   { return value; }
         -:   59:    read_access_t   get() const             { return value; }
-        3:   60:    bool            operator!() const       { return !value; }
+        6:   60:    bool            operator!() const       { return !value; }
         -:   61:    address_res_t   operator&() const       { return &value; }
         -:   62:
         -:   63:    // Data members
@@ -132,7 +138,14 @@
         -:  128:public:
         -:  129:    // Constructor
         -:  130:                    readonly_property() {}
-       12:  131:    explicit        readonly_property( write_param_t init_value ) : base_prop( init_value ) {}
+      51*:  131:    explicit        readonly_property( write_param_t init_value ) : base_prop( init_value ) {}
+------------------
+_ZN5boost9unit_test17readonly_propertyIbEC2Eb:
+       51:  131:    explicit        readonly_property( write_param_t init_value ) : base_prop( init_value ) {}
+------------------
+_ZN5boost9unit_test17readonly_propertyIbEC2Eb:
+    #####:  131:    explicit        readonly_property( write_param_t init_value ) : base_prop( init_value ) {}
+------------------
         -:  132:
         -:  133:    // access methods
         -:  134:    arrow_res_t     operator->() const      { return boost::addressof( base_prop::value ); }

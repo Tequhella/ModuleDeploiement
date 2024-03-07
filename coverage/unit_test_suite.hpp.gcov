@@ -1,7 +1,4 @@
         -:    0:Source:/usr/include/boost/test/unit_test_suite.hpp
-        -:    0:Graph:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcno
-        -:    0:Data:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcda
-        -:    0:Runs:1
         -:    1://  (C) Copyright Gennadiy Rozental 2001.
         -:    2://  Distributed under the Boost Software License, Version 1.0.
         -:    3://  (See accompanying file LICENSE_1_0.txt or copy at
@@ -388,14 +385,14 @@
         -:  384:#endif
         -:  385:
         -:  386:#ifdef BOOST_TEST_ALTERNATIVE_INIT_API
-        1:  387:bool init_unit_test()                   {
+        2:  387:bool init_unit_test()                   {
         -:  388:#else
         -:  389:::boost::unit_test::test_suite*
         -:  390:init_unit_test_suite( int, char* [] )   {
         -:  391:#endif
         -:  392:
         -:  393:#ifdef BOOST_TEST_ALTERNATIVE_INIT_API
-        1:  394:    return true;
+        2:  394:    return true;
         -:  395:}
         -:  396:#else
         -:  397:    return 0;

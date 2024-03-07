@@ -1,7 +1,4 @@
         -:    0:Source:/usr/include/boost/type_index/type_index_facade.hpp
-        -:    0:Graph:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcno
-        -:    0:Data:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcda
-        -:    0:Runs:1
         -:    1://
         -:    2:// Copyright 2013-2020 Antony Polukhin.
         -:    3://
@@ -158,6 +155,17 @@
     #####:  154:BOOST_CXX14_CONSTEXPR inline bool operator == (const type_index_facade<Derived, TypeInfo>& lhs, const type_index_facade<Derived, TypeInfo>& rhs) BOOST_NOEXCEPT {
     #####:  155:    return static_cast<Derived const&>(lhs).equal(static_cast<Derived const&>(rhs));
         -:  156:}
+------------------
+_ZN5boost9typeindexeqINS0_14stl_type_indexESt9type_infoEEbRKNS0_17type_index_facadeIT_T0_EES9_:
+    #####:  154:BOOST_CXX14_CONSTEXPR inline bool operator == (const type_index_facade<Derived, TypeInfo>& lhs, const type_index_facade<Derived, TypeInfo>& rhs) BOOST_NOEXCEPT {
+    #####:  155:    return static_cast<Derived const&>(lhs).equal(static_cast<Derived const&>(rhs));
+        -:  156:}
+------------------
+_ZN5boost9typeindexeqINS0_14stl_type_indexESt9type_infoEEbRKNS0_17type_index_facadeIT_T0_EES9_:
+    #####:  154:BOOST_CXX14_CONSTEXPR inline bool operator == (const type_index_facade<Derived, TypeInfo>& lhs, const type_index_facade<Derived, TypeInfo>& rhs) BOOST_NOEXCEPT {
+    #####:  155:    return static_cast<Derived const&>(lhs).equal(static_cast<Derived const&>(rhs));
+        -:  156:}
+------------------
         -:  157:
         -:  158:template <class Derived, class TypeInfo>
         -:  159:BOOST_CXX14_CONSTEXPR inline bool operator < (const type_index_facade<Derived, TypeInfo>& lhs, const type_index_facade<Derived, TypeInfo>& rhs) BOOST_NOEXCEPT {

@@ -1,7 +1,4 @@
         -:    0:Source:/usr/include/boost/function/function_template.hpp
-        -:    0:Graph:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcno
-        -:    0:Data:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcda
-        -:    0:Runs:1
         -:    1:// Boost.Function library
         -:    2:
         -:    3://  Copyright Douglas Gregor 2001-2006
@@ -113,13 +110,32 @@
         -:  109:      struct BOOST_FUNCTION_VOID_FUNCTION_INVOKER
         -:  110:      {
         -:  111:        static BOOST_FUNCTION_VOID_RETURN_TYPE
-        4:  112:        invoke(function_buffer& function_ptr BOOST_FUNCTION_COMMA
+      35*:  112:        invoke(function_buffer& function_ptr BOOST_FUNCTION_COMMA
         -:  113:               BOOST_FUNCTION_PARMS)
         -:  114:
         -:  115:        {
-        4:  116:          FunctionPtr f = reinterpret_cast<FunctionPtr>(function_ptr.members.func_ptr);
-        4:  117:          BOOST_FUNCTION_RETURN(f(BOOST_FUNCTION_ARGS));
-        4:  118:        }
+      35*:  116:          FunctionPtr f = reinterpret_cast<FunctionPtr>(function_ptr.members.func_ptr);
+      35*:  117:          BOOST_FUNCTION_RETURN(f(BOOST_FUNCTION_ARGS));
+      35*:  118:        }
+------------------
+_ZN5boost6detail8function22void_function_invoker0IPFvvEvE6invokeERNS1_15function_bufferE:
+       35:  112:        invoke(function_buffer& function_ptr BOOST_FUNCTION_COMMA
+        -:  113:               BOOST_FUNCTION_PARMS)
+        -:  114:
+        -:  115:        {
+       35:  116:          FunctionPtr f = reinterpret_cast<FunctionPtr>(function_ptr.members.func_ptr);
+       35:  117:          BOOST_FUNCTION_RETURN(f(BOOST_FUNCTION_ARGS));
+       35:  118:        }
+------------------
+_ZN5boost6detail8function22void_function_invoker0IPFvvEvE6invokeERNS1_15function_bufferE:
+    #####:  112:        invoke(function_buffer& function_ptr BOOST_FUNCTION_COMMA
+        -:  113:               BOOST_FUNCTION_PARMS)
+        -:  114:
+        -:  115:        {
+    #####:  116:          FunctionPtr f = reinterpret_cast<FunctionPtr>(function_ptr.members.func_ptr);
+    #####:  117:          BOOST_FUNCTION_RETURN(f(BOOST_FUNCTION_ARGS));
+    #####:  118:        }
+------------------
         -:  119:      };
         -:  120:
         -:  121:      template<
@@ -491,11 +507,26 @@
         -:  487:                                            BOOST_FUNCTION_TEMPLATE_ARGS);
         -:  488:
         -:  489:        template<typename F>
-        4:  490:        bool assign_to(F f, function_buffer& functor) const
+      35*:  490:        bool assign_to(F f, function_buffer& functor) const
         -:  491:        {
         -:  492:          typedef typename get_function_tag<F>::type tag;
-        4:  493:          return assign_to(f, functor, tag());
+      35*:  493:          return assign_to(f, functor, tag());
         -:  494:        }
+------------------
+_ZNK5boost6detail8function13basic_vtable0IvE9assign_toIPFvvEEEbT_RNS1_15function_bufferE:
+       35:  490:        bool assign_to(F f, function_buffer& functor) const
+        -:  491:        {
+        -:  492:          typedef typename get_function_tag<F>::type tag;
+       35:  493:          return assign_to(f, functor, tag());
+        -:  494:        }
+------------------
+_ZNK5boost6detail8function13basic_vtable0IvE9assign_toIPFvvEEEbT_RNS1_15function_bufferE:
+    #####:  490:        bool assign_to(F f, function_buffer& functor) const
+        -:  491:        {
+        -:  492:          typedef typename get_function_tag<F>::type tag;
+    #####:  493:          return assign_to(f, functor, tag());
+        -:  494:        }
+------------------
         -:  495:        template<typename F,typename Allocator>
         -:  496:        bool assign_to_a(F f, function_buffer& functor, Allocator a) const
         -:  497:        {
@@ -503,28 +534,72 @@
         -:  499:          return assign_to_a(f, functor, a, tag());
         -:  500:        }
         -:  501:
-        4:  502:        void clear(function_buffer& functor) const
+      35*:  502:        void clear(function_buffer& functor) const
         -:  503:        {
-        4:  504:          if (base.manager)
-        4:  505:            base.manager(functor, functor, destroy_functor_tag);
-        4:  506:        }
+      35*:  504:          if (base.manager)
+      35*:  505:            base.manager(functor, functor, destroy_functor_tag);
+      35*:  506:        }
+------------------
+_ZNK5boost6detail8function13basic_vtable0IvE5clearERNS1_15function_bufferE:
+       35:  502:        void clear(function_buffer& functor) const
+        -:  503:        {
+       35:  504:          if (base.manager)
+       35:  505:            base.manager(functor, functor, destroy_functor_tag);
+       35:  506:        }
+------------------
+_ZNK5boost6detail8function13basic_vtable0IvE5clearERNS1_15function_bufferE:
+    #####:  502:        void clear(function_buffer& functor) const
+        -:  503:        {
+    #####:  504:          if (base.manager)
+    #####:  505:            base.manager(functor, functor, destroy_functor_tag);
+    #####:  506:        }
+------------------
         -:  507:
         -:  508:      private:
         -:  509:        // Function pointers
         -:  510:        template<typename FunctionPtr>
         -:  511:        bool
-        4:  512:        assign_to(FunctionPtr f, function_buffer& functor, function_ptr_tag) const
+      35*:  512:        assign_to(FunctionPtr f, function_buffer& functor, function_ptr_tag) const
         -:  513:        {
-        4:  514:          this->clear(functor);
-        4:  515:          if (f) {
+      35*:  514:          this->clear(functor);
+      35*:  515:          if (f) {
         -:  516:            // should be a reinterpret cast, but some compilers insist
         -:  517:            // on giving cv-qualifiers to free functions
-        4:  518:            functor.members.func_ptr = reinterpret_cast<void (*)()>(f);
-        4:  519:            return true;
+      35*:  518:            functor.members.func_ptr = reinterpret_cast<void (*)()>(f);
+      35*:  519:            return true;
         -:  520:          } else {
     #####:  521:            return false;
         -:  522:          }
         -:  523:        }
+------------------
+_ZNK5boost6detail8function13basic_vtable0IvE9assign_toIPFvvEEEbT_RNS1_15function_bufferENS1_16function_ptr_tagE:
+       35:  512:        assign_to(FunctionPtr f, function_buffer& functor, function_ptr_tag) const
+        -:  513:        {
+       35:  514:          this->clear(functor);
+       35:  515:          if (f) {
+        -:  516:            // should be a reinterpret cast, but some compilers insist
+        -:  517:            // on giving cv-qualifiers to free functions
+       35:  518:            functor.members.func_ptr = reinterpret_cast<void (*)()>(f);
+       35:  519:            return true;
+        -:  520:          } else {
+    #####:  521:            return false;
+        -:  522:          }
+        -:  523:        }
+------------------
+_ZNK5boost6detail8function13basic_vtable0IvE9assign_toIPFvvEEEbT_RNS1_15function_bufferENS1_16function_ptr_tagE:
+    #####:  512:        assign_to(FunctionPtr f, function_buffer& functor, function_ptr_tag) const
+        -:  513:        {
+    #####:  514:          this->clear(functor);
+    #####:  515:          if (f) {
+        -:  516:            // should be a reinterpret cast, but some compilers insist
+        -:  517:            // on giving cv-qualifiers to free functions
+    #####:  518:            functor.members.func_ptr = reinterpret_cast<void (*)()>(f);
+    #####:  519:            return true;
+        -:  520:          } else {
+    #####:  521:            return false;
+        -:  522:          }
+        -:  523:        }
+------------------
         -:  524:        template<typename FunctionPtr,typename Allocator>
         -:  525:        bool
         -:  526:        assign_to_a(FunctionPtr f, function_buffer& functor, Allocator, function_ptr_tag) const
@@ -682,6 +757,19 @@
         -:  678:      return reinterpret_cast<vtable_type*>(
     #####:  679:               reinterpret_cast<std::size_t>(vtable) & ~static_cast<std::size_t>(0x01));
         -:  680:    }
+------------------
+_ZNK5boost9function0IvE10get_vtableEv:
+    #####:  677:    vtable_type* get_vtable() const {
+        -:  678:      return reinterpret_cast<vtable_type*>(
+    #####:  679:               reinterpret_cast<std::size_t>(vtable) & ~static_cast<std::size_t>(0x01));
+        -:  680:    }
+------------------
+_ZNK5boost9function0IvE10get_vtableEv:
+    #####:  677:    vtable_type* get_vtable() const {
+        -:  678:      return reinterpret_cast<vtable_type*>(
+    #####:  679:               reinterpret_cast<std::size_t>(vtable) & ~static_cast<std::size_t>(0x01));
+        -:  680:    }
+------------------
         -:  681:
         -:  682:    struct clear_type {};
         -:  683:
@@ -712,17 +800,44 @@
         -:  708:    // MSVC chokes if the following two constructors are collapsed into
         -:  709:    // one with a default parameter.
         -:  710:    template<typename Functor>
-        4:  711:    BOOST_FUNCTION_FUNCTION(Functor BOOST_FUNCTION_TARGET_FIX(const &) f
+      35*:  711:    BOOST_FUNCTION_FUNCTION(Functor BOOST_FUNCTION_TARGET_FIX(const &) f
         -:  712:#ifndef BOOST_NO_SFINAE
         -:  713:                            ,typename boost::enable_if_<
         -:  714:                             !(is_integral<Functor>::value),
         -:  715:                                        int>::type = 0
         -:  716:#endif // BOOST_NO_SFINAE
         -:  717:                            ) :
-        4:  718:      function_base()
+      35*:  718:      function_base()
         -:  719:    {
-        4:  720:      this->assign_to(f);
-        4:  721:    }
+      35*:  720:      this->assign_to(f);
+      35*:  721:    }
+------------------
+_ZN5boost9function0IvEC2IPFvvEEET_NS_10enable_if_IXntsrNS_11is_integralIS5_EE5valueEiE4typeE:
+       35:  711:    BOOST_FUNCTION_FUNCTION(Functor BOOST_FUNCTION_TARGET_FIX(const &) f
+        -:  712:#ifndef BOOST_NO_SFINAE
+        -:  713:                            ,typename boost::enable_if_<
+        -:  714:                             !(is_integral<Functor>::value),
+        -:  715:                                        int>::type = 0
+        -:  716:#endif // BOOST_NO_SFINAE
+        -:  717:                            ) :
+       35:  718:      function_base()
+        -:  719:    {
+       35:  720:      this->assign_to(f);
+       35:  721:    }
+------------------
+_ZN5boost9function0IvEC2IPFvvEEET_NS_10enable_if_IXntsrNS_11is_integralIS5_EE5valueEiE4typeE:
+    #####:  711:    BOOST_FUNCTION_FUNCTION(Functor BOOST_FUNCTION_TARGET_FIX(const &) f
+        -:  712:#ifndef BOOST_NO_SFINAE
+        -:  713:                            ,typename boost::enable_if_<
+        -:  714:                             !(is_integral<Functor>::value),
+        -:  715:                                        int>::type = 0
+        -:  716:#endif // BOOST_NO_SFINAE
+        -:  717:                            ) :
+    #####:  718:      function_base()
+        -:  719:    {
+    #####:  720:      this->assign_to(f);
+    #####:  721:    }
+------------------
         -:  722:    template<typename Functor,typename Allocator>
         -:  723:    BOOST_FUNCTION_FUNCTION(Functor BOOST_FUNCTION_TARGET_FIX(const &) f, Allocator a
         -:  724:#ifndef BOOST_NO_SFINAE
@@ -757,7 +872,14 @@
         -:  753:    }
         -:  754:#endif
         -:  755:
-        4:  756:    ~BOOST_FUNCTION_FUNCTION() { clear(); }
+      35*:  756:    ~BOOST_FUNCTION_FUNCTION() { clear(); }
+------------------
+_ZN5boost9function0IvED2Ev:
+       35:  756:    ~BOOST_FUNCTION_FUNCTION() { clear(); }
+------------------
+_ZN5boost9function0IvED2Ev:
+    #####:  756:    ~BOOST_FUNCTION_FUNCTION() { clear(); }
+------------------
         -:  757:
         -:  758:    result_type operator()(BOOST_FUNCTION_PARMS) const
         -:  759:    {
@@ -869,14 +991,35 @@
         -:  865:    }
         -:  866:
         -:  867:    // Clear out a target, if there is one
-        4:  868:    void clear()
+      35*:  868:    void clear()
         -:  869:    {
-        4:  870:      if (vtable) {
-        4:  871:        if (!this->has_trivial_copy_and_destroy())
+      35*:  870:      if (vtable) {
+      35*:  871:        if (!this->has_trivial_copy_and_destroy())
     #####:  872:          get_vtable()->clear(this->functor);
-        4:  873:        vtable = 0;
+      35*:  873:        vtable = 0;
         -:  874:      }
-        4:  875:    }
+      35*:  875:    }
+------------------
+_ZN5boost9function0IvE5clearEv:
+       35:  868:    void clear()
+        -:  869:    {
+       35:  870:      if (vtable) {
+       35:  871:        if (!this->has_trivial_copy_and_destroy())
+    #####:  872:          get_vtable()->clear(this->functor);
+       35:  873:        vtable = 0;
+        -:  874:      }
+       35:  875:    }
+------------------
+_ZN5boost9function0IvE5clearEv:
+    #####:  868:    void clear()
+        -:  869:    {
+    #####:  870:      if (vtable) {
+    #####:  871:        if (!this->has_trivial_copy_and_destroy())
+    #####:  872:          get_vtable()->clear(this->functor);
+    #####:  873:        vtable = 0;
+        -:  874:      }
+    #####:  875:    }
+------------------
         -:  876:
         -:  877:#if (defined __SUNPRO_CC) && (__SUNPRO_CC <= 0x530) && !(defined BOOST_NO_COMPILER_CONFIG)
         -:  878:    // Sun C++ 5.3 can't handle the safe_bool idiom, so don't use it
@@ -922,7 +1065,7 @@
         -:  918:    }
         -:  919:
         -:  920:    template<typename Functor>
-        4:  921:    void assign_to(Functor f)
+      35*:  921:    void assign_to(Functor f)
         -:  922:    {
         -:  923:      using boost::detail::function::vtable_base;
         -:  924:
@@ -943,17 +1086,86 @@
         -:  939:      static const vtable_type stored_vtable =
         -:  940:        { { &manager_type::manage }, &invoker_type::invoke };
         -:  941:
-        4:  942:      if (stored_vtable.assign_to(f, functor)) {
-        4:  943:        std::size_t value = reinterpret_cast<std::size_t>(&stored_vtable.base);
+      35*:  942:      if (stored_vtable.assign_to(f, functor)) {
+      35*:  943:        std::size_t value = reinterpret_cast<std::size_t>(&stored_vtable.base);
         -:  944:        // coverity[pointless_expression]: suppress coverity warnings on apparant if(const).
         -:  945:        if (boost::has_trivial_copy_constructor<Functor>::value &&
         -:  946:            boost::has_trivial_destructor<Functor>::value &&
         -:  947:            boost::detail::function::function_allows_small_object_optimization<Functor>::value)
-        4:  948:          value |= static_cast<std::size_t>(0x01);
-        4:  949:        vtable = reinterpret_cast<boost::detail::function::vtable_base *>(value);
+      35*:  948:          value |= static_cast<std::size_t>(0x01);
+      35*:  949:        vtable = reinterpret_cast<boost::detail::function::vtable_base *>(value);
         -:  950:      } else
     #####:  951:        vtable = 0;
-        4:  952:    }
+      35*:  952:    }
+------------------
+_ZN5boost9function0IvE9assign_toIPFvvEEEvT_:
+       35:  921:    void assign_to(Functor f)
+        -:  922:    {
+        -:  923:      using boost::detail::function::vtable_base;
+        -:  924:
+        -:  925:      typedef typename boost::detail::function::get_function_tag<Functor>::type tag;
+        -:  926:      typedef boost::detail::function::BOOST_FUNCTION_GET_INVOKER<tag> get_invoker;
+        -:  927:      typedef typename get_invoker::
+        -:  928:                         template apply<Functor, R BOOST_FUNCTION_COMMA
+        -:  929:                        BOOST_FUNCTION_TEMPLATE_ARGS>
+        -:  930:        handler_type;
+        -:  931:
+        -:  932:      typedef typename handler_type::invoker_type invoker_type;
+        -:  933:      typedef typename handler_type::manager_type manager_type;
+        -:  934:
+        -:  935:      // Note: it is extremely important that this initialization use
+        -:  936:      // static initialization. Otherwise, we will have a race
+        -:  937:      // condition here in multi-threaded code. See
+        -:  938:      // http://thread.gmane.org/gmane.comp.lib.boost.devel/164902/.
+        -:  939:      static const vtable_type stored_vtable =
+        -:  940:        { { &manager_type::manage }, &invoker_type::invoke };
+        -:  941:
+       35:  942:      if (stored_vtable.assign_to(f, functor)) {
+       35:  943:        std::size_t value = reinterpret_cast<std::size_t>(&stored_vtable.base);
+        -:  944:        // coverity[pointless_expression]: suppress coverity warnings on apparant if(const).
+        -:  945:        if (boost::has_trivial_copy_constructor<Functor>::value &&
+        -:  946:            boost::has_trivial_destructor<Functor>::value &&
+        -:  947:            boost::detail::function::function_allows_small_object_optimization<Functor>::value)
+       35:  948:          value |= static_cast<std::size_t>(0x01);
+       35:  949:        vtable = reinterpret_cast<boost::detail::function::vtable_base *>(value);
+        -:  950:      } else
+    #####:  951:        vtable = 0;
+       35:  952:    }
+------------------
+_ZN5boost9function0IvE9assign_toIPFvvEEEvT_:
+    #####:  921:    void assign_to(Functor f)
+        -:  922:    {
+        -:  923:      using boost::detail::function::vtable_base;
+        -:  924:
+        -:  925:      typedef typename boost::detail::function::get_function_tag<Functor>::type tag;
+        -:  926:      typedef boost::detail::function::BOOST_FUNCTION_GET_INVOKER<tag> get_invoker;
+        -:  927:      typedef typename get_invoker::
+        -:  928:                         template apply<Functor, R BOOST_FUNCTION_COMMA
+        -:  929:                        BOOST_FUNCTION_TEMPLATE_ARGS>
+        -:  930:        handler_type;
+        -:  931:
+        -:  932:      typedef typename handler_type::invoker_type invoker_type;
+        -:  933:      typedef typename handler_type::manager_type manager_type;
+        -:  934:
+        -:  935:      // Note: it is extremely important that this initialization use
+        -:  936:      // static initialization. Otherwise, we will have a race
+        -:  937:      // condition here in multi-threaded code. See
+        -:  938:      // http://thread.gmane.org/gmane.comp.lib.boost.devel/164902/.
+        -:  939:      static const vtable_type stored_vtable =
+        -:  940:        { { &manager_type::manage }, &invoker_type::invoke };
+        -:  941:
+    #####:  942:      if (stored_vtable.assign_to(f, functor)) {
+    #####:  943:        std::size_t value = reinterpret_cast<std::size_t>(&stored_vtable.base);
+        -:  944:        // coverity[pointless_expression]: suppress coverity warnings on apparant if(const).
+        -:  945:        if (boost::has_trivial_copy_constructor<Functor>::value &&
+        -:  946:            boost::has_trivial_destructor<Functor>::value &&
+        -:  947:            boost::detail::function::function_allows_small_object_optimization<Functor>::value)
+    #####:  948:          value |= static_cast<std::size_t>(0x01);
+    #####:  949:        vtable = reinterpret_cast<boost::detail::function::vtable_base *>(value);
+        -:  950:      } else
+    #####:  951:        vtable = 0;
+    #####:  952:    }
+------------------
         -:  953:
         -:  954:    template<typename Functor,typename Allocator>
         -:  955:    void assign_to_a(Functor f,Allocator a)
@@ -1080,16 +1292,41 @@
         -: 1076:  BOOST_DEFAULTED_FUNCTION(function(), : base_type() {})
         -: 1077:
         -: 1078:  template<typename Functor>
-        4: 1079:  function(Functor f
+      35*: 1079:  function(Functor f
         -: 1080:#ifndef BOOST_NO_SFINAE
         -: 1081:           ,typename boost::enable_if_<
         -: 1082:                          !(is_integral<Functor>::value),
         -: 1083:                       int>::type = 0
         -: 1084:#endif
         -: 1085:           ) :
-        4: 1086:    base_type(f)
+      35*: 1086:    base_type(f)
         -: 1087:  {
-        4: 1088:  }
+      35*: 1088:  }
+------------------
+_ZN5boost8functionIFvvEEC2IPS1_EET_NS_10enable_if_IXntsrNS_11is_integralIS5_EE5valueEiE4typeE:
+       35: 1079:  function(Functor f
+        -: 1080:#ifndef BOOST_NO_SFINAE
+        -: 1081:           ,typename boost::enable_if_<
+        -: 1082:                          !(is_integral<Functor>::value),
+        -: 1083:                       int>::type = 0
+        -: 1084:#endif
+        -: 1085:           ) :
+       35: 1086:    base_type(f)
+        -: 1087:  {
+       35: 1088:  }
+------------------
+_ZN5boost8functionIFvvEEC2IPS1_EET_NS_10enable_if_IXntsrNS_11is_integralIS5_EE5valueEiE4typeE:
+    #####: 1079:  function(Functor f
+        -: 1080:#ifndef BOOST_NO_SFINAE
+        -: 1081:           ,typename boost::enable_if_<
+        -: 1082:                          !(is_integral<Functor>::value),
+        -: 1083:                       int>::type = 0
+        -: 1084:#endif
+        -: 1085:           ) :
+    #####: 1086:    base_type(f)
+        -: 1087:  {
+    #####: 1088:  }
+------------------
         -: 1089:  template<typename Functor,typename Allocator>
         -: 1090:  function(Functor f, Allocator a
         -: 1091:#ifndef BOOST_NO_SFINAE

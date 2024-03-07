@@ -1,7 +1,4 @@
         -:    0:Source:/usr/include/c++/11/bits/ios_base.h
-        -:    0:Graph:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcno
-        -:    0:Data:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcda
-        -:    0:Runs:1
         -:    1:// Iostreams base classes -*- C++ -*-
         -:    2:
         -:    3:// Copyright (C) 1997-2021 Free Software Foundation, Inc.
@@ -84,28 +81,28 @@
         -:   80:    };
         -:   81:
         -:   82:  inline _GLIBCXX_CONSTEXPR _Ios_Fmtflags
-        -:   83:  operator&(_Ios_Fmtflags __a, _Ios_Fmtflags __b)
-        -:   84:  { return _Ios_Fmtflags(static_cast<int>(__a) & static_cast<int>(__b)); }
+    #####:   83:  operator&(_Ios_Fmtflags __a, _Ios_Fmtflags __b)
+    #####:   84:  { return _Ios_Fmtflags(static_cast<int>(__a) & static_cast<int>(__b)); }
         -:   85:
         -:   86:  inline _GLIBCXX_CONSTEXPR _Ios_Fmtflags
-        -:   87:  operator|(_Ios_Fmtflags __a, _Ios_Fmtflags __b)
-        -:   88:  { return _Ios_Fmtflags(static_cast<int>(__a) | static_cast<int>(__b)); }
+    #####:   87:  operator|(_Ios_Fmtflags __a, _Ios_Fmtflags __b)
+    #####:   88:  { return _Ios_Fmtflags(static_cast<int>(__a) | static_cast<int>(__b)); }
         -:   89:
         -:   90:  inline _GLIBCXX_CONSTEXPR _Ios_Fmtflags
         -:   91:  operator^(_Ios_Fmtflags __a, _Ios_Fmtflags __b)
         -:   92:  { return _Ios_Fmtflags(static_cast<int>(__a) ^ static_cast<int>(__b)); }
         -:   93:
         -:   94:  inline _GLIBCXX_CONSTEXPR _Ios_Fmtflags
-        -:   95:  operator~(_Ios_Fmtflags __a)
-        -:   96:  { return _Ios_Fmtflags(~static_cast<int>(__a)); }
+    #####:   95:  operator~(_Ios_Fmtflags __a)
+    #####:   96:  { return _Ios_Fmtflags(~static_cast<int>(__a)); }
         -:   97:
         -:   98:  inline const _Ios_Fmtflags&
-        -:   99:  operator|=(_Ios_Fmtflags& __a, _Ios_Fmtflags __b)
-        -:  100:  { return __a = __a | __b; }
+    #####:   99:  operator|=(_Ios_Fmtflags& __a, _Ios_Fmtflags __b)
+    #####:  100:  { return __a = __a | __b; }
         -:  101:
         -:  102:  inline const _Ios_Fmtflags&
-        -:  103:  operator&=(_Ios_Fmtflags& __a, _Ios_Fmtflags __b)
-        -:  104:  { return __a = __a & __b; }
+    #####:  103:  operator&=(_Ios_Fmtflags& __a, _Ios_Fmtflags __b)
+    #####:  104:  { return __a = __a & __b; }
         -:  105:
         -:  106:  inline const _Ios_Fmtflags&
         -:  107:  operator^=(_Ios_Fmtflags& __a, _Ios_Fmtflags __b)
@@ -694,12 +691,12 @@
         -:  690:     *  @a fmtfl @c & @a mask.  An example mask is @c ios_base::adjustfield.
         -:  691:    */
         -:  692:    fmtflags
-        -:  693:    setf(fmtflags __fmtfl, fmtflags __mask)
+    #####:  693:    setf(fmtflags __fmtfl, fmtflags __mask)
         -:  694:    {
-        -:  695:      fmtflags __old = _M_flags;
-        -:  696:      _M_flags &= ~__mask;
-        -:  697:      _M_flags |= (__fmtfl & __mask);
-        -:  698:      return __old;
+    #####:  695:      fmtflags __old = _M_flags;
+    #####:  696:      _M_flags &= ~__mask;
+    #####:  697:      _M_flags |= (__fmtfl & __mask);
+    #####:  698:      return __old;
         -:  699:    }
         -:  700:
         -:  701:    /**
@@ -735,6 +732,23 @@
     #####:  731:      _M_precision = __prec;
     #####:  732:      return __old;
         -:  733:    }
+------------------
+_ZNSt8ios_base9precisionEl:
+    #####:  728:    precision(streamsize __prec)
+        -:  729:    {
+    #####:  730:      streamsize __old = _M_precision;
+    #####:  731:      _M_precision = __prec;
+    #####:  732:      return __old;
+        -:  733:    }
+------------------
+_ZNSt8ios_base9precisionEl:
+    #####:  728:    precision(streamsize __prec)
+        -:  729:    {
+    #####:  730:      streamsize __old = _M_precision;
+    #####:  731:      _M_precision = __prec;
+    #####:  732:      return __old;
+        -:  733:    }
+------------------
         -:  734:
         -:  735:    /**
         -:  736:     *  @brief  Flags access.
@@ -1055,18 +1069,18 @@
         -: 1051:
         -: 1052:  /// Calls base.setf(ios_base::hex, ios_base::basefield).
         -: 1053:  inline ios_base&
-        -: 1054:  hex(ios_base& __base)
+    #####: 1054:  hex(ios_base& __base)
         -: 1055:  {
-        -: 1056:    __base.setf(ios_base::hex, ios_base::basefield);
-        -: 1057:    return __base;
+    #####: 1056:    __base.setf(ios_base::hex, ios_base::basefield);
+    #####: 1057:    return __base;
         -: 1058:  }
         -: 1059:
         -: 1060:  /// Calls base.setf(ios_base::oct, ios_base::basefield).
         -: 1061:  inline ios_base&
-        -: 1062:  oct(ios_base& __base)
+    #####: 1062:  oct(ios_base& __base)
         -: 1063:  {
-        -: 1064:    __base.setf(ios_base::oct, ios_base::basefield);
-        -: 1065:    return __base;
+    #####: 1064:    __base.setf(ios_base::oct, ios_base::basefield);
+    #####: 1065:    return __base;
         -: 1066:  }
         -: 1067:
         -: 1068:  // [27.4.5.4] floatfield manipulators

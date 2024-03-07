@@ -1,0 +1,1340 @@
+        -:    0:Source:/usr/include/c++/11/bits/regex_compiler.tcc
+        -:    1:// class template regex -*- C++ -*-
+        -:    2:
+        -:    3:// Copyright (C) 2013-2021 Free Software Foundation, Inc.
+        -:    4://
+        -:    5:// This file is part of the GNU ISO C++ Library.  This library is free
+        -:    6:// software; you can redistribute it and/or modify it under the
+        -:    7:// terms of the GNU General Public License as published by the
+        -:    8:// Free Software Foundation; either version 3, or (at your option)
+        -:    9:// any later version.
+        -:   10:
+        -:   11:// This library is distributed in the hope that it will be useful,
+        -:   12:// but WITHOUT ANY WARRANTY; without even the implied warranty of
+        -:   13:// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        -:   14:// GNU General Public License for more details.
+        -:   15:
+        -:   16:// Under Section 7 of GPL version 3, you are granted additional
+        -:   17:// permissions described in the GCC Runtime Library Exception, version
+        -:   18:// 3.1, as published by the Free Software Foundation.
+        -:   19:
+        -:   20:// You should have received a copy of the GNU General Public License and
+        -:   21:// a copy of the GCC Runtime Library Exception along with this program;
+        -:   22:// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+        -:   23:// <http://www.gnu.org/licenses/>.
+        -:   24:
+        -:   25:/**
+        -:   26: *  @file bits/regex_compiler.tcc
+        -:   27: *  This is an internal header file, included by other library headers.
+        -:   28: *  Do not attempt to use it directly. @headername{regex}
+        -:   29: */
+        -:   30:
+        -:   31:// FIXME make comments doxygen format.
+        -:   32:
+        -:   33:/*
+        -:   34:// This compiler refers to "Regular Expression Matching Can Be Simple And Fast"
+        -:   35:// (http://swtch.com/~rsc/regexp/regexp1.html),
+        -:   36:// but doesn't strictly follow it.
+        -:   37://
+        -:   38:// When compiling, states are *chained* instead of tree- or graph-constructed.
+        -:   39:// It's more like structured programs: there's if statement and loop statement.
+        -:   40://
+        -:   41:// For alternative structure (say "a|b"), aka "if statement", two branches
+        -:   42:// should be constructed. However, these two shall merge to an "end_tag" at
+        -:   43:// the end of this operator:
+        -:   44://
+        -:   45://                branch1
+        -:   46://              /        \
+        -:   47:// => begin_tag            end_tag =>
+        -:   48://              \        /
+        -:   49://                branch2
+        -:   50://
+        -:   51:// This is the difference between this implementation and that in Russ's
+        -:   52:// article.
+        -:   53://
+        -:   54:// That's why we introduced dummy node here ------ "end_tag" is a dummy node.
+        -:   55:// All dummy nodes will be eliminated at the end of compilation.
+        -:   56:*/
+        -:   57:
+        -:   58:namespace std _GLIBCXX_VISIBILITY(default)
+        -:   59:{
+        -:   60:_GLIBCXX_BEGIN_NAMESPACE_VERSION
+        -:   61:
+        -:   62:namespace __detail
+        -:   63:{
+        -:   64:  template<typename _TraitsT>
+       21:   65:    _Compiler<_TraitsT>::
+        -:   66:    _Compiler(const _CharT* __b, const _CharT* __e,
+        -:   67:	      const typename _TraitsT::locale_type& __loc, _FlagT __flags)
+       21:   68:    : _M_flags(_S_validate(__flags)),
+       21:   69:      _M_scanner(__b, __e, _M_flags, __loc),
+       21:   70:      _M_nfa(make_shared<_RegexT>(__loc, _M_flags)),
+       21:   71:      _M_traits(_M_nfa->_M_traits),
+       42:   72:      _M_ctype(std::use_facet<_CtypeT>(__loc))
+        -:   73:    {
+       21:   74:      _StateSeqT __r(*_M_nfa, _M_nfa->_M_start());
+       21:   75:      __r._M_append(_M_nfa->_M_insert_subexpr_begin());
+       21:   76:      this->_M_disjunction();
+       21:   77:      if (!_M_match_token(_ScannerT::_S_token_eof))
+    #####:   78:	__throw_regex_error(regex_constants::error_paren);
+       21:   79:      __r._M_append(_M_pop());
+      21*:   80:      __glibcxx_assert(_M_stack.empty());
+       21:   81:      __r._M_append(_M_nfa->_M_insert_subexpr_end());
+       21:   82:      __r._M_append(_M_nfa->_M_insert_accept());
+       21:   83:      _M_nfa->_M_eliminate_dummy();
+       21:   84:    }
+        -:   85:
+        -:   86:  template<typename _TraitsT>
+        -:   87:    void
+       36:   88:    _Compiler<_TraitsT>::
+        -:   89:    _M_disjunction()
+        -:   90:    {
+       36:   91:      this->_M_alternative();
+       36:   92:      while (_M_match_token(_ScannerT::_S_token_or))
+        -:   93:	{
+    #####:   94:	  _StateSeqT __alt1 = _M_pop();
+    #####:   95:	  this->_M_alternative();
+    #####:   96:	  _StateSeqT __alt2 = _M_pop();
+    #####:   97:	  auto __end = _M_nfa->_M_insert_dummy();
+    #####:   98:	  __alt1._M_append(__end);
+    #####:   99:	  __alt2._M_append(__end);
+        -:  100:	  // __alt2 is state._M_next, __alt1 is state._M_alt. The executor
+        -:  101:	  // executes _M_alt before _M_next, as well as executing left
+        -:  102:	  // alternative before right one.
+    #####:  103:	  _M_stack.push(_StateSeqT(*_M_nfa,
+    #####:  104:				   _M_nfa->_M_insert_alt(
+        -:  105:				     __alt2._M_start, __alt1._M_start, false),
+        -:  106:				   __end));
+        -:  107:	}
+       36:  108:    }
+        -:  109:
+        -:  110:  template<typename _TraitsT>
+        -:  111:    void
+      150:  112:    _Compiler<_TraitsT>::
+        -:  113:    _M_alternative()
+        -:  114:    {
+      150:  115:      if (this->_M_term())
+        -:  116:	{
+      114:  117:	  _StateSeqT __re = _M_pop();
+      114:  118:	  this->_M_alternative();
+      114:  119:	  __re._M_append(_M_pop());
+      114:  120:	  _M_stack.push(__re);
+        -:  121:	}
+        -:  122:      else
+       36:  123:	_M_stack.push(_StateSeqT(*_M_nfa, _M_nfa->_M_insert_dummy()));
+      150:  124:    }
+        -:  125:
+        -:  126:  template<typename _TraitsT>
+        -:  127:    bool
+      150:  128:    _Compiler<_TraitsT>::
+        -:  129:    _M_term()
+        -:  130:    {
+      150:  131:      if (this->_M_assertion())
+       42:  132:	return true;
+      108:  133:      if (this->_M_atom())
+        -:  134:	{
+      111:  135:	  while (this->_M_quantifier())
+        -:  136:	    ;
+       72:  137:	  return true;
+        -:  138:	}
+       36:  139:      return false;
+        -:  140:    }
+        -:  141:
+        -:  142:  template<typename _TraitsT>
+        -:  143:    bool
+      150:  144:    _Compiler<_TraitsT>::
+        -:  145:    _M_assertion()
+        -:  146:    {
+      150:  147:      if (_M_match_token(_ScannerT::_S_token_line_begin))
+       21:  148:	_M_stack.push(_StateSeqT(*_M_nfa, _M_nfa->_M_insert_line_begin()));
+      129:  149:      else if (_M_match_token(_ScannerT::_S_token_line_end))
+       21:  150:	_M_stack.push(_StateSeqT(*_M_nfa, _M_nfa->_M_insert_line_end()));
+      108:  151:      else if (_M_match_token(_ScannerT::_S_token_word_bound))
+        -:  152:	// _M_value[0] == 'n' means it's negative, say "not word boundary".
+    #####:  153:	_M_stack.push(_StateSeqT(*_M_nfa, _M_nfa->
+    #####:  154:	      _M_insert_word_bound(_M_value[0] == 'n')));
+      108:  155:      else if (_M_match_token(_ScannerT::_S_token_subexpr_lookahead_begin))
+        -:  156:	{
+    #####:  157:	  auto __neg = _M_value[0] == 'n';
+    #####:  158:	  this->_M_disjunction();
+    #####:  159:	  if (!_M_match_token(_ScannerT::_S_token_subexpr_end))
+    #####:  160:	    __throw_regex_error(regex_constants::error_paren,
+        -:  161:				"Parenthesis is not closed.");
+    #####:  162:	  auto __tmp = _M_pop();
+    #####:  163:	  __tmp._M_append(_M_nfa->_M_insert_accept());
+    #####:  164:	  _M_stack.push(
+    #####:  165:	      _StateSeqT(
+    #####:  166:		*_M_nfa,
+    #####:  167:		_M_nfa->_M_insert_lookahead(__tmp._M_start, __neg)));
+        -:  168:	}
+        -:  169:      else
+      108:  170:	return false;
+       42:  171:      return true;
+        -:  172:    }
+        -:  173:
+        -:  174:  template<typename _TraitsT>
+        -:  175:    bool
+      111:  176:    _Compiler<_TraitsT>::
+        -:  177:    _M_quantifier()
+        -:  178:    {
+      111:  179:      bool __neg = (_M_flags & regex_constants::ECMAScript);
+      191:  180:      auto __init = [this, &__neg]()
+        -:  181:	{
+       20:  182:	  if (_M_stack.empty())
+    #####:  183:	    __throw_regex_error(regex_constants::error_badrepeat,
+        -:  184:				"Nothing to repeat before a quantifier.");
+      20*:  185:	  __neg = __neg && _M_match_token(_ScannerT::_S_token_opt);
+        -:  186:	};
+      111:  187:      if (_M_match_token(_ScannerT::_S_token_closure0))
+        -:  188:	{
+    #####:  189:	  __init();
+    #####:  190:	  auto __e = _M_pop();
+    #####:  191:	  _StateSeqT __r(*_M_nfa,
+    #####:  192:			 _M_nfa->_M_insert_repeat(_S_invalid_state_id,
+        -:  193:						  __e._M_start, __neg));
+    #####:  194:	  __e._M_append(__r);
+    #####:  195:	  _M_stack.push(__r);
+        -:  196:	}
+      111:  197:      else if (_M_match_token(_ScannerT::_S_token_closure1))
+        -:  198:	{
+       20:  199:	  __init();
+       20:  200:	  auto __e = _M_pop();
+       20:  201:	  __e._M_append(_M_nfa->_M_insert_repeat(_S_invalid_state_id,
+        -:  202:						 __e._M_start, __neg));
+       20:  203:	  _M_stack.push(__e);
+        -:  204:	}
+       91:  205:      else if (_M_match_token(_ScannerT::_S_token_opt))
+        -:  206:	{
+    #####:  207:	  __init();
+    #####:  208:	  auto __e = _M_pop();
+    #####:  209:	  auto __end = _M_nfa->_M_insert_dummy();
+    #####:  210:	  _StateSeqT __r(*_M_nfa,
+    #####:  211:			 _M_nfa->_M_insert_repeat(_S_invalid_state_id,
+        -:  212:						  __e._M_start, __neg));
+    #####:  213:	  __e._M_append(__end);
+    #####:  214:	  __r._M_append(__end);
+    #####:  215:	  _M_stack.push(__r);
+        -:  216:	}
+       91:  217:      else if (_M_match_token(_ScannerT::_S_token_interval_begin))
+        -:  218:	{
+       19:  219:	  if (_M_stack.empty())
+    #####:  220:	    __throw_regex_error(regex_constants::error_badrepeat,
+        -:  221:				"Nothing to repeat before a quantifier.");
+       19:  222:	  if (!_M_match_token(_ScannerT::_S_token_dup_count))
+    #####:  223:	    __throw_regex_error(regex_constants::error_badbrace,
+        -:  224:				"Unexpected token in brace expression.");
+       19:  225:	  _StateSeqT __r(_M_pop());
+       19:  226:	  _StateSeqT __e(*_M_nfa, _M_nfa->_M_insert_dummy());
+       19:  227:	  long __min_rep = _M_cur_int_value(10);
+       19:  228:	  bool __infi = false;
+       19:  229:	  long __n = 0;
+        -:  230:
+        -:  231:	  // {3
+       19:  232:	  if (_M_match_token(_ScannerT::_S_token_comma))
+        -:  233:	    {
+    #####:  234:	      if (_M_match_token(_ScannerT::_S_token_dup_count)) // {3,7}
+    #####:  235:		__n = _M_cur_int_value(10) - __min_rep;
+        -:  236:	      else
+    #####:  237:		__infi = true;
+        -:  238:	    }
+       19:  239:	  if (!_M_match_token(_ScannerT::_S_token_interval_end))
+    #####:  240:	    __throw_regex_error(regex_constants::error_brace,
+        -:  241:				"Unexpected end of brace expression.");
+        -:  242:
+      19*:  243:	  __neg = __neg && _M_match_token(_ScannerT::_S_token_opt);
+        -:  244:
+       79:  245:	  for (long __i = 0; __i < __min_rep; ++__i)
+       60:  246:	    __e._M_append(__r._M_clone());
+        -:  247:
+       19:  248:	  if (__infi)
+        -:  249:	    {
+    #####:  250:	      auto __tmp = __r._M_clone();
+    #####:  251:	      _StateSeqT __s(*_M_nfa,
+    #####:  252:			     _M_nfa->_M_insert_repeat(_S_invalid_state_id,
+        -:  253:						      __tmp._M_start, __neg));
+    #####:  254:	      __tmp._M_append(__s);
+    #####:  255:	      __e._M_append(__s);
+        -:  256:	    }
+        -:  257:	  else
+        -:  258:	    {
+       19:  259:	      if (__n < 0)
+    #####:  260:		__throw_regex_error(regex_constants::error_badbrace,
+        -:  261:				    "Invalid range in brace expression.");
+       19:  262:	      auto __end = _M_nfa->_M_insert_dummy();
+        -:  263:	      // _M_alt is the "match more" branch, and _M_next is the
+        -:  264:	      // "match less" one. Switch _M_alt and _M_next of all created
+        -:  265:	      // nodes. This is a hack but IMO works well.
+       19:  266:	      std::stack<_StateIdT> __stack;
+      19*:  267:	      for (long __i = 0; __i < __n; ++__i)
+        -:  268:		{
+    #####:  269:		  auto __tmp = __r._M_clone();
+    #####:  270:		  auto __alt = _M_nfa->_M_insert_repeat(__tmp._M_start,
+        -:  271:							__end, __neg);
+    #####:  272:		  __stack.push(__alt);
+    #####:  273:		  __e._M_append(_StateSeqT(*_M_nfa, __alt, __tmp._M_end));
+        -:  274:		}
+       19:  275:	      __e._M_append(__end);
+       19:  276:	      while (!__stack.empty())
+        -:  277:		{
+    #####:  278:		  auto& __tmp = (*_M_nfa)[__stack.top()];
+    #####:  279:		  __stack.pop();
+    #####:  280:		  std::swap(__tmp._M_next, __tmp._M_alt);
+        -:  281:		}
+       19:  282:	    }
+       19:  283:	  _M_stack.push(__e);
+        -:  284:	}
+        -:  285:      else
+       72:  286:	return false;
+       39:  287:      return true;
+        -:  288:    }
+        -:  289:
+        -:  290:#define __INSERT_REGEX_MATCHER(__func, ...)\
+        -:  291:	do {\
+        -:  292:	  if (!(_M_flags & regex_constants::icase))\
+        -:  293:	    if (!(_M_flags & regex_constants::collate))\
+        -:  294:	      __func<false, false>(__VA_ARGS__);\
+        -:  295:	    else\
+        -:  296:	      __func<false, true>(__VA_ARGS__);\
+        -:  297:	  else\
+        -:  298:	    if (!(_M_flags & regex_constants::collate))\
+        -:  299:	      __func<true, false>(__VA_ARGS__);\
+        -:  300:	    else\
+        -:  301:	      __func<true, true>(__VA_ARGS__);\
+        -:  302:	} while (false)
+        -:  303:
+        -:  304:  template<typename _TraitsT>
+        -:  305:    bool
+      108:  306:    _Compiler<_TraitsT>::
+        -:  307:    _M_atom()
+        -:  308:    {
+      108:  309:      if (_M_match_token(_ScannerT::_S_token_anychar))
+        -:  310:	{
+    #####:  311:	  if (!(_M_flags & regex_constants::ECMAScript))
+    #####:  312:	    __INSERT_REGEX_MATCHER(_M_insert_any_matcher_posix);
+        -:  313:	  else
+    #####:  314:	    __INSERT_REGEX_MATCHER(_M_insert_any_matcher_ecma);
+        -:  315:	}
+      108:  316:      else if (_M_try_char())
+      18*:  317:	__INSERT_REGEX_MATCHER(_M_insert_char_matcher);
+       90:  318:      else if (_M_match_token(_ScannerT::_S_token_backref))
+    #####:  319:	_M_stack.push(_StateSeqT(*_M_nfa, _M_nfa->
+    #####:  320:				 _M_insert_backref(_M_cur_int_value(10))));
+       90:  321:      else if (_M_match_token(_ScannerT::_S_token_quoted_class))
+      19*:  322:	__INSERT_REGEX_MATCHER(_M_insert_character_class_matcher);
+       71:  323:      else if (_M_match_token(_ScannerT::_S_token_subexpr_no_group_begin))
+        -:  324:	{
+    #####:  325:	  _StateSeqT __r(*_M_nfa, _M_nfa->_M_insert_dummy());
+    #####:  326:	  this->_M_disjunction();
+    #####:  327:	  if (!_M_match_token(_ScannerT::_S_token_subexpr_end))
+    #####:  328:	    __throw_regex_error(regex_constants::error_paren,
+        -:  329:				"Parenthesis is not closed.");
+    #####:  330:	  __r._M_append(_M_pop());
+    #####:  331:	  _M_stack.push(__r);
+        -:  332:	}
+       71:  333:      else if (_M_match_token(_ScannerT::_S_token_subexpr_begin))
+        -:  334:	{
+       15:  335:	  _StateSeqT __r(*_M_nfa, _M_nfa->_M_insert_subexpr_begin());
+       15:  336:	  this->_M_disjunction();
+       15:  337:	  if (!_M_match_token(_ScannerT::_S_token_subexpr_end))
+    #####:  338:	    __throw_regex_error(regex_constants::error_paren,
+        -:  339:				"Parenthesis is not closed.");
+       15:  340:	  __r._M_append(_M_pop());
+       15:  341:	  __r._M_append(_M_nfa->_M_insert_subexpr_end());
+       15:  342:	  _M_stack.push(__r);
+        -:  343:	}
+       56:  344:      else if (!_M_bracket_expression())
+       36:  345:	return false;
+       72:  346:      return true;
+        -:  347:    }
+        -:  348:
+        -:  349:  template<typename _TraitsT>
+        -:  350:    bool
+       56:  351:    _Compiler<_TraitsT>::
+        -:  352:    _M_bracket_expression()
+        -:  353:    {
+        -:  354:      bool __neg =
+       56:  355:	_M_match_token(_ScannerT::_S_token_bracket_neg_begin);
+       56:  356:      if (!(__neg || _M_match_token(_ScannerT::_S_token_bracket_begin)))
+       36:  357:	return false;
+      20*:  358:      __INSERT_REGEX_MATCHER(_M_insert_bracket_matcher, __neg);
+       20:  359:      return true;
+        -:  360:    }
+        -:  361:#undef __INSERT_REGEX_MATCHER
+        -:  362:
+        -:  363:  template<typename _TraitsT>
+        -:  364:  template<bool __icase, bool __collate>
+        -:  365:    void
+    #####:  366:    _Compiler<_TraitsT>::
+        -:  367:    _M_insert_any_matcher_ecma()
+        -:  368:    {
+    #####:  369:      _M_stack.push(_StateSeqT(*_M_nfa,
+    #####:  370:	_M_nfa->_M_insert_matcher
+    #####:  371:	  (_AnyMatcher<_TraitsT, true, __icase, __collate>
+        -:  372:	    (_M_traits))));
+    #####:  373:    }
+------------------
+_ZNSt8__detail9_CompilerINSt7__cxx1112regex_traitsIcEEE26_M_insert_any_matcher_ecmaILb1ELb1EEEvv:
+    #####:  366:    _Compiler<_TraitsT>::
+        -:  367:    _M_insert_any_matcher_ecma()
+        -:  368:    {
+    #####:  369:      _M_stack.push(_StateSeqT(*_M_nfa,
+    #####:  370:	_M_nfa->_M_insert_matcher
+    #####:  371:	  (_AnyMatcher<_TraitsT, true, __icase, __collate>
+        -:  372:	    (_M_traits))));
+    #####:  373:    }
+------------------
+_ZNSt8__detail9_CompilerINSt7__cxx1112regex_traitsIcEEE26_M_insert_any_matcher_ecmaILb1ELb0EEEvv:
+    #####:  366:    _Compiler<_TraitsT>::
+        -:  367:    _M_insert_any_matcher_ecma()
+        -:  368:    {
+    #####:  369:      _M_stack.push(_StateSeqT(*_M_nfa,
+    #####:  370:	_M_nfa->_M_insert_matcher
+    #####:  371:	  (_AnyMatcher<_TraitsT, true, __icase, __collate>
+        -:  372:	    (_M_traits))));
+    #####:  373:    }
+------------------
+_ZNSt8__detail9_CompilerINSt7__cxx1112regex_traitsIcEEE26_M_insert_any_matcher_ecmaILb0ELb1EEEvv:
+    #####:  366:    _Compiler<_TraitsT>::
+        -:  367:    _M_insert_any_matcher_ecma()
+        -:  368:    {
+    #####:  369:      _M_stack.push(_StateSeqT(*_M_nfa,
+    #####:  370:	_M_nfa->_M_insert_matcher
+    #####:  371:	  (_AnyMatcher<_TraitsT, true, __icase, __collate>
+        -:  372:	    (_M_traits))));
+    #####:  373:    }
+------------------
+_ZNSt8__detail9_CompilerINSt7__cxx1112regex_traitsIcEEE26_M_insert_any_matcher_ecmaILb0ELb0EEEvv:
+    #####:  366:    _Compiler<_TraitsT>::
+        -:  367:    _M_insert_any_matcher_ecma()
+        -:  368:    {
+    #####:  369:      _M_stack.push(_StateSeqT(*_M_nfa,
+    #####:  370:	_M_nfa->_M_insert_matcher
+    #####:  371:	  (_AnyMatcher<_TraitsT, true, __icase, __collate>
+        -:  372:	    (_M_traits))));
+    #####:  373:    }
+------------------
+        -:  374:
+        -:  375:  template<typename _TraitsT>
+        -:  376:  template<bool __icase, bool __collate>
+        -:  377:    void
+    #####:  378:    _Compiler<_TraitsT>::
+        -:  379:    _M_insert_any_matcher_posix()
+        -:  380:    {
+    #####:  381:      _M_stack.push(_StateSeqT(*_M_nfa,
+    #####:  382:	_M_nfa->_M_insert_matcher
+    #####:  383:	  (_AnyMatcher<_TraitsT, false, __icase, __collate>
+        -:  384:	    (_M_traits))));
+    #####:  385:    }
+------------------
+_ZNSt8__detail9_CompilerINSt7__cxx1112regex_traitsIcEEE27_M_insert_any_matcher_posixILb1ELb1EEEvv:
+    #####:  378:    _Compiler<_TraitsT>::
+        -:  379:    _M_insert_any_matcher_posix()
+        -:  380:    {
+    #####:  381:      _M_stack.push(_StateSeqT(*_M_nfa,
+    #####:  382:	_M_nfa->_M_insert_matcher
+    #####:  383:	  (_AnyMatcher<_TraitsT, false, __icase, __collate>
+        -:  384:	    (_M_traits))));
+    #####:  385:    }
+------------------
+_ZNSt8__detail9_CompilerINSt7__cxx1112regex_traitsIcEEE27_M_insert_any_matcher_posixILb1ELb0EEEvv:
+    #####:  378:    _Compiler<_TraitsT>::
+        -:  379:    _M_insert_any_matcher_posix()
+        -:  380:    {
+    #####:  381:      _M_stack.push(_StateSeqT(*_M_nfa,
+    #####:  382:	_M_nfa->_M_insert_matcher
+    #####:  383:	  (_AnyMatcher<_TraitsT, false, __icase, __collate>
+        -:  384:	    (_M_traits))));
+    #####:  385:    }
+------------------
+_ZNSt8__detail9_CompilerINSt7__cxx1112regex_traitsIcEEE27_M_insert_any_matcher_posixILb0ELb1EEEvv:
+    #####:  378:    _Compiler<_TraitsT>::
+        -:  379:    _M_insert_any_matcher_posix()
+        -:  380:    {
+    #####:  381:      _M_stack.push(_StateSeqT(*_M_nfa,
+    #####:  382:	_M_nfa->_M_insert_matcher
+    #####:  383:	  (_AnyMatcher<_TraitsT, false, __icase, __collate>
+        -:  384:	    (_M_traits))));
+    #####:  385:    }
+------------------
+_ZNSt8__detail9_CompilerINSt7__cxx1112regex_traitsIcEEE27_M_insert_any_matcher_posixILb0ELb0EEEvv:
+    #####:  378:    _Compiler<_TraitsT>::
+        -:  379:    _M_insert_any_matcher_posix()
+        -:  380:    {
+    #####:  381:      _M_stack.push(_StateSeqT(*_M_nfa,
+    #####:  382:	_M_nfa->_M_insert_matcher
+    #####:  383:	  (_AnyMatcher<_TraitsT, false, __icase, __collate>
+        -:  384:	    (_M_traits))));
+    #####:  385:    }
+------------------
+        -:  386:
+        -:  387:  template<typename _TraitsT>
+        -:  388:  template<bool __icase, bool __collate>
+        -:  389:    void
+      18*:  390:    _Compiler<_TraitsT>::
+        -:  391:    _M_insert_char_matcher()
+        -:  392:    {
+      18*:  393:      _M_stack.push(_StateSeqT(*_M_nfa,
+      18*:  394:	_M_nfa->_M_insert_matcher
+      54*:  395:	  (_CharMatcher<_TraitsT, __icase, __collate>
+      18*:  396:	    (_M_value[0], _M_traits))));
+      18*:  397:    }
+------------------
+_ZNSt8__detail9_CompilerINSt7__cxx1112regex_traitsIcEEE22_M_insert_char_matcherILb1ELb1EEEvv:
+    #####:  390:    _Compiler<_TraitsT>::
+        -:  391:    _M_insert_char_matcher()
+        -:  392:    {
+    #####:  393:      _M_stack.push(_StateSeqT(*_M_nfa,
+    #####:  394:	_M_nfa->_M_insert_matcher
+    #####:  395:	  (_CharMatcher<_TraitsT, __icase, __collate>
+    #####:  396:	    (_M_value[0], _M_traits))));
+    #####:  397:    }
+------------------
+_ZNSt8__detail9_CompilerINSt7__cxx1112regex_traitsIcEEE22_M_insert_char_matcherILb1ELb0EEEvv:
+    #####:  390:    _Compiler<_TraitsT>::
+        -:  391:    _M_insert_char_matcher()
+        -:  392:    {
+    #####:  393:      _M_stack.push(_StateSeqT(*_M_nfa,
+    #####:  394:	_M_nfa->_M_insert_matcher
+    #####:  395:	  (_CharMatcher<_TraitsT, __icase, __collate>
+    #####:  396:	    (_M_value[0], _M_traits))));
+    #####:  397:    }
+------------------
+_ZNSt8__detail9_CompilerINSt7__cxx1112regex_traitsIcEEE22_M_insert_char_matcherILb0ELb1EEEvv:
+    #####:  390:    _Compiler<_TraitsT>::
+        -:  391:    _M_insert_char_matcher()
+        -:  392:    {
+    #####:  393:      _M_stack.push(_StateSeqT(*_M_nfa,
+    #####:  394:	_M_nfa->_M_insert_matcher
+    #####:  395:	  (_CharMatcher<_TraitsT, __icase, __collate>
+    #####:  396:	    (_M_value[0], _M_traits))));
+    #####:  397:    }
+------------------
+_ZNSt8__detail9_CompilerINSt7__cxx1112regex_traitsIcEEE22_M_insert_char_matcherILb0ELb0EEEvv:
+       18:  390:    _Compiler<_TraitsT>::
+        -:  391:    _M_insert_char_matcher()
+        -:  392:    {
+       18:  393:      _M_stack.push(_StateSeqT(*_M_nfa,
+       18:  394:	_M_nfa->_M_insert_matcher
+       54:  395:	  (_CharMatcher<_TraitsT, __icase, __collate>
+       18:  396:	    (_M_value[0], _M_traits))));
+       18:  397:    }
+------------------
+        -:  398:
+        -:  399:  template<typename _TraitsT>
+        -:  400:  template<bool __icase, bool __collate>
+        -:  401:    void
+      19*:  402:    _Compiler<_TraitsT>::
+        -:  403:    _M_insert_character_class_matcher()
+        -:  404:    {
+      19*:  405:      __glibcxx_assert(_M_value.size() == 1);
+      19*:  406:      _BracketMatcher<__icase, __collate> __matcher
+      19*:  407:	(_M_ctype.is(_CtypeT::upper, _M_value[0]), _M_traits);
+      19*:  408:      __matcher._M_add_character_class(_M_value, false);
+      19*:  409:      __matcher._M_ready();
+      19*:  410:      _M_stack.push(_StateSeqT(*_M_nfa,
+      19*:  411:	_M_nfa->_M_insert_matcher(std::move(__matcher))));
+      19*:  412:    }
+------------------
+_ZNSt8__detail9_CompilerINSt7__cxx1112regex_traitsIcEEE33_M_insert_character_class_matcherILb1ELb1EEEvv:
+    #####:  402:    _Compiler<_TraitsT>::
+        -:  403:    _M_insert_character_class_matcher()
+        -:  404:    {
+    #####:  405:      __glibcxx_assert(_M_value.size() == 1);
+    #####:  406:      _BracketMatcher<__icase, __collate> __matcher
+    #####:  407:	(_M_ctype.is(_CtypeT::upper, _M_value[0]), _M_traits);
+    #####:  408:      __matcher._M_add_character_class(_M_value, false);
+    #####:  409:      __matcher._M_ready();
+    #####:  410:      _M_stack.push(_StateSeqT(*_M_nfa,
+    #####:  411:	_M_nfa->_M_insert_matcher(std::move(__matcher))));
+    #####:  412:    }
+------------------
+_ZNSt8__detail9_CompilerINSt7__cxx1112regex_traitsIcEEE33_M_insert_character_class_matcherILb1ELb0EEEvv:
+    #####:  402:    _Compiler<_TraitsT>::
+        -:  403:    _M_insert_character_class_matcher()
+        -:  404:    {
+    #####:  405:      __glibcxx_assert(_M_value.size() == 1);
+    #####:  406:      _BracketMatcher<__icase, __collate> __matcher
+    #####:  407:	(_M_ctype.is(_CtypeT::upper, _M_value[0]), _M_traits);
+    #####:  408:      __matcher._M_add_character_class(_M_value, false);
+    #####:  409:      __matcher._M_ready();
+    #####:  410:      _M_stack.push(_StateSeqT(*_M_nfa,
+    #####:  411:	_M_nfa->_M_insert_matcher(std::move(__matcher))));
+    #####:  412:    }
+------------------
+_ZNSt8__detail9_CompilerINSt7__cxx1112regex_traitsIcEEE33_M_insert_character_class_matcherILb0ELb1EEEvv:
+    #####:  402:    _Compiler<_TraitsT>::
+        -:  403:    _M_insert_character_class_matcher()
+        -:  404:    {
+    #####:  405:      __glibcxx_assert(_M_value.size() == 1);
+    #####:  406:      _BracketMatcher<__icase, __collate> __matcher
+    #####:  407:	(_M_ctype.is(_CtypeT::upper, _M_value[0]), _M_traits);
+    #####:  408:      __matcher._M_add_character_class(_M_value, false);
+    #####:  409:      __matcher._M_ready();
+    #####:  410:      _M_stack.push(_StateSeqT(*_M_nfa,
+    #####:  411:	_M_nfa->_M_insert_matcher(std::move(__matcher))));
+    #####:  412:    }
+------------------
+_ZNSt8__detail9_CompilerINSt7__cxx1112regex_traitsIcEEE33_M_insert_character_class_matcherILb0ELb0EEEvv:
+       19:  402:    _Compiler<_TraitsT>::
+        -:  403:    _M_insert_character_class_matcher()
+        -:  404:    {
+      19*:  405:      __glibcxx_assert(_M_value.size() == 1);
+       19:  406:      _BracketMatcher<__icase, __collate> __matcher
+       19:  407:	(_M_ctype.is(_CtypeT::upper, _M_value[0]), _M_traits);
+       19:  408:      __matcher._M_add_character_class(_M_value, false);
+       19:  409:      __matcher._M_ready();
+       19:  410:      _M_stack.push(_StateSeqT(*_M_nfa,
+       19:  411:	_M_nfa->_M_insert_matcher(std::move(__matcher))));
+       19:  412:    }
+------------------
+        -:  413:
+        -:  414:  template<typename _TraitsT>
+        -:  415:  template<bool __icase, bool __collate>
+        -:  416:    void
+      20*:  417:    _Compiler<_TraitsT>::
+        -:  418:    _M_insert_bracket_matcher(bool __neg)
+        -:  419:    {
+      20*:  420:      _BracketMatcher<__icase, __collate> __matcher(__neg, _M_traits);
+      20*:  421:      _BracketState __last_char;
+      20*:  422:      if (_M_try_char())
+      20*:  423:	__last_char.set(_M_value[0]);
+    #####:  424:      else if (_M_match_token(_ScannerT::_S_token_bracket_dash))
+        -:  425:	// Dash as first character is a normal character.
+    #####:  426:	__last_char.set('-');
+      56*:  427:      while (_M_expression_term(__last_char, __matcher))
+        -:  428:	;
+      20*:  429:      if (__last_char._M_is_char())
+    #####:  430:	__matcher._M_add_char(__last_char.get());
+      20*:  431:      __matcher._M_ready();
+      40*:  432:      _M_stack.push(_StateSeqT(
+      20*:  433:		      *_M_nfa,
+      20*:  434:		      _M_nfa->_M_insert_matcher(std::move(__matcher))));
+      20*:  435:    }
+------------------
+_ZNSt8__detail9_CompilerINSt7__cxx1112regex_traitsIcEEE25_M_insert_bracket_matcherILb1ELb1EEEvb:
+    #####:  417:    _Compiler<_TraitsT>::
+        -:  418:    _M_insert_bracket_matcher(bool __neg)
+        -:  419:    {
+    #####:  420:      _BracketMatcher<__icase, __collate> __matcher(__neg, _M_traits);
+    #####:  421:      _BracketState __last_char;
+    #####:  422:      if (_M_try_char())
+    #####:  423:	__last_char.set(_M_value[0]);
+    #####:  424:      else if (_M_match_token(_ScannerT::_S_token_bracket_dash))
+        -:  425:	// Dash as first character is a normal character.
+    #####:  426:	__last_char.set('-');
+    #####:  427:      while (_M_expression_term(__last_char, __matcher))
+        -:  428:	;
+    #####:  429:      if (__last_char._M_is_char())
+    #####:  430:	__matcher._M_add_char(__last_char.get());
+    #####:  431:      __matcher._M_ready();
+    #####:  432:      _M_stack.push(_StateSeqT(
+    #####:  433:		      *_M_nfa,
+    #####:  434:		      _M_nfa->_M_insert_matcher(std::move(__matcher))));
+    #####:  435:    }
+------------------
+_ZNSt8__detail9_CompilerINSt7__cxx1112regex_traitsIcEEE25_M_insert_bracket_matcherILb1ELb0EEEvb:
+    #####:  417:    _Compiler<_TraitsT>::
+        -:  418:    _M_insert_bracket_matcher(bool __neg)
+        -:  419:    {
+    #####:  420:      _BracketMatcher<__icase, __collate> __matcher(__neg, _M_traits);
+    #####:  421:      _BracketState __last_char;
+    #####:  422:      if (_M_try_char())
+    #####:  423:	__last_char.set(_M_value[0]);
+    #####:  424:      else if (_M_match_token(_ScannerT::_S_token_bracket_dash))
+        -:  425:	// Dash as first character is a normal character.
+    #####:  426:	__last_char.set('-');
+    #####:  427:      while (_M_expression_term(__last_char, __matcher))
+        -:  428:	;
+    #####:  429:      if (__last_char._M_is_char())
+    #####:  430:	__matcher._M_add_char(__last_char.get());
+    #####:  431:      __matcher._M_ready();
+    #####:  432:      _M_stack.push(_StateSeqT(
+    #####:  433:		      *_M_nfa,
+    #####:  434:		      _M_nfa->_M_insert_matcher(std::move(__matcher))));
+    #####:  435:    }
+------------------
+_ZNSt8__detail9_CompilerINSt7__cxx1112regex_traitsIcEEE25_M_insert_bracket_matcherILb0ELb1EEEvb:
+    #####:  417:    _Compiler<_TraitsT>::
+        -:  418:    _M_insert_bracket_matcher(bool __neg)
+        -:  419:    {
+    #####:  420:      _BracketMatcher<__icase, __collate> __matcher(__neg, _M_traits);
+    #####:  421:      _BracketState __last_char;
+    #####:  422:      if (_M_try_char())
+    #####:  423:	__last_char.set(_M_value[0]);
+    #####:  424:      else if (_M_match_token(_ScannerT::_S_token_bracket_dash))
+        -:  425:	// Dash as first character is a normal character.
+    #####:  426:	__last_char.set('-');
+    #####:  427:      while (_M_expression_term(__last_char, __matcher))
+        -:  428:	;
+    #####:  429:      if (__last_char._M_is_char())
+    #####:  430:	__matcher._M_add_char(__last_char.get());
+    #####:  431:      __matcher._M_ready();
+    #####:  432:      _M_stack.push(_StateSeqT(
+    #####:  433:		      *_M_nfa,
+    #####:  434:		      _M_nfa->_M_insert_matcher(std::move(__matcher))));
+    #####:  435:    }
+------------------
+_ZNSt8__detail9_CompilerINSt7__cxx1112regex_traitsIcEEE25_M_insert_bracket_matcherILb0ELb0EEEvb:
+       20:  417:    _Compiler<_TraitsT>::
+        -:  418:    _M_insert_bracket_matcher(bool __neg)
+        -:  419:    {
+       20:  420:      _BracketMatcher<__icase, __collate> __matcher(__neg, _M_traits);
+       20:  421:      _BracketState __last_char;
+       20:  422:      if (_M_try_char())
+       20:  423:	__last_char.set(_M_value[0]);
+    #####:  424:      else if (_M_match_token(_ScannerT::_S_token_bracket_dash))
+        -:  425:	// Dash as first character is a normal character.
+    #####:  426:	__last_char.set('-');
+       56:  427:      while (_M_expression_term(__last_char, __matcher))
+        -:  428:	;
+       20:  429:      if (__last_char._M_is_char())
+    #####:  430:	__matcher._M_add_char(__last_char.get());
+       20:  431:      __matcher._M_ready();
+       40:  432:      _M_stack.push(_StateSeqT(
+       20:  433:		      *_M_nfa,
+       20:  434:		      _M_nfa->_M_insert_matcher(std::move(__matcher))));
+       20:  435:    }
+------------------
+        -:  436:
+        -:  437:  template<typename _TraitsT>
+        -:  438:  template<bool __icase, bool __collate>
+        -:  439:    bool
+      56*:  440:    _Compiler<_TraitsT>::
+        -:  441:    _M_expression_term(_BracketState& __last_char,
+        -:  442:		       _BracketMatcher<__icase, __collate>& __matcher)
+        -:  443:    {
+      56*:  444:      if (_M_match_token(_ScannerT::_S_token_bracket_end))
+      20*:  445:	return false;
+        -:  446:
+        -:  447:      // Add any previously cached char into the matcher and update cache.
+      60*:  448:      const auto __push_char = [&](_CharT __ch)
+        -:  449:      {
+       8*:  450:	if (__last_char._M_is_char())
+    #####:  451:	  __matcher._M_add_char(__last_char.get());
+       8*:  452:	__last_char.set(__ch);
+        -:  453:      };
+        -:  454:      // Add any previously cached char into the matcher and update cache.
+      84*:  455:      const auto __push_class = [&]
+        -:  456:      {
+      12*:  457:        if (__last_char._M_is_char())
+      12*:  458:	  __matcher._M_add_char(__last_char.get());
+        -:  459:	// We don't cache anything here, just record that the last thing
+        -:  460:	// processed was a character class (or similar).
+      12*:  461:	__last_char.reset(_BracketState::_Type::_Class);
+        -:  462:      };
+        -:  463:
+      36*:  464:      if (_M_match_token(_ScannerT::_S_token_collsymbol))
+        -:  465:	{
+    #####:  466:	  auto __symbol = __matcher._M_add_collate_element(_M_value);
+    #####:  467:	  if (__symbol.size() == 1)
+    #####:  468:	    __push_char(__symbol[0]);
+        -:  469:	  else
+    #####:  470:	    __push_class();
+    #####:  471:	}
+      36*:  472:      else if (_M_match_token(_ScannerT::_S_token_equiv_class_name))
+        -:  473:	{
+    #####:  474:	  __push_class();
+    #####:  475:	  __matcher._M_add_equivalence_class(_M_value);
+        -:  476:	}
+      36*:  477:      else if (_M_match_token(_ScannerT::_S_token_char_class_name))
+        -:  478:	{
+    #####:  479:	  __push_class();
+    #####:  480:	  __matcher._M_add_character_class(_M_value, false);
+        -:  481:	}
+      36*:  482:      else if (_M_try_char())
+       8*:  483:	__push_char(_M_value[0]);
+        -:  484:      // POSIX doesn't allow '-' as a start-range char (say [a-z--0]),
+        -:  485:      // except when the '-' is the first or last character in the bracket
+        -:  486:      // expression ([--0]). ECMAScript treats all '-' after a range as a
+        -:  487:      // normal character. Also see above, where _M_expression_term gets called.
+        -:  488:      //
+        -:  489:      // As a result, POSIX rejects [-----], but ECMAScript doesn't.
+        -:  490:      // Boost (1.57.0) always uses POSIX style even in its ECMAScript syntax.
+        -:  491:      // Clang (3.5) always uses ECMAScript style even in its POSIX syntax.
+        -:  492:      //
+        -:  493:      // It turns out that no one reads BNFs ;)
+      28*:  494:      else if (_M_match_token(_ScannerT::_S_token_bracket_dash))
+        -:  495:	{
+      16*:  496:	  if (_M_match_token(_ScannerT::_S_token_bracket_end))
+        -:  497:	    {
+        -:  498:	      // For "-]" the dash is a literal character.
+    #####:  499:	      __push_char('-');
+    #####:  500:	      return false;
+        -:  501:	    }
+      16*:  502:	  else if (__last_char._M_is_class())
+        -:  503:	    {
+        -:  504:	      // "\\w-" is invalid, start of range must be a single char.
+    #####:  505:	      __throw_regex_error(regex_constants::error_range,
+        -:  506:		    "Invalid start of range in bracket expression.");
+        -:  507:	    }
+      16*:  508:	  else if (__last_char._M_is_char())
+        -:  509:	    {
+      16*:  510:	      if (_M_try_char())
+        -:  511:		{
+        -:  512:		  // "x-y"
+      16*:  513:		  __matcher._M_make_range(__last_char.get(), _M_value[0]);
+      16*:  514:		  __last_char.reset();
+        -:  515:		}
+    #####:  516:	      else if (_M_match_token(_ScannerT::_S_token_bracket_dash))
+        -:  517:		{
+        -:  518:		  // "x--"
+    #####:  519:		  __matcher._M_make_range(__last_char.get(), '-');
+    #####:  520:		  __last_char.reset();
+        -:  521:		}
+        -:  522:	      else
+    #####:  523:		__throw_regex_error(regex_constants::error_range,
+        -:  524:		      "Invalid end of range in bracket expression.");
+        -:  525:	    }
+    #####:  526:	  else if (_M_flags & regex_constants::ECMAScript)
+        -:  527:	    {
+        -:  528:	      // A dash that is not part of an existing range. Might be the
+        -:  529:	      // start of a new range, or might just be a literal '-' char.
+        -:  530:	      // Only ECMAScript allows that in the middle of a bracket expr.
+    #####:  531:	      __push_char('-');
+        -:  532:	    }
+        -:  533:	  else
+    #####:  534:	    __throw_regex_error(regex_constants::error_range,
+        -:  535:				"Invalid dash in bracket expression.");
+        -:  536:	}
+      12*:  537:      else if (_M_match_token(_ScannerT::_S_token_quoted_class))
+        -:  538:	{
+      12*:  539:	  __push_class();
+      12*:  540:	  __matcher._M_add_character_class(_M_value,
+      24*:  541:					   _M_ctype.is(_CtypeT::upper,
+      12*:  542:						       _M_value[0]));
+        -:  543:	}
+        -:  544:      else
+    #####:  545:	__throw_regex_error(regex_constants::error_brack,
+        -:  546:			    "Unexpected character in bracket expression.");
+        -:  547:
+      36*:  548:      return true;
+        -:  549:    }
+------------------
+_ZNSt8__detail9_CompilerINSt7__cxx1112regex_traitsIcEEE18_M_expression_termILb1ELb1EEEbRNS4_13_BracketStateERNS_15_BracketMatcherIS3_XT_EXT0_EEE:
+    #####:  440:    _Compiler<_TraitsT>::
+        -:  441:    _M_expression_term(_BracketState& __last_char,
+        -:  442:		       _BracketMatcher<__icase, __collate>& __matcher)
+        -:  443:    {
+    #####:  444:      if (_M_match_token(_ScannerT::_S_token_bracket_end))
+    #####:  445:	return false;
+        -:  446:
+        -:  447:      // Add any previously cached char into the matcher and update cache.
+    #####:  448:      const auto __push_char = [&](_CharT __ch)
+        -:  449:      {
+        -:  450:	if (__last_char._M_is_char())
+        -:  451:	  __matcher._M_add_char(__last_char.get());
+        -:  452:	__last_char.set(__ch);
+        -:  453:      };
+        -:  454:      // Add any previously cached char into the matcher and update cache.
+    #####:  455:      const auto __push_class = [&]
+        -:  456:      {
+        -:  457:        if (__last_char._M_is_char())
+        -:  458:	  __matcher._M_add_char(__last_char.get());
+        -:  459:	// We don't cache anything here, just record that the last thing
+        -:  460:	// processed was a character class (or similar).
+        -:  461:	__last_char.reset(_BracketState::_Type::_Class);
+        -:  462:      };
+        -:  463:
+    #####:  464:      if (_M_match_token(_ScannerT::_S_token_collsymbol))
+        -:  465:	{
+    #####:  466:	  auto __symbol = __matcher._M_add_collate_element(_M_value);
+    #####:  467:	  if (__symbol.size() == 1)
+    #####:  468:	    __push_char(__symbol[0]);
+        -:  469:	  else
+    #####:  470:	    __push_class();
+    #####:  471:	}
+    #####:  472:      else if (_M_match_token(_ScannerT::_S_token_equiv_class_name))
+        -:  473:	{
+    #####:  474:	  __push_class();
+    #####:  475:	  __matcher._M_add_equivalence_class(_M_value);
+        -:  476:	}
+    #####:  477:      else if (_M_match_token(_ScannerT::_S_token_char_class_name))
+        -:  478:	{
+    #####:  479:	  __push_class();
+    #####:  480:	  __matcher._M_add_character_class(_M_value, false);
+        -:  481:	}
+    #####:  482:      else if (_M_try_char())
+    #####:  483:	__push_char(_M_value[0]);
+        -:  484:      // POSIX doesn't allow '-' as a start-range char (say [a-z--0]),
+        -:  485:      // except when the '-' is the first or last character in the bracket
+        -:  486:      // expression ([--0]). ECMAScript treats all '-' after a range as a
+        -:  487:      // normal character. Also see above, where _M_expression_term gets called.
+        -:  488:      //
+        -:  489:      // As a result, POSIX rejects [-----], but ECMAScript doesn't.
+        -:  490:      // Boost (1.57.0) always uses POSIX style even in its ECMAScript syntax.
+        -:  491:      // Clang (3.5) always uses ECMAScript style even in its POSIX syntax.
+        -:  492:      //
+        -:  493:      // It turns out that no one reads BNFs ;)
+    #####:  494:      else if (_M_match_token(_ScannerT::_S_token_bracket_dash))
+        -:  495:	{
+    #####:  496:	  if (_M_match_token(_ScannerT::_S_token_bracket_end))
+        -:  497:	    {
+        -:  498:	      // For "-]" the dash is a literal character.
+    #####:  499:	      __push_char('-');
+    #####:  500:	      return false;
+        -:  501:	    }
+    #####:  502:	  else if (__last_char._M_is_class())
+        -:  503:	    {
+        -:  504:	      // "\\w-" is invalid, start of range must be a single char.
+    #####:  505:	      __throw_regex_error(regex_constants::error_range,
+        -:  506:		    "Invalid start of range in bracket expression.");
+        -:  507:	    }
+    #####:  508:	  else if (__last_char._M_is_char())
+        -:  509:	    {
+    #####:  510:	      if (_M_try_char())
+        -:  511:		{
+        -:  512:		  // "x-y"
+    #####:  513:		  __matcher._M_make_range(__last_char.get(), _M_value[0]);
+    #####:  514:		  __last_char.reset();
+        -:  515:		}
+    #####:  516:	      else if (_M_match_token(_ScannerT::_S_token_bracket_dash))
+        -:  517:		{
+        -:  518:		  // "x--"
+    #####:  519:		  __matcher._M_make_range(__last_char.get(), '-');
+    #####:  520:		  __last_char.reset();
+        -:  521:		}
+        -:  522:	      else
+    #####:  523:		__throw_regex_error(regex_constants::error_range,
+        -:  524:		      "Invalid end of range in bracket expression.");
+        -:  525:	    }
+    #####:  526:	  else if (_M_flags & regex_constants::ECMAScript)
+        -:  527:	    {
+        -:  528:	      // A dash that is not part of an existing range. Might be the
+        -:  529:	      // start of a new range, or might just be a literal '-' char.
+        -:  530:	      // Only ECMAScript allows that in the middle of a bracket expr.
+    #####:  531:	      __push_char('-');
+        -:  532:	    }
+        -:  533:	  else
+    #####:  534:	    __throw_regex_error(regex_constants::error_range,
+        -:  535:				"Invalid dash in bracket expression.");
+        -:  536:	}
+    #####:  537:      else if (_M_match_token(_ScannerT::_S_token_quoted_class))
+        -:  538:	{
+    #####:  539:	  __push_class();
+    #####:  540:	  __matcher._M_add_character_class(_M_value,
+    #####:  541:					   _M_ctype.is(_CtypeT::upper,
+    #####:  542:						       _M_value[0]));
+        -:  543:	}
+        -:  544:      else
+    #####:  545:	__throw_regex_error(regex_constants::error_brack,
+        -:  546:			    "Unexpected character in bracket expression.");
+        -:  547:
+    #####:  548:      return true;
+        -:  549:    }
+------------------
+_ZNSt8__detail9_CompilerINSt7__cxx1112regex_traitsIcEEE18_M_expression_termILb1ELb0EEEbRNS4_13_BracketStateERNS_15_BracketMatcherIS3_XT_EXT0_EEE:
+    #####:  440:    _Compiler<_TraitsT>::
+        -:  441:    _M_expression_term(_BracketState& __last_char,
+        -:  442:		       _BracketMatcher<__icase, __collate>& __matcher)
+        -:  443:    {
+    #####:  444:      if (_M_match_token(_ScannerT::_S_token_bracket_end))
+    #####:  445:	return false;
+        -:  446:
+        -:  447:      // Add any previously cached char into the matcher and update cache.
+    #####:  448:      const auto __push_char = [&](_CharT __ch)
+        -:  449:      {
+        -:  450:	if (__last_char._M_is_char())
+        -:  451:	  __matcher._M_add_char(__last_char.get());
+        -:  452:	__last_char.set(__ch);
+        -:  453:      };
+        -:  454:      // Add any previously cached char into the matcher and update cache.
+    #####:  455:      const auto __push_class = [&]
+        -:  456:      {
+        -:  457:        if (__last_char._M_is_char())
+        -:  458:	  __matcher._M_add_char(__last_char.get());
+        -:  459:	// We don't cache anything here, just record that the last thing
+        -:  460:	// processed was a character class (or similar).
+        -:  461:	__last_char.reset(_BracketState::_Type::_Class);
+        -:  462:      };
+        -:  463:
+    #####:  464:      if (_M_match_token(_ScannerT::_S_token_collsymbol))
+        -:  465:	{
+    #####:  466:	  auto __symbol = __matcher._M_add_collate_element(_M_value);
+    #####:  467:	  if (__symbol.size() == 1)
+    #####:  468:	    __push_char(__symbol[0]);
+        -:  469:	  else
+    #####:  470:	    __push_class();
+    #####:  471:	}
+    #####:  472:      else if (_M_match_token(_ScannerT::_S_token_equiv_class_name))
+        -:  473:	{
+    #####:  474:	  __push_class();
+    #####:  475:	  __matcher._M_add_equivalence_class(_M_value);
+        -:  476:	}
+    #####:  477:      else if (_M_match_token(_ScannerT::_S_token_char_class_name))
+        -:  478:	{
+    #####:  479:	  __push_class();
+    #####:  480:	  __matcher._M_add_character_class(_M_value, false);
+        -:  481:	}
+    #####:  482:      else if (_M_try_char())
+    #####:  483:	__push_char(_M_value[0]);
+        -:  484:      // POSIX doesn't allow '-' as a start-range char (say [a-z--0]),
+        -:  485:      // except when the '-' is the first or last character in the bracket
+        -:  486:      // expression ([--0]). ECMAScript treats all '-' after a range as a
+        -:  487:      // normal character. Also see above, where _M_expression_term gets called.
+        -:  488:      //
+        -:  489:      // As a result, POSIX rejects [-----], but ECMAScript doesn't.
+        -:  490:      // Boost (1.57.0) always uses POSIX style even in its ECMAScript syntax.
+        -:  491:      // Clang (3.5) always uses ECMAScript style even in its POSIX syntax.
+        -:  492:      //
+        -:  493:      // It turns out that no one reads BNFs ;)
+    #####:  494:      else if (_M_match_token(_ScannerT::_S_token_bracket_dash))
+        -:  495:	{
+    #####:  496:	  if (_M_match_token(_ScannerT::_S_token_bracket_end))
+        -:  497:	    {
+        -:  498:	      // For "-]" the dash is a literal character.
+    #####:  499:	      __push_char('-');
+    #####:  500:	      return false;
+        -:  501:	    }
+    #####:  502:	  else if (__last_char._M_is_class())
+        -:  503:	    {
+        -:  504:	      // "\\w-" is invalid, start of range must be a single char.
+    #####:  505:	      __throw_regex_error(regex_constants::error_range,
+        -:  506:		    "Invalid start of range in bracket expression.");
+        -:  507:	    }
+    #####:  508:	  else if (__last_char._M_is_char())
+        -:  509:	    {
+    #####:  510:	      if (_M_try_char())
+        -:  511:		{
+        -:  512:		  // "x-y"
+    #####:  513:		  __matcher._M_make_range(__last_char.get(), _M_value[0]);
+    #####:  514:		  __last_char.reset();
+        -:  515:		}
+    #####:  516:	      else if (_M_match_token(_ScannerT::_S_token_bracket_dash))
+        -:  517:		{
+        -:  518:		  // "x--"
+    #####:  519:		  __matcher._M_make_range(__last_char.get(), '-');
+    #####:  520:		  __last_char.reset();
+        -:  521:		}
+        -:  522:	      else
+    #####:  523:		__throw_regex_error(regex_constants::error_range,
+        -:  524:		      "Invalid end of range in bracket expression.");
+        -:  525:	    }
+    #####:  526:	  else if (_M_flags & regex_constants::ECMAScript)
+        -:  527:	    {
+        -:  528:	      // A dash that is not part of an existing range. Might be the
+        -:  529:	      // start of a new range, or might just be a literal '-' char.
+        -:  530:	      // Only ECMAScript allows that in the middle of a bracket expr.
+    #####:  531:	      __push_char('-');
+        -:  532:	    }
+        -:  533:	  else
+    #####:  534:	    __throw_regex_error(regex_constants::error_range,
+        -:  535:				"Invalid dash in bracket expression.");
+        -:  536:	}
+    #####:  537:      else if (_M_match_token(_ScannerT::_S_token_quoted_class))
+        -:  538:	{
+    #####:  539:	  __push_class();
+    #####:  540:	  __matcher._M_add_character_class(_M_value,
+    #####:  541:					   _M_ctype.is(_CtypeT::upper,
+    #####:  542:						       _M_value[0]));
+        -:  543:	}
+        -:  544:      else
+    #####:  545:	__throw_regex_error(regex_constants::error_brack,
+        -:  546:			    "Unexpected character in bracket expression.");
+        -:  547:
+    #####:  548:      return true;
+        -:  549:    }
+------------------
+_ZNSt8__detail9_CompilerINSt7__cxx1112regex_traitsIcEEE18_M_expression_termILb0ELb1EEEbRNS4_13_BracketStateERNS_15_BracketMatcherIS3_XT_EXT0_EEE:
+    #####:  440:    _Compiler<_TraitsT>::
+        -:  441:    _M_expression_term(_BracketState& __last_char,
+        -:  442:		       _BracketMatcher<__icase, __collate>& __matcher)
+        -:  443:    {
+    #####:  444:      if (_M_match_token(_ScannerT::_S_token_bracket_end))
+    #####:  445:	return false;
+        -:  446:
+        -:  447:      // Add any previously cached char into the matcher and update cache.
+    #####:  448:      const auto __push_char = [&](_CharT __ch)
+        -:  449:      {
+        -:  450:	if (__last_char._M_is_char())
+        -:  451:	  __matcher._M_add_char(__last_char.get());
+        -:  452:	__last_char.set(__ch);
+        -:  453:      };
+        -:  454:      // Add any previously cached char into the matcher and update cache.
+    #####:  455:      const auto __push_class = [&]
+        -:  456:      {
+        -:  457:        if (__last_char._M_is_char())
+        -:  458:	  __matcher._M_add_char(__last_char.get());
+        -:  459:	// We don't cache anything here, just record that the last thing
+        -:  460:	// processed was a character class (or similar).
+        -:  461:	__last_char.reset(_BracketState::_Type::_Class);
+        -:  462:      };
+        -:  463:
+    #####:  464:      if (_M_match_token(_ScannerT::_S_token_collsymbol))
+        -:  465:	{
+    #####:  466:	  auto __symbol = __matcher._M_add_collate_element(_M_value);
+    #####:  467:	  if (__symbol.size() == 1)
+    #####:  468:	    __push_char(__symbol[0]);
+        -:  469:	  else
+    #####:  470:	    __push_class();
+    #####:  471:	}
+    #####:  472:      else if (_M_match_token(_ScannerT::_S_token_equiv_class_name))
+        -:  473:	{
+    #####:  474:	  __push_class();
+    #####:  475:	  __matcher._M_add_equivalence_class(_M_value);
+        -:  476:	}
+    #####:  477:      else if (_M_match_token(_ScannerT::_S_token_char_class_name))
+        -:  478:	{
+    #####:  479:	  __push_class();
+    #####:  480:	  __matcher._M_add_character_class(_M_value, false);
+        -:  481:	}
+    #####:  482:      else if (_M_try_char())
+    #####:  483:	__push_char(_M_value[0]);
+        -:  484:      // POSIX doesn't allow '-' as a start-range char (say [a-z--0]),
+        -:  485:      // except when the '-' is the first or last character in the bracket
+        -:  486:      // expression ([--0]). ECMAScript treats all '-' after a range as a
+        -:  487:      // normal character. Also see above, where _M_expression_term gets called.
+        -:  488:      //
+        -:  489:      // As a result, POSIX rejects [-----], but ECMAScript doesn't.
+        -:  490:      // Boost (1.57.0) always uses POSIX style even in its ECMAScript syntax.
+        -:  491:      // Clang (3.5) always uses ECMAScript style even in its POSIX syntax.
+        -:  492:      //
+        -:  493:      // It turns out that no one reads BNFs ;)
+    #####:  494:      else if (_M_match_token(_ScannerT::_S_token_bracket_dash))
+        -:  495:	{
+    #####:  496:	  if (_M_match_token(_ScannerT::_S_token_bracket_end))
+        -:  497:	    {
+        -:  498:	      // For "-]" the dash is a literal character.
+    #####:  499:	      __push_char('-');
+    #####:  500:	      return false;
+        -:  501:	    }
+    #####:  502:	  else if (__last_char._M_is_class())
+        -:  503:	    {
+        -:  504:	      // "\\w-" is invalid, start of range must be a single char.
+    #####:  505:	      __throw_regex_error(regex_constants::error_range,
+        -:  506:		    "Invalid start of range in bracket expression.");
+        -:  507:	    }
+    #####:  508:	  else if (__last_char._M_is_char())
+        -:  509:	    {
+    #####:  510:	      if (_M_try_char())
+        -:  511:		{
+        -:  512:		  // "x-y"
+    #####:  513:		  __matcher._M_make_range(__last_char.get(), _M_value[0]);
+    #####:  514:		  __last_char.reset();
+        -:  515:		}
+    #####:  516:	      else if (_M_match_token(_ScannerT::_S_token_bracket_dash))
+        -:  517:		{
+        -:  518:		  // "x--"
+    #####:  519:		  __matcher._M_make_range(__last_char.get(), '-');
+    #####:  520:		  __last_char.reset();
+        -:  521:		}
+        -:  522:	      else
+    #####:  523:		__throw_regex_error(regex_constants::error_range,
+        -:  524:		      "Invalid end of range in bracket expression.");
+        -:  525:	    }
+    #####:  526:	  else if (_M_flags & regex_constants::ECMAScript)
+        -:  527:	    {
+        -:  528:	      // A dash that is not part of an existing range. Might be the
+        -:  529:	      // start of a new range, or might just be a literal '-' char.
+        -:  530:	      // Only ECMAScript allows that in the middle of a bracket expr.
+    #####:  531:	      __push_char('-');
+        -:  532:	    }
+        -:  533:	  else
+    #####:  534:	    __throw_regex_error(regex_constants::error_range,
+        -:  535:				"Invalid dash in bracket expression.");
+        -:  536:	}
+    #####:  537:      else if (_M_match_token(_ScannerT::_S_token_quoted_class))
+        -:  538:	{
+    #####:  539:	  __push_class();
+    #####:  540:	  __matcher._M_add_character_class(_M_value,
+    #####:  541:					   _M_ctype.is(_CtypeT::upper,
+    #####:  542:						       _M_value[0]));
+        -:  543:	}
+        -:  544:      else
+    #####:  545:	__throw_regex_error(regex_constants::error_brack,
+        -:  546:			    "Unexpected character in bracket expression.");
+        -:  547:
+    #####:  548:      return true;
+        -:  549:    }
+------------------
+_ZNSt8__detail9_CompilerINSt7__cxx1112regex_traitsIcEEE18_M_expression_termILb0ELb0EEEbRNS4_13_BracketStateERNS_15_BracketMatcherIS3_XT_EXT0_EEE:
+       56:  440:    _Compiler<_TraitsT>::
+        -:  441:    _M_expression_term(_BracketState& __last_char,
+        -:  442:		       _BracketMatcher<__icase, __collate>& __matcher)
+        -:  443:    {
+       56:  444:      if (_M_match_token(_ScannerT::_S_token_bracket_end))
+       20:  445:	return false;
+        -:  446:
+        -:  447:      // Add any previously cached char into the matcher and update cache.
+       36:  448:      const auto __push_char = [&](_CharT __ch)
+        -:  449:      {
+        -:  450:	if (__last_char._M_is_char())
+        -:  451:	  __matcher._M_add_char(__last_char.get());
+        -:  452:	__last_char.set(__ch);
+        -:  453:      };
+        -:  454:      // Add any previously cached char into the matcher and update cache.
+       36:  455:      const auto __push_class = [&]
+        -:  456:      {
+        -:  457:        if (__last_char._M_is_char())
+        -:  458:	  __matcher._M_add_char(__last_char.get());
+        -:  459:	// We don't cache anything here, just record that the last thing
+        -:  460:	// processed was a character class (or similar).
+        -:  461:	__last_char.reset(_BracketState::_Type::_Class);
+        -:  462:      };
+        -:  463:
+       36:  464:      if (_M_match_token(_ScannerT::_S_token_collsymbol))
+        -:  465:	{
+    #####:  466:	  auto __symbol = __matcher._M_add_collate_element(_M_value);
+    #####:  467:	  if (__symbol.size() == 1)
+    #####:  468:	    __push_char(__symbol[0]);
+        -:  469:	  else
+    #####:  470:	    __push_class();
+    #####:  471:	}
+       36:  472:      else if (_M_match_token(_ScannerT::_S_token_equiv_class_name))
+        -:  473:	{
+    #####:  474:	  __push_class();
+    #####:  475:	  __matcher._M_add_equivalence_class(_M_value);
+        -:  476:	}
+       36:  477:      else if (_M_match_token(_ScannerT::_S_token_char_class_name))
+        -:  478:	{
+    #####:  479:	  __push_class();
+    #####:  480:	  __matcher._M_add_character_class(_M_value, false);
+        -:  481:	}
+       36:  482:      else if (_M_try_char())
+        8:  483:	__push_char(_M_value[0]);
+        -:  484:      // POSIX doesn't allow '-' as a start-range char (say [a-z--0]),
+        -:  485:      // except when the '-' is the first or last character in the bracket
+        -:  486:      // expression ([--0]). ECMAScript treats all '-' after a range as a
+        -:  487:      // normal character. Also see above, where _M_expression_term gets called.
+        -:  488:      //
+        -:  489:      // As a result, POSIX rejects [-----], but ECMAScript doesn't.
+        -:  490:      // Boost (1.57.0) always uses POSIX style even in its ECMAScript syntax.
+        -:  491:      // Clang (3.5) always uses ECMAScript style even in its POSIX syntax.
+        -:  492:      //
+        -:  493:      // It turns out that no one reads BNFs ;)
+       28:  494:      else if (_M_match_token(_ScannerT::_S_token_bracket_dash))
+        -:  495:	{
+       16:  496:	  if (_M_match_token(_ScannerT::_S_token_bracket_end))
+        -:  497:	    {
+        -:  498:	      // For "-]" the dash is a literal character.
+    #####:  499:	      __push_char('-');
+    #####:  500:	      return false;
+        -:  501:	    }
+       16:  502:	  else if (__last_char._M_is_class())
+        -:  503:	    {
+        -:  504:	      // "\\w-" is invalid, start of range must be a single char.
+    #####:  505:	      __throw_regex_error(regex_constants::error_range,
+        -:  506:		    "Invalid start of range in bracket expression.");
+        -:  507:	    }
+       16:  508:	  else if (__last_char._M_is_char())
+        -:  509:	    {
+       16:  510:	      if (_M_try_char())
+        -:  511:		{
+        -:  512:		  // "x-y"
+       16:  513:		  __matcher._M_make_range(__last_char.get(), _M_value[0]);
+       16:  514:		  __last_char.reset();
+        -:  515:		}
+    #####:  516:	      else if (_M_match_token(_ScannerT::_S_token_bracket_dash))
+        -:  517:		{
+        -:  518:		  // "x--"
+    #####:  519:		  __matcher._M_make_range(__last_char.get(), '-');
+    #####:  520:		  __last_char.reset();
+        -:  521:		}
+        -:  522:	      else
+    #####:  523:		__throw_regex_error(regex_constants::error_range,
+        -:  524:		      "Invalid end of range in bracket expression.");
+        -:  525:	    }
+    #####:  526:	  else if (_M_flags & regex_constants::ECMAScript)
+        -:  527:	    {
+        -:  528:	      // A dash that is not part of an existing range. Might be the
+        -:  529:	      // start of a new range, or might just be a literal '-' char.
+        -:  530:	      // Only ECMAScript allows that in the middle of a bracket expr.
+    #####:  531:	      __push_char('-');
+        -:  532:	    }
+        -:  533:	  else
+    #####:  534:	    __throw_regex_error(regex_constants::error_range,
+        -:  535:				"Invalid dash in bracket expression.");
+        -:  536:	}
+       12:  537:      else if (_M_match_token(_ScannerT::_S_token_quoted_class))
+        -:  538:	{
+       12:  539:	  __push_class();
+       12:  540:	  __matcher._M_add_character_class(_M_value,
+       24:  541:					   _M_ctype.is(_CtypeT::upper,
+       12:  542:						       _M_value[0]));
+        -:  543:	}
+        -:  544:      else
+    #####:  545:	__throw_regex_error(regex_constants::error_brack,
+        -:  546:			    "Unexpected character in bracket expression.");
+        -:  547:
+       36:  548:      return true;
+        -:  549:    }
+------------------
+        -:  550:
+        -:  551:  template<typename _TraitsT>
+        -:  552:    bool
+      180:  553:    _Compiler<_TraitsT>::
+        -:  554:    _M_try_char()
+        -:  555:    {
+      180:  556:      bool __is_char = false;
+      180:  557:      if (_M_match_token(_ScannerT::_S_token_oct_num))
+        -:  558:	{
+    #####:  559:	  __is_char = true;
+    #####:  560:	  _M_value.assign(1, _M_cur_int_value(8));
+        -:  561:	}
+      180:  562:      else if (_M_match_token(_ScannerT::_S_token_hex_num))
+        -:  563:	{
+    #####:  564:	  __is_char = true;
+    #####:  565:	  _M_value.assign(1, _M_cur_int_value(16));
+        -:  566:	}
+      180:  567:      else if (_M_match_token(_ScannerT::_S_token_ord_char))
+       62:  568:	__is_char = true;
+      180:  569:      return __is_char;
+        -:  570:    }
+        -:  571:
+        -:  572:  template<typename _TraitsT>
+        -:  573:    bool
+     2357:  574:    _Compiler<_TraitsT>::
+        -:  575:    _M_match_token(_TokenT __token)
+        -:  576:    {
+     2357:  577:      if (__token == _M_scanner._M_get_token())
+        -:  578:	{
+      319:  579:	  _M_value = _M_scanner._M_get_value();
+      319:  580:	  _M_scanner._M_advance();
+      319:  581:	  return true;
+        -:  582:	}
+     2038:  583:      return false;
+        -:  584:    }
+        -:  585:
+        -:  586:  template<typename _TraitsT>
+        -:  587:    int
+       19:  588:    _Compiler<_TraitsT>::
+        -:  589:    _M_cur_int_value(int __radix)
+        -:  590:    {
+       19:  591:      int __v = 0;
+       38:  592:      for (_CharT __c : _M_value)
+       38:  593:	if (__builtin_mul_overflow(__v, __radix, &__v)
+      19*:  594:	    || __builtin_add_overflow(__v, _M_traits.value(__c, __radix), &__v))
+    #####:  595:	    std::__throw_regex_error(regex_constants::error_backref,
+        -:  596:				     "invalid back reference");
+       19:  597:      return __v;
+        -:  598:    }
+        -:  599:
+        -:  600:  template<typename _TraitsT, bool __icase, bool __collate>
+        -:  601:    bool
+    9984*:  602:    _BracketMatcher<_TraitsT, __icase, __collate>::
+        -:  603:    _M_apply(_CharT __ch, false_type) const
+        -:  604:    {
+  109810*:  605:      return [this, __ch]
+        -:  606:      {
+    9984*:  607:	if (std::binary_search(_M_char_set.begin(), _M_char_set.end(),
+   19968*:  608:			       _M_translator._M_translate(__ch)))
+      12*:  609:	  return true;
+    9972*:  610:	auto __s = _M_translator._M_transform(__ch);
+   13444*:  611:	for (auto& __it : _M_range_set)
+    3888*:  612:	  if (_M_translator._M_match_range(__it.first, __it.second, __s))
+     416*:  613:	    return true;
+    9556*:  614:	if (_M_traits.isctype(__ch, _M_class_set))
+     262*:  615:	  return true;
+    9294*:  616:	if (std::find(_M_equiv_set.begin(), _M_equiv_set.end(),
+    9294*:  617:		      _M_traits.transform_primary(&__ch, &__ch+1))
+   18588*:  618:	    != _M_equiv_set.end())
+    #####:  619:	  return true;
+    9294*:  620:	for (auto& __it : _M_neg_class_set)
+    #####:  621:	  if (!_M_traits.isctype(__ch, __it))
+    #####:  622:	    return true;
+    9294*:  623:	return false;
+    9984*:  624:      }() ^ _M_is_non_matching;
+        -:  625:    }
+        -:  626:} // namespace __detail
+        -:  627:
+        -:  628:_GLIBCXX_END_NAMESPACE_VERSION
+        -:  629:} // namespace

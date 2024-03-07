@@ -1,7 +1,4 @@
         -:    0:Source:/usr/include/boost/function/function_base.hpp
-        -:    0:Graph:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcno
-        -:    0:Data:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcda
-        -:    0:Runs:1
         -:    1:// Boost.Function library
         -:    2:
         -:    3://  Copyright Douglas Gregor 2001-2006
@@ -260,16 +257,16 @@
         -:  256:
         -:  257:        // Function pointers
         -:  258:        static inline void
-        4:  259:        manage_ptr(const function_buffer& in_buffer, function_buffer& out_buffer,
+      35*:  259:        manage_ptr(const function_buffer& in_buffer, function_buffer& out_buffer,
         -:  260:                functor_manager_operation_type op)
         -:  261:        {
-        4:  262:          if (op == clone_functor_tag)
+      35*:  262:          if (op == clone_functor_tag)
     #####:  263:            out_buffer.members.func_ptr = in_buffer.members.func_ptr;
-        4:  264:          else if (op == move_functor_tag) {
+      35*:  264:          else if (op == move_functor_tag) {
     #####:  265:            out_buffer.members.func_ptr = in_buffer.members.func_ptr;
     #####:  266:            in_buffer.members.func_ptr = 0;
-        4:  267:          } else if (op == destroy_functor_tag)
-        4:  268:            out_buffer.members.func_ptr = 0;
+      35*:  267:          } else if (op == destroy_functor_tag)
+      35*:  268:            out_buffer.members.func_ptr = 0;
     #####:  269:          else if (op == check_functor_type_tag) {
     #####:  270:            if (*out_buffer.members.type.type == boost::typeindex::type_id<Functor>())
     #####:  271:              out_buffer.members.obj_ptr = &in_buffer.members.func_ptr;
@@ -280,7 +277,54 @@
     #####:  276:            out_buffer.members.type.const_qualified = false;
     #####:  277:            out_buffer.members.type.volatile_qualified = false;
         -:  278:          }
-        4:  279:        }
+      35*:  279:        }
+------------------
+_ZN5boost6detail8function22functor_manager_commonIPFvvEE10manage_ptrERKNS1_15function_bufferERS6_NS1_30functor_manager_operation_typeE:
+       35:  259:        manage_ptr(const function_buffer& in_buffer, function_buffer& out_buffer,
+        -:  260:                functor_manager_operation_type op)
+        -:  261:        {
+       35:  262:          if (op == clone_functor_tag)
+    #####:  263:            out_buffer.members.func_ptr = in_buffer.members.func_ptr;
+       35:  264:          else if (op == move_functor_tag) {
+    #####:  265:            out_buffer.members.func_ptr = in_buffer.members.func_ptr;
+    #####:  266:            in_buffer.members.func_ptr = 0;
+       35:  267:          } else if (op == destroy_functor_tag)
+       35:  268:            out_buffer.members.func_ptr = 0;
+    #####:  269:          else if (op == check_functor_type_tag) {
+    #####:  270:            if (*out_buffer.members.type.type == boost::typeindex::type_id<Functor>())
+    #####:  271:              out_buffer.members.obj_ptr = &in_buffer.members.func_ptr;
+        -:  272:            else
+    #####:  273:              out_buffer.members.obj_ptr = 0;
+        -:  274:          } else /* op == get_functor_type_tag */ {
+    #####:  275:            out_buffer.members.type.type = &boost::typeindex::type_id<Functor>().type_info();
+    #####:  276:            out_buffer.members.type.const_qualified = false;
+    #####:  277:            out_buffer.members.type.volatile_qualified = false;
+        -:  278:          }
+       35:  279:        }
+------------------
+_ZN5boost6detail8function22functor_manager_commonIPFvvEE10manage_ptrERKNS1_15function_bufferERS6_NS1_30functor_manager_operation_typeE:
+    #####:  259:        manage_ptr(const function_buffer& in_buffer, function_buffer& out_buffer,
+        -:  260:                functor_manager_operation_type op)
+        -:  261:        {
+    #####:  262:          if (op == clone_functor_tag)
+    #####:  263:            out_buffer.members.func_ptr = in_buffer.members.func_ptr;
+    #####:  264:          else if (op == move_functor_tag) {
+    #####:  265:            out_buffer.members.func_ptr = in_buffer.members.func_ptr;
+    #####:  266:            in_buffer.members.func_ptr = 0;
+    #####:  267:          } else if (op == destroy_functor_tag)
+    #####:  268:            out_buffer.members.func_ptr = 0;
+    #####:  269:          else if (op == check_functor_type_tag) {
+    #####:  270:            if (*out_buffer.members.type.type == boost::typeindex::type_id<Functor>())
+    #####:  271:              out_buffer.members.obj_ptr = &in_buffer.members.func_ptr;
+        -:  272:            else
+    #####:  273:              out_buffer.members.obj_ptr = 0;
+        -:  274:          } else /* op == get_functor_type_tag */ {
+    #####:  275:            out_buffer.members.type.type = &boost::typeindex::type_id<Functor>().type_info();
+    #####:  276:            out_buffer.members.type.const_qualified = false;
+    #####:  277:            out_buffer.members.type.volatile_qualified = false;
+        -:  278:          }
+    #####:  279:        }
+------------------
         -:  280:
         -:  281:        // Function objects that fit in the small-object buffer.
         -:  282:        static inline void
@@ -323,11 +367,26 @@
         -:  319:
         -:  320:        // Function pointers
         -:  321:        static inline void
-        4:  322:        manager(const function_buffer& in_buffer, function_buffer& out_buffer,
+      35*:  322:        manager(const function_buffer& in_buffer, function_buffer& out_buffer,
         -:  323:                functor_manager_operation_type op, function_ptr_tag)
         -:  324:        {
-        4:  325:          functor_manager_common<Functor>::manage_ptr(in_buffer,out_buffer,op);
-        4:  326:        }
+      35*:  325:          functor_manager_common<Functor>::manage_ptr(in_buffer,out_buffer,op);
+      35*:  326:        }
+------------------
+_ZN5boost6detail8function15functor_managerIPFvvEE7managerERKNS1_15function_bufferERS6_NS1_30functor_manager_operation_typeENS1_16function_ptr_tagE:
+       35:  322:        manager(const function_buffer& in_buffer, function_buffer& out_buffer,
+        -:  323:                functor_manager_operation_type op, function_ptr_tag)
+        -:  324:        {
+       35:  325:          functor_manager_common<Functor>::manage_ptr(in_buffer,out_buffer,op);
+       35:  326:        }
+------------------
+_ZN5boost6detail8function15functor_managerIPFvvEE7managerERKNS1_15function_bufferERS6_NS1_30functor_manager_operation_typeENS1_16function_ptr_tagE:
+    #####:  322:        manager(const function_buffer& in_buffer, function_buffer& out_buffer,
+        -:  323:                functor_manager_operation_type op, function_ptr_tag)
+        -:  324:        {
+    #####:  325:          functor_manager_common<Functor>::manage_ptr(in_buffer,out_buffer,op);
+    #####:  326:        }
+------------------
         -:  327:
         -:  328:        // Function objects that fit in the small-object buffer.
         -:  329:        static inline void
@@ -396,18 +455,47 @@
         -:  392:        /* Dispatch to an appropriate manager based on whether we have a
         -:  393:           function pointer or a function object pointer. */
         -:  394:        static inline void
-        4:  395:        manage(const function_buffer& in_buffer, function_buffer& out_buffer,
+      35*:  395:        manage(const function_buffer& in_buffer, function_buffer& out_buffer,
         -:  396:               functor_manager_operation_type op)
         -:  397:        {
         -:  398:          typedef typename get_function_tag<functor_type>::type tag_type;
-        4:  399:          if (op == get_functor_type_tag) {
+      35*:  399:          if (op == get_functor_type_tag) {
     #####:  400:            out_buffer.members.type.type = &boost::typeindex::type_id<functor_type>().type_info();
     #####:  401:            out_buffer.members.type.const_qualified = false;
     #####:  402:            out_buffer.members.type.volatile_qualified = false;
         -:  403:          } else {
-        4:  404:            manager(in_buffer, out_buffer, op, tag_type());
+      35*:  404:            manager(in_buffer, out_buffer, op, tag_type());
         -:  405:          }
-        4:  406:        }
+      35*:  406:        }
+------------------
+_ZN5boost6detail8function15functor_managerIPFvvEE6manageERKNS1_15function_bufferERS6_NS1_30functor_manager_operation_typeE:
+       35:  395:        manage(const function_buffer& in_buffer, function_buffer& out_buffer,
+        -:  396:               functor_manager_operation_type op)
+        -:  397:        {
+        -:  398:          typedef typename get_function_tag<functor_type>::type tag_type;
+       35:  399:          if (op == get_functor_type_tag) {
+    #####:  400:            out_buffer.members.type.type = &boost::typeindex::type_id<functor_type>().type_info();
+    #####:  401:            out_buffer.members.type.const_qualified = false;
+    #####:  402:            out_buffer.members.type.volatile_qualified = false;
+        -:  403:          } else {
+       35:  404:            manager(in_buffer, out_buffer, op, tag_type());
+        -:  405:          }
+       35:  406:        }
+------------------
+_ZN5boost6detail8function15functor_managerIPFvvEE6manageERKNS1_15function_bufferERS6_NS1_30functor_manager_operation_typeE:
+    #####:  395:        manage(const function_buffer& in_buffer, function_buffer& out_buffer,
+        -:  396:               functor_manager_operation_type op)
+        -:  397:        {
+        -:  398:          typedef typename get_function_tag<functor_type>::type tag_type;
+    #####:  399:          if (op == get_functor_type_tag) {
+    #####:  400:            out_buffer.members.type.type = &boost::typeindex::type_id<functor_type>().type_info();
+    #####:  401:            out_buffer.members.type.const_qualified = false;
+    #####:  402:            out_buffer.members.type.volatile_qualified = false;
+        -:  403:          } else {
+    #####:  404:            manager(in_buffer, out_buffer, op, tag_type());
+        -:  405:          }
+    #####:  406:        }
+------------------
         -:  407:      };
         -:  408:
         -:  409:      template<typename Functor, typename Allocator>
@@ -604,7 +692,14 @@
         -:  600:class function_base
         -:  601:{
         -:  602:public:
-        4:  603:  function_base() : vtable(0) { }
+      35*:  603:  function_base() : vtable(0) { }
+------------------
+_ZN5boost13function_baseC2Ev:
+       35:  603:  function_base() : vtable(0) { }
+------------------
+_ZN5boost13function_baseC2Ev:
+    #####:  603:  function_base() : vtable(0) { }
+------------------
         -:  604:
         -:  605:  /** Determine if the function is empty (i.e., has no target). */
         -:  606:  bool empty() const { return !vtable; }
@@ -690,8 +785,8 @@
         -:  686:             reinterpret_cast<std::size_t>(vtable) & ~static_cast<std::size_t>(0x01));
         -:  687:  }
         -:  688:
-        4:  689:  bool has_trivial_copy_and_destroy() const {
-        4:  690:    return reinterpret_cast<std::size_t>(vtable) & 0x01;
+      35*:  689:  bool has_trivial_copy_and_destroy() const {
+      35*:  690:    return reinterpret_cast<std::size_t>(vtable) & 0x01;
         -:  691:  }
         -:  692:
         -:  693:  detail::function::vtable_base* vtable;

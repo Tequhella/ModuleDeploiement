@@ -1,7 +1,4 @@
         -:    0:Source:/usr/include/boost/type_index/stl_type_index.hpp
-        -:    0:Graph:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcno
-        -:    0:Data:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcda
-        -:    0:Runs:1
         -:    1://
         -:    2:// Copyright 2013-2020 Antony Polukhin.
         -:    3://
@@ -97,6 +94,17 @@
     #####:   93:    inline stl_type_index(const type_info_t& data) BOOST_NOEXCEPT
     #####:   94:        : data_(&data)
     #####:   95:    {}
+------------------
+_ZN5boost9typeindex14stl_type_indexC2ERKSt9type_info:
+    #####:   93:    inline stl_type_index(const type_info_t& data) BOOST_NOEXCEPT
+    #####:   94:        : data_(&data)
+    #####:   95:    {}
+------------------
+_ZN5boost9typeindex14stl_type_indexC2ERKSt9type_info:
+    #####:   93:    inline stl_type_index(const type_info_t& data) BOOST_NOEXCEPT
+    #####:   94:        : data_(&data)
+    #####:   95:    {}
+------------------
         -:   96:
         -:   97:    inline const type_info_t&  type_info() const BOOST_NOEXCEPT;
         -:   98:
@@ -121,6 +129,17 @@
     #####:  117:inline const stl_type_index::type_info_t& stl_type_index::type_info() const BOOST_NOEXCEPT {
     #####:  118:    return *data_;
         -:  119:}
+------------------
+_ZNK5boost9typeindex14stl_type_index9type_infoEv:
+    #####:  117:inline const stl_type_index::type_info_t& stl_type_index::type_info() const BOOST_NOEXCEPT {
+    #####:  118:    return *data_;
+        -:  119:}
+------------------
+_ZNK5boost9typeindex14stl_type_index9type_infoEv:
+    #####:  117:inline const stl_type_index::type_info_t& stl_type_index::type_info() const BOOST_NOEXCEPT {
+    #####:  118:    return *data_;
+        -:  119:}
+------------------
         -:  120:
         -:  121:
         -:  122:inline const char* stl_type_index::raw_name() const BOOST_NOEXCEPT {
@@ -214,6 +233,25 @@
     #####:  210:    return !!(*data_ == *rhs.data_);
         -:  211:#endif
         -:  212:}
+------------------
+_ZNK5boost9typeindex14stl_type_index5equalERKS1_:
+    #####:  206:inline bool stl_type_index::equal(const stl_type_index& rhs) const BOOST_NOEXCEPT {
+        -:  207:#ifdef BOOST_TYPE_INDEX_CLASSINFO_COMPARE_BY_NAMES
+        -:  208:    return raw_name() == rhs.raw_name() || !std::strcmp(raw_name(), rhs.raw_name());
+        -:  209:#else
+    #####:  210:    return !!(*data_ == *rhs.data_);
+        -:  211:#endif
+        -:  212:}
+------------------
+_ZNK5boost9typeindex14stl_type_index5equalERKS1_:
+    #####:  206:inline bool stl_type_index::equal(const stl_type_index& rhs) const BOOST_NOEXCEPT {
+        -:  207:#ifdef BOOST_TYPE_INDEX_CLASSINFO_COMPARE_BY_NAMES
+        -:  208:    return raw_name() == rhs.raw_name() || !std::strcmp(raw_name(), rhs.raw_name());
+        -:  209:#else
+    #####:  210:    return !!(*data_ == *rhs.data_);
+        -:  211:#endif
+        -:  212:}
+------------------
         -:  213:
         -:  214:inline bool stl_type_index::before(const stl_type_index& rhs) const BOOST_NOEXCEPT {
         -:  215:#ifdef BOOST_TYPE_INDEX_CLASSINFO_COMPARE_BY_NAMES

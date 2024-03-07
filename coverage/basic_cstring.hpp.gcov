@@ -1,7 +1,4 @@
         -:    0:Source:/usr/include/boost/test/utils/basic_cstring/basic_cstring.hpp
-        -:    0:Graph:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcno
-        -:    0:Data:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcda
-        -:    0:Runs:1
         -:    1://  (C) Copyright Gennadiy Rozental 2001.
         -:    2://  Distributed under the Boost Software License, Version 1.0.
         -:    3://  (See accompanying file LICENSE_1_0.txt or copy at
@@ -84,13 +81,16 @@
         -:   80:    basic_cstring( std_string const& s );
         -:   81:    basic_cstring( pointer s );
         -:   82:    template<typename LenType>
-      45*:   83:    basic_cstring( pointer s, LenType len ) : m_begin( s ), m_end( m_begin + len ) {}
+     281*:   83:    basic_cstring( pointer s, LenType len ) : m_begin( s ), m_end( m_begin + len ) {}
 ------------------
 _ZN5boost9unit_test13basic_cstringIKcEC2IiEEPS2_T_:
     #####:   83:    basic_cstring( pointer s, LenType len ) : m_begin( s ), m_end( m_begin + len ) {}
 ------------------
 _ZN5boost9unit_test13basic_cstringIKcEC2ImEEPS2_T_:
-       45:   83:    basic_cstring( pointer s, LenType len ) : m_begin( s ), m_end( m_begin + len ) {}
+      281:   83:    basic_cstring( pointer s, LenType len ) : m_begin( s ), m_end( m_begin + len ) {}
+------------------
+_ZN5boost9unit_test13basic_cstringIKcEC2ImEEPS2_T_:
+    #####:   83:    basic_cstring( pointer s, LenType len ) : m_begin( s ), m_end( m_begin + len ) {}
 ------------------
         -:   84:    basic_cstring( pointer first, pointer last );
         -:   85:
@@ -214,50 +214,123 @@ _ZN5boost9unit_test13basic_cstringIKcEC2ImEEPS2_T_:
         -:  203:
         -:  204:template<typename CharT>
         -:  205:inline typename basic_cstring<CharT>::pointer
-       12:  206:basic_cstring<CharT>::null_str()
+      53*:  206:basic_cstring<CharT>::null_str()
         -:  207:{
-       12:  208:    return &null;
+      53*:  208:    return &null;
         -:  209:}
+------------------
+_ZN5boost9unit_test13basic_cstringIKcE8null_strEv:
+       53:  206:basic_cstring<CharT>::null_str()
+        -:  207:{
+       53:  208:    return &null;
+        -:  209:}
+------------------
+_ZN5boost9unit_test13basic_cstringIKcE8null_strEv:
+    #####:  206:basic_cstring<CharT>::null_str()
+        -:  207:{
+    #####:  208:    return &null;
+        -:  209:}
+------------------
         -:  210:
         -:  211://____________________________________________________________________________//
         -:  212:
         -:  213:template<typename CharT>
         -:  214:inline
-       12:  215:basic_cstring<CharT>::basic_cstring()
-       12:  216:: m_begin( null_str() )
-       12:  217:, m_end( m_begin )
+      53*:  215:basic_cstring<CharT>::basic_cstring()
+      53*:  216:: m_begin( null_str() )
+      53*:  217:, m_end( m_begin )
         -:  218:{
-       12:  219:}
+      53*:  219:}
+------------------
+_ZN5boost9unit_test13basic_cstringIKcEC2Ev:
+       53:  215:basic_cstring<CharT>::basic_cstring()
+       53:  216:: m_begin( null_str() )
+       53:  217:, m_end( m_begin )
+        -:  218:{
+       53:  219:}
+------------------
+_ZN5boost9unit_test13basic_cstringIKcEC2Ev:
+    #####:  215:basic_cstring<CharT>::basic_cstring()
+    #####:  216:: m_begin( null_str() )
+    #####:  217:, m_end( m_begin )
+        -:  218:{
+    #####:  219:}
+------------------
         -:  220:
         -:  221://____________________________________________________________________________//
         -:  222:
         -:  223:template<typename CharT>
         -:  224:inline
-       20:  225:basic_cstring<CharT>::basic_cstring(basic_cstring const & s)
-       20:  226:: m_begin( s.m_begin )
-       20:  227:, m_end( s.m_end )
+     119*:  225:basic_cstring<CharT>::basic_cstring(basic_cstring const & s)
+     119*:  226:: m_begin( s.m_begin )
+     119*:  227:, m_end( s.m_end )
         -:  228:{
-       20:  229:}
+     119*:  229:}
+------------------
+_ZN5boost9unit_test13basic_cstringIKcEC2ERKS3_:
+      119:  225:basic_cstring<CharT>::basic_cstring(basic_cstring const & s)
+      119:  226:: m_begin( s.m_begin )
+      119:  227:, m_end( s.m_end )
+        -:  228:{
+      119:  229:}
+------------------
+_ZN5boost9unit_test13basic_cstringIKcEC2ERKS3_:
+    #####:  225:basic_cstring<CharT>::basic_cstring(basic_cstring const & s)
+    #####:  226:: m_begin( s.m_begin )
+    #####:  227:, m_end( s.m_end )
+        -:  228:{
+    #####:  229:}
+------------------
         -:  230:
         -:  231://____________________________________________________________________________//
         -:  232:
         -:  233:template<typename CharT>
         -:  234:inline
-       24:  235:basic_cstring<CharT>::basic_cstring( std_string const& s )
-       24:  236:: m_begin( s.c_str() )
-       24:  237:, m_end( m_begin + s.size() )
+     210*:  235:basic_cstring<CharT>::basic_cstring( std_string const& s )
+     210*:  236:: m_begin( s.c_str() )
+     210*:  237:, m_end( m_begin + s.size() )
         -:  238:{
-       24:  239:}
+     210*:  239:}
+------------------
+_ZN5boost9unit_test13basic_cstringIKcEC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE:
+      210:  235:basic_cstring<CharT>::basic_cstring( std_string const& s )
+      210:  236:: m_begin( s.c_str() )
+      210:  237:, m_end( m_begin + s.size() )
+        -:  238:{
+      210:  239:}
+------------------
+_ZN5boost9unit_test13basic_cstringIKcEC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE:
+    #####:  235:basic_cstring<CharT>::basic_cstring( std_string const& s )
+    #####:  236:: m_begin( s.c_str() )
+    #####:  237:, m_end( m_begin + s.size() )
+        -:  238:{
+    #####:  239:}
+------------------
         -:  240:
         -:  241://____________________________________________________________________________//
         -:  242:
         -:  243:template<typename CharT>
         -:  244:inline
-       13:  245:basic_cstring<CharT>::basic_cstring( pointer s )
-      13*:  246:: m_begin( s ? s : null_str() )
-      13*:  247:, m_end  ( m_begin + (s ? traits_type::length( s ) : 0 ) )
+      84*:  245:basic_cstring<CharT>::basic_cstring( pointer s )
+      84*:  246:: m_begin( s ? s : null_str() )
+      84*:  247:, m_end  ( m_begin + (s ? traits_type::length( s ) : 0 ) )
         -:  248:{
-       13:  249:}
+      84*:  249:}
+------------------
+_ZN5boost9unit_test13basic_cstringIKcEC2EPS2_:
+       84:  245:basic_cstring<CharT>::basic_cstring( pointer s )
+      84*:  246:: m_begin( s ? s : null_str() )
+      84*:  247:, m_end  ( m_begin + (s ? traits_type::length( s ) : 0 ) )
+        -:  248:{
+       84:  249:}
+------------------
+_ZN5boost9unit_test13basic_cstringIKcEC2EPS2_:
+    #####:  245:basic_cstring<CharT>::basic_cstring( pointer s )
+    #####:  246:: m_begin( s ? s : null_str() )
+    #####:  247:, m_end  ( m_begin + (s ? traits_type::length( s ) : 0 ) )
+        -:  248:{
+    #####:  249:}
+------------------
         -:  250:
         -:  251://____________________________________________________________________________//
         -:  252:
@@ -294,18 +367,18 @@ _ZN5boost9unit_test13basic_cstringIKcEC2ImEEPS2_T_:
         -:  283:
         -:  284:template<typename CharT>
         -:  285:inline typename basic_cstring<CharT>::size_type
-        2:  286:basic_cstring<CharT>::size() const
+        4:  286:basic_cstring<CharT>::size() const
         -:  287:{
-        2:  288:    return static_cast<size_type>(m_end - m_begin);
+        4:  288:    return static_cast<size_type>(m_end - m_begin);
         -:  289:}
         -:  290:
         -:  291://____________________________________________________________________________//
         -:  292:
         -:  293:template<typename CharT>
         -:  294:inline bool
-        2:  295:basic_cstring<CharT>::is_empty() const
+        4:  295:basic_cstring<CharT>::is_empty() const
         -:  296:{
-        2:  297:    return m_end == m_begin;
+        4:  297:    return m_end == m_begin;
         -:  298:}
         -:  299:
         -:  300://____________________________________________________________________________//
@@ -353,31 +426,31 @@ _ZN5boost9unit_test13basic_cstringIKcEC2ImEEPS2_T_:
         -:  342:
         -:  343:template<typename CharT>
         -:  344:inline basic_cstring<CharT>&
-        1:  345:basic_cstring<CharT>::trim_left( iterator it )
+        2:  345:basic_cstring<CharT>::trim_left( iterator it )
         -:  346:{
-        1:  347:    m_begin = it;
-        1:  348:    if( m_end <= m_begin )
+        2:  347:    m_begin = it;
+        2:  348:    if( m_end <= m_begin )
     #####:  349:        clear();
         -:  350:
-        1:  351:    return *this;
+        2:  351:    return *this;
         -:  352:}
         -:  353:
         -:  354://____________________________________________________________________________//
         -:  355:
         -:  356:template<typename CharT>
         -:  357:inline basic_cstring<CharT>&
-        1:  358:basic_cstring<CharT>::trim_left( basic_cstring exclusions )
+        2:  358:basic_cstring<CharT>::trim_left( basic_cstring exclusions )
         -:  359:{
-        1:  360:    if( exclusions.is_empty() )
+        2:  360:    if( exclusions.is_empty() )
     #####:  361:        exclusions = default_trim_ex();
         -:  362:
         -:  363:    iterator it;
-       1*:  364:    for( it = begin(); it != end(); ++it ) {
-        1:  365:        if( traits_type::find( exclusions.begin(), exclusions.size(), *it ) == reinterpret_cast<pointer>(0) )
-        1:  366:            break;
+       2*:  364:    for( it = begin(); it != end(); ++it ) {
+        2:  365:        if( traits_type::find( exclusions.begin(), exclusions.size(), *it ) == reinterpret_cast<pointer>(0) )
+        2:  366:            break;
         -:  367:    }
         -:  368:
-        1:  369:    return trim_left( it );
+        2:  369:    return trim_left( it );
         -:  370:}
         -:  371:
         -:  372://____________________________________________________________________________//
@@ -397,44 +470,44 @@ _ZN5boost9unit_test13basic_cstringIKcEC2ImEEPS2_T_:
         -:  386:
         -:  387:template<typename CharT>
         -:  388:inline basic_cstring<CharT>&
-        1:  389:basic_cstring<CharT>::trim_right( iterator it )
+        2:  389:basic_cstring<CharT>::trim_right( iterator it )
         -:  390:{
-        1:  391:    m_end = it;
-        1:  392:    if( m_end <= m_begin )
+        2:  391:    m_end = it;
+        2:  392:    if( m_end <= m_begin )
     #####:  393:        clear();
         -:  394:
-        1:  395:    return *this;
+        2:  395:    return *this;
         -:  396:}
         -:  397:
         -:  398://____________________________________________________________________________//
         -:  399:
         -:  400:template<typename CharT>
         -:  401:inline basic_cstring<CharT>&
-        1:  402:basic_cstring<CharT>::trim_right( basic_cstring exclusions )
+        2:  402:basic_cstring<CharT>::trim_right( basic_cstring exclusions )
         -:  403:{
-        1:  404:    if( exclusions.is_empty() )
+        2:  404:    if( exclusions.is_empty() )
     #####:  405:        exclusions = default_trim_ex();
         -:  406:
         -:  407:    iterator it;
         -:  408:
-       1*:  409:    for( it = end()-1; it != begin()-1; --it ) {
-        1:  410:        if( self_type::traits_type::find( exclusions.begin(),  exclusions.size(), *it ) == reinterpret_cast<pointer>(0) )
-        1:  411:            break;
+       2*:  409:    for( it = end()-1; it != begin()-1; --it ) {
+        2:  410:        if( self_type::traits_type::find( exclusions.begin(),  exclusions.size(), *it ) == reinterpret_cast<pointer>(0) )
+        2:  411:            break;
         -:  412:    }
         -:  413:
-        1:  414:    return trim_right( it+1 );
+        2:  414:    return trim_right( it+1 );
         -:  415:}
         -:  416:
         -:  417://____________________________________________________________________________//
         -:  418:
         -:  419:template<typename CharT>
         -:  420:inline basic_cstring<CharT>&
-        1:  421:basic_cstring<CharT>::trim( basic_cstring exclusions )
+        2:  421:basic_cstring<CharT>::trim( basic_cstring exclusions )
         -:  422:{
-        1:  423:    trim_left( exclusions );
-        1:  424:    trim_right( exclusions );
+        2:  423:    trim_left( exclusions );
+        2:  424:    trim_right( exclusions );
         -:  425:
-        1:  426:    return *this;
+        2:  426:    return *this;
         -:  427:}
         -:  428:
         -:  429://____________________________________________________________________________//
@@ -515,9 +588,9 @@ _ZN5boost9unit_test13basic_cstringIKcEC2ImEEPS2_T_:
         -:  504:
         -:  505:template<typename CharT>
         -:  506:inline typename basic_cstring<CharT>::iterator
-        4:  507:basic_cstring<CharT>::begin()
+        8:  507:basic_cstring<CharT>::begin()
         -:  508:{
-        4:  509:    return m_begin;
+        8:  509:    return m_begin;
         -:  510:}
         -:  511:
         -:  512://____________________________________________________________________________//
@@ -533,9 +606,9 @@ _ZN5boost9unit_test13basic_cstringIKcEC2ImEEPS2_T_:
         -:  522:
         -:  523:template<typename CharT>
         -:  524:inline typename basic_cstring<CharT>::iterator
-        2:  525:basic_cstring<CharT>::end()
+        4:  525:basic_cstring<CharT>::end()
         -:  526:{
-        2:  527:    return m_end;
+        4:  527:    return m_end;
         -:  528:}
         -:  529:
         -:  530://____________________________________________________________________________//

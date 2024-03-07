@@ -1,7 +1,4 @@
         -:    0:Source:/usr/include/c++/11/bits/ptr_traits.h
-        -:    0:Graph:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcno
-        -:    0:Data:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcda
-        -:    0:Runs:1
         -:    1:// Pointer Traits -*- C++ -*-
         -:    2:
         -:    3:// Copyright (C) 2011-2021 Free Software Foundation, Inc.
@@ -150,16 +147,24 @@
         -:  146:       *  @return @c addressof(__r)
         -:  147:      */
         -:  148:      static _GLIBCXX20_CONSTEXPR pointer
-      134:  149:      pointer_to(__make_not_void<element_type>& __r) noexcept
-      134:  150:      { return std::addressof(__r); }
+   54937*:  149:      pointer_to(__make_not_void<element_type>& __r) noexcept
+   54937*:  150:      { return std::addressof(__r); }
 ------------------
 _ZNSt14pointer_traitsIPKcE10pointer_toERS0_:
-      111:  149:      pointer_to(__make_not_void<element_type>& __r) noexcept
-      111:  150:      { return std::addressof(__r); }
+    37094:  149:      pointer_to(__make_not_void<element_type>& __r) noexcept
+    37094:  150:      { return std::addressof(__r); }
 ------------------
 _ZNSt14pointer_traitsIPcE10pointer_toERc:
-       23:  149:      pointer_to(__make_not_void<element_type>& __r) noexcept
-       23:  150:      { return std::addressof(__r); }
+    17843:  149:      pointer_to(__make_not_void<element_type>& __r) noexcept
+    17843:  150:      { return std::addressof(__r); }
+------------------
+_ZNSt14pointer_traitsIPKcE10pointer_toERS0_:
+    #####:  149:      pointer_to(__make_not_void<element_type>& __r) noexcept
+    #####:  150:      { return std::addressof(__r); }
+------------------
+_ZNSt14pointer_traitsIPcE10pointer_toERc:
+    #####:  149:      pointer_to(__make_not_void<element_type>& __r) noexcept
+    #####:  150:      { return std::addressof(__r); }
 ------------------
         -:  151:    };
         -:  152:
@@ -169,10 +174,10 @@ _ZNSt14pointer_traitsIPcE10pointer_toERc:
         -:  156:
         -:  157:  template<typename _Tp>
         -:  158:    constexpr _Tp*
-        -:  159:    __to_address(_Tp* __ptr) noexcept
+       21:  159:    __to_address(_Tp* __ptr) noexcept
         -:  160:    {
         -:  161:      static_assert(!std::is_function<_Tp>::value, "not a function pointer");
-        -:  162:      return __ptr;
+       21:  162:      return __ptr;
         -:  163:    }
         -:  164:
         -:  165:#if __cplusplus <= 201703L

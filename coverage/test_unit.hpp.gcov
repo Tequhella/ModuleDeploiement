@@ -1,7 +1,4 @@
         -:    0:Source:/usr/include/boost/test/tree/test_unit.hpp
-        -:    0:Graph:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcno
-        -:    0:Data:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcda
-        -:    0:Runs:1
         -:    1://  (C) Copyright Gennadiy Rozental 2001.
         -:    2://  Distributed under the Boost Software License, Version 1.0.
         -:    3://  (See accompanying file LICENSE_1_0.txt or copy at
@@ -264,9 +261,9 @@
         -:  260:// ************************************************************************** //
         -:  261:
         -:  262:inline test_case*
-        4:  263:make_test_case( boost::function<void ()> const& test_func, const_string tc_name, const_string tc_file, std::size_t tc_line )
+      35*:  263:make_test_case( boost::function<void ()> const& test_func, const_string tc_name, const_string tc_file, std::size_t tc_line )
         -:  264:{
-        4:  265:    return new test_case( ut_detail::normalize_test_case_name( tc_name ), tc_file, tc_line, test_func );
+      35*:  265:    return new test_case( ut_detail::normalize_test_case_name( tc_name ), tc_file, tc_line, test_func );
         -:  266:}
         -:  267:
         -:  268://____________________________________________________________________________//

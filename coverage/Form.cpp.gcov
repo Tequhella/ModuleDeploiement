@@ -1,0 +1,277 @@
+        -:    0:Source:/home/tequhella/Documents/VScode/ModuleDeploiement/Form.cpp
+        -:    1:#include <regex>
+        -:    2:#include <map>
+        -:    3:#include <gtkmm-3.0/gtkmm.h>
+        -:    4:#include "Age.cpp"
+        -:    5:
+        -:    6:class Form {
+        -:    7:private:
+        -:    8:    std::string name;
+        -:    9:    std::string firstName;
+        -:   10:    std::string mail;
+        -:   11:    std::string birthday;
+        -:   12:    std::string city;
+        -:   13:    std::string zipCode;
+        -:   14:
+        -:   15:    std::map<std::string, std::string> errors;
+        -:   16:
+        -:   17:    std::unique_ptr<Gtk::Entry> entryNom;
+        -:   18:    std::unique_ptr<Gtk::Entry> entryPrenom;
+        -:   19:    std::unique_ptr<Gtk::Entry> entryMail;
+        -:   20:    std::unique_ptr<Gtk::Entry> entryDate;
+        -:   21:    std::unique_ptr<Gtk::Entry> entryCodePostal;
+        -:   22:    std::unique_ptr<Gtk::Entry> entryVille;
+        -:   23:
+        -:   24:public:
+       14:   25:    Form()
+       14:   26:    {
+       14:   27:        errors["email"] = "";
+       14:   28:        errors["name"] = "";
+       14:   29:        errors["firstName"] = "";
+       14:   30:        errors["birthday"] = "";
+       14:   31:        errors["zipCode"] = "";
+       14:   32:    }
+        -:   33:
+        4:   34:    void setName(const std::string& name)
+        -:   35:    {
+        4:   36:        this->name = name;
+        4:   37:        validateName(name);
+        4:   38:    }
+        -:   39:
+        4:   40:    void setFirstName(const std::string& firstName)
+        -:   41:    {
+        4:   42:        this->firstName = firstName;
+        4:   43:        validateFirstname(firstName);
+        4:   44:    }
+        -:   45:
+        4:   46:    void setMail(const std::string& mail)
+        -:   47:    {
+        4:   48:        this->mail = mail;
+        4:   49:        validateEmail(mail);
+        4:   50:    }
+        -:   51:
+        4:   52:    void setBirthday(const std::string& birthday)
+        -:   53:    {
+        4:   54:        this->birthday = birthday;
+        4:   55:        validateAge(birthday);
+        4:   56:    }
+        -:   57:
+        3:   58:    void setCity(const std::string& city)
+        -:   59:    {
+        3:   60:        this->city = city;
+        3:   61:    }
+        -:   62:
+        4:   63:    void setZipCode(const std::string& zipCode)
+        -:   64:    {
+        4:   65:        this->zipCode = zipCode;
+        4:   66:        validateZIP(zipCode);
+        4:   67:    }
+        -:   68:
+        4:   69:    void validateName(const std::string& name)
+        -:   70:    {
+        4:   71:        if (!std::regex_match(name, std::regex("^[a-zA-Z]+$")))
+        -:   72:        {
+        1:   73:            errors["name"] = "Invalid name";
+        -:   74:        } else
+        -:   75:        {
+        3:   76:            errors["name"] = "";
+        -:   77:        }
+        4:   78:    }
+        -:   79:
+        4:   80:    void validateFirstname(const std::string& firstName)
+        -:   81:    {
+        4:   82:        if (!std::regex_match(firstName, std::regex("^[a-zA-Z]+$")))
+        -:   83:        {
+        1:   84:            errors["firstName"] = "Invalid firstname";
+        -:   85:        } else
+        -:   86:        {
+        3:   87:            errors["firstName"] = "";
+        -:   88:        }
+        4:   89:    }
+        -:   90:
+        4:   91:    void validateEmail(const std::string& email)
+        -:   92:    {
+        4:   93:        if (!std::regex_match(email, std::regex("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")))
+        -:   94:        {
+        2:   95:            errors["email"] = "Invalid email";
+        -:   96:        } else
+        -:   97:        {
+        2:   98:            errors["email"] = "";
+        -:   99:        }
+        4:  100:    }
+        -:  101:
+        5:  102:    void validateAge(const std::string& birthday)
+        -:  103:    {
+        5:  104:        std::regex dateRegex("^(\\d{4})-(\\d{2})-(\\d{2})$");
+        5:  105:        std::smatch match;
+        5:  106:        if (!std::regex_match(birthday, match, dateRegex))
+        -:  107:        {
+        1:  108:            errors["birthday"] = "Invalid date";
+        -:  109:        } else
+        -:  110:        {
+        4:  111:            int year = std::stoi(match[1]);
+        4:  112:            int month = std::stoi(match[2]);
+        4:  113:            int day = std::stoi(match[3]);
+        4:  114:            Date birth = { year, month, day };
+        -:  115:            try 
+        -:  116:            {
+        4:  117:                Date::calculateAge(&birth);
+        3:  118:                errors["birthday"] = "";
+        1:  119:            } catch (std::invalid_argument& e)
+        -:  120:            {
+        1:  121:                errors["birthday"] = e.what();
+        1:  122:                throw e;
+        1:  123:            }
+        -:  124:        }
+        6:  125:    }
+        -:  126:
+        4:  127:    void validateZIP(const std::string& zipCode)
+        -:  128:    {
+        4:  129:        if (!std::regex_match(zipCode, std::regex("^\\d{5}$")))
+        -:  130:        {
+        1:  131:            errors["zipCode"] = "Invalid ZIP code";
+        -:  132:        } else
+        -:  133:        {
+        3:  134:            errors["zipCode"] = "";
+        -:  135:        }
+        4:  136:    }
+        -:  137:
+       11:  138:    std::map<std::string, std::string> getErrors()
+        -:  139:    {
+       11:  140:        return errors;
+        -:  141:    }
+        -:  142:
+        2:  143:    bool isValid()
+        -:  144:    {
+        8:  145:        for (auto& error : errors)
+        -:  146:        {
+        7:  147:            if (!error.second.empty())
+        -:  148:            {
+        1:  149:                return false;
+        -:  150:            }
+        -:  151:        }
+        1:  152:        return true;
+        -:  153:    }
+        -:  154:
+        -:  155:    bool isEmpty()
+        -:  156:    {
+        -:  157:        return entryNom->get_text().empty()        ||
+        -:  158:               entryPrenom->get_text().empty()     ||
+        -:  159:               entryMail->get_text().empty()       ||
+        -:  160:               entryDate->get_text().empty()       ||
+        -:  161:               entryCodePostal->get_text().empty() || 
+        -:  162:               entryVille->get_text().empty();
+        -:  163:    }
+        -:  164:
+        -:  165:    std::string getError(const std::string& key)
+        -:  166:    {
+        -:  167:        return errors[key];
+        -:  168:    }
+        -:  169:
+        -:  170:    void printErrors()
+        -:  171:    {
+        -:  172:        for (auto& error : errors)
+        -:  173:        {
+        -:  174:            if (!error.second.empty())
+        -:  175:            {
+        -:  176:                std::cout << error.second << std::endl;
+        -:  177:            }
+        -:  178:        }
+        -:  179:    }
+        -:  180:
+        -:  181:    void onButtonClicked()
+        -:  182:    {
+        -:  183:        if (isEmpty())
+        -:  184:        {
+        -:  185:            if (entryNom->get_text().empty())
+        -:  186:                errors["name"] = "Veuillez remplir le champ nom.";
+        -:  187:            if (entryPrenom->get_text().empty())
+        -:  188:                errors["firstName"] = "Veuillez remplir le champ prénom.";
+        -:  189:            if (entryMail->get_text().empty())
+        -:  190:                errors["email"] = "Veuillez remplir le champ mail.";
+        -:  191:            if (entryDate->get_text().empty())
+        -:  192:                errors["birthday"] = "Veuillez remplir le champ date de naissance.";
+        -:  193:            if (entryCodePostal->get_text().empty())
+        -:  194:                errors["zipCode"] = "Veuillez remplir le champ code postal.";
+        -:  195:            if (entryVille->get_text().empty())
+        -:  196:                errors["city"] = "Veuillez remplir le champ ville.";
+        -:  197:            
+        -:  198:            return;
+        -:  199:        }
+        -:  200:        setName(entryNom->get_text());
+        -:  201:        setFirstName(entryPrenom->get_text());
+        -:  202:        setMail(entryMail->get_text());
+        -:  203:        setBirthday(entryDate->get_text());
+        -:  204:        setZipCode(entryCodePostal->get_text());
+        -:  205:        setCity(entryVille->get_text());
+        -:  206:
+        -:  207:        printErrors();
+        -:  208:    }
+        -:  209:
+        -:  210:    void fenetre()
+        -:  211:    {
+        -:  212:        // Crée une application GTK.
+        -:  213:        Glib::RefPtr<Gtk::Application> app = Gtk::Application::create("org.gtkmm.example");
+        -:  214:
+        -:  215:        // Crée une nouvelle fenêtre et définit la taille par défaut de la fenêtre.
+        -:  216:        Gtk::Window window;
+        -:  217:        window.set_default_size(800, 800);
+        -:  218:
+        -:  219:        // Crée une nouvelle boîte vertical et ajoute la boîte à la fenêtre.
+        -:  220:        Gtk::Box box(Gtk::ORIENTATION_VERTICAL);
+        -:  221:        window.add(box);
+        -:  222:
+        -:  223:        // Crée un nouveau label avec le texte "Nom" et ajoute le label à la boîte.
+        -:  224:        Gtk::Label label("Nom");
+        -:  225:        box.pack_start(label);
+        -:  226:        // Crée une nouvelle entrée Nom et ajoute l'entrée à la boîte
+        -:  227:        box.pack_start(*entryNom);
+        -:  228:
+        -:  229:        // Crée un nouveau label avec le texte "Prénom" et ajoute le label à la boîte.
+        -:  230:        Gtk::Label label2("Prénom");
+        -:  231:        box.pack_start(label2);
+        -:  232:        // Crée une nouvelle entrée Prénom et ajoute l'entrée à la boîte
+        -:  233:        box.pack_start(*entryPrenom);
+        -:  234:
+        -:  235:        // Crée un nouveau label avec le texte "Mail" et ajoute le label à la boîte.
+        -:  236:        Gtk::Label label3("Mail");
+        -:  237:        box.pack_start(label3);
+        -:  238:        // Crée une nouvelle entrée Mail et ajoute l'entrée à la boîte
+        -:  239:        box.pack_start(*entryMail);
+        -:  240:
+        -:  241:        // Crée un nouveau label avec le texte "Date de naissance" et ajoute le label à la boîte.
+        -:  242:        Gtk::Label label4("Date de naissance");
+        -:  243:        box.pack_start(label4);
+        -:  244:        // Crée une nouvelle entrée Date de naissance et ajoute l'entrée à la boîte
+        -:  245:        box.pack_start(*entryDate);
+        -:  246:
+        -:  247:        // Crée un nouveau label avec le texte "Code postal" et ajoute le label à la boîte.
+        -:  248:        Gtk::Label label5("Code postal");
+        -:  249:        box.pack_start(label5);
+        -:  250:        // Crée une nouvelle entrée Code postal et ajoute l'entrée à la boîte
+        -:  251:        box.pack_start(*entryCodePostal);
+        -:  252:
+        -:  253:        // Crée un nouveau label avec le texte "Ville" et ajoute le label à la boîte.
+        -:  254:        Gtk::Label label6("Ville");
+        -:  255:        box.pack_start(label6);
+        -:  256:        // Crée une nouvelle entrée Ville et ajoute l'entrée à la boîte
+        -:  257:        box.pack_start(*entryVille);
+        -:  258:        
+        -:  259:        // Crée un nouveau bouton avec le texte "Valider".
+        -:  260:        // Connecte le signal "clicked" du bouton à la méthode "onButtonClicked".
+        -:  261:        // Ajoute le bouton à la boîte.
+        -:  262:        Gtk::Button button("Valider");
+        -:  263:        button.signal_clicked().connect(sigc::mem_fun(*this, &Form::onButtonClicked));
+        -:  264:        box.pack_start(button);
+        -:  265:
+        -:  266:        // Affiche tous les enfants de la fenêtre.
+        -:  267:        window.show_all_children();
+        -:  268:
+        -:  269:        // Exécute l'application.
+        -:  270:        app->run(window);
+        -:  271:    }
+        -:  272:
+        -:  273:
+        -:  274:
+        -:  275:    
+        -:  276:};

@@ -1,7 +1,4 @@
         -:    0:Source:/usr/include/boost/type_traits/integral_constant.hpp
-        -:    0:Graph:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcno
-        -:    0:Data:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcda
-        -:    0:Runs:1
         -:    1://  (C) Copyright John Maddock 2015. 
         -:    2://  Use, modification and distribution are subject to the 
         -:    3://  Boost Software License, Version 1.0. (See accompanying file 
@@ -81,11 +78,11 @@
         -:   77:      typedef integral_constant<bool, val> type;
         -:   78:      static const bool value = val;
         -:   79:
-        6:   80:      operator const mpl::bool_<val>& ()const
+      37*:   80:      operator const mpl::bool_<val>& ()const
         -:   81:      {
         -:   82:         static const char data[sizeof(long)] = { 0 };
         -:   83:         static const void* pdata = data;
-        6:   84:         return *(reinterpret_cast<const mpl::bool_<val>*>(pdata));
+      37*:   84:         return *(reinterpret_cast<const mpl::bool_<val>*>(pdata));
         -:   85:      }
         -:   86:      BOOST_CONSTEXPR operator bool()const { return val; }
         -:   87:   };

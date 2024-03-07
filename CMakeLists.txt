@@ -28,13 +28,13 @@ include_directories(${GTKMM_INCLUDE_DIRS})
 add_executable(MyApp main.cpp Age.cpp Form.cpp)
 
 # Add executable for your tests
-add_executable(MyTests test_Age.cpp)
+add_executable(MyTests test_Age.cpp test_Form.cpp)
 
 # Link gtkmm libraries to the main executable
 target_link_libraries(MyApp ${GTKMM_LIBRARIES})
 
 # Link Boost libraries to the test executable
-target_link_libraries(MyTests PRIVATE Boost::unit_test_framework)
+target_link_libraries(MyTests PRIVATE Boost::unit_test_framework ${GTKMM_LIBRARIES})
 
 # Add a custom target to run the tests
 add_custom_target(run_tests COMMAND MyTests)
@@ -53,9 +53,9 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fprofile-arcs -ftest-cove
 add_custom_target(coverage
     COMMAND ${CMAKE_MAKE_PROGRAM} run_tests
     COMMAND mkdir -p coverage
-    COMMAND gcov -o ${CMAKE_CURRENT_BINARY_DIR}/CMakeFiles/MyTests.dir/ test_Age.cpp.gcno
+    COMMAND gcov -o ${CMAKE_CURRENT_BINARY_DIR}/CMakeFiles/MyTests.dir/ test_Age.cpp.gcno test_Form.cpp.gcno
     COMMAND mv *.gcov coverage/
-    COMMAND gcovr -e test_Age.cpp
+    COMMAND gcovr -e test_Age.cpp -e test_Form.cpp -e main.cpp
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     #DEPENDS run_tests
 )

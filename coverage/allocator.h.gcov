@@ -1,7 +1,4 @@
         -:    0:Source:/usr/include/c++/11/bits/allocator.h
-        -:    0:Graph:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcno
-        -:    0:Data:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcda
-        -:    0:Runs:1
         -:    1:// Allocators -*- C++ -*-
         -:    2:
         -:    3:// Copyright (C) 2001-2021 Free Software Foundation, Inc.
@@ -157,11 +154,91 @@
         -:  153:      // _GLIBCXX_RESOLVE_LIB_DEFECTS
         -:  154:      // 3035. std::allocator's constructors should be constexpr
         -:  155:      _GLIBCXX20_CONSTEXPR
-        -:  156:      allocator() _GLIBCXX_NOTHROW { }
+     417*:  156:      allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaINSt8__detail6_StateIcEEEC2Ev:
+       21:  156:      allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaIlEC2Ev:
+       79:  156:      allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaISt4pairINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_EEC2Ev:
+    #####:  156:      allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaINSt7__cxx1112regex_traitsIcE10_RegexMaskEEC2Ev:
+       39:  156:      allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaISt4pairIccEEC2Ev:
+       39:  156:      allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaISt13_Rb_tree_nodeISt4pairIKllEEEC2Ev:
+       60:  156:      allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaISt4pairIlSt6vectorINSt7__cxx119sub_matchIN9__gnu_cxx17__normal_iteratorIPKcNS1_12basic_stringIcSt11char_traitsIcESaIcEEEEEEESaISD_EEEEC2Ev:
+    #####:  156:      allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaINSt8__detail9_StateSeqINSt7__cxx1112regex_traitsIcEEEEEC2Ev:
+       21:  156:      allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaISt4pairIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEiEEC2Ev:
+       21:  156:      allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaINSt8__detail4_NFAINSt7__cxx1112regex_traitsIcEEEEEC2Ev:
+       21:  156:      allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEC2Ev:
+       39:  156:      allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaINSt7__cxx119sub_matchIN9__gnu_cxx17__normal_iteratorIPKcNS_12basic_stringIcSt11char_traitsIcESaIcEEEEEEEEC2Ev:
+       42:  156:      allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaISt13_Rb_tree_nodeISt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_EEEC2Ev:
+       14:  156:      allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaImEC2Ev:
+       21:  156:      allocator() _GLIBCXX_NOTHROW { }
+------------------
         -:  157:
         -:  158:      _GLIBCXX20_CONSTEXPR
-        -:  159:      allocator(const allocator& __a) _GLIBCXX_NOTHROW
-        -:  160:      : __allocator_base<_Tp>(__a) { }
+     667*:  159:      allocator(const allocator& __a) _GLIBCXX_NOTHROW
+     667*:  160:      : __allocator_base<_Tp>(__a) { }
+------------------
+_ZNSaISt4pairINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_EEC2ERKS7_:
+    #####:  159:      allocator(const allocator& __a) _GLIBCXX_NOTHROW
+    #####:  160:      : __allocator_base<_Tp>(__a) { }
+------------------
+_ZNSaINSt7__cxx1112regex_traitsIcE10_RegexMaskEEC2ERKS3_:
+      159:  159:      allocator(const allocator& __a) _GLIBCXX_NOTHROW
+      159:  160:      : __allocator_base<_Tp>(__a) { }
+------------------
+_ZNSaISt4pairIccEEC2ERKS1_:
+      159:  159:      allocator(const allocator& __a) _GLIBCXX_NOTHROW
+      159:  160:      : __allocator_base<_Tp>(__a) { }
+------------------
+_ZNSaINSt8__detail4_NFAINSt7__cxx1112regex_traitsIcEEEEEC2ERKS5_:
+       63:  159:      allocator(const allocator& __a) _GLIBCXX_NOTHROW
+       63:  160:      : __allocator_base<_Tp>(__a) { }
+------------------
+_ZNSaISt4pairIlSt6vectorINSt7__cxx119sub_matchIN9__gnu_cxx17__normal_iteratorIPKcNS1_12basic_stringIcSt11char_traitsIcESaIcEEEEEEESaISD_EEEEC2ERKSH_:
+    #####:  159:      allocator(const allocator& __a) _GLIBCXX_NOTHROW
+    #####:  160:      : __allocator_base<_Tp>(__a) { }
+------------------
+_ZNSaISt4pairIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEiEEC2ERKSC_:
+       42:  159:      allocator(const allocator& __a) _GLIBCXX_NOTHROW
+       42:  160:      : __allocator_base<_Tp>(__a) { }
+------------------
+_ZNSaINSt7__cxx119sub_matchIN9__gnu_cxx17__normal_iteratorIPKcNS_12basic_stringIcSt11char_traitsIcESaIcEEEEEEEEC2ERKSC_:
+       63:  159:      allocator(const allocator& __a) _GLIBCXX_NOTHROW
+       63:  160:      : __allocator_base<_Tp>(__a) { }
+------------------
+_ZNSaINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEC2ERKS5_:
+      159:  159:      allocator(const allocator& __a) _GLIBCXX_NOTHROW
+      159:  160:      : __allocator_base<_Tp>(__a) { }
+------------------
+_ZNSaISt13_Rb_tree_nodeISt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_EEEC2ERKSA_:
+       22:  159:      allocator(const allocator& __a) _GLIBCXX_NOTHROW
+       22:  160:      : __allocator_base<_Tp>(__a) { }
+------------------
         -:  161:
         -:  162:#if __cplusplus >= 201103L
         -:  163:      // Avoid implicit deprecation.
@@ -170,12 +247,74 @@
         -:  166:
         -:  167:      template<typename _Tp1>
         -:  168:	_GLIBCXX20_CONSTEXPR
-        -:  169:	allocator(const allocator<_Tp1>&) _GLIBCXX_NOTHROW { }
+      242:  169:	allocator(const allocator<_Tp1>&) _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaIPlEC2IlEERKSaIT_E:
+      158:  169:	allocator(const allocator<_Tp1>&) _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaISt23_Sp_counted_ptr_inplaceINSt8__detail4_NFAINSt7__cxx1112regex_traitsIcEEEESaIS5_ELN9__gnu_cxx12_Lock_policyE2EEEC2IS5_EERKSaIT_E:
+       42:  169:	allocator(const allocator<_Tp1>&) _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaIPNSt8__detail9_StateSeqINSt7__cxx1112regex_traitsIcEEEEEC2IS4_EERKSaIT_E:
+       42:  169:	allocator(const allocator<_Tp1>&) _GLIBCXX_NOTHROW { }
+------------------
         -:  170:
         -:  171:#if __cpp_constexpr_dynamic_alloc
         -:  172:      constexpr
         -:  173:#endif
-        -:  174:      ~allocator() _GLIBCXX_NOTHROW { }
+    1326*:  174:      ~allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaISt4pairIlSt6vectorINSt7__cxx119sub_matchIN9__gnu_cxx17__normal_iteratorIPKcNS1_12basic_stringIcSt11char_traitsIcESaIcEEEEEEESaISD_EEEED2Ev:
+    #####:  174:      ~allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaImED2Ev:
+       21:  174:      ~allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaISt13_Rb_tree_nodeISt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_EEED2Ev:
+       36:  174:      ~allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaINSt7__cxx119sub_matchIN9__gnu_cxx17__normal_iteratorIPKcNS_12basic_stringIcSt11char_traitsIcESaIcEEEEEEEED2Ev:
+      105:  174:      ~allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEED2Ev:
+      198:  174:      ~allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaINSt8__detail4_NFAINSt7__cxx1112regex_traitsIcEEEEED2Ev:
+       84:  174:      ~allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaINSt8__detail9_StateSeqINSt7__cxx1112regex_traitsIcEEEEED2Ev:
+       21:  174:      ~allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaISt4pairIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEiEED2Ev:
+       63:  174:      ~allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaIPNSt8__detail9_StateSeqINSt7__cxx1112regex_traitsIcEEEEED2Ev:
+       42:  174:      ~allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaINSt8__detail6_StateIcEEED2Ev:
+       21:  174:      ~allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaISt23_Sp_counted_ptr_inplaceINSt8__detail4_NFAINSt7__cxx1112regex_traitsIcEEEESaIS5_ELN9__gnu_cxx12_Lock_policyE2EEED2Ev:
+       42:  174:      ~allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaISt13_Rb_tree_nodeISt4pairIKllEEED2Ev:
+       60:  174:      ~allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaISt4pairIccEED2Ev:
+      198:  174:      ~allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaINSt7__cxx1112regex_traitsIcE10_RegexMaskEED2Ev:
+      198:  174:      ~allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaISt4pairINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_EED2Ev:
+    #####:  174:      ~allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaIlED2Ev:
+       79:  174:      ~allocator() _GLIBCXX_NOTHROW { }
+------------------
+_ZNSaIPlED2Ev:
+      158:  174:      ~allocator() _GLIBCXX_NOTHROW { }
+------------------
         -:  175:
         -:  176:#if __cplusplus > 201703L
         -:  177:      [[nodiscard,__gnu__::__always_inline__]]
@@ -183,10 +322,10 @@
         -:  179:      allocate(size_t __n)
         -:  180:      {
         -:  181:#ifdef __cpp_lib_is_constant_evaluated
-      273:  182:	if (std::is_constant_evaluated())
+   17862*:  182:	if (std::is_constant_evaluated())
     #####:  183:	  return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
         -:  184:#endif
-      273:  185:	return __allocator_base<_Tp>::allocate(__n, 0);
+   17862*:  185:	return __allocator_base<_Tp>::allocate(__n, 0);
         -:  186:      }
         -:  187:
         -:  188:      [[__gnu__::__always_inline__]]
@@ -194,19 +333,32 @@
         -:  190:      deallocate(_Tp* __p, size_t __n)
         -:  191:      {
         -:  192:#ifdef __cpp_lib_is_constant_evaluated
-       27:  193:	if (std::is_constant_evaluated())
+   17334*:  193:	if (std::is_constant_evaluated())
         -:  194:	  {
     #####:  195:	    ::operator delete(__p);
     #####:  196:	    return;
         -:  197:	  }
         -:  198:#endif
-       27:  199:	__allocator_base<_Tp>::deallocate(__p, __n);
+   17334*:  199:	__allocator_base<_Tp>::deallocate(__p, __n);
         -:  200:      }
         -:  201:#endif // C++20
         -:  202:
         -:  203:      friend _GLIBCXX20_CONSTEXPR bool
     #####:  204:      operator==(const allocator&, const allocator&) _GLIBCXX_NOTHROW
     #####:  205:      { return true; }
+------------------
+_ZSteqRKSaIcES1_:
+    #####:  204:      operator==(const allocator&, const allocator&) _GLIBCXX_NOTHROW
+    #####:  205:      { return true; }
+------------------
+_ZSteqRKSaINSt7__cxx119sub_matchIN9__gnu_cxx17__normal_iteratorIPKcNS_12basic_stringIcSt11char_traitsIcESaIcEEEEEEEESE_:
+    #####:  204:      operator==(const allocator&, const allocator&) _GLIBCXX_NOTHROW
+    #####:  205:      { return true; }
+------------------
+_ZSteqRKSaIcES1_:
+    #####:  204:      operator==(const allocator&, const allocator&) _GLIBCXX_NOTHROW
+    #####:  205:      { return true; }
+------------------
         -:  206:
         -:  207:#if __cpp_impl_three_way_comparison < 201907L
         -:  208:      friend _GLIBCXX20_CONSTEXPR bool

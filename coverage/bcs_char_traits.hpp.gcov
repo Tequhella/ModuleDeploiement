@@ -1,7 +1,4 @@
         -:    0:Source:/usr/include/boost/test/utils/basic_cstring/bcs_char_traits.hpp
-        -:    0:Graph:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcno
-        -:    0:Data:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcda
-        -:    0:Runs:1
         -:    1://  (C) Copyright Gennadiy Rozental 2001.
         -:    2://  Distributed under the Boost Software License, Version 1.0.
         -:    3://  (See accompanying file LICENSE_1_0.txt or copy at
@@ -61,10 +58,23 @@
         -:   57:#else
         -:   58:    typedef typename boost::add_const<CharT>::type const_char;
         -:   59:#endif
-      517:   60:    static bool eq( CharT c1, CharT c2 )
+    3386*:   60:    static bool eq( CharT c1, CharT c2 )
         -:   61:    {
-      517:   62:        return c1 == c2;
+    3386*:   62:        return c1 == c2;
         -:   63:    }
+------------------
+_ZN5boost9unit_test9ut_detail20bcs_char_traits_implIKcE2eqEcc:
+     3386:   60:    static bool eq( CharT c1, CharT c2 )
+        -:   61:    {
+     3386:   62:        return c1 == c2;
+        -:   63:    }
+------------------
+_ZN5boost9unit_test9ut_detail20bcs_char_traits_implIKcE2eqEcc:
+    #####:   60:    static bool eq( CharT c1, CharT c2 )
+        -:   61:    {
+    #####:   62:        return c1 == c2;
+        -:   63:    }
+------------------
         -:   64:    static bool lt( CharT c1, CharT c2 )
         -:   65:    {
         -:   66:        return c1 < c2;
@@ -83,27 +93,52 @@
         -:   79:        return 0;
         -:   80:    }
         -:   81:
-       13:   82:    static std::size_t length( const_char* cstr )
+      84*:   82:    static std::size_t length( const_char* cstr )
         -:   83:    {
-       13:   84:        const_char null_char = CharT();
+      84*:   84:        const_char null_char = CharT();
         -:   85:
-       13:   86:        const_char* ptr = cstr;
-      515:   87:        while( !eq( *ptr, null_char ) )
-      502:   88:            ++ptr;
+      84*:   86:        const_char* ptr = cstr;
+    3382*:   87:        while( !eq( *ptr, null_char ) )
+    3298*:   88:            ++ptr;
         -:   89:
-       13:   90:        return ptr - cstr;
+      84*:   90:        return ptr - cstr;
         -:   91:    }
+------------------
+_ZN5boost9unit_test9ut_detail20bcs_char_traits_implIKcE6lengthEPS3_:
+       84:   82:    static std::size_t length( const_char* cstr )
+        -:   83:    {
+       84:   84:        const_char null_char = CharT();
+        -:   85:
+       84:   86:        const_char* ptr = cstr;
+     3382:   87:        while( !eq( *ptr, null_char ) )
+     3298:   88:            ++ptr;
+        -:   89:
+       84:   90:        return ptr - cstr;
+        -:   91:    }
+------------------
+_ZN5boost9unit_test9ut_detail20bcs_char_traits_implIKcE6lengthEPS3_:
+    #####:   82:    static std::size_t length( const_char* cstr )
+        -:   83:    {
+    #####:   84:        const_char null_char = CharT();
+        -:   85:
+    #####:   86:        const_char* ptr = cstr;
+    #####:   87:        while( !eq( *ptr, null_char ) )
+    #####:   88:            ++ptr;
+        -:   89:
+    #####:   90:        return ptr - cstr;
+        -:   91:    }
+------------------
         -:   92:
-        2:   93:    static const_char* find( const_char* s, std::size_t n, CharT c )
+        4:   93:    static const_char* find( const_char* s, std::size_t n, CharT c )
         -:   94:    {
-        4:   95:        while( n > 0 ) {
-        2:   96:            if( eq( *s, c ) )
+        8:   95:        while( n > 0 ) {
+        4:   96:            if( eq( *s, c ) )
     #####:   97:                return s;
         -:   98:
-        2:   99:            ++s;
-        2:  100:            --n;
+        4:   99:            ++s;
+        4:  100:            --n;
         -:  101:        }
-        2:  102:        return 0;
+        4:  102:        return 0;
         -:  103:    }
         -:  104:};
         -:  105:

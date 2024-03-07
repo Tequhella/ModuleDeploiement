@@ -1,7 +1,4 @@
         -:    0:Source:/usr/include/boost/test/unit_test_log.hpp
-        -:    0:Graph:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcno
-        -:    0:Data:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcda
-        -:    0:Runs:1
         -:    1://  (C) Copyright Gennadiy Rozental 2001.
         -:    2://  Distributed under the Boost Software License, Version 1.0.
         -:    3://  (See accompanying file LICENSE_1_0.txt or copy at
@@ -47,10 +44,10 @@
         -:   43:namespace log {
         -:   44:
         -:   45:struct BOOST_TEST_DECL begin {
-        3:   46:    begin( const_string fn, std::size_t ln )
-        3:   47:    : m_file_name( fn )
-        3:   48:    , m_line_num( ln )
-        3:   49:    {}
+        6:   46:    begin( const_string fn, std::size_t ln )
+        6:   47:    : m_file_name( fn )
+        6:   48:    , m_line_num( ln )
+        6:   49:    {}
         -:   50:
         -:   51:    const_string m_file_name;
         -:   52:    std::size_t m_line_num;

@@ -1,7 +1,4 @@
         -:    0:Source:/usr/include/boost/test/tools/detail/fwd.hpp
-        -:    0:Graph:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcno
-        -:    0:Data:/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/test_Age.cpp.gcda
-        -:    0:Runs:1
         -:    1://  (C) Copyright Gennadiy Rozental 2001.
         -:    2://  Distributed under the Boost Software License, Version 1.0.
         -:    3://  (See accompanying file LICENSE_1_0.txt or copy at
@@ -46,7 +43,14 @@
         -:   42:
         -:   43:namespace tt_detail {
         -:   44:
-       12:   45:inline bool dummy_cond() { return false; }
+      53*:   45:inline bool dummy_cond() { return false; }
+------------------
+_ZN5boost10test_tools9tt_detail10dummy_condEv:
+       53:   45:inline bool dummy_cond() { return false; }
+------------------
+_ZN5boost10test_tools9tt_detail10dummy_condEv:
+    #####:   45:inline bool dummy_cond() { return false; }
+------------------
         -:   46:
         -:   47:// ************************************************************************** //
         -:   48:// **************        types of supported assertions         ************** //

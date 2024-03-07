@@ -264,6 +264,30 @@ test_Age.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyTests.dir/build.make CMakeFiles/MyTests.dir/test_Age.cpp.s
 .PHONY : test_Age.cpp.s
 
+test_Form.o: test_Form.cpp.o
+.PHONY : test_Form.o
+
+# target to build an object file
+test_Form.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyTests.dir/build.make CMakeFiles/MyTests.dir/test_Form.cpp.o
+.PHONY : test_Form.cpp.o
+
+test_Form.i: test_Form.cpp.i
+.PHONY : test_Form.i
+
+# target to preprocess a source file
+test_Form.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyTests.dir/build.make CMakeFiles/MyTests.dir/test_Form.cpp.i
+.PHONY : test_Form.cpp.i
+
+test_Form.s: test_Form.cpp.s
+.PHONY : test_Form.s
+
+# target to generate assembly for a file
+test_Form.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyTests.dir/build.make CMakeFiles/MyTests.dir/test_Form.cpp.s
+.PHONY : test_Form.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -288,6 +312,9 @@ help:
 	@echo "... test_Age.o"
 	@echo "... test_Age.i"
 	@echo "... test_Age.s"
+	@echo "... test_Form.o"
+	@echo "... test_Form.i"
+	@echo "... test_Form.s"
 .PHONY : help
 
 

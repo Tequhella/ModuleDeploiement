@@ -1,0 +1,116 @@
+        -:    0:Source:/usr/include/boost/test/tree/observer.hpp
+        -:    1://  (C) Copyright Gennadiy Rozental 2001.
+        -:    2://  Distributed under the Boost Software License, Version 1.0.
+        -:    3://  (See accompanying file LICENSE_1_0.txt or copy at
+        -:    4://  http://www.boost.org/LICENSE_1_0.txt)
+        -:    5:
+        -:    6://  See http://www.boost.org/libs/test for the library home page.
+        -:    7://
+        -:    8://!@file
+        -:    9://!@brief defines abstract interface for test observer
+        -:   10:// ***************************************************************************
+        -:   11:
+        -:   12:#ifndef BOOST_TEST_TEST_OBSERVER_HPP_021005GER
+        -:   13:#define BOOST_TEST_TEST_OBSERVER_HPP_021005GER
+        -:   14:
+        -:   15:// Boost.Test
+        -:   16:#include <boost/test/detail/fwd_decl.hpp>
+        -:   17:#include <boost/test/detail/global_typedef.hpp>
+        -:   18:#include <boost/test/detail/config.hpp>
+        -:   19:
+        -:   20:#include <boost/test/detail/suppress_warnings.hpp>
+        -:   21:
+        -:   22://____________________________________________________________________________//
+        -:   23:
+        -:   24:namespace boost {
+        -:   25:namespace unit_test {
+        -:   26:
+        -:   27:// ************************************************************************** //
+        -:   28:// **************                 test_observer                ************** //
+        -:   29:// ************************************************************************** //
+        -:   30:
+        -:   31:/// @brief Generic test observer interface
+        -:   32:///
+        -:   33:/// This interface is used by observers in order to receive notifications from the
+        -:   34:/// Boost.Test framework on the current execution state.
+        -:   35:///
+        -:   36:/// Several observers can be running at the same time, and it is not unusual to
+        -:   37:/// have interactions among them. The @ref test_observer::priority member function allows the specification
+        -:   38:/// of a particular order among them (lowest priority executed first, except specified otherwise).
+        -:   39:///
+        -:   40:class BOOST_TEST_DECL test_observer {
+        -:   41:public:
+        -:   42:
+        -:   43:    //! Called before the framework starts executing the test cases
+        -:   44:    //!
+        -:   45:    //! @param[in] number_of_test_cases indicates the number of test cases. Only active
+        -:   46:    //! test cases are taken into account.
+        -:   47:    //! @param[in] root_test_unit_id the ID root of the test tree currently being tested
+        -:   48:    virtual void    test_start( counter_t /* number_of_test_cases */, test_unit_id /* root_test_unit_id */ ) {}
+        -:   49:
+        -:   50:    //! Called after the framework ends executing the test cases
+        -:   51:    //!
+        -:   52:    //! @note The call is made with a reversed priority order.
+        -:   53:    virtual void    test_finish() {}
+        -:   54:
+        -:   55:    //! Called when a critical error is detected
+        -:   56:    //!
+        -:   57:    //! The critical errors are mainly the signals sent by the system and caught by the Boost.Test framework.
+        -:   58:    //! Since the running binary may be in incoherent/instable state, the test execution is aborted and all remaining
+        -:   59:    //! tests are discarded.
+        -:   60:    //!
+        -:   61:    //! @note may be called before test_observer::test_unit_finish()
+    #####:   62:    virtual void    test_aborted() {}
+        -:   63:
+        -:   64:    //! Called before the framework starts executing a test unit
+        -:   65:    //!
+        -:   66:    //! @param[in] test_unit the test being executed
+       22:   67:    virtual void    test_unit_start( test_unit const& /* test */) {}
+        -:   68:
+        -:   69:    //! Called at each end of a test unit.
+        -:   70:    //!
+        -:   71:    //! @param elapsed duration of the test unit in microseconds.
+       22:   72:    virtual void    test_unit_finish( test_unit const& /* test */, unsigned long /* elapsed */ ) {}
+    #####:   73:    virtual void    test_unit_skipped( test_unit const& tu, const_string ) { test_unit_skipped( tu ); }
+    #####:   74:    virtual void    test_unit_skipped( test_unit const& ) {} ///< backward compatibility
+        -:   75:
+        -:   76:    //! Called when the test timed out
+        -:   77:    //!
+        -:   78:    //! This function is called to signal that a test unit (case or suite) timed out.
+        -:   79:    //! A valid test unit is available through boost::unit_test::framework::current_test_unit
+    #####:   80:    virtual void    test_unit_timed_out( test_unit const& ) {}
+        -:   81:
+        -:   82:    //! Called when a test unit indicates a fatal error.
+        -:   83:    //!
+        -:   84:    //! A fatal error happens when
+        -:   85:    //! - a strong assertion (with @c REQUIRE) fails, which indicates that the test case cannot continue
+        -:   86:    //! - an unexpected exception is caught by the Boost.Test framework
+    #####:   87:    virtual void    test_unit_aborted( test_unit const& ) {}
+        -:   88:
+       23:   89:    virtual void    assertion_result( unit_test::assertion_result /* ar */ )
+        -:   90:    {
+       23:   91:    }
+        -:   92:
+        -:   93:    //! Called when an exception is intercepted
+        -:   94:    //!
+        -:   95:    //! In case an exception is intercepted, this call happens before the call
+        -:   96:    //! to @ref test_unit_aborted in order to log
+        -:   97:    //! additional data about the exception.
+    #####:   98:    virtual void    exception_caught( execution_exception const& ) {}
+        -:   99:
+        -:  100:    //! The priority indicates the order at which this observer is initialized
+        -:  101:    //! and tore down in the UTF framework. The order is lowest to highest priority.
+        -:  102:    virtual int     priority() { return 0; }
+        -:  103:
+        -:  104:protected:
+        -:  105:
+        -:  106:    BOOST_TEST_PROTECTED_VIRTUAL ~test_observer() {}
+        -:  107:};
+        -:  108:
+        -:  109:} // namespace unit_test
+        -:  110:} // namespace boost
+        -:  111:
+        -:  112:#include <boost/test/detail/enable_warnings.hpp>
+        -:  113:
+        -:  114:#endif // BOOST_TEST_TEST_OBSERVER_HPP_021005GER
+        -:  115:

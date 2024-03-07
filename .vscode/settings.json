@@ -81,5 +81,6 @@
         "-DCMAKE_EXPORT_LINK_COMMANDS=ON"
     ],
     "unittestbot.testsGeneration.verboseFormatting": true,
-    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+    "sarif-viewer.connectToGithubCodeScanning": "off"
 }
