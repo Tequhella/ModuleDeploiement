@@ -1,6 +1,0 @@
-/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyApp.dir
-/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir
-/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/run_tests.dir
-/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/coverage.dir
-/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/edit_cache.dir
-/home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/rebuild_cache.dir
