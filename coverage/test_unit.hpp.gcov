@@ -261,9 +261,9 @@
         -:  260:// ************************************************************************** //
         -:  261:
         -:  262:inline test_case*
-      35*:  263:make_test_case( boost::function<void ()> const& test_func, const_string tc_name, const_string tc_file, std::size_t tc_line )
+      21*:  263:make_test_case( boost::function<void ()> const& test_func, const_string tc_name, const_string tc_file, std::size_t tc_line )
         -:  264:{
-      35*:  265:    return new test_case( ut_detail::normalize_test_case_name( tc_name ), tc_file, tc_line, test_func );
+      21*:  265:    return new test_case( ut_detail::normalize_test_case_name( tc_name ), tc_file, tc_line, test_func );
         -:  266:}
         -:  267:
         -:  268://____________________________________________________________________________//

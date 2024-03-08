@@ -25,7 +25,7 @@ endif()
 include_directories(${GTKMM_INCLUDE_DIRS})
 
 # Add executable for your main code
-add_executable(MyApp main.cpp Age.cpp Form.cpp)
+add_executable(MyApp main.cpp Age.cpp Form.cpp FormUI.cpp)
 
 # Add executable for your tests
 add_executable(MyTests test_Age.cpp test_Form.cpp)
@@ -55,7 +55,7 @@ add_custom_target(coverage
     COMMAND mkdir -p coverage
     COMMAND gcov -o ${CMAKE_CURRENT_BINARY_DIR}/CMakeFiles/MyTests.dir/ test_Age.cpp.gcno test_Form.cpp.gcno
     COMMAND mv *.gcov coverage/
-    COMMAND gcovr -e test_Age.cpp -e test_Form.cpp -e main.cpp
+    COMMAND gcovr -e test_Age.cpp -e test_Form.cpp -e FormUI.cpp -e main.cpp
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     #DEPENDS run_tests
 )

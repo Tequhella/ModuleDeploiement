@@ -60,9 +60,9 @@
         -:   59:// ************************************************************************** //
         -:   60:
         -:   61:int BOOST_TEST_CALL_DECL
-        2:   62:main( int argc, char* argv[] )
+        1:   62:main( int argc, char* argv[] )
         -:   63:{
-        2:   64:    return ::boost::unit_test::unit_test_main( &init_unit_test, argc, argv );
+        1:   64:    return ::boost::unit_test::unit_test_main( &init_unit_test, argc, argv );
         -:   65:}
         -:   66:
         -:   67://____________________________________________________________________________//

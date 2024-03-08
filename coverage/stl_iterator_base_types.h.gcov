@@ -236,44 +236,48 @@
         -:  235:  template<typename _Iter>
         -:  236:    inline _GLIBCXX_CONSTEXPR
         -:  237:    typename iterator_traits<_Iter>::iterator_category
-   64912*:  238:    __iterator_category(const _Iter&)
-   64912*:  239:    { return typename iterator_traits<_Iter>::iterator_category(); }
+   62185*:  238:    __iterator_category(const _Iter&)
+   62185*:  239:    { return typename iterator_traits<_Iter>::iterator_category(); }
 ------------------
 _ZSt19__iterator_categoryIPKcENSt15iterator_traitsIT_E17iterator_categoryERKS3_:
-    33140:  238:    __iterator_category(const _Iter&)
-    33140:  239:    { return typename iterator_traits<_Iter>::iterator_category(); }
+    23033:  238:    __iterator_category(const _Iter&)
+    23033:  239:    { return typename iterator_traits<_Iter>::iterator_category(); }
 ------------------
 _ZSt19__iterator_categoryIN9__gnu_cxx17__normal_iteratorIPcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEENSt15iterator_traitsIT_E17iterator_categoryERKSB_:
     #####:  238:    __iterator_category(const _Iter&)
     #####:  239:    { return typename iterator_traits<_Iter>::iterator_category(); }
 ------------------
 _ZSt19__iterator_categoryIN9__gnu_cxx17__normal_iteratorIPKcSt6vectorIcSaIcEEEEENSt15iterator_traitsIT_E17iterator_categoryERKS9_:
-    13056:  238:    __iterator_category(const _Iter&)
-    13056:  239:    { return typename iterator_traits<_Iter>::iterator_category(); }
+    16128:  238:    __iterator_category(const _Iter&)
+    16128:  239:    { return typename iterator_traits<_Iter>::iterator_category(); }
 ------------------
 _ZSt19__iterator_categoryIN9__gnu_cxx17__normal_iteratorIPKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt6vectorIS7_SaIS7_EEEEENSt15iterator_traitsIT_E17iterator_categoryERKSF_:
-     9294:  238:    __iterator_category(const _Iter&)
-     9294:  239:    { return typename iterator_traits<_Iter>::iterator_category(); }
+    11433:  238:    __iterator_category(const _Iter&)
+    11433:  239:    { return typename iterator_traits<_Iter>::iterator_category(); }
 ------------------
 _ZSt19__iterator_categoryIPNSt7__cxx119sub_matchIN9__gnu_cxx17__normal_iteratorIPKcNS0_12basic_stringIcSt11char_traitsIcESaIcEEEEEEEENSt15iterator_traitsIT_E17iterator_categoryERKSF_:
-        6:  238:    __iterator_category(const _Iter&)
-        6:  239:    { return typename iterator_traits<_Iter>::iterator_category(); }
+        7:  238:    __iterator_category(const _Iter&)
+        7:  239:    { return typename iterator_traits<_Iter>::iterator_category(); }
 ------------------
 _ZSt19__iterator_categoryIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEENSt15iterator_traitsIT_E17iterator_categoryERKSC_:
-       12:  238:    __iterator_category(const _Iter&)
-       12:  239:    { return typename iterator_traits<_Iter>::iterator_category(); }
+       15:  238:    __iterator_category(const _Iter&)
+       15:  239:    { return typename iterator_traits<_Iter>::iterator_category(); }
 ------------------
 _ZSt19__iterator_categoryIPbENSt15iterator_traitsIT_E17iterator_categoryERKS2_:
     #####:  238:    __iterator_category(const _Iter&)
     #####:  239:    { return typename iterator_traits<_Iter>::iterator_category(); }
+------------------
+_ZSt19__iterator_categoryIPKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEENSt15iterator_traitsIT_E17iterator_categoryERKS9_:
+        2:  238:    __iterator_category(const _Iter&)
+        2:  239:    { return typename iterator_traits<_Iter>::iterator_category(); }
 ------------------
 _ZSt19__iterator_categoryIPKcENSt15iterator_traitsIT_E17iterator_categoryERKS3_:
     #####:  238:    __iterator_category(const _Iter&)
     #####:  239:    { return typename iterator_traits<_Iter>::iterator_category(); }
 ------------------
 _ZSt19__iterator_categoryIPcENSt15iterator_traitsIT_E17iterator_categoryERKS2_:
-     9404:  238:    __iterator_category(const _Iter&)
-     9404:  239:    { return typename iterator_traits<_Iter>::iterator_category(); }
+    11567:  238:    __iterator_category(const _Iter&)
+    11567:  239:    { return typename iterator_traits<_Iter>::iterator_category(); }
 ------------------
         -:  240:
         -:  241:  ///@}

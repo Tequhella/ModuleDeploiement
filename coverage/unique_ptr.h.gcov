@@ -77,14 +77,14 @@
         -:   76:
         -:   77:      /// Calls `delete __ptr`
         -:   78:      void
-    #####:   79:      operator()(_Tp* __ptr) const
+        -:   79:      operator()(_Tp* __ptr) const
         -:   80:      {
         -:   81:	static_assert(!is_void<_Tp>::value,
         -:   82:		      "can't delete pointer to incomplete type");
         -:   83:	static_assert(sizeof(_Tp)>0,
         -:   84:		      "can't delete pointer to incomplete type");
-    #####:   85:	delete __ptr;
-    #####:   86:      }
+        -:   85:	delete __ptr;
+        -:   86:      }
         -:   87:    };
         -:   88:
         -:   89:  // _GLIBCXX_RESOLVE_LIB_DEFECTS
@@ -152,7 +152,7 @@
         -:  151:		     "unique_ptr's deleter type must be a function object type"
         -:  152:		     " or an lvalue reference type" );
         -:  153:
-       84:  154:      __uniq_ptr_impl() = default;
+        -:  154:      __uniq_ptr_impl() = default;
     #####:  155:      __uniq_ptr_impl(pointer __p) : _M_t() { _M_ptr() = __p; }
         -:  156:
         -:  157:      template<typename _Del>
@@ -170,23 +170,9 @@
         -:  169:	return *this;
         -:  170:      }
         -:  171:
-      84*:  172:      pointer&   _M_ptr() { return std::get<0>(_M_t); }
-------------------
-_ZNSt15__uniq_ptr_implIbSt14default_deleteIA_bEE6_M_ptrEv:
     #####:  172:      pointer&   _M_ptr() { return std::get<0>(_M_t); }
-------------------
-_ZNSt15__uniq_ptr_implIN3Gtk5EntryESt14default_deleteIS1_EE6_M_ptrEv:
-       84:  172:      pointer&   _M_ptr() { return std::get<0>(_M_t); }
-------------------
     #####:  173:      pointer    _M_ptr() const { return std::get<0>(_M_t); }
     #####:  174:      _Dp&       _M_deleter() { return std::get<1>(_M_t); }
-------------------
-_ZNSt15__uniq_ptr_implIbSt14default_deleteIA_bEE10_M_deleterEv:
-    #####:  174:      _Dp&       _M_deleter() { return std::get<1>(_M_t); }
-------------------
-_ZNSt15__uniq_ptr_implIN3Gtk5EntryESt14default_deleteIS1_EE10_M_deleterEv:
-    #####:  174:      _Dp&       _M_deleter() { return std::get<1>(_M_t); }
-------------------
         -:  175:      const _Dp& _M_deleter() const { return std::get<1>(_M_t); }
         -:  176:
         -:  177:      void reset(pointer __p) noexcept
@@ -281,9 +267,9 @@ _ZNSt15__uniq_ptr_implIN3Gtk5EntryESt14default_deleteIS1_EE10_M_deleterEv:
         -:  266:
         -:  267:      /// Default constructor, creates a unique_ptr that owns nothing.
         -:  268:      template<typename _Del = _Dp, typename = _DeleterConstraint<_Del>>
-       84:  269:	constexpr unique_ptr() noexcept
-       84:  270:	: _M_t()
-       84:  271:	{ }
+        -:  269:	constexpr unique_ptr() noexcept
+        -:  270:	: _M_t()
+        -:  271:	{ }
         -:  272:
         -:  273:      /** Takes ownership of a pointer.
         -:  274:       *
@@ -367,15 +353,15 @@ _ZNSt15__uniq_ptr_implIN3Gtk5EntryESt14default_deleteIS1_EE10_M_deleterEv:
         -:  352:#endif
         -:  353:
         -:  354:      /// Destructor, invokes the deleter if the stored pointer is not null.
-       84:  355:      ~unique_ptr() noexcept
+        -:  355:      ~unique_ptr() noexcept
         -:  356:      {
         -:  357:	static_assert(__is_invocable<deleter_type&, pointer>::value,
         -:  358:		      "unique_ptr's deleter must be invocable with a pointer");
-       84:  359:	auto& __ptr = _M_t._M_ptr();
-       84:  360:	if (__ptr != nullptr)
-    #####:  361:	  get_deleter()(std::move(__ptr));
-       84:  362:	__ptr = pointer();
-       84:  363:      }
+        -:  359:	auto& __ptr = _M_t._M_ptr();
+        -:  360:	if (__ptr != nullptr)
+        -:  361:	  get_deleter()(std::move(__ptr));
+        -:  362:	__ptr = pointer();
+        -:  363:      }
         -:  364:
         -:  365:      // Assignment.
         -:  366:
@@ -438,8 +424,8 @@ _ZNSt15__uniq_ptr_implIN3Gtk5EntryESt14default_deleteIS1_EE10_M_deleterEv:
         -:  423:
         -:  424:      /// Return a reference to the stored deleter.
         -:  425:      deleter_type&
-    #####:  426:      get_deleter() noexcept
-    #####:  427:      { return _M_t._M_deleter(); }
+        -:  426:      get_deleter() noexcept
+        -:  427:      { return _M_t._M_deleter(); }
         -:  428:
         -:  429:      /// Return a reference to the stored deleter.
         -:  430:      const deleter_type&

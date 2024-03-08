@@ -150,16 +150,16 @@
         -:  149:  // For use in string and vstring.
         -:  150:  template<typename _Type>
         -:  151:    inline bool
-    9646*:  152:    __is_null_pointer(_Type* __ptr)
-    9646*:  153:    { return __ptr == 0; }
+   11734*:  152:    __is_null_pointer(_Type* __ptr)
+   11734*:  153:    { return __ptr == 0; }
 ------------------
 _ZN9__gnu_cxx17__is_null_pointerIKcEEbPT_:
-      242:  152:    __is_null_pointer(_Type* __ptr)
-      242:  153:    { return __ptr == 0; }
+      167:  152:    __is_null_pointer(_Type* __ptr)
+      167:  153:    { return __ptr == 0; }
 ------------------
 _ZN9__gnu_cxx17__is_null_pointerIcEEbPT_:
-     9404:  152:    __is_null_pointer(_Type* __ptr)
-     9404:  153:    { return __ptr == 0; }
+    11567:  152:    __is_null_pointer(_Type* __ptr)
+    11567:  153:    { return __ptr == 0; }
 ------------------
 _ZN9__gnu_cxx17__is_null_pointerIKcEEbPT_:
     #####:  152:    __is_null_pointer(_Type* __ptr)
@@ -168,16 +168,16 @@ _ZN9__gnu_cxx17__is_null_pointerIKcEEbPT_:
         -:  154:
         -:  155:  template<typename _Type>
         -:  156:    inline bool
-      12*:  157:    __is_null_pointer(_Type)
-      12*:  158:    { return false; }
+      15*:  157:    __is_null_pointer(_Type)
+      15*:  158:    { return false; }
 ------------------
 _ZN9__gnu_cxx17__is_null_pointerINS_17__normal_iteratorIPcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEEEbT_:
     #####:  157:    __is_null_pointer(_Type)
     #####:  158:    { return false; }
 ------------------
 _ZN9__gnu_cxx17__is_null_pointerINS_17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEEEbT_:
-       12:  157:    __is_null_pointer(_Type)
-       12:  158:    { return false; }
+       15:  157:    __is_null_pointer(_Type)
+       15:  158:    { return false; }
 ------------------
         -:  159:
         -:  160:#if __cplusplus >= 201103L

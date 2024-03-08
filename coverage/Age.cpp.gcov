@@ -13,10 +13,10 @@
         -:   12:
         -:   13:    bool isObjectValid;
         -:   14:
-      42*:   15:    Date(int year, int month, int day) : year(year), month(month), day(day), isObjectValid(true) {}
+      24*:   15:    Date(int year, int month, int day) : year(year), month(month), day(day), isObjectValid(true) {}
 ------------------
 _ZN4DateC2Eiii:
-       42:   15:    Date(int year, int month, int day) : year(year), month(month), day(day), isObjectValid(true) {}
+       24:   15:    Date(int year, int month, int day) : year(year), month(month), day(day), isObjectValid(true) {}
 ------------------
 _ZN4DateC2Eiii:
     #####:   15:    Date(int year, int month, int day) : year(year), month(month), day(day), isObjectValid(true) {}
@@ -28,38 +28,38 @@ _ZN4DateC2Eiii:
         -:   20:     * @param birth The date of birth of the person.
         -:   21:     * @return int The age of the person.
         -:   22:     */
-      25*:   23:    static int calculateAge(Date* birth)
+      14*:   23:    static int calculateAge(Date* birth)
         -:   24:    {
-      25*:   25:        if (!birth) 
+      14*:   25:        if (!birth) 
         -:   26:        {
-       2*:   27:            throw std::invalid_argument("Aucun argument envoyé");
+       1*:   27:            throw std::invalid_argument("Aucun argument envoyé");
         -:   28:        }
         -:   29:
-      23*:   30:        if (!birth->isObjectValid)
+      13*:   30:        if (!birth->isObjectValid)
         -:   31:        {
-       2*:   32:            throw std::invalid_argument("Mauvais objet envoyé");
+       1*:   32:            throw std::invalid_argument("Mauvais objet envoyé");
         -:   33:        }
         -:   34:
         -:   35:        // Obtenir la date actuelle
-      21*:   36:        std::time_t t = std::time(nullptr);
-      21*:   37:        std::tm* now = std::localtime(&t);
-      21*:   38:        Date current = { now->tm_year + 1900, now->tm_mon + 1, now->tm_mday };
+      12*:   36:        std::time_t t = std::time(nullptr);
+      12*:   37:        std::tm* now = std::localtime(&t);
+      12*:   38:        Date current = { now->tm_year + 1900, now->tm_mon + 1, now->tm_mday };
         -:   39:
         -:   40:        // La date envoyée est fausse
-      21*:   41:        if (birth->year > current.year ||
-      17*:   42:            (birth->year == current.year && birth->month > current.month) ||
-      17*:   43:            (birth->year == current.year && birth->month == current.month && birth->day > current.day))
+      12*:   41:        if (birth->year > current.year ||
+      10*:   42:            (birth->year == current.year && birth->month > current.month) ||
+      10*:   43:            (birth->year == current.year && birth->month == current.month && birth->day > current.day))
         -:   44:        {
-       4*:   45:            throw std::invalid_argument("La date envoyée est fausse");
+       2*:   45:            throw std::invalid_argument("La date envoyée est fausse");
         -:   46:        }
         -:   47:
         -:   48:        // Calculer l'âge
-      17*:   49:        int age = current.year - birth->year;
-      17*:   50:        if (current.month < birth->month || (current.month == birth->month && current.day < birth->day)) 
+      10*:   49:        int age = current.year - birth->year;
+      10*:   50:        if (current.month < birth->month || (current.month == birth->month && current.day < birth->day)) 
         -:   51:        {
-       2*:   52:            age--;
+       1*:   52:            age--;
         -:   53:        }
         -:   54:
-      17*:   55:        return age;
+      10*:   55:        return age;
         -:   56:    }
         -:   57:};

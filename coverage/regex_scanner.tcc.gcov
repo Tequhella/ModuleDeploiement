@@ -54,34 +54,34 @@
         -:   53:namespace __detail
         -:   54:{
         -:   55:  template<typename _CharT>
-       21:   56:    _Scanner<_CharT>::
+       26:   56:    _Scanner<_CharT>::
         -:   57:    _Scanner(const _CharT* __begin, const _CharT* __end,
         -:   58:	     _FlagT __flags, std::locale __loc)
         -:   59:    : _ScannerBase(__flags),
-       21:   60:      _M_current(__begin), _M_end(__end),
-       21:   61:      _M_ctype(std::use_facet<_CtypeT>(__loc)),
-      21*:   62:      _M_eat_escape(_M_is_ecma()
+       26:   60:      _M_current(__begin), _M_end(__end),
+       26:   61:      _M_ctype(std::use_facet<_CtypeT>(__loc)),
+      26*:   62:      _M_eat_escape(_M_is_ecma()
         -:   63:		    ? &_Scanner::_M_eat_escape_ecma
-       42:   64:		    : &_Scanner::_M_eat_escape_posix)
-       21:   65:    { _M_advance(); }
+       52:   64:		    : &_Scanner::_M_eat_escape_posix)
+       26:   65:    { _M_advance(); }
         -:   66:
         -:   67:  template<typename _CharT>
         -:   68:    void
-      340:   69:    _Scanner<_CharT>::
+      419:   69:    _Scanner<_CharT>::
         -:   70:    _M_advance()
         -:   71:    {
-      340:   72:      if (_M_current == _M_end)
+      419:   72:      if (_M_current == _M_end)
         -:   73:	{
-       42:   74:	  _M_token = _S_token_eof;
-       42:   75:	  return;
+       52:   74:	  _M_token = _S_token_eof;
+       52:   75:	  return;
         -:   76:	}
         -:   77:
-      298:   78:      if (_M_state == _S_state_normal)
-      168:   79:	_M_scan_normal();
-      130:   80:      else if (_M_state == _S_state_in_bracket)
-       92:   81:	_M_scan_in_bracket();
-       38:   82:      else if (_M_state == _S_state_in_brace)
-       38:   83:	_M_scan_in_brace();
+      367:   78:      if (_M_state == _S_state_normal)
+      206:   79:	_M_scan_normal();
+      161:   80:      else if (_M_state == _S_state_in_bracket)
+      115:   81:	_M_scan_in_bracket();
+       46:   82:      else if (_M_state == _S_state_in_brace)
+       46:   83:	_M_scan_in_brace();
         -:   84:      else
         -:   85:	{
         -:   86:	  __glibcxx_assert(false);
@@ -93,37 +93,37 @@
         -:   92:  // 2) "(?:", "(?=", "(?!" in ECMAScript.
         -:   93:  template<typename _CharT>
         -:   94:    void
-      168:   95:    _Scanner<_CharT>::
+      206:   95:    _Scanner<_CharT>::
         -:   96:    _M_scan_normal()
         -:   97:    {
-      168:   98:      auto __c = *_M_current++;
+      206:   98:      auto __c = *_M_current++;
         -:   99:
-      168:  100:      if (std::strchr(_M_spec_char, _M_ctype.narrow(__c, ' ')) == nullptr)
+      206:  100:      if (std::strchr(_M_spec_char, _M_ctype.narrow(__c, ' ')) == nullptr)
         -:  101:	{
-       14:  102:	  _M_token = _S_token_ord_char;
-       14:  103:	  _M_value.assign(1, __c);
-       14:  104:	  return;
+       17:  102:	  _M_token = _S_token_ord_char;
+       17:  103:	  _M_value.assign(1, __c);
+       17:  104:	  return;
         -:  105:	}
-      154:  106:      if (__c == '\\')
+      189:  106:      if (__c == '\\')
         -:  107:	{
-       23:  108:	  if (_M_current == _M_end)
+       28:  108:	  if (_M_current == _M_end)
     #####:  109:	    __throw_regex_error(
         -:  110:	      regex_constants::error_escape,
         -:  111:	      "Unexpected end of regex when escaping.");
         -:  112:
-       23:  113:	  if (!_M_is_basic()
-      23*:  114:	      || (*_M_current != '('
+       28:  113:	  if (!_M_is_basic()
+      28*:  114:	      || (*_M_current != '('
     #####:  115:		  && *_M_current != ')'
     #####:  116:		  && *_M_current != '{'))
         -:  117:	    {
-      23*:  118:	      (this->*_M_eat_escape)();
-       23:  119:	      return;
+      28*:  118:	      (this->*_M_eat_escape)();
+       28:  119:	      return;
         -:  120:	    }
     #####:  121:	  __c = *_M_current++;
         -:  122:	}
-      131:  123:      if (__c == '(')
+      161:  123:      if (__c == '(')
         -:  124:	{
-      15*:  125:	  if (_M_is_ecma() && *_M_current == '?')
+      18*:  125:	  if (_M_is_ecma() && *_M_current == '?')
         -:  126:	    {
     #####:  127:	      if (++_M_current == _M_end)
     #####:  128:		__throw_regex_error(
@@ -152,31 +152,31 @@
         -:  151:		  regex_constants::error_paren,
         -:  152:		  "Invalid special open parenthesis.");
         -:  153:	    }
-       15:  154:	  else if (_M_flags & regex_constants::nosubs)
+       18:  154:	  else if (_M_flags & regex_constants::nosubs)
     #####:  155:	    _M_token = _S_token_subexpr_no_group_begin;
         -:  156:	  else
-       15:  157:	    _M_token = _S_token_subexpr_begin;
+       18:  157:	    _M_token = _S_token_subexpr_begin;
         -:  158:	}
-      116:  159:      else if (__c == ')')
-       15:  160:	_M_token = _S_token_subexpr_end;
-      101:  161:      else if (__c == '[')
+      143:  159:      else if (__c == ')')
+       18:  160:	_M_token = _S_token_subexpr_end;
+      125:  161:      else if (__c == '[')
         -:  162:	{
-       20:  163:	  _M_state = _S_state_in_bracket;
-       20:  164:	  _M_at_bracket_start = true;
-       20:  165:	  if (_M_current != _M_end && *_M_current == '^')
+       25:  163:	  _M_state = _S_state_in_bracket;
+       25:  164:	  _M_at_bracket_start = true;
+       25:  165:	  if (_M_current != _M_end && *_M_current == '^')
         -:  166:	    {
-       12:  167:	      _M_token = _S_token_bracket_neg_begin;
-       12:  168:	      ++_M_current;
+       15:  167:	      _M_token = _S_token_bracket_neg_begin;
+       15:  168:	      ++_M_current;
         -:  169:	    }
         -:  170:	  else
-        8:  171:	    _M_token = _S_token_bracket_begin;
+       10:  171:	    _M_token = _S_token_bracket_begin;
         -:  172:	}
-       81:  173:      else if (__c == '{')
+      100:  173:      else if (__c == '{')
         -:  174:	{
-       19:  175:	  _M_state = _S_state_in_brace;
-       19:  176:	  _M_token = _S_token_interval_begin;
+       23:  175:	  _M_state = _S_state_in_brace;
+       23:  176:	  _M_token = _S_token_interval_begin;
         -:  177:	}
-       62:  178:      else if (__builtin_expect(__c == _CharT(0), false))
+       77:  178:      else if (__builtin_expect(__c == _CharT(0), false))
         -:  179:	{
     #####:  180:	  if (!_M_is_ecma())
         -:  181:	    {
@@ -186,15 +186,15 @@
     #####:  185:	  _M_token = _S_token_ord_char;
     #####:  186:	  _M_value.assign(1, __c);
         -:  187:	}
-       62:  188:      else if (__c != ']' && __c != '}')
+       77:  188:      else if (__c != ']' && __c != '}')
         -:  189:	{
-       62:  190:	  auto __it = _M_token_tbl;
-       62:  191:	  auto __narrowc = _M_ctype.narrow(__c, '\0');
-      163:  192:	  for (; __it->first != '\0'; ++__it)
-      163:  193:	    if (__it->first == __narrowc)
+       77:  190:	  auto __it = _M_token_tbl;
+       77:  191:	  auto __narrowc = _M_ctype.narrow(__c, '\0');
+      203:  192:	  for (; __it->first != '\0'; ++__it)
+      203:  193:	    if (__it->first == __narrowc)
         -:  194:	      {
-       62:  195:		_M_token = __it->second;
-       62:  196:		return;
+       77:  195:		_M_token = __it->second;
+       77:  196:		return;
         -:  197:	      }
         -:  198:	  __glibcxx_assert(false);
     #####:  199:	}
@@ -210,19 +210,19 @@
         -:  209:  // 2) Escaping in bracket expr.
         -:  210:  template<typename _CharT>
         -:  211:    void
-       92:  212:    _Scanner<_CharT>::
+      115:  212:    _Scanner<_CharT>::
         -:  213:    _M_scan_in_bracket()
         -:  214:    {
-       92:  215:      if (_M_current == _M_end)
+      115:  215:      if (_M_current == _M_end)
     #####:  216:	__throw_regex_error(
         -:  217:	  regex_constants::error_brack,
         -:  218:	  "Unexpected end of regex when in bracket expression.");
         -:  219:
-       92:  220:      auto __c = *_M_current++;
+      115:  220:      auto __c = *_M_current++;
         -:  221:
-       92:  222:      if (__c == '-')
-       16:  223:	_M_token = _S_token_bracket_dash;
-       76:  224:      else if (__c == '[')
+      115:  222:      if (__c == '-')
+       20:  223:	_M_token = _S_token_bracket_dash;
+       95:  224:      else if (__c == '[')
         -:  225:	{
     #####:  226:	  if (_M_current == _M_end)
     #####:  227:	    __throw_regex_error(regex_constants::error_brack,
@@ -252,48 +252,48 @@
         -:  251:      // In POSIX, when encountering "[]" or "[^]", the ']' is interpreted
         -:  252:      // literally. So "[]]" and "[^]]" are valid regexes. See the testcases
         -:  253:      // `*/empty_range.cc`.
-      76*:  254:      else if (__c == ']' && (_M_is_ecma() || !_M_at_bracket_start))
+      95*:  254:      else if (__c == ']' && (_M_is_ecma() || !_M_at_bracket_start))
         -:  255:	{
-       20:  256:	  _M_token = _S_token_bracket_end;
-       20:  257:	  _M_state = _S_state_normal;
+       25:  256:	  _M_token = _S_token_bracket_end;
+       25:  257:	  _M_state = _S_state_normal;
         -:  258:	}
         -:  259:      // ECMAScript and awk permits escaping in bracket.
-      56*:  260:      else if (__c == '\\' && (_M_is_ecma() || _M_is_awk()))
-      12*:  261:	(this->*_M_eat_escape)();
+      70*:  260:      else if (__c == '\\' && (_M_is_ecma() || _M_is_awk()))
+      15*:  261:	(this->*_M_eat_escape)();
         -:  262:      else
         -:  263:	{
-       44:  264:	  _M_token = _S_token_ord_char;
-       44:  265:	  _M_value.assign(1, __c);
+       55:  264:	  _M_token = _S_token_ord_char;
+       55:  265:	  _M_value.assign(1, __c);
         -:  266:	}
-       92:  267:      _M_at_bracket_start = false;
-       92:  268:    }
+      115:  267:      _M_at_bracket_start = false;
+      115:  268:    }
         -:  269:
         -:  270:  // Differences between styles:
         -:  271:  // 1) "\}" in basic style.
         -:  272:  template<typename _CharT>
         -:  273:    void
-       38:  274:    _Scanner<_CharT>::
+       46:  274:    _Scanner<_CharT>::
         -:  275:    _M_scan_in_brace()
         -:  276:    {
-       38:  277:      if (_M_current == _M_end)
+       46:  277:      if (_M_current == _M_end)
     #####:  278:	__throw_regex_error(
         -:  279:	  regex_constants::error_brace,
         -:  280:	  "Unexpected end of regex when in brace expression.");
         -:  281:
-       38:  282:      auto __c = *_M_current++;
+       46:  282:      auto __c = *_M_current++;
         -:  283:
-       38:  284:      if (_M_ctype.is(_CtypeT::digit, __c))
+       46:  284:      if (_M_ctype.is(_CtypeT::digit, __c))
         -:  285:	{
-       19:  286:	  _M_token = _S_token_dup_count;
-       19:  287:	  _M_value.assign(1, __c);
-       19:  288:	  while (_M_current != _M_end
-      19*:  289:		 && _M_ctype.is(_CtypeT::digit, *_M_current))
+       23:  286:	  _M_token = _S_token_dup_count;
+       23:  287:	  _M_value.assign(1, __c);
+       23:  288:	  while (_M_current != _M_end
+      23*:  289:		 && _M_ctype.is(_CtypeT::digit, *_M_current))
     #####:  290:	    _M_value += *_M_current++;
         -:  291:	}
-       19:  292:      else if (__c == ',')
+       23:  292:      else if (__c == ',')
     #####:  293:	_M_token = _S_token_comma;
         -:  294:      // basic use \}.
-       19:  295:      else if (_M_is_basic())
+       23:  295:      else if (_M_is_basic())
         -:  296:	{
     #####:  297:	  if (__c == '\\' && _M_current != _M_end && *_M_current == '}')
         -:  298:	    {
@@ -305,55 +305,55 @@
     #####:  304:	    __throw_regex_error(regex_constants::error_badbrace,
         -:  305:				"Unexpected character in brace expression.");
         -:  306:	}
-       19:  307:      else if (__c == '}')
+       23:  307:      else if (__c == '}')
         -:  308:	{
-       19:  309:	  _M_state = _S_state_normal;
-       19:  310:	  _M_token = _S_token_interval_end;
+       23:  309:	  _M_state = _S_state_normal;
+       23:  310:	  _M_token = _S_token_interval_end;
         -:  311:	}
         -:  312:      else
     #####:  313:	__throw_regex_error(regex_constants::error_badbrace,
         -:  314:			    "Unexpected character in brace expression.");
-       38:  315:    }
+       46:  315:    }
         -:  316:
         -:  317:  template<typename _CharT>
         -:  318:    void
-       35:  319:    _Scanner<_CharT>::
+       43:  319:    _Scanner<_CharT>::
         -:  320:    _M_eat_escape_ecma()
         -:  321:    {
-       35:  322:      if (_M_current == _M_end)
+       43:  322:      if (_M_current == _M_end)
     #####:  323:	__throw_regex_error(regex_constants::error_escape,
         -:  324:			    "Unexpected end of regex when escaping.");
         -:  325:
-       35:  326:      auto __c = *_M_current++;
-       35:  327:      auto __pos = _M_find_escape(_M_ctype.narrow(__c, '\0'));
+       43:  326:      auto __c = *_M_current++;
+       43:  327:      auto __pos = _M_find_escape(_M_ctype.narrow(__c, '\0'));
         -:  328:
-      35*:  329:      if (__pos != nullptr && (__c != 'b' || _M_state == _S_state_in_bracket))
+      43*:  329:      if (__pos != nullptr && (__c != 'b' || _M_state == _S_state_in_bracket))
         -:  330:	{
     #####:  331:	  _M_token = _S_token_ord_char;
     #####:  332:	  _M_value.assign(1, *__pos);
         -:  333:	}
-       35:  334:      else if (__c == 'b')
+       43:  334:      else if (__c == 'b')
         -:  335:	{
     #####:  336:	  _M_token = _S_token_word_bound;
     #####:  337:	  _M_value.assign(1, 'p');
         -:  338:	}
-       35:  339:      else if (__c == 'B')
+       43:  339:      else if (__c == 'B')
         -:  340:	{
     #####:  341:	  _M_token = _S_token_word_bound;
     #####:  342:	  _M_value.assign(1, 'n');
         -:  343:	}
         -:  344:      // N3376 28.13
-       35:  345:      else if (__c == 'd'
-       16:  346:	       || __c == 'D'
-       16:  347:	       || __c == 's'
-        4:  348:	       || __c == 'S'
-        4:  349:	       || __c == 'w'
-        4:  350:	       || __c == 'W')
+       43:  345:      else if (__c == 'd'
+       20:  346:	       || __c == 'D'
+       20:  347:	       || __c == 's'
+        5:  348:	       || __c == 'S'
+        5:  349:	       || __c == 'w'
+        5:  350:	       || __c == 'W')
         -:  351:	{
-       31:  352:	  _M_token = _S_token_quoted_class;
-       31:  353:	  _M_value.assign(1, __c);
+       38:  352:	  _M_token = _S_token_quoted_class;
+       38:  353:	  _M_value.assign(1, __c);
         -:  354:	}
-        4:  355:      else if (__c == 'c')
+        5:  355:      else if (__c == 'c')
         -:  356:	{
     #####:  357:	  if (_M_current == _M_end)
     #####:  358:	    __throw_regex_error(
@@ -362,7 +362,7 @@
     #####:  361:	  _M_token = _S_token_ord_char;
     #####:  362:	  _M_value.assign(1, *_M_current++);
         -:  363:	}
-        4:  364:      else if (__c == 'x' || __c == 'u')
+        5:  364:      else if (__c == 'x' || __c == 'u')
         -:  365:	{
     #####:  366:	  _M_value.erase();
     #####:  367:	  for (int __i = 0; __i < (__c == 'x' ? 2 : 4); __i++)
@@ -377,7 +377,7 @@
     #####:  376:	  _M_token = _S_token_hex_num;
     #####:  377:	}
         -:  378:      // ECMAScript recognizes multi-digit back-references.
-        4:  379:      else if (_M_ctype.is(_CtypeT::digit, __c))
+        5:  379:      else if (_M_ctype.is(_CtypeT::digit, __c))
         -:  380:	{
     #####:  381:	  _M_value.assign(1, __c);
     #####:  382:	  while (_M_current != _M_end
@@ -387,10 +387,10 @@
         -:  386:	}
         -:  387:      else
         -:  388:	{
-        4:  389:	  _M_token = _S_token_ord_char;
-        4:  390:	  _M_value.assign(1, __c);
+        5:  389:	  _M_token = _S_token_ord_char;
+        5:  390:	  _M_value.assign(1, __c);
         -:  391:	}
-       35:  392:    }
+       43:  392:    }
         -:  393:
         -:  394:  // Differences between styles:
         -:  395:  // 1) Extended doesn't support backref, but basic does.

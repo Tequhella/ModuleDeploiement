@@ -176,57 +176,57 @@
         -:  175:
         -:  176:  template<typename _TraitsT>
         -:  177:    void
-       21:  178:    _NFA<_TraitsT>::_M_eliminate_dummy()
+       26:  178:    _NFA<_TraitsT>::_M_eliminate_dummy()
         -:  179:    {
-      367:  180:      for (auto& __it : *this)
+      450:  180:      for (auto& __it : *this)
         -:  181:	{
-      435:  182:	  while (__it._M_next >= 0 && (*this)[__it._M_next]._M_opcode()
+      532:  182:	  while (__it._M_next >= 0 && (*this)[__it._M_next]._M_opcode()
         -:  183:		 == _S_opcode_dummy)
-       89:  184:	    __it._M_next = (*this)[__it._M_next]._M_next;
-      346:  185:	  if (__it._M_has_alt())
-      20*:  186:	    while (__it._M_alt >= 0 && (*this)[__it._M_alt]._M_opcode()
+      108:  184:	    __it._M_next = (*this)[__it._M_next]._M_next;
+      424:  185:	  if (__it._M_has_alt())
+      25*:  186:	    while (__it._M_alt >= 0 && (*this)[__it._M_alt]._M_opcode()
         -:  187:		   == _S_opcode_dummy)
     #####:  188:	      __it._M_alt = (*this)[__it._M_alt]._M_next;
         -:  189:	}
-       21:  190:    }
+       26:  190:    }
         -:  191:
         -:  192:  // Just apply DFS on the sequence and re-link their links.
         -:  193:  template<typename _TraitsT>
         -:  194:    _StateSeq<_TraitsT>
-       60:  195:    _StateSeq<_TraitsT>::_M_clone()
+       73:  195:    _StateSeq<_TraitsT>::_M_clone()
         -:  196:    {
-       60:  197:      std::map<_StateIdT, _StateIdT> __m;
-       60:  198:      std::stack<_StateIdT> __stack;
-       60:  199:      __stack.push(_M_start);
-     180*:  200:      while (!__stack.empty())
+       73:  197:      std::map<_StateIdT, _StateIdT> __m;
+       73:  198:      std::stack<_StateIdT> __stack;
+       73:  199:      __stack.push(_M_start);
+     219*:  200:      while (!__stack.empty())
         -:  201:	{
-       60:  202:	  auto __u = __stack.top();
-       60:  203:	  __stack.pop();
-       60:  204:	  auto __dup = _M_nfa[__u];
+       73:  202:	  auto __u = __stack.top();
+       73:  203:	  __stack.pop();
+       73:  204:	  auto __dup = _M_nfa[__u];
         -:  205:	  // _M_insert_state() never return -1
-       60:  206:	  auto __id = _M_nfa._M_insert_state(std::move(__dup));
-       60:  207:	  __m[__u] = __id;
-       60:  208:	  if (__dup._M_has_alt())
+       73:  206:	  auto __id = _M_nfa._M_insert_state(std::move(__dup));
+       73:  207:	  __m[__u] = __id;
+       73:  208:	  if (__dup._M_has_alt())
     #####:  209:	    if (__dup._M_alt != _S_invalid_state_id
     #####:  210:		&& __m.count(__dup._M_alt) == 0)
     #####:  211:	      __stack.push(__dup._M_alt);
-       60:  212:	  if (__u == _M_end)
-       60:  213:	    continue;
+       73:  212:	  if (__u == _M_end)
+       73:  213:	    continue;
     #####:  214:	  if (__dup._M_next != _S_invalid_state_id
     #####:  215:	      && __m.count(__dup._M_next) == 0)
     #####:  216:	    __stack.push(__dup._M_next);
         -:  217:	}
-      120:  218:      for (auto __it : __m)
+      146:  218:      for (auto __it : __m)
         -:  219:	{
-       60:  220:	  auto __v = __it.second;
-       60:  221:	  auto& __ref = _M_nfa[__v];
-       60:  222:	  if (__ref._M_next != _S_invalid_state_id)
+       73:  220:	  auto __v = __it.second;
+       73:  221:	  auto& __ref = _M_nfa[__v];
+       73:  222:	  if (__ref._M_next != _S_invalid_state_id)
     #####:  223:	    __ref._M_next = __m.find(__ref._M_next)->second;
-      60*:  224:	  if (__ref._M_has_alt() && __ref._M_alt != _S_invalid_state_id)
+      73*:  224:	  if (__ref._M_has_alt() && __ref._M_alt != _S_invalid_state_id)
     #####:  225:	    __ref._M_alt = __m.find(__ref._M_alt)->second;
         -:  226:	}
-      120:  227:      return _StateSeq(_M_nfa, __m[_M_start], __m[_M_end]);
-       60:  228:    }
+      146:  227:      return _StateSeq(_M_nfa, __m[_M_start], __m[_M_end]);
+       73:  228:    }
         -:  229:} // namespace __detail
         -:  230:
         -:  231:_GLIBCXX_END_NAMESPACE_VERSION

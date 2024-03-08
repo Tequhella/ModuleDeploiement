@@ -96,9 +96,9 @@
         -:   95:#endif
         -:   96:
         -:   97:    template <bool has_setup = false>
-       22:   98:    struct call_setup          { template <class U> void operator()(U& ) { }                };
+       21:   98:    struct call_setup          { template <class U> void operator()(U& ) { }                };
 ------------------
-_ZN5boost9unit_test12impl_fixture10call_setupILb0EEclIN9FormTests22TestAgeInvalidArgumentEEEvRT_:
+_ZN5boost9unit_test12impl_fixture10call_setupILb0EEclIN9FormTests14TestSetZipCodeEEEvRT_:
         1:   98:    struct call_setup          { template <class U> void operator()(U& ) { }                };
 ------------------
 _ZN5boost9unit_test12impl_fixture10call_setupILb0EEclIN9FormTests11TestSetNameEEEvRT_:
@@ -125,13 +125,13 @@ _ZN5boost9unit_test12impl_fixture10call_setupILb0EEclIN9FormTests15TestSetBirthd
 _ZN5boost9unit_test12impl_fixture10call_setupILb0EEclIN9FormTests20TestSetWrongBirthdayEEEvRT_:
         1:   98:    struct call_setup          { template <class U> void operator()(U& ) { }                };
 ------------------
-_ZN5boost9unit_test12impl_fixture10call_setupILb0EEclIN18AdditionalAgeTests26TestCalculateAgeFutureDateEEEvRT_:
-        2:   98:    struct call_setup          { template <class U> void operator()(U& ) { }                };
+_ZN5boost9unit_test12impl_fixture10call_setupILb0EEclIN9FormTests22TestAgeInvalidArgumentEEEvRT_:
+        1:   98:    struct call_setup          { template <class U> void operator()(U& ) { }                };
 ------------------
 _ZN5boost9unit_test12impl_fixture10call_setupILb0EEclIN9FormTests11TestSetCityEEEvRT_:
         1:   98:    struct call_setup          { template <class U> void operator()(U& ) { }                };
 ------------------
-_ZN5boost9unit_test12impl_fixture10call_setupILb0EEclIN9FormTests14TestSetZipCodeEEEvRT_:
+_ZN5boost9unit_test12impl_fixture10call_setupILb0EEclIN18AdditionalAgeTests26TestCalculateAgeFutureDateEEEvRT_:
         1:   98:    struct call_setup          { template <class U> void operator()(U& ) { }                };
 ------------------
 _ZN5boost9unit_test12impl_fixture10call_setupILb0EEclIN9FormTests19TestSetWrongZipCodeEEEvRT_:
@@ -143,23 +143,32 @@ _ZN5boost9unit_test12impl_fixture10call_setupILb0EEclIN9FormTests11TestIsValidEE
 _ZN5boost9unit_test12impl_fixture10call_setupILb0EEclIN9FormTests14TestIsNotValidEEEvRT_:
         1:   98:    struct call_setup          { template <class U> void operator()(U& ) { }                };
 ------------------
+_ZN5boost9unit_test12impl_fixture10call_setupILb0EEclIN9FormTests11TestIsEmptyEEEvRT_:
+        1:   98:    struct call_setup          { template <class U> void operator()(U& ) { }                };
+------------------
+_ZN5boost9unit_test12impl_fixture10call_setupILb0EEclIN9FormTests14TestIsNotEmptyEEEvRT_:
+        1:   98:    struct call_setup          { template <class U> void operator()(U& ) { }                };
+------------------
+_ZN5boost9unit_test12impl_fixture10call_setupILb0EEclIN9FormTests15TestPrintErrorsEEEvRT_:
+        1:   98:    struct call_setup          { template <class U> void operator()(U& ) { }                };
+------------------
 _ZN5boost9unit_test12impl_fixture10call_setupILb0EEclIN8AgeTests16TestCalculateAgeEEEvRT_:
-        2:   98:    struct call_setup          { template <class U> void operator()(U& ) { }                };
+        1:   98:    struct call_setup          { template <class U> void operator()(U& ) { }                };
 ------------------
 _ZN5boost9unit_test12impl_fixture10call_setupILb0EEclIN18AdditionalAgeTests29TestCalculateAgeInvalidObjectEEEvRT_:
-        2:   98:    struct call_setup          { template <class U> void operator()(U& ) { }                };
+        1:   98:    struct call_setup          { template <class U> void operator()(U& ) { }                };
 ------------------
 _ZN5boost9unit_test12impl_fixture10call_setupILb0EEclIN18AdditionalAgeTests26TestCalculateAgeNoArgumentEEEvRT_:
-        2:   98:    struct call_setup          { template <class U> void operator()(U& ) { }                };
+        1:   98:    struct call_setup          { template <class U> void operator()(U& ) { }                };
 ------------------
         -:   99:
         -:  100:    template <>
         -:  101:    struct call_setup<true>    { template <class U> void operator()(U& u) { u.setup(); }    };
         -:  102:
         -:  103:    template <bool has_teardown = false>
-       22:  104:    struct call_teardown       { template <class U> void operator()(U& ) { }                };
+       21:  104:    struct call_teardown       { template <class U> void operator()(U& ) { }                };
 ------------------
-_ZN5boost9unit_test12impl_fixture13call_teardownILb0EEclIN9FormTests22TestAgeInvalidArgumentEEEvRT_:
+_ZN5boost9unit_test12impl_fixture13call_teardownILb0EEclIN9FormTests14TestSetZipCodeEEEvRT_:
         1:  104:    struct call_teardown       { template <class U> void operator()(U& ) { }                };
 ------------------
 _ZN5boost9unit_test12impl_fixture13call_teardownILb0EEclIN9FormTests11TestSetNameEEEvRT_:
@@ -186,13 +195,13 @@ _ZN5boost9unit_test12impl_fixture13call_teardownILb0EEclIN9FormTests15TestSetBir
 _ZN5boost9unit_test12impl_fixture13call_teardownILb0EEclIN9FormTests20TestSetWrongBirthdayEEEvRT_:
         1:  104:    struct call_teardown       { template <class U> void operator()(U& ) { }                };
 ------------------
-_ZN5boost9unit_test12impl_fixture13call_teardownILb0EEclIN18AdditionalAgeTests26TestCalculateAgeFutureDateEEEvRT_:
-        2:  104:    struct call_teardown       { template <class U> void operator()(U& ) { }                };
+_ZN5boost9unit_test12impl_fixture13call_teardownILb0EEclIN9FormTests22TestAgeInvalidArgumentEEEvRT_:
+        1:  104:    struct call_teardown       { template <class U> void operator()(U& ) { }                };
 ------------------
 _ZN5boost9unit_test12impl_fixture13call_teardownILb0EEclIN9FormTests11TestSetCityEEEvRT_:
         1:  104:    struct call_teardown       { template <class U> void operator()(U& ) { }                };
 ------------------
-_ZN5boost9unit_test12impl_fixture13call_teardownILb0EEclIN9FormTests14TestSetZipCodeEEEvRT_:
+_ZN5boost9unit_test12impl_fixture13call_teardownILb0EEclIN18AdditionalAgeTests26TestCalculateAgeFutureDateEEEvRT_:
         1:  104:    struct call_teardown       { template <class U> void operator()(U& ) { }                };
 ------------------
 _ZN5boost9unit_test12impl_fixture13call_teardownILb0EEclIN9FormTests19TestSetWrongZipCodeEEEvRT_:
@@ -204,14 +213,23 @@ _ZN5boost9unit_test12impl_fixture13call_teardownILb0EEclIN9FormTests11TestIsVali
 _ZN5boost9unit_test12impl_fixture13call_teardownILb0EEclIN9FormTests14TestIsNotValidEEEvRT_:
         1:  104:    struct call_teardown       { template <class U> void operator()(U& ) { }                };
 ------------------
+_ZN5boost9unit_test12impl_fixture13call_teardownILb0EEclIN9FormTests11TestIsEmptyEEEvRT_:
+        1:  104:    struct call_teardown       { template <class U> void operator()(U& ) { }                };
+------------------
+_ZN5boost9unit_test12impl_fixture13call_teardownILb0EEclIN9FormTests14TestIsNotEmptyEEEvRT_:
+        1:  104:    struct call_teardown       { template <class U> void operator()(U& ) { }                };
+------------------
+_ZN5boost9unit_test12impl_fixture13call_teardownILb0EEclIN9FormTests15TestPrintErrorsEEEvRT_:
+        1:  104:    struct call_teardown       { template <class U> void operator()(U& ) { }                };
+------------------
 _ZN5boost9unit_test12impl_fixture13call_teardownILb0EEclIN8AgeTests16TestCalculateAgeEEEvRT_:
-        2:  104:    struct call_teardown       { template <class U> void operator()(U& ) { }                };
+        1:  104:    struct call_teardown       { template <class U> void operator()(U& ) { }                };
 ------------------
 _ZN5boost9unit_test12impl_fixture13call_teardownILb0EEclIN18AdditionalAgeTests29TestCalculateAgeInvalidObjectEEEvRT_:
-        2:  104:    struct call_teardown       { template <class U> void operator()(U& ) { }                };
+        1:  104:    struct call_teardown       { template <class U> void operator()(U& ) { }                };
 ------------------
 _ZN5boost9unit_test12impl_fixture13call_teardownILb0EEclIN18AdditionalAgeTests26TestCalculateAgeNoArgumentEEEvRT_:
-        2:  104:    struct call_teardown       { template <class U> void operator()(U& ) { }                };
+        1:  104:    struct call_teardown       { template <class U> void operator()(U& ) { }                };
 ------------------
         -:  105:
         -:  106:    template <>
@@ -220,11 +238,11 @@ _ZN5boost9unit_test12impl_fixture13call_teardownILb0EEclIN18AdditionalAgeTests26
         -:  109:
         -:  110://! Calls the fixture "setup" if detected by the compiler, otherwise does nothing.
         -:  111:template <class U>
-       22:  112:void setup_conditional(U& u) {
-       22:  113:    return impl_fixture::call_setup<impl_fixture::has_setup<U>::value>()(u);
+       21:  112:void setup_conditional(U& u) {
+       21:  113:    return impl_fixture::call_setup<impl_fixture::has_setup<U>::value>()(u);
         -:  114:}
 ------------------
-_ZN5boost9unit_test17setup_conditionalIN9FormTests22TestAgeInvalidArgumentEEEvRT_:
+_ZN5boost9unit_test17setup_conditionalIN9FormTests14TestSetZipCodeEEEvRT_:
         1:  112:void setup_conditional(U& u) {
         1:  113:    return impl_fixture::call_setup<impl_fixture::has_setup<U>::value>()(u);
         -:  114:}
@@ -269,9 +287,9 @@ _ZN5boost9unit_test17setup_conditionalIN9FormTests20TestSetWrongBirthdayEEEvRT_:
         1:  113:    return impl_fixture::call_setup<impl_fixture::has_setup<U>::value>()(u);
         -:  114:}
 ------------------
-_ZN5boost9unit_test17setup_conditionalIN18AdditionalAgeTests26TestCalculateAgeFutureDateEEEvRT_:
-        2:  112:void setup_conditional(U& u) {
-        2:  113:    return impl_fixture::call_setup<impl_fixture::has_setup<U>::value>()(u);
+_ZN5boost9unit_test17setup_conditionalIN9FormTests22TestAgeInvalidArgumentEEEvRT_:
+        1:  112:void setup_conditional(U& u) {
+        1:  113:    return impl_fixture::call_setup<impl_fixture::has_setup<U>::value>()(u);
         -:  114:}
 ------------------
 _ZN5boost9unit_test17setup_conditionalIN9FormTests11TestSetCityEEEvRT_:
@@ -279,7 +297,7 @@ _ZN5boost9unit_test17setup_conditionalIN9FormTests11TestSetCityEEEvRT_:
         1:  113:    return impl_fixture::call_setup<impl_fixture::has_setup<U>::value>()(u);
         -:  114:}
 ------------------
-_ZN5boost9unit_test17setup_conditionalIN9FormTests14TestSetZipCodeEEEvRT_:
+_ZN5boost9unit_test17setup_conditionalIN18AdditionalAgeTests26TestCalculateAgeFutureDateEEEvRT_:
         1:  112:void setup_conditional(U& u) {
         1:  113:    return impl_fixture::call_setup<impl_fixture::has_setup<U>::value>()(u);
         -:  114:}
@@ -299,26 +317,41 @@ _ZN5boost9unit_test17setup_conditionalIN9FormTests14TestIsNotValidEEEvRT_:
         1:  113:    return impl_fixture::call_setup<impl_fixture::has_setup<U>::value>()(u);
         -:  114:}
 ------------------
+_ZN5boost9unit_test17setup_conditionalIN9FormTests11TestIsEmptyEEEvRT_:
+        1:  112:void setup_conditional(U& u) {
+        1:  113:    return impl_fixture::call_setup<impl_fixture::has_setup<U>::value>()(u);
+        -:  114:}
+------------------
+_ZN5boost9unit_test17setup_conditionalIN9FormTests14TestIsNotEmptyEEEvRT_:
+        1:  112:void setup_conditional(U& u) {
+        1:  113:    return impl_fixture::call_setup<impl_fixture::has_setup<U>::value>()(u);
+        -:  114:}
+------------------
+_ZN5boost9unit_test17setup_conditionalIN9FormTests15TestPrintErrorsEEEvRT_:
+        1:  112:void setup_conditional(U& u) {
+        1:  113:    return impl_fixture::call_setup<impl_fixture::has_setup<U>::value>()(u);
+        -:  114:}
+------------------
 _ZN5boost9unit_test17setup_conditionalIN8AgeTests16TestCalculateAgeEEEvRT_:
-        2:  112:void setup_conditional(U& u) {
-        2:  113:    return impl_fixture::call_setup<impl_fixture::has_setup<U>::value>()(u);
+        1:  112:void setup_conditional(U& u) {
+        1:  113:    return impl_fixture::call_setup<impl_fixture::has_setup<U>::value>()(u);
         -:  114:}
 ------------------
 _ZN5boost9unit_test17setup_conditionalIN18AdditionalAgeTests29TestCalculateAgeInvalidObjectEEEvRT_:
-        2:  112:void setup_conditional(U& u) {
-        2:  113:    return impl_fixture::call_setup<impl_fixture::has_setup<U>::value>()(u);
+        1:  112:void setup_conditional(U& u) {
+        1:  113:    return impl_fixture::call_setup<impl_fixture::has_setup<U>::value>()(u);
         -:  114:}
 ------------------
 _ZN5boost9unit_test17setup_conditionalIN18AdditionalAgeTests26TestCalculateAgeNoArgumentEEEvRT_:
-        2:  112:void setup_conditional(U& u) {
-        2:  113:    return impl_fixture::call_setup<impl_fixture::has_setup<U>::value>()(u);
+        1:  112:void setup_conditional(U& u) {
+        1:  113:    return impl_fixture::call_setup<impl_fixture::has_setup<U>::value>()(u);
         -:  114:}
 ------------------
         -:  115:
         -:  116://! Calls the fixture "teardown" if detected by the compiler, otherwise does nothing.
         -:  117:template <class U>
-       22:  118:void teardown_conditional(U& u) {
-       22:  119:    return impl_fixture::call_teardown<impl_fixture::has_teardown<U>::value>()(u);
+       21:  118:void teardown_conditional(U& u) {
+       21:  119:    return impl_fixture::call_teardown<impl_fixture::has_teardown<U>::value>()(u);
         -:  120:}
         -:  121:
         -:  122:

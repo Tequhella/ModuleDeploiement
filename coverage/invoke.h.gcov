@@ -58,8 +58,8 @@
         -:   57:
         -:   58:  template<typename _Res, typename _Fn, typename... _Args>
         -:   59:    constexpr _Res
-     178*:   60:    __invoke_impl(__invoke_other, _Fn&& __f, _Args&&... __args)
-     178*:   61:    { return std::forward<_Fn>(__f)(std::forward<_Args>(__args)...); }
+     200*:   60:    __invoke_impl(__invoke_other, _Fn&& __f, _Args&&... __args)
+     200*:   61:    { return std::forward<_Fn>(__f)(std::forward<_Args>(__args)...); }
 ------------------
 _ZSt13__invoke_implIbRNSt8__detail15_BracketMatcherINSt7__cxx1112regex_traitsIcEELb1ELb1EEEJcEET_St14__invoke_otherOT0_DpOT1_:
     #####:   60:    __invoke_impl(__invoke_other, _Fn&& __f, _Args&&... __args)
@@ -74,8 +74,8 @@ _ZSt13__invoke_implIbRNSt8__detail15_BracketMatcherINSt7__cxx1112regex_traitsIcE
     #####:   61:    { return std::forward<_Fn>(__f)(std::forward<_Args>(__args)...); }
 ------------------
 _ZSt13__invoke_implIbRNSt8__detail15_BracketMatcherINSt7__cxx1112regex_traitsIcEELb0ELb0EEEJcEET_St14__invoke_otherOT0_DpOT1_:
-      146:   60:    __invoke_impl(__invoke_other, _Fn&& __f, _Args&&... __args)
-      146:   61:    { return std::forward<_Fn>(__f)(std::forward<_Args>(__args)...); }
+      166:   60:    __invoke_impl(__invoke_other, _Fn&& __f, _Args&&... __args)
+      166:   61:    { return std::forward<_Fn>(__f)(std::forward<_Args>(__args)...); }
 ------------------
 _ZSt13__invoke_implIbRNSt8__detail12_CharMatcherINSt7__cxx1112regex_traitsIcEELb1ELb1EEEJcEET_St14__invoke_otherOT0_DpOT1_:
     #####:   60:    __invoke_impl(__invoke_other, _Fn&& __f, _Args&&... __args)
@@ -90,8 +90,8 @@ _ZSt13__invoke_implIbRNSt8__detail12_CharMatcherINSt7__cxx1112regex_traitsIcEELb
     #####:   61:    { return std::forward<_Fn>(__f)(std::forward<_Args>(__args)...); }
 ------------------
 _ZSt13__invoke_implIbRNSt8__detail12_CharMatcherINSt7__cxx1112regex_traitsIcEELb0ELb0EEEJcEET_St14__invoke_otherOT0_DpOT1_:
-       32:   60:    __invoke_impl(__invoke_other, _Fn&& __f, _Args&&... __args)
-       32:   61:    { return std::forward<_Fn>(__f)(std::forward<_Args>(__args)...); }
+       34:   60:    __invoke_impl(__invoke_other, _Fn&& __f, _Args&&... __args)
+       34:   61:    { return std::forward<_Fn>(__f)(std::forward<_Args>(__args)...); }
 ------------------
 _ZSt13__invoke_implIbRNSt8__detail11_AnyMatcherINSt7__cxx1112regex_traitsIcEELb1ELb1ELb1EEEJcEET_St14__invoke_otherOT0_DpOT1_:
     #####:   60:    __invoke_impl(__invoke_other, _Fn&& __f, _Args&&... __args)
@@ -167,7 +167,7 @@ _ZSt13__invoke_implIbRNSt8__detail11_AnyMatcherINSt7__cxx1112regex_traitsIcEELb0
         -:  101:  // INVOKE<R>: Invoke a callable object and convert the result to R.
         -:  102:  template<typename _Res, typename _Callable, typename... _Args>
         -:  103:    constexpr enable_if_t<is_invocable_r_v<_Res, _Callable, _Args...>, _Res>
-     178*:  104:    __invoke_r(_Callable&& __fn, _Args&&... __args)
+     200*:  104:    __invoke_r(_Callable&& __fn, _Args&&... __args)
         -:  105:    noexcept(is_nothrow_invocable_r_v<_Res, _Callable, _Args...>)
         -:  106:    {
         -:  107:      using __result = __invoke_result<_Callable, _Args...>;
@@ -177,9 +177,9 @@ _ZSt13__invoke_implIbRNSt8__detail11_AnyMatcherINSt7__cxx1112regex_traitsIcEELb0
         -:  111:	std::__invoke_impl<__type>(__tag{}, std::forward<_Callable>(__fn),
         -:  112:					std::forward<_Args>(__args)...);
         -:  113:      else
-     178*:  114:	return std::__invoke_impl<__type>(__tag{},
+     200*:  114:	return std::__invoke_impl<__type>(__tag{},
         -:  115:					  std::forward<_Callable>(__fn),
-     178*:  116:					  std::forward<_Args>(__args)...);
+     200*:  116:					  std::forward<_Args>(__args)...);
         -:  117:    }
         -:  118:#else // C++11
         -:  119:  template<typename _Res, typename _Callable, typename... _Args>

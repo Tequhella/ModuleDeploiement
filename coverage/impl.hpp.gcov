@@ -90,16 +90,16 @@
         -:   89:#define BOOST_TEST_MAX_PREDICATE_ARITY 5
         -:   90:#endif
         -:   91:
-       25:   92:BOOST_PP_REPEAT( BOOST_TEST_MAX_PREDICATE_ARITY, IMPL_FRWD, _ )
+       21:   92:BOOST_PP_REPEAT( BOOST_TEST_MAX_PREDICATE_ARITY, IMPL_FRWD, _ )
 ------------------
 _ZN5boost10test_tools9tt_detail10check_frwdINS1_7ne_implEiiEEbT_RKNS_9unit_test12lazy_ostreamENS5_13basic_cstringIKcEEmNS1_10tool_levelENS1_10check_typeERKT0_PSA_RKT1_SH_:
-        6:   92:BOOST_PP_REPEAT( BOOST_TEST_MAX_PREDICATE_ARITY, IMPL_FRWD, _ )
+        3:   92:BOOST_PP_REPEAT( BOOST_TEST_MAX_PREDICATE_ARITY, IMPL_FRWD, _ )
 ------------------
 _ZN5boost10test_tools9tt_detail10check_frwdINS1_15equal_impl_frwdEiiEEbT_RKNS_9unit_test12lazy_ostreamENS5_13basic_cstringIKcEEmNS1_10tool_levelENS1_10check_typeERKT0_PSA_RKT1_SH_:
-        6:   92:BOOST_PP_REPEAT( BOOST_TEST_MAX_PREDICATE_ARITY, IMPL_FRWD, _ )
+        3:   92:BOOST_PP_REPEAT( BOOST_TEST_MAX_PREDICATE_ARITY, IMPL_FRWD, _ )
 ------------------
 _ZN5boost10test_tools9tt_detail10check_frwdINS1_15equal_impl_frwdEbbEEbT_RKNS_9unit_test12lazy_ostreamENS5_13basic_cstringIKcEEmNS1_10tool_levelENS1_10check_typeERKT0_PSA_RKT1_SH_:
-        2:   92:BOOST_PP_REPEAT( BOOST_TEST_MAX_PREDICATE_ARITY, IMPL_FRWD, _ )
+        4:   92:BOOST_PP_REPEAT( BOOST_TEST_MAX_PREDICATE_ARITY, IMPL_FRWD, _ )
 ------------------
 _ZN5boost10test_tools9tt_detail10check_frwdINS1_15equal_impl_frwdENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEA17_cEEbT_RKNS_9unit_test12lazy_ostreamENSC_13basic_cstringIKcEEmNS1_10tool_levelENS1_10check_typeERKT0_PSH_RKT1_SO_:
         1:   92:BOOST_PP_REPEAT( BOOST_TEST_MAX_PREDICATE_ARITY, IMPL_FRWD, _ )
@@ -128,21 +128,21 @@ _ZN5boost10test_tools9tt_detail10check_frwdINS1_15equal_impl_frwdENSt7__cxx1112b
         -:  102://____________________________________________________________________________//
         -:  103:
         -:  104:template <class Left, class Right>
-       25:  105:inline assertion_result equal_impl( Left const& left, Right const& right )
+       21:  105:inline assertion_result equal_impl( Left const& left, Right const& right )
         -:  106:{
-       25:  107:    return left == right;
+       21:  107:    return left == right;
         -:  108:}
 ------------------
 _ZN5boost10test_tools9tt_detail10equal_implIiiEENS0_16assertion_resultERKT_RKT0_:
-       12:  105:inline assertion_result equal_impl( Left const& left, Right const& right )
+        6:  105:inline assertion_result equal_impl( Left const& left, Right const& right )
         -:  106:{
-       12:  107:    return left == right;
+        6:  107:    return left == right;
         -:  108:}
 ------------------
 _ZN5boost10test_tools9tt_detail10equal_implIbbEENS0_16assertion_resultERKT_RKT0_:
-        2:  105:inline assertion_result equal_impl( Left const& left, Right const& right )
+        4:  105:inline assertion_result equal_impl( Left const& left, Right const& right )
         -:  106:{
-        2:  107:    return left == right;
+        4:  107:    return left == right;
         -:  108:}
 ------------------
 _ZN5boost10test_tools9tt_detail10equal_implINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEA17_cEENS0_16assertion_resultERKT_RKT0_:
@@ -194,21 +194,21 @@ _ZN5boost10test_tools9tt_detail10equal_implINSt7__cxx1112basic_stringIcSt11char_
         -:  125:struct equal_impl_frwd {
         -:  126:    template <typename Left, typename Right>
         -:  127:    inline assertion_result
-       25:  128:    call_impl( Left const& left, Right const& right, mpl::false_ ) const
+       21:  128:    call_impl( Left const& left, Right const& right, mpl::false_ ) const
         -:  129:    {
-       25:  130:        return equal_impl( left, right );
+       21:  130:        return equal_impl( left, right );
         -:  131:    }
 ------------------
 _ZNK5boost10test_tools9tt_detail15equal_impl_frwd9call_implIiiEENS0_16assertion_resultERKT_RKT0_N4mpl_5bool_ILb0EEE:
-       12:  128:    call_impl( Left const& left, Right const& right, mpl::false_ ) const
+        6:  128:    call_impl( Left const& left, Right const& right, mpl::false_ ) const
         -:  129:    {
-       12:  130:        return equal_impl( left, right );
+        6:  130:        return equal_impl( left, right );
         -:  131:    }
 ------------------
 _ZNK5boost10test_tools9tt_detail15equal_impl_frwd9call_implIbbEENS0_16assertion_resultERKT_RKT0_N4mpl_5bool_ILb0EEE:
-        2:  128:    call_impl( Left const& left, Right const& right, mpl::false_ ) const
+        4:  128:    call_impl( Left const& left, Right const& right, mpl::false_ ) const
         -:  129:    {
-        2:  130:        return equal_impl( left, right );
+        4:  130:        return equal_impl( left, right );
         -:  131:    }
 ------------------
 _ZNK5boost10test_tools9tt_detail15equal_impl_frwd9call_implINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEA17_cEENS0_16assertion_resultERKT_RKT0_N4mpl_5bool_ILb0EEE:
@@ -251,24 +251,24 @@ _ZNK5boost10test_tools9tt_detail15equal_impl_frwd9call_implINSt7__cxx1112basic_s
         -:  139:
         -:  140:    template <typename Left, typename Right>
         -:  141:    inline assertion_result
-       25:  142:    operator()( Left const& left, Right const& right ) const
+       21:  142:    operator()( Left const& left, Right const& right ) const
         -:  143:    {
         -:  144:        typedef typename is_array<Left>::type left_is_array;
-       50:  145:        return call_impl( left, right, left_is_array() );
+       42:  145:        return call_impl( left, right, left_is_array() );
         -:  146:    }
 ------------------
 _ZNK5boost10test_tools9tt_detail15equal_impl_frwdclIiiEENS0_16assertion_resultERKT_RKT0_:
-       12:  142:    operator()( Left const& left, Right const& right ) const
+        6:  142:    operator()( Left const& left, Right const& right ) const
         -:  143:    {
         -:  144:        typedef typename is_array<Left>::type left_is_array;
-       24:  145:        return call_impl( left, right, left_is_array() );
+       12:  145:        return call_impl( left, right, left_is_array() );
         -:  146:    }
 ------------------
 _ZNK5boost10test_tools9tt_detail15equal_impl_frwdclIbbEENS0_16assertion_resultERKT_RKT0_:
-        2:  142:    operator()( Left const& left, Right const& right ) const
+        4:  142:    operator()( Left const& left, Right const& right ) const
         -:  143:    {
         -:  144:        typedef typename is_array<Left>::type left_is_array;
-        4:  145:        return call_impl( left, right, left_is_array() );
+        8:  145:        return call_impl( left, right, left_is_array() );
         -:  146:    }
 ------------------
 _ZNK5boost10test_tools9tt_detail15equal_impl_frwdclINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEA17_cEENS0_16assertion_resultERKT_RKT0_:
@@ -312,9 +312,9 @@ _ZNK5boost10test_tools9tt_detail15equal_impl_frwdclINSt7__cxx1112basic_stringIcS
         -:  150:
         -:  151:struct ne_impl {
         -:  152:    template <class Left, class Right>
-        6:  153:    assertion_result operator()( Left const& left, Right const& right )
+        3:  153:    assertion_result operator()( Left const& left, Right const& right )
         -:  154:    {
-       12:  155:        return !equal_impl_frwd()( left, right );
+        6:  155:        return !equal_impl_frwd()( left, right );
         -:  156:    }
         -:  157:};
         -:  158:

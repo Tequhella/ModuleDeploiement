@@ -836,8 +836,8 @@
         -:  835:       *  @return  The lowercase char if convertible, else @a __c.
         -:  836:      */
         -:  837:      char_type
-       31:  838:      tolower(char_type __c) const
-       31:  839:      { return this->do_tolower(__c); }
+       38:  838:      tolower(char_type __c) const
+       38:  839:      { return this->do_tolower(__c); }
         -:  840:
         -:  841:      /**
         -:  842:       *  @brief  Convert array to lowercase.
@@ -853,8 +853,8 @@
         -:  852:       *  @return  @a __hi.
         -:  853:      */
         -:  854:      const char_type*
-     9294:  855:      tolower(char_type* __lo, const char_type* __hi) const
-     9294:  856:      { return this->do_tolower(__lo, __hi); }
+    11433:  855:      tolower(char_type* __lo, const char_type* __hi) const
+    11433:  856:      { return this->do_tolower(__lo, __hi); }
         -:  857:
         -:  858:      /**
         -:  859:       *  @brief  Widen char
@@ -932,10 +932,10 @@
         -:  931:       *  @return  The converted character.
         -:  932:      */
         -:  933:      char
-      296:  934:      narrow(char_type __c, char __dfault) const
+      364:  934:      narrow(char_type __c, char __dfault) const
         -:  935:      {
-      296:  936:	if (_M_narrow[static_cast<unsigned char>(__c)])
-      283:  937:	  return _M_narrow[static_cast<unsigned char>(__c)];
+      364:  936:	if (_M_narrow[static_cast<unsigned char>(__c)])
+      351:  937:	  return _M_narrow[static_cast<unsigned char>(__c)];
        13:  938:	const char __t = do_narrow(__c, __dfault);
        13:  939:	if (__t != __dfault)
        13:  940:	  _M_narrow[static_cast<unsigned char>(__c)] = __t;

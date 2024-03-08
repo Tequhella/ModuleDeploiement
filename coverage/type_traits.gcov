@@ -3417,12 +3417,12 @@
         -: 3416:
         -: 3417:  /// Returns true only when called during constant evaluation.
         -: 3418:  constexpr inline bool
-   71695*: 3419:  is_constant_evaluated() noexcept
-   71695*: 3420:  { return __builtin_is_constant_evaluated(); }
+   49509*: 3419:  is_constant_evaluated() noexcept
+   49509*: 3420:  { return __builtin_is_constant_evaluated(); }
 ------------------
 _ZSt21is_constant_evaluatedv:
-    71695: 3419:  is_constant_evaluated() noexcept
-    71695: 3420:  { return __builtin_is_constant_evaluated(); }
+    49509: 3419:  is_constant_evaluated() noexcept
+    49509: 3420:  { return __builtin_is_constant_evaluated(); }
 ------------------
 _ZSt21is_constant_evaluatedv:
     #####: 3419:  is_constant_evaluated() noexcept

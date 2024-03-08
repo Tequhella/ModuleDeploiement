@@ -50,14 +50,14 @@
         -:   49:
         -:   50:public:
         -:   51:    // Constructor
-      51*:   52:    assertion_result( bool pv_ )
-      51*:   53:    : p_predicate_value( pv_ )
-      51*:   54:    {}
+      28*:   52:    assertion_result( bool pv_ )
+      28*:   53:    : p_predicate_value( pv_ )
+      28*:   54:    {}
 ------------------
 _ZN5boost10test_tools16assertion_resultC2Eb:
-       51:   52:    assertion_result( bool pv_ )
-       51:   53:    : p_predicate_value( pv_ )
-       51:   54:    {}
+       28:   52:    assertion_result( bool pv_ )
+       28:   53:    : p_predicate_value( pv_ )
+       28:   54:    {}
 ------------------
 _ZN5boost10test_tools16assertion_resultC2Eb:
     #####:   52:    assertion_result( bool pv_ )
@@ -69,15 +69,15 @@ _ZN5boost10test_tools16assertion_resultC2Eb:
         -:   57:    assertion_result( BoolConvertable const& pv_ ) : p_predicate_value( !!pv_ ) {}
         -:   58:
         -:   59:    // Access methods
-        6:   60:    bool                operator!() const           { return !p_predicate_value; }
+        3:   60:    bool                operator!() const           { return !p_predicate_value; }
         -:   61:    void                operator=( bool pv_ )       { p_predicate_value.value = pv_; }
         -:   62:    operator            safe_bool() const           { return !!p_predicate_value ? &dummy::nonnull : 0; }
         -:   63:
         -:   64:    // Public properties
-      51*:   65:    BOOST_READONLY_PROPERTY( bool, (assertion_result) ) p_predicate_value;
+      28*:   65:    BOOST_READONLY_PROPERTY( bool, (assertion_result) ) p_predicate_value;
 ------------------
 _ZN5boost10test_tools16assertion_result19readonly_property65C2Eb:
-       51:   65:    BOOST_READONLY_PROPERTY( bool, (assertion_result) ) p_predicate_value;
+       28:   65:    BOOST_READONLY_PROPERTY( bool, (assertion_result) ) p_predicate_value;
 ------------------
 _ZN5boost10test_tools16assertion_result19readonly_property65C2Eb:
     #####:   65:    BOOST_READONLY_PROPERTY( bool, (assertion_result) ) p_predicate_value;

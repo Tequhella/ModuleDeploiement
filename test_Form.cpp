@@ -121,14 +121,28 @@ BOOST_AUTO_TEST_CASE(TestIsNotValid)
 BOOST_AUTO_TEST_CASE(TestIsEmpty)
 {
     Form form;
-    BOOST_CHECK_EQUAL(form.isEmpty(), true);
+    std::vector<std::string> entries = { "", "", "", "", "", "" };
+    BOOST_CHECK_EQUAL(form.isEmpty(entries), true);
 }
 
 BOOST_AUTO_TEST_CASE(TestIsNotEmpty)
 {
     Form form;
-    
-    BOOST_CHECK_EQUAL(form.isEmpty(), false);
+    std::vector<std::string> entries = { "John", "Doe", "john.doe@example.com", "1990-01-01", "12345", "New York" };
+    BOOST_CHECK_EQUAL(form.isEmpty(entries), false);
+}
+
+BOOST_AUTO_TEST_CASE(TestPrintErrors)
+{
+    Form form;
+    form.setName("John");
+    form.setFirstName("Doe");
+    form.setMail("");
+    form.setBirthday("1990-01-01");
+    form.setCity("New York");
+    form.setZipCode("12345");
+    if (!form.isValid())
+        form.printErrors();
 }
 
 BOOST_AUTO_TEST_SUITE_END()

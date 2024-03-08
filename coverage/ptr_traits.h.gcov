@@ -147,16 +147,16 @@
         -:  146:       *  @return @c addressof(__r)
         -:  147:      */
         -:  148:      static _GLIBCXX20_CONSTEXPR pointer
-   54937*:  149:      pointer_to(__make_not_void<element_type>& __r) noexcept
-   54937*:  150:      { return std::addressof(__r); }
+   37799*:  149:      pointer_to(__make_not_void<element_type>& __r) noexcept
+   37799*:  150:      { return std::addressof(__r); }
 ------------------
 _ZNSt14pointer_traitsIPKcE10pointer_toERS0_:
-    37094:  149:      pointer_to(__make_not_void<element_type>& __r) noexcept
-    37094:  150:      { return std::addressof(__r); }
+    25472:  149:      pointer_to(__make_not_void<element_type>& __r) noexcept
+    25472:  150:      { return std::addressof(__r); }
 ------------------
 _ZNSt14pointer_traitsIPcE10pointer_toERc:
-    17843:  149:      pointer_to(__make_not_void<element_type>& __r) noexcept
-    17843:  150:      { return std::addressof(__r); }
+    12327:  149:      pointer_to(__make_not_void<element_type>& __r) noexcept
+    12327:  150:      { return std::addressof(__r); }
 ------------------
 _ZNSt14pointer_traitsIPKcE10pointer_toERS0_:
     #####:  149:      pointer_to(__make_not_void<element_type>& __r) noexcept
@@ -174,10 +174,10 @@ _ZNSt14pointer_traitsIPcE10pointer_toERc:
         -:  156:
         -:  157:  template<typename _Tp>
         -:  158:    constexpr _Tp*
-       21:  159:    __to_address(_Tp* __ptr) noexcept
+       26:  159:    __to_address(_Tp* __ptr) noexcept
         -:  160:    {
         -:  161:      static_assert(!std::is_function<_Tp>::value, "not a function pointer");
-       21:  162:      return __ptr;
+       26:  162:      return __ptr;
         -:  163:    }
         -:  164:
         -:  165:#if __cplusplus <= 201703L

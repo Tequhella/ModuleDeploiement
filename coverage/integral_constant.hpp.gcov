@@ -78,11 +78,11 @@
         -:   77:      typedef integral_constant<bool, val> type;
         -:   78:      static const bool value = val;
         -:   79:
-      37*:   80:      operator const mpl::bool_<val>& ()const
+      21*:   80:      operator const mpl::bool_<val>& ()const
         -:   81:      {
         -:   82:         static const char data[sizeof(long)] = { 0 };
         -:   83:         static const void* pdata = data;
-      37*:   84:         return *(reinterpret_cast<const mpl::bool_<val>*>(pdata));
+      21*:   84:         return *(reinterpret_cast<const mpl::bool_<val>*>(pdata));
         -:   85:      }
         -:   86:      BOOST_CONSTEXPR operator bool()const { return val; }
         -:   87:   };

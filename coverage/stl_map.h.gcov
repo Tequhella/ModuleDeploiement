@@ -183,13 +183,13 @@
         -:  182:#if __cplusplus < 201103L
         -:  183:      map() : _M_t() { }
         -:  184:#else
-       74:  185:      map() = default;
+       90:  185:      map() = default;
 ------------------
 _ZNSt3mapIllSt4lessIlESaISt4pairIKllEEEC2Ev:
-       60:  185:      map() = default;
+       73:  185:      map() = default;
 ------------------
 _ZNSt3mapINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_St4lessIS5_ESaISt4pairIKS5_S5_EEEC2Ev:
-       14:  185:      map() = default;
+       17:  185:      map() = default;
 ------------------
         -:  186:#endif
         -:  187:
@@ -307,13 +307,13 @@ _ZNSt3mapINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_St4lessIS5_ESaI
         -:  299:       *  themselves are pointers, the pointed-to memory is not touched in any
         -:  300:       *  way.  Managing the pointer is the user's responsibility.
         -:  301:       */
-       85:  302:      ~map() = default;
+      101:  302:      ~map() = default;
 ------------------
 _ZNSt3mapIllSt4lessIlESaISt4pairIKllEEED2Ev:
-       60:  302:      ~map() = default;
+       73:  302:      ~map() = default;
 ------------------
 _ZNSt3mapINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_St4lessIS5_ESaISt4pairIKS5_S5_EEED2Ev:
-       25:  302:      ~map() = default;
+       28:  302:      ~map() = default;
 ------------------
         -:  303:#endif
         -:  304:
@@ -368,16 +368,16 @@ _ZNSt3mapINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_St4lessIS5_ESaI
         -:  353:       *  Iteration is done in ascending order according to the keys.
         -:  354:       */
         -:  355:      iterator
-       62:  356:      begin() _GLIBCXX_NOEXCEPT
-       62:  357:      { return _M_t.begin(); }
+       77:  356:      begin() _GLIBCXX_NOEXCEPT
+       77:  357:      { return _M_t.begin(); }
 ------------------
 _ZNSt3mapIllSt4lessIlESaISt4pairIKllEEE5beginEv:
-       60:  356:      begin() _GLIBCXX_NOEXCEPT
-       60:  357:      { return _M_t.begin(); }
+       73:  356:      begin() _GLIBCXX_NOEXCEPT
+       73:  357:      { return _M_t.begin(); }
 ------------------
 _ZNSt3mapINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_St4lessIS5_ESaISt4pairIKS5_S5_EEE5beginEv:
-        2:  356:      begin() _GLIBCXX_NOEXCEPT
-        2:  357:      { return _M_t.begin(); }
+        4:  356:      begin() _GLIBCXX_NOEXCEPT
+        4:  357:      { return _M_t.begin(); }
 ------------------
         -:  358:
         -:  359:      /**
@@ -395,16 +395,16 @@ _ZNSt3mapINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_St4lessIS5_ESaI
         -:  371:       *  according to the keys.
         -:  372:       */
         -:  373:      iterator
-      344:  374:      end() _GLIBCXX_NOEXCEPT
-      344:  375:      { return _M_t.end(); }
+      418:  374:      end() _GLIBCXX_NOEXCEPT
+      418:  375:      { return _M_t.end(); }
 ------------------
 _ZNSt3mapIllSt4lessIlESaISt4pairIKllEEE3endEv:
-      240:  374:      end() _GLIBCXX_NOEXCEPT
-      240:  375:      { return _M_t.end(); }
+      292:  374:      end() _GLIBCXX_NOEXCEPT
+      292:  375:      { return _M_t.end(); }
 ------------------
 _ZNSt3mapINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_St4lessIS5_ESaISt4pairIKS5_S5_EEE3endEv:
-      104:  374:      end() _GLIBCXX_NOEXCEPT
-      104:  375:      { return _M_t.end(); }
+      126:  374:      end() _GLIBCXX_NOEXCEPT
+      126:  375:      { return _M_t.end(); }
 ------------------
         -:  376:
         -:  377:      /**
@@ -522,38 +522,38 @@ _ZNSt3mapINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_St4lessIS5_ESaI
         -:  489:       *  Lookup requires logarithmic time.
         -:  490:       */
         -:  491:      mapped_type&
-      180:  492:      operator[](const key_type& __k)
+      219:  492:      operator[](const key_type& __k)
         -:  493:      {
         -:  494:	// concept requirements
         -:  495:	__glibcxx_function_requires(_DefaultConstructibleConcept<mapped_type>)
         -:  496:
-      180:  497:	iterator __i = lower_bound(__k);
+      219:  497:	iterator __i = lower_bound(__k);
         -:  498:	// __i->first is greater than or equivalent to __k.
-      180:  499:	if (__i == end() || key_comp()(__k, (*__i).first))
+      219:  499:	if (__i == end() || key_comp()(__k, (*__i).first))
         -:  500:#if __cplusplus >= 201103L
-       60:  501:	  __i = _M_t._M_emplace_hint_unique(__i, std::piecewise_construct,
-       60:  502:					    std::tuple<const key_type&>(__k),
-       60:  503:					    std::tuple<>());
+       73:  501:	  __i = _M_t._M_emplace_hint_unique(__i, std::piecewise_construct,
+       73:  502:					    std::tuple<const key_type&>(__k),
+       73:  503:					    std::tuple<>());
         -:  504:#else
         -:  505:	  __i = insert(__i, value_type(__k, mapped_type()));
         -:  506:#endif
-      180:  507:	return (*__i).second;
+      219:  507:	return (*__i).second;
         -:  508:      }
         -:  509:
         -:  510:#if __cplusplus >= 201103L
         -:  511:      mapped_type&
-      102:  512:      operator[](key_type&& __k)
+      122:  512:      operator[](key_type&& __k)
         -:  513:      {
         -:  514:	// concept requirements
         -:  515:	__glibcxx_function_requires(_DefaultConstructibleConcept<mapped_type>)
         -:  516:
-      102:  517:	iterator __i = lower_bound(__k);
+      122:  517:	iterator __i = lower_bound(__k);
         -:  518:	// __i->first is greater than or equivalent to __k.
-      102:  519:	if (__i == end() || key_comp()(__k, (*__i).first))
-       71:  520:	  __i = _M_t._M_emplace_hint_unique(__i, std::piecewise_construct,
-       71:  521:					std::forward_as_tuple(std::move(__k)),
-       71:  522:					std::tuple<>());
-      102:  523:	return (*__i).second;
+      122:  519:	if (__i == end() || key_comp()(__k, (*__i).first))
+       86:  520:	  __i = _M_t._M_emplace_hint_unique(__i, std::piecewise_construct,
+       86:  521:					std::forward_as_tuple(std::move(__k)),
+       86:  522:					std::tuple<>());
+      122:  523:	return (*__i).second;
         -:  524:      }
         -:  525:#endif
         -:  526:
@@ -1172,16 +1172,16 @@ _ZNSt3mapINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_St4lessIS5_ESaI
         -: 1139:       *  constructed.
         -: 1140:       */
         -: 1141:      key_compare
-      180: 1142:      key_comp() const
-      180: 1143:      { return _M_t.key_comp(); }
+      217: 1142:      key_comp() const
+      217: 1143:      { return _M_t.key_comp(); }
 ------------------
 _ZNKSt3mapIllSt4lessIlESaISt4pairIKllEEE8key_compEv:
-      120: 1142:      key_comp() const
-      120: 1143:      { return _M_t.key_comp(); }
+      146: 1142:      key_comp() const
+      146: 1143:      { return _M_t.key_comp(); }
 ------------------
 _ZNKSt3mapINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_St4lessIS5_ESaISt4pairIKS5_S5_EEE8key_compEv:
-       60: 1142:      key_comp() const
-       60: 1143:      { return _M_t.key_comp(); }
+       71: 1142:      key_comp() const
+       71: 1143:      { return _M_t.key_comp(); }
 ------------------
         -: 1144:
         -: 1145:      /**
@@ -1297,16 +1297,16 @@ _ZNKSt3mapINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_St4lessIS5_ESa
         -: 1255:       *  or end() if no such element exists.
         -: 1256:       */
         -: 1257:      iterator
-      282: 1258:      lower_bound(const key_type& __x)
-      282: 1259:      { return _M_t.lower_bound(__x); }
+      341: 1258:      lower_bound(const key_type& __x)
+      341: 1259:      { return _M_t.lower_bound(__x); }
 ------------------
 _ZNSt3mapIllSt4lessIlESaISt4pairIKllEEE11lower_boundERS3_:
-      180: 1258:      lower_bound(const key_type& __x)
-      180: 1259:      { return _M_t.lower_bound(__x); }
+      219: 1258:      lower_bound(const key_type& __x)
+      219: 1259:      { return _M_t.lower_bound(__x); }
 ------------------
 _ZNSt3mapINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_St4lessIS5_ESaISt4pairIKS5_S5_EEE11lower_boundERS9_:
-      102: 1258:      lower_bound(const key_type& __x)
-      102: 1259:      { return _M_t.lower_bound(__x); }
+      122: 1258:      lower_bound(const key_type& __x)
+      122: 1259:      { return _M_t.lower_bound(__x); }
 ------------------
         -: 1260:
         -: 1261:#if __cplusplus > 201103L

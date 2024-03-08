@@ -110,22 +110,22 @@
         -:  109:      struct BOOST_FUNCTION_VOID_FUNCTION_INVOKER
         -:  110:      {
         -:  111:        static BOOST_FUNCTION_VOID_RETURN_TYPE
-      35*:  112:        invoke(function_buffer& function_ptr BOOST_FUNCTION_COMMA
+      21*:  112:        invoke(function_buffer& function_ptr BOOST_FUNCTION_COMMA
         -:  113:               BOOST_FUNCTION_PARMS)
         -:  114:
         -:  115:        {
-      35*:  116:          FunctionPtr f = reinterpret_cast<FunctionPtr>(function_ptr.members.func_ptr);
-      35*:  117:          BOOST_FUNCTION_RETURN(f(BOOST_FUNCTION_ARGS));
-      35*:  118:        }
+      21*:  116:          FunctionPtr f = reinterpret_cast<FunctionPtr>(function_ptr.members.func_ptr);
+      21*:  117:          BOOST_FUNCTION_RETURN(f(BOOST_FUNCTION_ARGS));
+      21*:  118:        }
 ------------------
 _ZN5boost6detail8function22void_function_invoker0IPFvvEvE6invokeERNS1_15function_bufferE:
-       35:  112:        invoke(function_buffer& function_ptr BOOST_FUNCTION_COMMA
+       21:  112:        invoke(function_buffer& function_ptr BOOST_FUNCTION_COMMA
         -:  113:               BOOST_FUNCTION_PARMS)
         -:  114:
         -:  115:        {
-       35:  116:          FunctionPtr f = reinterpret_cast<FunctionPtr>(function_ptr.members.func_ptr);
-       35:  117:          BOOST_FUNCTION_RETURN(f(BOOST_FUNCTION_ARGS));
-       35:  118:        }
+       21:  116:          FunctionPtr f = reinterpret_cast<FunctionPtr>(function_ptr.members.func_ptr);
+       21:  117:          BOOST_FUNCTION_RETURN(f(BOOST_FUNCTION_ARGS));
+       21:  118:        }
 ------------------
 _ZN5boost6detail8function22void_function_invoker0IPFvvEvE6invokeERNS1_15function_bufferE:
     #####:  112:        invoke(function_buffer& function_ptr BOOST_FUNCTION_COMMA
@@ -507,17 +507,17 @@ _ZN5boost6detail8function22void_function_invoker0IPFvvEvE6invokeERNS1_15function
         -:  487:                                            BOOST_FUNCTION_TEMPLATE_ARGS);
         -:  488:
         -:  489:        template<typename F>
-      35*:  490:        bool assign_to(F f, function_buffer& functor) const
+      21*:  490:        bool assign_to(F f, function_buffer& functor) const
         -:  491:        {
         -:  492:          typedef typename get_function_tag<F>::type tag;
-      35*:  493:          return assign_to(f, functor, tag());
+      21*:  493:          return assign_to(f, functor, tag());
         -:  494:        }
 ------------------
 _ZNK5boost6detail8function13basic_vtable0IvE9assign_toIPFvvEEEbT_RNS1_15function_bufferE:
-       35:  490:        bool assign_to(F f, function_buffer& functor) const
+       21:  490:        bool assign_to(F f, function_buffer& functor) const
         -:  491:        {
         -:  492:          typedef typename get_function_tag<F>::type tag;
-       35:  493:          return assign_to(f, functor, tag());
+       21:  493:          return assign_to(f, functor, tag());
         -:  494:        }
 ------------------
 _ZNK5boost6detail8function13basic_vtable0IvE9assign_toIPFvvEEEbT_RNS1_15function_bufferE:
@@ -534,18 +534,18 @@ _ZNK5boost6detail8function13basic_vtable0IvE9assign_toIPFvvEEEbT_RNS1_15function
         -:  499:          return assign_to_a(f, functor, a, tag());
         -:  500:        }
         -:  501:
-      35*:  502:        void clear(function_buffer& functor) const
+      21*:  502:        void clear(function_buffer& functor) const
         -:  503:        {
-      35*:  504:          if (base.manager)
-      35*:  505:            base.manager(functor, functor, destroy_functor_tag);
-      35*:  506:        }
+      21*:  504:          if (base.manager)
+      21*:  505:            base.manager(functor, functor, destroy_functor_tag);
+      21*:  506:        }
 ------------------
 _ZNK5boost6detail8function13basic_vtable0IvE5clearERNS1_15function_bufferE:
-       35:  502:        void clear(function_buffer& functor) const
+       21:  502:        void clear(function_buffer& functor) const
         -:  503:        {
-       35:  504:          if (base.manager)
-       35:  505:            base.manager(functor, functor, destroy_functor_tag);
-       35:  506:        }
+       21:  504:          if (base.manager)
+       21:  505:            base.manager(functor, functor, destroy_functor_tag);
+       21:  506:        }
 ------------------
 _ZNK5boost6detail8function13basic_vtable0IvE5clearERNS1_15function_bufferE:
     #####:  502:        void clear(function_buffer& functor) const
@@ -559,28 +559,28 @@ _ZNK5boost6detail8function13basic_vtable0IvE5clearERNS1_15function_bufferE:
         -:  509:        // Function pointers
         -:  510:        template<typename FunctionPtr>
         -:  511:        bool
-      35*:  512:        assign_to(FunctionPtr f, function_buffer& functor, function_ptr_tag) const
+      21*:  512:        assign_to(FunctionPtr f, function_buffer& functor, function_ptr_tag) const
         -:  513:        {
-      35*:  514:          this->clear(functor);
-      35*:  515:          if (f) {
+      21*:  514:          this->clear(functor);
+      21*:  515:          if (f) {
         -:  516:            // should be a reinterpret cast, but some compilers insist
         -:  517:            // on giving cv-qualifiers to free functions
-      35*:  518:            functor.members.func_ptr = reinterpret_cast<void (*)()>(f);
-      35*:  519:            return true;
+      21*:  518:            functor.members.func_ptr = reinterpret_cast<void (*)()>(f);
+      21*:  519:            return true;
         -:  520:          } else {
     #####:  521:            return false;
         -:  522:          }
         -:  523:        }
 ------------------
 _ZNK5boost6detail8function13basic_vtable0IvE9assign_toIPFvvEEEbT_RNS1_15function_bufferENS1_16function_ptr_tagE:
-       35:  512:        assign_to(FunctionPtr f, function_buffer& functor, function_ptr_tag) const
+       21:  512:        assign_to(FunctionPtr f, function_buffer& functor, function_ptr_tag) const
         -:  513:        {
-       35:  514:          this->clear(functor);
-       35:  515:          if (f) {
+       21:  514:          this->clear(functor);
+       21:  515:          if (f) {
         -:  516:            // should be a reinterpret cast, but some compilers insist
         -:  517:            // on giving cv-qualifiers to free functions
-       35:  518:            functor.members.func_ptr = reinterpret_cast<void (*)()>(f);
-       35:  519:            return true;
+       21:  518:            functor.members.func_ptr = reinterpret_cast<void (*)()>(f);
+       21:  519:            return true;
         -:  520:          } else {
     #####:  521:            return false;
         -:  522:          }
@@ -800,30 +800,30 @@ _ZNK5boost9function0IvE10get_vtableEv:
         -:  708:    // MSVC chokes if the following two constructors are collapsed into
         -:  709:    // one with a default parameter.
         -:  710:    template<typename Functor>
-      35*:  711:    BOOST_FUNCTION_FUNCTION(Functor BOOST_FUNCTION_TARGET_FIX(const &) f
+      21*:  711:    BOOST_FUNCTION_FUNCTION(Functor BOOST_FUNCTION_TARGET_FIX(const &) f
         -:  712:#ifndef BOOST_NO_SFINAE
         -:  713:                            ,typename boost::enable_if_<
         -:  714:                             !(is_integral<Functor>::value),
         -:  715:                                        int>::type = 0
         -:  716:#endif // BOOST_NO_SFINAE
         -:  717:                            ) :
-      35*:  718:      function_base()
+      21*:  718:      function_base()
         -:  719:    {
-      35*:  720:      this->assign_to(f);
-      35*:  721:    }
+      21*:  720:      this->assign_to(f);
+      21*:  721:    }
 ------------------
 _ZN5boost9function0IvEC2IPFvvEEET_NS_10enable_if_IXntsrNS_11is_integralIS5_EE5valueEiE4typeE:
-       35:  711:    BOOST_FUNCTION_FUNCTION(Functor BOOST_FUNCTION_TARGET_FIX(const &) f
+       21:  711:    BOOST_FUNCTION_FUNCTION(Functor BOOST_FUNCTION_TARGET_FIX(const &) f
         -:  712:#ifndef BOOST_NO_SFINAE
         -:  713:                            ,typename boost::enable_if_<
         -:  714:                             !(is_integral<Functor>::value),
         -:  715:                                        int>::type = 0
         -:  716:#endif // BOOST_NO_SFINAE
         -:  717:                            ) :
-       35:  718:      function_base()
+       21:  718:      function_base()
         -:  719:    {
-       35:  720:      this->assign_to(f);
-       35:  721:    }
+       21:  720:      this->assign_to(f);
+       21:  721:    }
 ------------------
 _ZN5boost9function0IvEC2IPFvvEEET_NS_10enable_if_IXntsrNS_11is_integralIS5_EE5valueEiE4typeE:
     #####:  711:    BOOST_FUNCTION_FUNCTION(Functor BOOST_FUNCTION_TARGET_FIX(const &) f
@@ -872,10 +872,10 @@ _ZN5boost9function0IvEC2IPFvvEEET_NS_10enable_if_IXntsrNS_11is_integralIS5_EE5va
         -:  753:    }
         -:  754:#endif
         -:  755:
-      35*:  756:    ~BOOST_FUNCTION_FUNCTION() { clear(); }
+      21*:  756:    ~BOOST_FUNCTION_FUNCTION() { clear(); }
 ------------------
 _ZN5boost9function0IvED2Ev:
-       35:  756:    ~BOOST_FUNCTION_FUNCTION() { clear(); }
+       21:  756:    ~BOOST_FUNCTION_FUNCTION() { clear(); }
 ------------------
 _ZN5boost9function0IvED2Ev:
     #####:  756:    ~BOOST_FUNCTION_FUNCTION() { clear(); }
@@ -991,24 +991,24 @@ _ZN5boost9function0IvED2Ev:
         -:  865:    }
         -:  866:
         -:  867:    // Clear out a target, if there is one
-      35*:  868:    void clear()
+      21*:  868:    void clear()
         -:  869:    {
-      35*:  870:      if (vtable) {
-      35*:  871:        if (!this->has_trivial_copy_and_destroy())
+      21*:  870:      if (vtable) {
+      21*:  871:        if (!this->has_trivial_copy_and_destroy())
     #####:  872:          get_vtable()->clear(this->functor);
-      35*:  873:        vtable = 0;
+      21*:  873:        vtable = 0;
         -:  874:      }
-      35*:  875:    }
+      21*:  875:    }
 ------------------
 _ZN5boost9function0IvE5clearEv:
-       35:  868:    void clear()
+       21:  868:    void clear()
         -:  869:    {
-       35:  870:      if (vtable) {
-       35:  871:        if (!this->has_trivial_copy_and_destroy())
+       21:  870:      if (vtable) {
+       21:  871:        if (!this->has_trivial_copy_and_destroy())
     #####:  872:          get_vtable()->clear(this->functor);
-       35:  873:        vtable = 0;
+       21:  873:        vtable = 0;
         -:  874:      }
-       35:  875:    }
+       21:  875:    }
 ------------------
 _ZN5boost9function0IvE5clearEv:
     #####:  868:    void clear()
@@ -1065,7 +1065,7 @@ _ZN5boost9function0IvE5clearEv:
         -:  918:    }
         -:  919:
         -:  920:    template<typename Functor>
-      35*:  921:    void assign_to(Functor f)
+      21*:  921:    void assign_to(Functor f)
         -:  922:    {
         -:  923:      using boost::detail::function::vtable_base;
         -:  924:
@@ -1086,20 +1086,20 @@ _ZN5boost9function0IvE5clearEv:
         -:  939:      static const vtable_type stored_vtable =
         -:  940:        { { &manager_type::manage }, &invoker_type::invoke };
         -:  941:
-      35*:  942:      if (stored_vtable.assign_to(f, functor)) {
-      35*:  943:        std::size_t value = reinterpret_cast<std::size_t>(&stored_vtable.base);
+      21*:  942:      if (stored_vtable.assign_to(f, functor)) {
+      21*:  943:        std::size_t value = reinterpret_cast<std::size_t>(&stored_vtable.base);
         -:  944:        // coverity[pointless_expression]: suppress coverity warnings on apparant if(const).
         -:  945:        if (boost::has_trivial_copy_constructor<Functor>::value &&
         -:  946:            boost::has_trivial_destructor<Functor>::value &&
         -:  947:            boost::detail::function::function_allows_small_object_optimization<Functor>::value)
-      35*:  948:          value |= static_cast<std::size_t>(0x01);
-      35*:  949:        vtable = reinterpret_cast<boost::detail::function::vtable_base *>(value);
+      21*:  948:          value |= static_cast<std::size_t>(0x01);
+      21*:  949:        vtable = reinterpret_cast<boost::detail::function::vtable_base *>(value);
         -:  950:      } else
     #####:  951:        vtable = 0;
-      35*:  952:    }
+      21*:  952:    }
 ------------------
 _ZN5boost9function0IvE9assign_toIPFvvEEEvT_:
-       35:  921:    void assign_to(Functor f)
+       21:  921:    void assign_to(Functor f)
         -:  922:    {
         -:  923:      using boost::detail::function::vtable_base;
         -:  924:
@@ -1120,17 +1120,17 @@ _ZN5boost9function0IvE9assign_toIPFvvEEEvT_:
         -:  939:      static const vtable_type stored_vtable =
         -:  940:        { { &manager_type::manage }, &invoker_type::invoke };
         -:  941:
-       35:  942:      if (stored_vtable.assign_to(f, functor)) {
-       35:  943:        std::size_t value = reinterpret_cast<std::size_t>(&stored_vtable.base);
+       21:  942:      if (stored_vtable.assign_to(f, functor)) {
+       21:  943:        std::size_t value = reinterpret_cast<std::size_t>(&stored_vtable.base);
         -:  944:        // coverity[pointless_expression]: suppress coverity warnings on apparant if(const).
         -:  945:        if (boost::has_trivial_copy_constructor<Functor>::value &&
         -:  946:            boost::has_trivial_destructor<Functor>::value &&
         -:  947:            boost::detail::function::function_allows_small_object_optimization<Functor>::value)
-       35:  948:          value |= static_cast<std::size_t>(0x01);
-       35:  949:        vtable = reinterpret_cast<boost::detail::function::vtable_base *>(value);
+       21:  948:          value |= static_cast<std::size_t>(0x01);
+       21:  949:        vtable = reinterpret_cast<boost::detail::function::vtable_base *>(value);
         -:  950:      } else
     #####:  951:        vtable = 0;
-       35:  952:    }
+       21:  952:    }
 ------------------
 _ZN5boost9function0IvE9assign_toIPFvvEEEvT_:
     #####:  921:    void assign_to(Functor f)
@@ -1292,28 +1292,28 @@ _ZN5boost9function0IvE9assign_toIPFvvEEEvT_:
         -: 1076:  BOOST_DEFAULTED_FUNCTION(function(), : base_type() {})
         -: 1077:
         -: 1078:  template<typename Functor>
-      35*: 1079:  function(Functor f
+      21*: 1079:  function(Functor f
         -: 1080:#ifndef BOOST_NO_SFINAE
         -: 1081:           ,typename boost::enable_if_<
         -: 1082:                          !(is_integral<Functor>::value),
         -: 1083:                       int>::type = 0
         -: 1084:#endif
         -: 1085:           ) :
-      35*: 1086:    base_type(f)
+      21*: 1086:    base_type(f)
         -: 1087:  {
-      35*: 1088:  }
+      21*: 1088:  }
 ------------------
 _ZN5boost8functionIFvvEEC2IPS1_EET_NS_10enable_if_IXntsrNS_11is_integralIS5_EE5valueEiE4typeE:
-       35: 1079:  function(Functor f
+       21: 1079:  function(Functor f
         -: 1080:#ifndef BOOST_NO_SFINAE
         -: 1081:           ,typename boost::enable_if_<
         -: 1082:                          !(is_integral<Functor>::value),
         -: 1083:                       int>::type = 0
         -: 1084:#endif
         -: 1085:           ) :
-       35: 1086:    base_type(f)
+       21: 1086:    base_type(f)
         -: 1087:  {
-       35: 1088:  }
+       21: 1088:  }
 ------------------
 _ZN5boost8functionIFvvEEC2IPS1_EET_NS_10enable_if_IXntsrNS_11is_integralIS5_EE5valueEiE4typeE:
     #####: 1079:  function(Functor f

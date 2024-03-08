@@ -79,14 +79,14 @@
         -:   78:  //
         -:   79:  template<typename _BiIter, typename _Alloc, typename _TraitsT,
         -:   80:	   bool __dfs_mode>
-       21:   81:    bool _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
+       26:   81:    bool _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
         -:   82:    _M_main_dispatch(_Match_mode __match_mode, __dfs)
         -:   83:    {
-       21:   84:      _M_has_sol = false;
-       21:   85:      *_M_states._M_get_sol_pos() = _BiIter();
-       21:   86:      _M_cur_results = _M_results;
-       21:   87:      _M_dfs(__match_mode, _M_states._M_start);
-       21:   88:      return _M_has_sol;
+       26:   84:      _M_has_sol = false;
+       26:   85:      *_M_states._M_get_sol_pos() = _BiIter();
+       26:   86:      _M_cur_results = _M_results;
+       26:   87:      _M_dfs(__match_mode, _M_states._M_start);
+       26:   88:      return _M_has_sol;
         -:   89:    }
         -:   90:
         -:   91:  // ------------------------------------------------------------
@@ -213,18 +213,18 @@ _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_st
         -:  171:  // we need to spare one more time for potential group capture.
         -:  172:  template<typename _BiIter, typename _Alloc, typename _TraitsT,
         -:  173:	   bool __dfs_mode>
-      87*:  174:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
+      94*:  174:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
         -:  175:    _M_rep_once_more(_Match_mode __match_mode, _StateIdT __i)
         -:  176:    {
-      87*:  177:      const auto& __state = _M_nfa[__i];
-      87*:  178:      auto& __rep_count = _M_rep_count[__i];
-      87*:  179:      if (__rep_count.second == 0 || __rep_count.first != _M_current)
+      94*:  177:      const auto& __state = _M_nfa[__i];
+      94*:  178:      auto& __rep_count = _M_rep_count[__i];
+      94*:  179:      if (__rep_count.second == 0 || __rep_count.first != _M_current)
         -:  180:	{
-      87*:  181:	  auto __back = __rep_count;
-      87*:  182:	  __rep_count.first = _M_current;
-      87*:  183:	  __rep_count.second = 1;
-      87*:  184:	  _M_dfs(__match_mode, __state._M_alt);
-      87*:  185:	  __rep_count = __back;
+      94*:  181:	  auto __back = __rep_count;
+      94*:  182:	  __rep_count.first = _M_current;
+      94*:  183:	  __rep_count.second = 1;
+      94*:  184:	  _M_dfs(__match_mode, __state._M_alt);
+      94*:  185:	  __rep_count = __back;
         -:  186:	}
         -:  187:      else
         -:  188:	{
@@ -235,21 +235,21 @@ _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_st
     #####:  193:	      __rep_count.second--;
         -:  194:	    }
         -:  195:	}
-      87*:  196:    }
+      94*:  196:    }
 ------------------
 _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEESaINS5_9sub_matchISB_EEENS5_12regex_traitsIcEELb1EE16_M_rep_once_moreENSH_11_Match_modeEl:
-       87:  174:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
+       94:  174:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
         -:  175:    _M_rep_once_more(_Match_mode __match_mode, _StateIdT __i)
         -:  176:    {
-       87:  177:      const auto& __state = _M_nfa[__i];
-       87:  178:      auto& __rep_count = _M_rep_count[__i];
-      87*:  179:      if (__rep_count.second == 0 || __rep_count.first != _M_current)
+       94:  177:      const auto& __state = _M_nfa[__i];
+       94:  178:      auto& __rep_count = _M_rep_count[__i];
+      94*:  179:      if (__rep_count.second == 0 || __rep_count.first != _M_current)
         -:  180:	{
-       87:  181:	  auto __back = __rep_count;
-       87:  182:	  __rep_count.first = _M_current;
-       87:  183:	  __rep_count.second = 1;
-       87:  184:	  _M_dfs(__match_mode, __state._M_alt);
-       87:  185:	  __rep_count = __back;
+       94:  181:	  auto __back = __rep_count;
+       94:  182:	  __rep_count.first = _M_current;
+       94:  183:	  __rep_count.second = 1;
+       94:  184:	  _M_dfs(__match_mode, __state._M_alt);
+       94:  185:	  __rep_count = __back;
         -:  186:	}
         -:  187:      else
         -:  188:	{
@@ -260,7 +260,7 @@ _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_st
     #####:  193:	      __rep_count.second--;
         -:  194:	    }
         -:  195:	}
-       87:  196:    }
+       94:  196:    }
 ------------------
 _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEESaINS5_9sub_matchISB_EEENS5_12regex_traitsIcEELb0EE16_M_rep_once_moreENSH_11_Match_modeEl:
     #####:  174:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
@@ -294,18 +294,18 @@ _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_st
         -:  201:  // given greedy mode.
         -:  202:  template<typename _BiIter, typename _Alloc, typename _TraitsT,
         -:  203:	   bool __dfs_mode>
-      87*:  204:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
+      94*:  204:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
         -:  205:    _M_handle_repeat(_Match_mode __match_mode, _StateIdT __i)
         -:  206:    {
-      87*:  207:      const auto& __state = _M_nfa[__i];
+      94*:  207:      const auto& __state = _M_nfa[__i];
         -:  208:
         -:  209:      // Greedy.
-      87*:  210:      if (!__state._M_neg)
+      94*:  210:      if (!__state._M_neg)
         -:  211:	{
-      87*:  212:	  _M_rep_once_more(__match_mode, __i);
+      94*:  212:	  _M_rep_once_more(__match_mode, __i);
         -:  213:	  // If it's DFS executor and already accepted, we're done.
-       87:  214:	  if (!__dfs_mode || !_M_has_sol)
-      42*:  215:	    _M_dfs(__match_mode, __state._M_next);
+       94:  214:	  if (!__dfs_mode || !_M_has_sol)
+      44*:  215:	    _M_dfs(__match_mode, __state._M_next);
         -:  216:	}
         -:  217:      else // Non-greedy mode
         -:  218:	{
@@ -332,21 +332,21 @@ _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_st
         -:  239:		}
         -:  240:	    }
         -:  241:	}
-      87*:  242:    }
+      94*:  242:    }
 ------------------
 _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEESaINS5_9sub_matchISB_EEENS5_12regex_traitsIcEELb1EE16_M_handle_repeatENSH_11_Match_modeEl:
-       87:  204:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
+       94:  204:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
         -:  205:    _M_handle_repeat(_Match_mode __match_mode, _StateIdT __i)
         -:  206:    {
-       87:  207:      const auto& __state = _M_nfa[__i];
+       94:  207:      const auto& __state = _M_nfa[__i];
         -:  208:
         -:  209:      // Greedy.
-       87:  210:      if (!__state._M_neg)
+       94:  210:      if (!__state._M_neg)
         -:  211:	{
-       87:  212:	  _M_rep_once_more(__match_mode, __i);
+       94:  212:	  _M_rep_once_more(__match_mode, __i);
         -:  213:	  // If it's DFS executor and already accepted, we're done.
-       87:  214:	  if (!__dfs_mode || !_M_has_sol)
-       42:  215:	    _M_dfs(__match_mode, __state._M_next);
+       94:  214:	  if (!__dfs_mode || !_M_has_sol)
+       44:  215:	    _M_dfs(__match_mode, __state._M_next);
         -:  216:	}
         -:  217:      else // Non-greedy mode
         -:  218:	{
@@ -373,7 +373,7 @@ _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_st
         -:  239:		}
         -:  240:	    }
         -:  241:	}
-       87:  242:    }
+       94:  242:    }
 ------------------
 _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEESaINS5_9sub_matchISB_EEENS5_12regex_traitsIcEELb0EE16_M_handle_repeatENSH_11_Match_modeEl:
     #####:  204:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
@@ -419,30 +419,30 @@ _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_st
         -:  243:
         -:  244:  template<typename _BiIter, typename _Alloc, typename _TraitsT,
         -:  245:	   bool __dfs_mode>
-      34*:  246:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
+      42*:  246:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
         -:  247:    _M_handle_subexpr_begin(_Match_mode __match_mode, _StateIdT __i)
         -:  248:    {
-      34*:  249:      const auto& __state = _M_nfa[__i];
+      42*:  249:      const auto& __state = _M_nfa[__i];
         -:  250:
-      34*:  251:      auto& __res = _M_cur_results[__state._M_subexpr];
-      34*:  252:      auto __back = __res.first;
-      34*:  253:      __res.first = _M_current;
-      34*:  254:      _M_dfs(__match_mode, __state._M_next);
-      34*:  255:      __res.first = __back;
-      34*:  256:    }
+      42*:  251:      auto& __res = _M_cur_results[__state._M_subexpr];
+      42*:  252:      auto __back = __res.first;
+      42*:  253:      __res.first = _M_current;
+      42*:  254:      _M_dfs(__match_mode, __state._M_next);
+      42*:  255:      __res.first = __back;
+      42*:  256:    }
 ------------------
 _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEESaINS5_9sub_matchISB_EEENS5_12regex_traitsIcEELb1EE23_M_handle_subexpr_beginENSH_11_Match_modeEl:
-       34:  246:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
+       42:  246:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
         -:  247:    _M_handle_subexpr_begin(_Match_mode __match_mode, _StateIdT __i)
         -:  248:    {
-       34:  249:      const auto& __state = _M_nfa[__i];
+       42:  249:      const auto& __state = _M_nfa[__i];
         -:  250:
-       34:  251:      auto& __res = _M_cur_results[__state._M_subexpr];
-       34:  252:      auto __back = __res.first;
-       34:  253:      __res.first = _M_current;
-       34:  254:      _M_dfs(__match_mode, __state._M_next);
-       34:  255:      __res.first = __back;
-       34:  256:    }
+       42:  251:      auto& __res = _M_cur_results[__state._M_subexpr];
+       42:  252:      auto __back = __res.first;
+       42:  253:      __res.first = _M_current;
+       42:  254:      _M_dfs(__match_mode, __state._M_next);
+       42:  255:      __res.first = __back;
+       42:  256:    }
 ------------------
 _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEESaINS5_9sub_matchISB_EEENS5_12regex_traitsIcEELb0EE23_M_handle_subexpr_beginENSH_11_Match_modeEl:
     #####:  246:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
@@ -460,32 +460,32 @@ _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_st
         -:  257:
         -:  258:  template<typename _BiIter, typename _Alloc, typename _TraitsT,
         -:  259:	   bool __dfs_mode>
-      27*:  260:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
+      34*:  260:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
         -:  261:    _M_handle_subexpr_end(_Match_mode __match_mode, _StateIdT __i)
         -:  262:    {
-      27*:  263:      const auto& __state = _M_nfa[__i];
+      34*:  263:      const auto& __state = _M_nfa[__i];
         -:  264:
-      27*:  265:      auto& __res = _M_cur_results[__state._M_subexpr];
-      27*:  266:      auto __back = __res;
-      27*:  267:      __res.second = _M_current;
-      27*:  268:      __res.matched = true;
-      27*:  269:      _M_dfs(__match_mode, __state._M_next);
-      27*:  270:      __res = __back;
-      27*:  271:    }
+      34*:  265:      auto& __res = _M_cur_results[__state._M_subexpr];
+      34*:  266:      auto __back = __res;
+      34*:  267:      __res.second = _M_current;
+      34*:  268:      __res.matched = true;
+      34*:  269:      _M_dfs(__match_mode, __state._M_next);
+      34*:  270:      __res = __back;
+      34*:  271:    }
 ------------------
 _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEESaINS5_9sub_matchISB_EEENS5_12regex_traitsIcEELb1EE21_M_handle_subexpr_endENSH_11_Match_modeEl:
-       27:  260:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
+       34:  260:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
         -:  261:    _M_handle_subexpr_end(_Match_mode __match_mode, _StateIdT __i)
         -:  262:    {
-       27:  263:      const auto& __state = _M_nfa[__i];
+       34:  263:      const auto& __state = _M_nfa[__i];
         -:  264:
-       27:  265:      auto& __res = _M_cur_results[__state._M_subexpr];
-       27:  266:      auto __back = __res;
-       27:  267:      __res.second = _M_current;
-       27:  268:      __res.matched = true;
-       27:  269:      _M_dfs(__match_mode, __state._M_next);
-       27:  270:      __res = __back;
-       27:  271:    }
+       34:  265:      auto& __res = _M_cur_results[__state._M_subexpr];
+       34:  266:      auto __back = __res;
+       34:  267:      __res.second = _M_current;
+       34:  268:      __res.matched = true;
+       34:  269:      _M_dfs(__match_mode, __state._M_next);
+       34:  270:      __res = __back;
+       34:  271:    }
 ------------------
 _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEESaINS5_9sub_matchISB_EEENS5_12regex_traitsIcEELb0EE21_M_handle_subexpr_endENSH_11_Match_modeEl:
     #####:  260:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
@@ -504,22 +504,22 @@ _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_st
         -:  272:
         -:  273:  template<typename _BiIter, typename _Alloc, typename _TraitsT,
         -:  274:	   bool __dfs_mode>
-      21*:  275:    inline void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
+      26*:  275:    inline void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
         -:  276:    _M_handle_line_begin_assertion(_Match_mode __match_mode, _StateIdT __i)
         -:  277:    {
-      21*:  278:      const auto& __state = _M_nfa[__i];
-      21*:  279:      if (_M_at_begin())
-      21*:  280:	_M_dfs(__match_mode, __state._M_next);
-      21*:  281:    }
+      26*:  278:      const auto& __state = _M_nfa[__i];
+      26*:  279:      if (_M_at_begin())
+      26*:  280:	_M_dfs(__match_mode, __state._M_next);
+      26*:  281:    }
 ------------------
 _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEESaINS5_9sub_matchISB_EEENS5_12regex_traitsIcEELb1EE30_M_handle_line_begin_assertionENSH_11_Match_modeEl:
-       21:  275:    inline void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
+       26:  275:    inline void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
         -:  276:    _M_handle_line_begin_assertion(_Match_mode __match_mode, _StateIdT __i)
         -:  277:    {
-       21:  278:      const auto& __state = _M_nfa[__i];
-       21:  279:      if (_M_at_begin())
-       21:  280:	_M_dfs(__match_mode, __state._M_next);
-       21:  281:    }
+       26:  278:      const auto& __state = _M_nfa[__i];
+       26:  279:      if (_M_at_begin())
+       26:  280:	_M_dfs(__match_mode, __state._M_next);
+       26:  281:    }
 ------------------
 _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEESaINS5_9sub_matchISB_EEENS5_12regex_traitsIcEELb0EE30_M_handle_line_begin_assertionENSH_11_Match_modeEl:
     #####:  275:    inline void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
@@ -533,22 +533,22 @@ _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_st
         -:  282:
         -:  283:  template<typename _BiIter, typename _Alloc, typename _TraitsT,
         -:  284:	   bool __dfs_mode>
-      22*:  285:    inline void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
+      26*:  285:    inline void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
         -:  286:    _M_handle_line_end_assertion(_Match_mode __match_mode, _StateIdT __i)
         -:  287:    {
-      22*:  288:      const auto& __state = _M_nfa[__i];
-      22*:  289:      if (_M_at_end())
-      15*:  290:	_M_dfs(__match_mode, __state._M_next);
-      22*:  291:    }
+      26*:  288:      const auto& __state = _M_nfa[__i];
+      26*:  289:      if (_M_at_end())
+      19*:  290:	_M_dfs(__match_mode, __state._M_next);
+      26*:  291:    }
 ------------------
 _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEESaINS5_9sub_matchISB_EEENS5_12regex_traitsIcEELb1EE28_M_handle_line_end_assertionENSH_11_Match_modeEl:
-       22:  285:    inline void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
+       26:  285:    inline void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
         -:  286:    _M_handle_line_end_assertion(_Match_mode __match_mode, _StateIdT __i)
         -:  287:    {
-       22:  288:      const auto& __state = _M_nfa[__i];
-       22:  289:      if (_M_at_end())
-       15:  290:	_M_dfs(__match_mode, __state._M_next);
-       22:  291:    }
+       26:  288:      const auto& __state = _M_nfa[__i];
+       26:  289:      if (_M_at_end())
+       19:  290:	_M_dfs(__match_mode, __state._M_next);
+       26:  291:    }
 ------------------
 _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEESaINS5_9sub_matchISB_EEENS5_12regex_traitsIcEELb0EE28_M_handle_line_end_assertionENSH_11_Match_modeEl:
     #####:  285:    inline void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
@@ -622,20 +622,20 @@ _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_st
         -:  314:
         -:  315:  template<typename _BiIter, typename _Alloc, typename _TraitsT,
         -:  316:	   bool __dfs_mode>
-     194*:  317:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
+     219*:  317:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
         -:  318:    _M_handle_match(_Match_mode __match_mode, _StateIdT __i)
         -:  319:    {
-     194*:  320:      const auto& __state = _M_nfa[__i];
+     219*:  320:      const auto& __state = _M_nfa[__i];
         -:  321:
-     194*:  322:      if (_M_current == _M_end)
-      16*:  323:	return;
+     219*:  322:      if (_M_current == _M_end)
+      19*:  323:	return;
         -:  324:      if (__dfs_mode)
         -:  325:	{
-      178:  326:	  if (__state._M_matches(*_M_current))
+      200:  326:	  if (__state._M_matches(*_M_current))
         -:  327:	    {
-      153:  328:	      ++_M_current;
-      153:  329:	      _M_dfs(__match_mode, __state._M_next);
-      153:  330:	      --_M_current;
+      175:  328:	      ++_M_current;
+      175:  329:	      _M_dfs(__match_mode, __state._M_next);
+      175:  330:	      --_M_current;
         -:  331:	    }
         -:  332:	}
         -:  333:      else
@@ -644,20 +644,20 @@ _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_st
         -:  336:    }
 ------------------
 _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEESaINS5_9sub_matchISB_EEENS5_12regex_traitsIcEELb1EE15_M_handle_matchENSH_11_Match_modeEl:
-      194:  317:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
+      219:  317:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
         -:  318:    _M_handle_match(_Match_mode __match_mode, _StateIdT __i)
         -:  319:    {
-      194:  320:      const auto& __state = _M_nfa[__i];
+      219:  320:      const auto& __state = _M_nfa[__i];
         -:  321:
-      194:  322:      if (_M_current == _M_end)
-       16:  323:	return;
+      219:  322:      if (_M_current == _M_end)
+       19:  323:	return;
         -:  324:      if (__dfs_mode)
         -:  325:	{
-      178:  326:	  if (__state._M_matches(*_M_current))
+      200:  326:	  if (__state._M_matches(*_M_current))
         -:  327:	    {
-      153:  328:	      ++_M_current;
-      153:  329:	      _M_dfs(__match_mode, __state._M_next);
-      153:  330:	      --_M_current;
+      175:  328:	      ++_M_current;
+      175:  329:	      _M_dfs(__match_mode, __state._M_next);
+      175:  330:	      --_M_current;
         -:  331:	    }
         -:  332:	}
         -:  333:      else
@@ -840,23 +840,23 @@ _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_st
         -:  422:
         -:  423:  template<typename _BiIter, typename _Alloc, typename _TraitsT,
         -:  424:	   bool __dfs_mode>
-      15*:  425:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
+      19*:  425:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
         -:  426:    _M_handle_accept(_Match_mode __match_mode, _StateIdT)
         -:  427:    {
         -:  428:      if (__dfs_mode)
         -:  429:	{
         -:  430:	  __glibcxx_assert(!_M_has_sol);
-       15:  431:	  if (__match_mode == _Match_mode::_Exact)
-       15:  432:	    _M_has_sol = _M_current == _M_end;
+       19:  431:	  if (__match_mode == _Match_mode::_Exact)
+       19:  432:	    _M_has_sol = _M_current == _M_end;
         -:  433:	  else
     #####:  434:	    _M_has_sol = true;
-       15:  435:	  if (_M_current == _M_begin
-      15*:  436:	      && (_M_flags & regex_constants::match_not_null))
+       19:  435:	  if (_M_current == _M_begin
+      19*:  436:	      && (_M_flags & regex_constants::match_not_null))
     #####:  437:	    _M_has_sol = false;
-       15:  438:	  if (_M_has_sol)
+       19:  438:	  if (_M_has_sol)
         -:  439:	    {
-       15:  440:	      if (_M_nfa._M_flags & regex_constants::ECMAScript)
-       15:  441:		_M_results = _M_cur_results;
+       19:  440:	      if (_M_nfa._M_flags & regex_constants::ECMAScript)
+       19:  441:		_M_results = _M_cur_results;
         -:  442:	      else // POSIX
         -:  443:		{
     #####:  444:		  __glibcxx_assert(_M_states._M_get_sol_pos());
@@ -893,23 +893,23 @@ _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_st
         -:  475:    }
 ------------------
 _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEESaINS5_9sub_matchISB_EEENS5_12regex_traitsIcEELb1EE16_M_handle_acceptENSH_11_Match_modeEl:
-       15:  425:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
+       19:  425:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
         -:  426:    _M_handle_accept(_Match_mode __match_mode, _StateIdT)
         -:  427:    {
         -:  428:      if (__dfs_mode)
         -:  429:	{
         -:  430:	  __glibcxx_assert(!_M_has_sol);
-       15:  431:	  if (__match_mode == _Match_mode::_Exact)
-       15:  432:	    _M_has_sol = _M_current == _M_end;
+       19:  431:	  if (__match_mode == _Match_mode::_Exact)
+       19:  432:	    _M_has_sol = _M_current == _M_end;
         -:  433:	  else
     #####:  434:	    _M_has_sol = true;
-       15:  435:	  if (_M_current == _M_begin
-      15*:  436:	      && (_M_flags & regex_constants::match_not_null))
+       19:  435:	  if (_M_current == _M_begin
+      19*:  436:	      && (_M_flags & regex_constants::match_not_null))
     #####:  437:	    _M_has_sol = false;
-       15:  438:	  if (_M_has_sol)
+       19:  438:	  if (_M_has_sol)
         -:  439:	    {
-       15:  440:	      if (_M_nfa._M_flags & regex_constants::ECMAScript)
-       15:  441:		_M_results = _M_cur_results;
+       19:  440:	      if (_M_nfa._M_flags & regex_constants::ECMAScript)
+       19:  441:		_M_results = _M_cur_results;
         -:  442:	      else // POSIX
         -:  443:		{
     #####:  444:		  __glibcxx_assert(_M_states._M_get_sol_pos());
@@ -1081,34 +1081,34 @@ _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_st
         -:  503:
         -:  504:  template<typename _BiIter, typename _Alloc, typename _TraitsT,
         -:  505:	   bool __dfs_mode>
-     400*:  506:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
+     460*:  506:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
         -:  507:    _M_dfs(_Match_mode __match_mode, _StateIdT __i)
         -:  508:    {
-     400*:  509:      if (_M_states._M_visited(__i))
+     460*:  509:      if (_M_states._M_visited(__i))
     #####:  510:	return;
         -:  511:
-     400*:  512:      switch (_M_nfa[__i]._M_opcode())
+     460*:  512:      switch (_M_nfa[__i]._M_opcode())
         -:  513:	{
-      87*:  514:	case _S_opcode_repeat:
-      87*:  515:	  _M_handle_repeat(__match_mode, __i); break;
-      34*:  516:	case _S_opcode_subexpr_begin:
-      34*:  517:	  _M_handle_subexpr_begin(__match_mode, __i); break;
-      27*:  518:	case _S_opcode_subexpr_end:
-      27*:  519:	  _M_handle_subexpr_end(__match_mode, __i); break;
-      21*:  520:	case _S_opcode_line_begin_assertion:
-      21*:  521:	  _M_handle_line_begin_assertion(__match_mode, __i); break;
-      22*:  522:	case _S_opcode_line_end_assertion:
-      22*:  523:	  _M_handle_line_end_assertion(__match_mode, __i); break;
+      94*:  514:	case _S_opcode_repeat:
+      94*:  515:	  _M_handle_repeat(__match_mode, __i); break;
+      42*:  516:	case _S_opcode_subexpr_begin:
+      42*:  517:	  _M_handle_subexpr_begin(__match_mode, __i); break;
+      34*:  518:	case _S_opcode_subexpr_end:
+      34*:  519:	  _M_handle_subexpr_end(__match_mode, __i); break;
+      26*:  520:	case _S_opcode_line_begin_assertion:
+      26*:  521:	  _M_handle_line_begin_assertion(__match_mode, __i); break;
+      26*:  522:	case _S_opcode_line_end_assertion:
+      26*:  523:	  _M_handle_line_end_assertion(__match_mode, __i); break;
     #####:  524:	case _S_opcode_word_boundary:
     #####:  525:	  _M_handle_word_boundary(__match_mode, __i); break;
     #####:  526:	case _S_opcode_subexpr_lookahead:
     #####:  527:	  _M_handle_subexpr_lookahead(__match_mode, __i); break;
-     194*:  528:	case _S_opcode_match:
-     194*:  529:	  _M_handle_match(__match_mode, __i); break;
+     219*:  528:	case _S_opcode_match:
+     219*:  529:	  _M_handle_match(__match_mode, __i); break;
     #####:  530:	case _S_opcode_backref:
     #####:  531:	  _M_handle_backref(__match_mode, __i); break;
-      15*:  532:	case _S_opcode_accept:
-      15*:  533:	  _M_handle_accept(__match_mode, __i); break;
+      19*:  532:	case _S_opcode_accept:
+      19*:  533:	  _M_handle_accept(__match_mode, __i); break;
     #####:  534:	case _S_opcode_alternative:
     #####:  535:	  _M_handle_alternative(__match_mode, __i); break;
     #####:  536:	default:
@@ -1117,34 +1117,34 @@ _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_st
         -:  539:    }
 ------------------
 _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEESaINS5_9sub_matchISB_EEENS5_12regex_traitsIcEELb1EE6_M_dfsENSH_11_Match_modeEl:
-      400:  506:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
+      460:  506:    void _Executor<_BiIter, _Alloc, _TraitsT, __dfs_mode>::
         -:  507:    _M_dfs(_Match_mode __match_mode, _StateIdT __i)
         -:  508:    {
-      400:  509:      if (_M_states._M_visited(__i))
+      460:  509:      if (_M_states._M_visited(__i))
     #####:  510:	return;
         -:  511:
-      400:  512:      switch (_M_nfa[__i]._M_opcode())
+      460:  512:      switch (_M_nfa[__i]._M_opcode())
         -:  513:	{
-       87:  514:	case _S_opcode_repeat:
-       87:  515:	  _M_handle_repeat(__match_mode, __i); break;
-       34:  516:	case _S_opcode_subexpr_begin:
-       34:  517:	  _M_handle_subexpr_begin(__match_mode, __i); break;
-       27:  518:	case _S_opcode_subexpr_end:
-       27:  519:	  _M_handle_subexpr_end(__match_mode, __i); break;
-       21:  520:	case _S_opcode_line_begin_assertion:
-       21:  521:	  _M_handle_line_begin_assertion(__match_mode, __i); break;
-       22:  522:	case _S_opcode_line_end_assertion:
-       22:  523:	  _M_handle_line_end_assertion(__match_mode, __i); break;
+       94:  514:	case _S_opcode_repeat:
+       94:  515:	  _M_handle_repeat(__match_mode, __i); break;
+       42:  516:	case _S_opcode_subexpr_begin:
+       42:  517:	  _M_handle_subexpr_begin(__match_mode, __i); break;
+       34:  518:	case _S_opcode_subexpr_end:
+       34:  519:	  _M_handle_subexpr_end(__match_mode, __i); break;
+       26:  520:	case _S_opcode_line_begin_assertion:
+       26:  521:	  _M_handle_line_begin_assertion(__match_mode, __i); break;
+       26:  522:	case _S_opcode_line_end_assertion:
+       26:  523:	  _M_handle_line_end_assertion(__match_mode, __i); break;
     #####:  524:	case _S_opcode_word_boundary:
     #####:  525:	  _M_handle_word_boundary(__match_mode, __i); break;
     #####:  526:	case _S_opcode_subexpr_lookahead:
     #####:  527:	  _M_handle_subexpr_lookahead(__match_mode, __i); break;
-      194:  528:	case _S_opcode_match:
-      194:  529:	  _M_handle_match(__match_mode, __i); break;
+      219:  528:	case _S_opcode_match:
+      219:  529:	  _M_handle_match(__match_mode, __i); break;
     #####:  530:	case _S_opcode_backref:
     #####:  531:	  _M_handle_backref(__match_mode, __i); break;
-       15:  532:	case _S_opcode_accept:
-       15:  533:	  _M_handle_accept(__match_mode, __i); break;
+       19:  532:	case _S_opcode_accept:
+       19:  533:	  _M_handle_accept(__match_mode, __i); break;
     #####:  534:	case _S_opcode_alternative:
     #####:  535:	  _M_handle_alternative(__match_mode, __i); break;
     #####:  536:	default:

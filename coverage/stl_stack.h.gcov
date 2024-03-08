@@ -160,16 +160,16 @@
         -:  159:#else
         -:  160:      template<typename _Seq = _Sequence, typename _Requires = typename
         -:  161:	       enable_if<is_default_constructible<_Seq>::value>::type>
-      100:  162:	stack()
-      100:  163:	: c() { }
+      122:  162:	stack()
+      122:  163:	: c() { }
 ------------------
 _ZNSt5stackIlSt5dequeIlSaIlEEEC2IS2_vEEv:
-       79:  162:	stack()
-       79:  163:	: c() { }
+       96:  162:	stack()
+       96:  163:	: c() { }
 ------------------
 _ZNSt5stackINSt8__detail9_StateSeqINSt7__cxx1112regex_traitsIcEEEESt5dequeIS5_SaIS5_EEEC2IS8_vEEv:
-       21:  162:	stack()
-       21:  163:	: c() { }
+       26:  162:	stack()
+       26:  163:	: c() { }
 ------------------
         -:  164:
         -:  165:      explicit
@@ -206,16 +206,16 @@ _ZNSt5stackINSt8__detail9_StateSeqINSt7__cxx1112regex_traitsIcEEEESt5dequeIS5_Sa
         -:  196:       *  Returns true if the %stack is empty.
         -:  197:       */
         -:  198:      _GLIBCXX_NODISCARD bool
-      178:  199:      empty() const
-      178:  200:      { return c.empty(); }
+      217:  199:      empty() const
+      217:  200:      { return c.empty(); }
 ------------------
 _ZNKSt5stackIlSt5dequeIlSaIlEEE5emptyEv:
-      139:  199:      empty() const
-      139:  200:      { return c.empty(); }
+      169:  199:      empty() const
+      169:  200:      { return c.empty(); }
 ------------------
 _ZNKSt5stackINSt8__detail9_StateSeqINSt7__cxx1112regex_traitsIcEEEESt5dequeIS5_SaIS5_EEE5emptyEv:
-       39:  199:      empty() const
-       39:  200:      { return c.empty(); }
+       48:  199:      empty() const
+       48:  200:      { return c.empty(); }
 ------------------
         -:  201:
         -:  202:      /**  Returns the number of elements in the %stack.  */
@@ -228,24 +228,24 @@ _ZNKSt5stackINSt8__detail9_StateSeqINSt7__cxx1112regex_traitsIcEEEESt5dequeIS5_S
         -:  209:       *  element of the %stack.
         -:  210:       */
         -:  211:      reference
-      363:  212:      top()
+      445:  212:      top()
         -:  213:      {
         -:  214:	__glibcxx_requires_nonempty();
-      363:  215:	return c.back();
+      445:  215:	return c.back();
         -:  216:      }
 ------------------
 _ZNSt5stackIlSt5dequeIlSaIlEEE3topEv:
-       60:  212:      top()
+       73:  212:      top()
         -:  213:      {
         -:  214:	__glibcxx_requires_nonempty();
-       60:  215:	return c.back();
+       73:  215:	return c.back();
         -:  216:      }
 ------------------
 _ZNSt5stackINSt8__detail9_StateSeqINSt7__cxx1112regex_traitsIcEEEESt5dequeIS5_SaIS5_EEE3topEv:
-      303:  212:      top()
+      372:  212:      top()
         -:  213:      {
         -:  214:	__glibcxx_requires_nonempty();
-      303:  215:	return c.back();
+      372:  215:	return c.back();
         -:  216:      }
 ------------------
         -:  217:
@@ -270,22 +270,22 @@ _ZNSt5stackINSt8__detail9_StateSeqINSt7__cxx1112regex_traitsIcEEEESt5dequeIS5_Sa
         -:  236:       *  underlying sequence.
         -:  237:       */
         -:  238:      void
-      228:  239:      push(const value_type& __x)
-      228:  240:      { c.push_back(__x); }
+      279:  239:      push(const value_type& __x)
+      279:  240:      { c.push_back(__x); }
 ------------------
 _ZNSt5stackIlSt5dequeIlSaIlEEE4pushERKl:
-       60:  239:      push(const value_type& __x)
-       60:  240:      { c.push_back(__x); }
+       73:  239:      push(const value_type& __x)
+       73:  240:      { c.push_back(__x); }
 ------------------
 _ZNSt5stackINSt8__detail9_StateSeqINSt7__cxx1112regex_traitsIcEEEESt5dequeIS5_SaIS5_EEE4pushERKS5_:
-      168:  239:      push(const value_type& __x)
-      168:  240:      { c.push_back(__x); }
+      206:  239:      push(const value_type& __x)
+      206:  240:      { c.push_back(__x); }
 ------------------
         -:  241:
         -:  242:#if __cplusplus >= 201103L
         -:  243:      void
-      135:  244:      push(value_type&& __x)
-      135:  245:      { c.push_back(std::move(__x)); }
+      166:  244:      push(value_type&& __x)
+      166:  245:      { c.push_back(std::move(__x)); }
         -:  246:
         -:  247:#if __cplusplus > 201402L
         -:  248:      template<typename... _Args>
@@ -312,25 +312,25 @@ _ZNSt5stackINSt8__detail9_StateSeqINSt7__cxx1112regex_traitsIcEEEESt5dequeIS5_Sa
         -:  269:       *  called.
         -:  270:       */
         -:  271:      void
-      363:  272:      pop()
+      445:  272:      pop()
         -:  273:      {
         -:  274:	__glibcxx_requires_nonempty();
-      363:  275:	c.pop_back();
-      363:  276:      }
+      445:  275:	c.pop_back();
+      445:  276:      }
 ------------------
 _ZNSt5stackIlSt5dequeIlSaIlEEE3popEv:
-       60:  272:      pop()
+       73:  272:      pop()
         -:  273:      {
         -:  274:	__glibcxx_requires_nonempty();
-       60:  275:	c.pop_back();
-       60:  276:      }
+       73:  275:	c.pop_back();
+       73:  276:      }
 ------------------
 _ZNSt5stackINSt8__detail9_StateSeqINSt7__cxx1112regex_traitsIcEEEESt5dequeIS5_SaIS5_EEE3popEv:
-      303:  272:      pop()
+      372:  272:      pop()
         -:  273:      {
         -:  274:	__glibcxx_requires_nonempty();
-      303:  275:	c.pop_back();
-      303:  276:      }
+      372:  275:	c.pop_back();
+      372:  276:      }
 ------------------
         -:  277:
         -:  278:#if __cplusplus >= 201103L

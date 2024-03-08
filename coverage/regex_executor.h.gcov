@@ -67,44 +67,44 @@
         -:   66:      typedef _NFA<_TraitsT>                                _NFAT;
         -:   67:
         -:   68:    public:
-      21*:   69:      _Executor(_BiIter         __begin,
+      26*:   69:      _Executor(_BiIter         __begin,
         -:   70:		_BiIter         __end,
         -:   71:		_ResultsVec&    __results,
         -:   72:		const _RegexT&  __re,
         -:   73:		_FlagT          __flags)
-      21*:   74:      : _M_begin(__begin),
-      21*:   75:      _M_end(__end),
-      21*:   76:      _M_re(__re),
-      21*:   77:      _M_nfa(*__re._M_automaton),
-      21*:   78:      _M_results(__results),
-      21*:   79:      _M_rep_count(_M_nfa.size()),
-      21*:   80:      _M_states(_M_nfa._M_start(), _M_nfa.size()),
-      21*:   81:      _M_flags(__flags)
+      26*:   74:      : _M_begin(__begin),
+      26*:   75:      _M_end(__end),
+      26*:   76:      _M_re(__re),
+      26*:   77:      _M_nfa(*__re._M_automaton),
+      26*:   78:      _M_results(__results),
+      26*:   79:      _M_rep_count(_M_nfa.size()),
+      26*:   80:      _M_states(_M_nfa._M_start(), _M_nfa.size()),
+      26*:   81:      _M_flags(__flags)
         -:   82:      {
         -:   83:	using namespace regex_constants;
-      21*:   84:	if (__flags & match_prev_avail) // ignore not_bol and not_bow
+      26*:   84:	if (__flags & match_prev_avail) // ignore not_bol and not_bow
     #####:   85:	  _M_flags &= ~(match_not_bol | match_not_bow);
-      21*:   86:      }
+      26*:   86:      }
 ------------------
 _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEESaINS5_9sub_matchISB_EEENS5_12regex_traitsIcEELb1EEC2ESB_SB_RSt6vectorISD_SE_ERKNS5_11basic_regexIcSG_EENSt15regex_constants15match_flag_typeE:
-       21:   69:      _Executor(_BiIter         __begin,
+       26:   69:      _Executor(_BiIter         __begin,
         -:   70:		_BiIter         __end,
         -:   71:		_ResultsVec&    __results,
         -:   72:		const _RegexT&  __re,
         -:   73:		_FlagT          __flags)
-       21:   74:      : _M_begin(__begin),
-       21:   75:      _M_end(__end),
-       21:   76:      _M_re(__re),
-       21:   77:      _M_nfa(*__re._M_automaton),
-       21:   78:      _M_results(__results),
-       21:   79:      _M_rep_count(_M_nfa.size()),
-       21:   80:      _M_states(_M_nfa._M_start(), _M_nfa.size()),
-       21:   81:      _M_flags(__flags)
+       26:   74:      : _M_begin(__begin),
+       26:   75:      _M_end(__end),
+       26:   76:      _M_re(__re),
+       26:   77:      _M_nfa(*__re._M_automaton),
+       26:   78:      _M_results(__results),
+       26:   79:      _M_rep_count(_M_nfa.size()),
+       26:   80:      _M_states(_M_nfa._M_start(), _M_nfa.size()),
+       26:   81:      _M_flags(__flags)
         -:   82:      {
         -:   83:	using namespace regex_constants;
-       21:   84:	if (__flags & match_prev_avail) // ignore not_bol and not_bow
+       26:   84:	if (__flags & match_prev_avail) // ignore not_bol and not_bow
     #####:   85:	  _M_flags &= ~(match_not_bol | match_not_bow);
-       21:   86:      }
+       26:   86:      }
 ------------------
 _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEESaINS5_9sub_matchISB_EEENS5_12regex_traitsIcEELb0EEC2ESB_SB_RSt6vectorISD_SE_ERKNS5_11basic_regexIcSG_EENSt15regex_constants15match_flag_typeE:
     #####:   69:      _Executor(_BiIter         __begin,
@@ -129,17 +129,17 @@ _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_st
         -:   87:
         -:   88:      // Set matched when string exactly matches the pattern.
         -:   89:      bool
-      21*:   90:      _M_match()
+      26*:   90:      _M_match()
         -:   91:      {
-      21*:   92:	_M_current = _M_begin;
-      21*:   93:	return _M_main(_Match_mode::_Exact);
+      26*:   92:	_M_current = _M_begin;
+      26*:   93:	return _M_main(_Match_mode::_Exact);
         -:   94:      }
 ------------------
 _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEESaINS5_9sub_matchISB_EEENS5_12regex_traitsIcEELb1EE8_M_matchEv:
-       21:   90:      _M_match()
+       26:   90:      _M_match()
         -:   91:      {
-       21:   92:	_M_current = _M_begin;
-       21:   93:	return _M_main(_Match_mode::_Exact);
+       26:   92:	_M_current = _M_begin;
+       26:   93:	return _M_main(_Match_mode::_Exact);
         -:   94:      }
 ------------------
 _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEESaINS5_9sub_matchISB_EEENS5_12regex_traitsIcEELb0EE8_M_matchEv:
@@ -217,12 +217,12 @@ _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_st
         -:  145:      _M_dfs(_Match_mode __match_mode, _StateIdT __start);
         -:  146:
         -:  147:      bool
-      21*:  148:      _M_main(_Match_mode __match_mode)
-      21*:  149:      { return _M_main_dispatch(__match_mode, __search_mode{}); }
+      26*:  148:      _M_main(_Match_mode __match_mode)
+      26*:  149:      { return _M_main_dispatch(__match_mode, __search_mode{}); }
 ------------------
 _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEESaINS5_9sub_matchISB_EEENS5_12regex_traitsIcEELb1EE7_M_mainENSH_11_Match_modeE:
-       21:  148:      _M_main(_Match_mode __match_mode)
-       21:  149:      { return _M_main_dispatch(__match_mode, __search_mode{}); }
+       26:  148:      _M_main(_Match_mode __match_mode)
+       26:  149:      { return _M_main_dispatch(__match_mode, __search_mode{}); }
 ------------------
 _ZNSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEESaINS5_9sub_matchISB_EEENS5_12regex_traitsIcEELb0EE7_M_mainENSH_11_Match_modeE:
     #####:  148:      _M_main(_Match_mode __match_mode)
@@ -261,15 +261,15 @@ _ZNKSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_s
 ------------------
         -:  164:
         -:  165:      bool
-      21*:  166:      _M_at_begin() const
+      26*:  166:      _M_at_begin() const
         -:  167:      {
-      21*:  168:	if (_M_current == _M_begin)
+      26*:  168:	if (_M_current == _M_begin)
         -:  169:	  {
         -:  170:	    // match_not_bol means ^ does not match [_M_begin,_M_begin)
-      21*:  171:	    if (_M_flags & regex_constants::match_not_bol)
+      26*:  171:	    if (_M_flags & regex_constants::match_not_bol)
     #####:  172:	      return false;
         -:  173:	    // match_prev_avail means _M_begin is not the start of the input.
-      21*:  174:	    if (_M_flags & regex_constants::match_prev_avail)
+      26*:  174:	    if (_M_flags & regex_constants::match_prev_avail)
         -:  175:	      {
         -:  176:		// For ECMAScript multiline matches, check if the previous
         -:  177:		// character is a line terminator.
@@ -279,7 +279,7 @@ _ZNKSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_s
     #####:  181:		  return false;
         -:  182:	      }
         -:  183:	    else // ^ matches at _M_begin
-      21*:  184:	      return true;
+      26*:  184:	      return true;
         -:  185:	  }
     #####:  186:	else if (_M_match_multiline())
     #####:  187:	  return _M_is_line_terminator(*std::prev(_M_current));
@@ -288,15 +288,15 @@ _ZNKSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_s
         -:  190:      }
 ------------------
 _ZNKSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEESaINS5_9sub_matchISB_EEENS5_12regex_traitsIcEELb1EE11_M_at_beginEv:
-       21:  166:      _M_at_begin() const
+       26:  166:      _M_at_begin() const
         -:  167:      {
-       21:  168:	if (_M_current == _M_begin)
+       26:  168:	if (_M_current == _M_begin)
         -:  169:	  {
         -:  170:	    // match_not_bol means ^ does not match [_M_begin,_M_begin)
-       21:  171:	    if (_M_flags & regex_constants::match_not_bol)
+       26:  171:	    if (_M_flags & regex_constants::match_not_bol)
     #####:  172:	      return false;
         -:  173:	    // match_prev_avail means _M_begin is not the start of the input.
-       21:  174:	    if (_M_flags & regex_constants::match_prev_avail)
+       26:  174:	    if (_M_flags & regex_constants::match_prev_avail)
         -:  175:	      {
         -:  176:		// For ECMAScript multiline matches, check if the previous
         -:  177:		// character is a line terminator.
@@ -306,7 +306,7 @@ _ZNKSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_s
     #####:  181:		  return false;
         -:  182:	      }
         -:  183:	    else // ^ matches at _M_begin
-       21:  184:	      return true;
+       26:  184:	      return true;
         -:  185:	  }
     #####:  186:	else if (_M_match_multiline())
     #####:  187:	  return _M_is_line_terminator(*std::prev(_M_current));
@@ -343,10 +343,10 @@ _ZNKSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_s
 ------------------
         -:  191:
         -:  192:      bool
-      22*:  193:      _M_at_end() const
+      26*:  193:      _M_at_end() const
         -:  194:      {
-      22*:  195:	if (_M_current == _M_end)
-      15*:  196:	  return !(_M_flags & regex_constants::match_not_eol);
+      26*:  195:	if (_M_current == _M_end)
+      19*:  196:	  return !(_M_flags & regex_constants::match_not_eol);
        7*:  197:	else if (_M_match_multiline())
     #####:  198:	  return _M_is_line_terminator(*_M_current);
         -:  199:	else
@@ -354,10 +354,10 @@ _ZNKSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_s
         -:  201:      }
 ------------------
 _ZNKSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEESaINS5_9sub_matchISB_EEENS5_12regex_traitsIcEELb1EE9_M_at_endEv:
-       22:  193:      _M_at_end() const
+       26:  193:      _M_at_end() const
         -:  194:      {
-       22:  195:	if (_M_current == _M_end)
-       15:  196:	  return !(_M_flags & regex_constants::match_not_eol);
+       26:  195:	if (_M_current == _M_end)
+       19:  196:	  return !(_M_flags & regex_constants::match_not_eol);
         7:  197:	else if (_M_match_multiline())
     #####:  198:	  return _M_is_line_terminator(*_M_current);
         -:  199:	else
@@ -497,14 +497,14 @@ _ZNKSt8__detail9_ExecutorIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_s
         -:  269:	struct _State_info<__dfs, _ResultsVec>
         -:  270:	{
         -:  271:	  explicit
-       21:  272:	  _State_info(_StateIdT __start, size_t) : _M_start(__start)
-       21:  273:	  { }
+       26:  272:	  _State_info(_StateIdT __start, size_t) : _M_start(__start)
+       26:  273:	  { }
         -:  274:
         -:  275:	  // Dummy implementations for DFS mode.
-      400:  276:	  bool _M_visited(_StateIdT) const { return false; }
+      460:  276:	  bool _M_visited(_StateIdT) const { return false; }
         -:  277:	  void _M_queue(_StateIdT, const _ResultsVec&) { }
         -:  278:
-       21:  279:	  _BiIter* _M_get_sol_pos() { return &_M_sol_pos; }
+       26:  279:	  _BiIter* _M_get_sol_pos() { return &_M_sol_pos; }
         -:  280:
         -:  281:	  // To record current solution.
         -:  282:	  _StateIdT _M_start;

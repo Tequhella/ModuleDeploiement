@@ -44,10 +44,10 @@
         -:   43:namespace log {
         -:   44:
         -:   45:struct BOOST_TEST_DECL begin {
-        6:   46:    begin( const_string fn, std::size_t ln )
-        6:   47:    : m_file_name( fn )
-        6:   48:    , m_line_num( ln )
-        6:   49:    {}
+        3:   46:    begin( const_string fn, std::size_t ln )
+        3:   47:    : m_file_name( fn )
+        3:   48:    , m_line_num( ln )
+        3:   49:    {}
         -:   50:
         -:   51:    const_string m_file_name;
         -:   52:    std::size_t m_line_num;

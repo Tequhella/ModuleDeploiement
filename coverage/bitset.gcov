@@ -80,8 +80,8 @@
         -:   79:      /// 0 is the least significant word.
         -:   80:      _WordT 		_M_w[_Nw];
         -:   81:
-       39:   82:      _GLIBCXX_CONSTEXPR _Base_bitset() _GLIBCXX_NOEXCEPT
-      195:   83:      : _M_w() { }
+       48:   82:      _GLIBCXX_CONSTEXPR _Base_bitset() _GLIBCXX_NOEXCEPT
+      240:   83:      : _M_w() { }
         -:   84:
         -:   85:#if __cplusplus >= 201103L
         -:   86:      constexpr _Base_bitset(unsigned long long __val) noexcept
@@ -97,28 +97,28 @@
         -:   96:#endif
         -:   97:
         -:   98:      static _GLIBCXX_CONSTEXPR size_t
-    10130:   99:      _S_whichword(size_t __pos) _GLIBCXX_NOEXCEPT
-    10130:  100:      { return __pos / _GLIBCXX_BITSET_BITS_PER_WORD; }
+    12454:   99:      _S_whichword(size_t __pos) _GLIBCXX_NOEXCEPT
+    12454:  100:      { return __pos / _GLIBCXX_BITSET_BITS_PER_WORD; }
         -:  101:
         -:  102:      static _GLIBCXX_CONSTEXPR size_t
         -:  103:      _S_whichbyte(size_t __pos) _GLIBCXX_NOEXCEPT
         -:  104:      { return (__pos % _GLIBCXX_BITSET_BITS_PER_WORD) / __CHAR_BIT__; }
         -:  105:
         -:  106:      static _GLIBCXX_CONSTEXPR size_t
-    20114:  107:      _S_whichbit(size_t __pos) _GLIBCXX_NOEXCEPT
-    20114:  108:      { return __pos % _GLIBCXX_BITSET_BITS_PER_WORD; }
+    24742:  107:      _S_whichbit(size_t __pos) _GLIBCXX_NOEXCEPT
+    24742:  108:      { return __pos % _GLIBCXX_BITSET_BITS_PER_WORD; }
         -:  109:
         -:  110:      static _GLIBCXX_CONSTEXPR _WordT
-    10130:  111:      _S_maskbit(size_t __pos) _GLIBCXX_NOEXCEPT
-    10130:  112:      { return (static_cast<_WordT>(1)) << _S_whichbit(__pos); }
+    12454:  111:      _S_maskbit(size_t __pos) _GLIBCXX_NOEXCEPT
+    12454:  112:      { return (static_cast<_WordT>(1)) << _S_whichbit(__pos); }
         -:  113:
         -:  114:      _WordT&
-     9984:  115:      _M_getword(size_t __pos) _GLIBCXX_NOEXCEPT
-     9984:  116:      { return _M_w[_S_whichword(__pos)]; }
+    12288:  115:      _M_getword(size_t __pos) _GLIBCXX_NOEXCEPT
+    12288:  116:      { return _M_w[_S_whichword(__pos)]; }
         -:  117:
         -:  118:      _GLIBCXX_CONSTEXPR _WordT
-      146:  119:      _M_getword(size_t __pos) const _GLIBCXX_NOEXCEPT
-      146:  120:      { return _M_w[_S_whichword(__pos)]; }
+      166:  119:      _M_getword(size_t __pos) const _GLIBCXX_NOEXCEPT
+      166:  120:      { return _M_w[_S_whichword(__pos)]; }
         -:  121:
         -:  122:#if __cplusplus >= 201103L
         -:  123:      const _WordT*
@@ -811,28 +811,28 @@
         -:  810:	reference();
         -:  811:
         -:  812:      public:
-     9984:  813:	reference(bitset& __b, size_t __pos) _GLIBCXX_NOEXCEPT
+    12288:  813:	reference(bitset& __b, size_t __pos) _GLIBCXX_NOEXCEPT
         -:  814:	{
-     9984:  815:	  _M_wp = &__b._M_getword(__pos);
-     9984:  816:	  _M_bpos = _Base::_S_whichbit(__pos);
-     9984:  817:	}
+    12288:  815:	  _M_wp = &__b._M_getword(__pos);
+    12288:  816:	  _M_bpos = _Base::_S_whichbit(__pos);
+    12288:  817:	}
         -:  818:
         -:  819:#if __cplusplus >= 201103L
         -:  820:	reference(const reference&) = default;
         -:  821:#endif
         -:  822:
-     9984:  823:	~reference() _GLIBCXX_NOEXCEPT
-     9984:  824:	{ }
+    12288:  823:	~reference() _GLIBCXX_NOEXCEPT
+    12288:  824:	{ }
         -:  825:
         -:  826:	// For b[i] = __x;
         -:  827:	reference&
-     9984:  828:	operator=(bool __x) _GLIBCXX_NOEXCEPT
+    12288:  828:	operator=(bool __x) _GLIBCXX_NOEXCEPT
         -:  829:	{
-     9984:  830:	  if (__x)
-     3594:  831:	    *_M_wp |= _Base::_S_maskbit(_M_bpos);
+    12288:  830:	  if (__x)
+     4485:  831:	    *_M_wp |= _Base::_S_maskbit(_M_bpos);
         -:  832:	  else
-     6390:  833:	    *_M_wp &= ~_Base::_S_maskbit(_M_bpos);
-     9984:  834:	  return *this;
+     7803:  833:	    *_M_wp &= ~_Base::_S_maskbit(_M_bpos);
+    12288:  834:	  return *this;
         -:  835:	}
         -:  836:
         -:  837:	// For b[i] = b[__j];
@@ -867,8 +867,8 @@
         -:  866:
         -:  867:      // 23.3.5.1 constructors:
         -:  868:      /// All bits set to zero.
-       39:  869:      _GLIBCXX_CONSTEXPR bitset() _GLIBCXX_NOEXCEPT
-       39:  870:      { }
+       48:  869:      _GLIBCXX_CONSTEXPR bitset() _GLIBCXX_NOEXCEPT
+       48:  870:      { }
         -:  871:
         -:  872:      /// Initial bits bitwise-copied from a single word (others set to zero).
         -:  873:#if __cplusplus >= 201103L
@@ -1063,9 +1063,9 @@
         -: 1062:      }
         -: 1063:
         -: 1064:      _GLIBCXX_CONSTEXPR bool
-      146: 1065:      _Unchecked_test(size_t __pos) const _GLIBCXX_NOEXCEPT
-      146: 1066:      { return ((this->_M_getword(__pos) & _Base::_S_maskbit(__pos))
-      146: 1067:		!= static_cast<_WordT>(0)); }
+      166: 1065:      _Unchecked_test(size_t __pos) const _GLIBCXX_NOEXCEPT
+      166: 1066:      { return ((this->_M_getword(__pos) & _Base::_S_maskbit(__pos))
+      166: 1067:		!= static_cast<_WordT>(0)); }
         -: 1068:      ///@}
         -: 1069:
         -: 1070:      // Set, reset, and flip.
@@ -1161,12 +1161,12 @@
         -: 1160:       *  (users' responsibility), and these functions must not throw.  -pme
         -: 1161:       */
         -: 1162:      reference
-     9984: 1163:      operator[](size_t __position)
-     9984: 1164:      { return reference(*this, __position); }
+    12288: 1163:      operator[](size_t __position)
+    12288: 1164:      { return reference(*this, __position); }
         -: 1165:
         -: 1166:      _GLIBCXX_CONSTEXPR bool
-      146: 1167:      operator[](size_t __position) const
-      146: 1168:      { return _Unchecked_test(__position); }
+      166: 1167:      operator[](size_t __position) const
+      166: 1168:      { return _Unchecked_test(__position); }
         -: 1169:      ///@}
         -: 1170:
         -: 1171:      /**
@@ -1298,8 +1298,8 @@
         -: 1297:
         -: 1298:      /// Returns the total number of bits.
         -: 1299:      _GLIBCXX_CONSTEXPR size_t
-    10023: 1300:      size() const _GLIBCXX_NOEXCEPT
-    10023: 1301:      { return _Nb; }
+    12336: 1300:      size() const _GLIBCXX_NOEXCEPT
+    12336: 1301:      { return _Nb; }
         -: 1302:
         -: 1303:      ///@{
         -: 1304:      /// These comparisons for equality/inequality are, well, @e bitwise.

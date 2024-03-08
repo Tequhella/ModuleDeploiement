@@ -130,14 +130,14 @@
         -:  129:  */
         -:  130:  template<typename _Facet>
         -:  131:    const _Facet&
-       21:  132:    use_facet(const locale& __loc)
+       26:  132:    use_facet(const locale& __loc)
         -:  133:    {
-       21:  134:      const size_t __i = _Facet::id._M_id();
-       21:  135:      const locale::facet** __facets = __loc._M_impl->_M_facets;
-       21:  136:      if (__i >= __loc._M_impl->_M_facets_size || !__facets[__i])
+       26:  134:      const size_t __i = _Facet::id._M_id();
+       26:  135:      const locale::facet** __facets = __loc._M_impl->_M_facets;
+       26:  136:      if (__i >= __loc._M_impl->_M_facets_size || !__facets[__i])
     #####:  137:        __throw_bad_cast();
         -:  138:#if __cpp_rtti
-      21*:  139:      return dynamic_cast<const _Facet&>(*__facets[__i]);
+      26*:  139:      return dynamic_cast<const _Facet&>(*__facets[__i]);
         -:  140:#else
         -:  141:      return static_cast<const _Facet&>(*__facets[__i]);
         -:  142:#endif

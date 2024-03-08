@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/MyApp.dir/Age.cpp.o.d"
   "CMakeFiles/MyApp.dir/Form.cpp.o"
   "CMakeFiles/MyApp.dir/Form.cpp.o.d"
+  "CMakeFiles/MyApp.dir/FormUI.cpp.o"
+  "CMakeFiles/MyApp.dir/FormUI.cpp.o.d"
   "CMakeFiles/MyApp.dir/main.cpp.o"
   "CMakeFiles/MyApp.dir/main.cpp.o.d"
   "MyApp"

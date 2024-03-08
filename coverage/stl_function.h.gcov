@@ -397,16 +397,16 @@
         -:  396:    {
         -:  397:      _GLIBCXX14_CONSTEXPR
         -:  398:      bool
-      583:  399:      operator()(const _Tp& __x, const _Tp& __y) const
-      583:  400:      { return __x < __y; }
+      701:  399:      operator()(const _Tp& __x, const _Tp& __y) const
+      701:  400:      { return __x < __y; }
 ------------------
 _ZNKSt4lessIlEclERKlS2_:
-      240:  399:      operator()(const _Tp& __x, const _Tp& __y) const
-      240:  400:      { return __x < __y; }
+      292:  399:      operator()(const _Tp& __x, const _Tp& __y) const
+      292:  400:      { return __x < __y; }
 ------------------
 _ZNKSt4lessINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEclERKS5_S8_:
-      343:  399:      operator()(const _Tp& __x, const _Tp& __y) const
-      343:  400:      { return __x < __y; }
+      409:  399:      operator()(const _Tp& __x, const _Tp& __y) const
+      409:  400:      { return __x < __y; }
 ------------------
         -:  401:    };
         -:  402:
@@ -454,7 +454,7 @@ _ZNKSt4lessINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEclERKS5_S8_:
         -:  444:    struct less<_Tp*> : public binary_function<_Tp*, _Tp*, bool>
         -:  445:    {
         -:  446:      _GLIBCXX14_CONSTEXPR bool
-      416:  447:      operator()(_Tp* __x, _Tp* __y) const _GLIBCXX_NOTHROW
+      590:  447:      operator()(_Tp* __x, _Tp* __y) const _GLIBCXX_NOTHROW
         -:  448:      {
         -:  449:#if __cplusplus >= 201402L
         -:  450:#ifdef _GLIBCXX_HAVE_BUILTIN_IS_CONSTANT_EVALUATED
@@ -464,7 +464,7 @@ _ZNKSt4lessINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEclERKS5_S8_:
         -:  454:#endif
         -:  455:	  return __x < __y;
         -:  456:#endif
-      416:  457:	return (__UINTPTR_TYPE__)__x < (__UINTPTR_TYPE__)__y;
+      590:  457:	return (__UINTPTR_TYPE__)__x < (__UINTPTR_TYPE__)__y;
         -:  458:      }
         -:  459:    };
         -:  460:
@@ -1181,16 +1181,16 @@ _ZNKSt4lessINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEclERKS5_S8_:
         -: 1171:      { return __x.first; }
         -: 1172:
         -: 1173:      const typename _Pair::first_type&
-      563: 1174:      operator()(const _Pair& __x) const
-      563: 1175:      { return __x.first; }
+      678: 1174:      operator()(const _Pair& __x) const
+      678: 1175:      { return __x.first; }
 ------------------
 _ZNKSt10_Select1stISt4pairIKllEEclERKS2_:
-      180: 1174:      operator()(const _Pair& __x) const
-      180: 1175:      { return __x.first; }
+      219: 1174:      operator()(const _Pair& __x) const
+      219: 1175:      { return __x.first; }
 ------------------
 _ZNKSt10_Select1stISt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_EEclERKS8_:
-      383: 1174:      operator()(const _Pair& __x) const
-      383: 1175:      { return __x.first; }
+      459: 1174:      operator()(const _Pair& __x) const
+      459: 1175:      { return __x.first; }
 ------------------
         -: 1176:
         -: 1177:#if __cplusplus >= 201103L

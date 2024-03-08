@@ -96,17 +96,17 @@
         -:   95:    };
         -:   96:
         -:   97:  protected:
-      286:   98:    explicit _State_base(_Opcode __opcode) noexcept
-      286:   99:    : _M_opcode(__opcode), _M_next(_S_invalid_state_id)
-      286:  100:    { }
+      351:   98:    explicit _State_base(_Opcode __opcode) noexcept
+      351:   99:    : _M_opcode(__opcode), _M_next(_S_invalid_state_id)
+      351:  100:    { }
         -:  101:
         -:  102:  public:
         -:  103:    bool
-      466:  104:    _M_has_alt() const noexcept
+      570:  104:    _M_has_alt() const noexcept
         -:  105:    {
-      466:  106:      return _M_opcode == _S_opcode_alternative
-      466:  107:	|| _M_opcode == _S_opcode_repeat
-      932:  108:	|| _M_opcode == _S_opcode_subexpr_lookahead;
+      570:  106:      return _M_opcode == _S_opcode_alternative
+      570:  107:	|| _M_opcode == _S_opcode_repeat
+     1140:  108:	|| _M_opcode == _S_opcode_subexpr_lookahead;
         -:  109:    }
         -:  110:
         -:  111:#ifdef _GLIBCXX_DEBUG
@@ -131,54 +131,54 @@
         -:  130:		    "std::function<bool(char)>");
         -:  131:
         -:  132:      explicit
-      286:  133:      _State(_Opcode __opcode) noexcept : _State_base(__opcode)
+      351:  133:      _State(_Opcode __opcode) noexcept : _State_base(__opcode)
         -:  134:      {
-      286:  135:	if (_M_opcode() == _S_opcode_match)
-       57:  136:	  new (this->_M_matcher_storage._M_addr()) _MatcherT();
-      286:  137:      }
+      351:  135:	if (_M_opcode() == _S_opcode_match)
+       70:  136:	  new (this->_M_matcher_storage._M_addr()) _MatcherT();
+      351:  137:      }
         -:  138:
-       60:  139:      _State(const _State& __rhs) : _State_base(__rhs)
+       73:  139:      _State(const _State& __rhs) : _State_base(__rhs)
         -:  140:      {
-       60:  141:	if (__rhs._M_opcode() == _S_opcode_match)
-       60:  142:	  new (this->_M_matcher_storage._M_addr())
-       60:  143:	    _MatcherT(__rhs._M_get_matcher());
-       60:  144:      }
+       73:  141:	if (__rhs._M_opcode() == _S_opcode_match)
+       73:  142:	  new (this->_M_matcher_storage._M_addr())
+       73:  143:	    _MatcherT(__rhs._M_get_matcher());
+       73:  144:      }
         -:  145:
-     1046:  146:      _State(_State&& __rhs) noexcept : _State_base(__rhs)
+     1278:  146:      _State(_State&& __rhs) noexcept : _State_base(__rhs)
         -:  147:      {
-     1046:  148:	if (__rhs._M_opcode() == _S_opcode_match)
-      411:  149:	  new (this->_M_matcher_storage._M_addr())
-      411:  150:	    _MatcherT(std::move(__rhs._M_get_matcher()));
-     1046:  151:      }
+     1278:  148:	if (__rhs._M_opcode() == _S_opcode_match)
+      501:  149:	  new (this->_M_matcher_storage._M_addr())
+      501:  150:	    _MatcherT(std::move(__rhs._M_get_matcher()));
+     1278:  151:      }
         -:  152:
         -:  153:      _State&
         -:  154:      operator=(const _State&) = delete;
         -:  155:
-     1392:  156:      ~_State()
+     1702:  156:      ~_State()
         -:  157:      {
-     1392:  158:	if (_M_opcode() == _S_opcode_match)
-      528:  159:	  _M_get_matcher().~_MatcherT();
-     1392:  160:      }
+     1702:  158:	if (_M_opcode() == _S_opcode_match)
+      644:  159:	  _M_get_matcher().~_MatcherT();
+     1702:  160:      }
         -:  161:
         -:  162:      // Since correct ctor and dtor rely on _M_opcode, it's better not to
         -:  163:      // change it over time.
         -:  164:      _Opcode
-     3599:  165:      _M_opcode() const noexcept
-     3599:  166:      { return _State_base::_M_opcode; }
+     4372:  165:      _M_opcode() const noexcept
+     4372:  166:      { return _State_base::_M_opcode; }
         -:  167:
         -:  168:      bool
-      178:  169:      _M_matches(_Char_type __char) const
-      178:  170:      { return _M_get_matcher()(__char); }
+      200:  169:      _M_matches(_Char_type __char) const
+      200:  170:      { return _M_get_matcher()(__char); }
         -:  171:
         -:  172:      _MatcherT&
-      996:  173:      _M_get_matcher() noexcept
-      996:  174:      { return *static_cast<_MatcherT*>(this->_M_matcher_storage._M_addr()); }
+     1215:  173:      _M_get_matcher() noexcept
+     1215:  174:      { return *static_cast<_MatcherT*>(this->_M_matcher_storage._M_addr()); }
         -:  175:
         -:  176:      const _MatcherT&
-      238:  177:      _M_get_matcher() const noexcept
+      273:  177:      _M_get_matcher() const noexcept
         -:  178:      {
         -:  179:	return *static_cast<const _MatcherT*>(
-      238:  180:	    this->_M_matcher_storage._M_addr());
+      273:  180:	    this->_M_matcher_storage._M_addr());
         -:  181:      }
         -:  182:    };
         -:  183:
@@ -187,15 +187,15 @@
         -:  186:    typedef regex_constants::syntax_option_type _FlagT;
         -:  187:
         -:  188:    explicit
-       21:  189:    _NFA_base(_FlagT __f) noexcept
-       42:  190:    : _M_flags(__f), _M_start_state(0), _M_subexpr_count(0),
-       21:  191:    _M_has_backref(false)
-       21:  192:    { }
+       26:  189:    _NFA_base(_FlagT __f) noexcept
+       52:  190:    : _M_flags(__f), _M_start_state(0), _M_subexpr_count(0),
+       26:  191:    _M_has_backref(false)
+       26:  192:    { }
         -:  193:
         -:  194:    _NFA_base(_NFA_base&&) = default;
         -:  195:
         -:  196:  protected:
-       21:  197:    ~_NFA_base() = default;
+       26:  197:    ~_NFA_base() = default;
         -:  198:
         -:  199:  public:
         -:  200:    _FlagT
@@ -203,12 +203,12 @@
         7:  202:    { return _M_flags; }
         -:  203:
         -:  204:    _StateIdT
-       42:  205:    _M_start() const noexcept
-       42:  206:    { return _M_start_state; }
+       52:  205:    _M_start() const noexcept
+       52:  206:    { return _M_start_state; }
         -:  207:
         -:  208:    size_t
-       21:  209:    _M_sub_count() const noexcept
-       21:  210:    { return _M_subexpr_count; }
+       26:  209:    _M_sub_count() const noexcept
+       26:  210:    { return _M_subexpr_count; }
         -:  211:
         -:  212:    _GLIBCXX_STD_C::vector<size_t> _M_paren_stack;
         -:  213:    _FlagT                    _M_flags;
@@ -225,19 +225,19 @@
         -:  224:      typedef _State<_Char_type>		_StateT;
         -:  225:      typedef _Matcher<_Char_type>		_MatcherT;
         -:  226:
-       21:  227:      _NFA(const typename _TraitsT::locale_type& __loc, _FlagT __flags)
-       21:  228:      : _NFA_base(__flags)
-       21:  229:      { _M_traits.imbue(__loc); }
+       26:  227:      _NFA(const typename _TraitsT::locale_type& __loc, _FlagT __flags)
+       26:  228:      : _NFA_base(__flags)
+       26:  229:      { _M_traits.imbue(__loc); }
         -:  230:
         -:  231:      // for performance reasons _NFA objects should only be moved not copied
         -:  232:      _NFA(const _NFA&) = delete;
         -:  233:      _NFA(_NFA&&) = default;
         -:  234:
         -:  235:      _StateIdT
-       21:  236:      _M_insert_accept()
+       26:  236:      _M_insert_accept()
         -:  237:      {
-       21:  238:	auto __ret = _M_insert_state(_StateT(_S_opcode_accept));
-       21:  239:	return __ret;
+       26:  238:	auto __ret = _M_insert_state(_StateT(_S_opcode_accept));
+       26:  239:	return __ret;
         -:  240:      }
         -:  241:
         -:  242:      _StateIdT
@@ -253,54 +253,54 @@
     #####:  252:      }
         -:  253:
         -:  254:      _StateIdT
-       20:  255:      _M_insert_repeat(_StateIdT __next, _StateIdT __alt, bool __neg)
+       25:  255:      _M_insert_repeat(_StateIdT __next, _StateIdT __alt, bool __neg)
         -:  256:      {
-       20:  257:	_StateT __tmp(_S_opcode_repeat);
+       25:  257:	_StateT __tmp(_S_opcode_repeat);
         -:  258:	// It labels every quantifier to make greedy comparison easier in BFS
         -:  259:	// approach.
-       20:  260:	__tmp._M_next = __next;
-       20:  261:	__tmp._M_alt = __alt;
-       20:  262:	__tmp._M_neg = __neg;
-       40:  263:	return _M_insert_state(std::move(__tmp));
-       20:  264:      }
+       25:  260:	__tmp._M_next = __next;
+       25:  261:	__tmp._M_alt = __alt;
+       25:  262:	__tmp._M_neg = __neg;
+       50:  263:	return _M_insert_state(std::move(__tmp));
+       25:  264:      }
         -:  265:
         -:  266:      _StateIdT
-       57:  267:      _M_insert_matcher(_MatcherT __m)
+       70:  267:      _M_insert_matcher(_MatcherT __m)
         -:  268:      {
-       57:  269:	_StateT __tmp(_S_opcode_match);
-       57:  270:	__tmp._M_get_matcher() = std::move(__m);
-      114:  271:	return _M_insert_state(std::move(__tmp));
-       57:  272:      }
+       70:  269:	_StateT __tmp(_S_opcode_match);
+       70:  270:	__tmp._M_get_matcher() = std::move(__m);
+      140:  271:	return _M_insert_state(std::move(__tmp));
+       70:  272:      }
         -:  273:
         -:  274:      _StateIdT
-       36:  275:      _M_insert_subexpr_begin()
+       44:  275:      _M_insert_subexpr_begin()
         -:  276:      {
-       36:  277:	auto __id = this->_M_subexpr_count++;
-       36:  278:	this->_M_paren_stack.push_back(__id);
-       36:  279:	_StateT __tmp(_S_opcode_subexpr_begin);
-       36:  280:	__tmp._M_subexpr = __id;
-       72:  281:	return _M_insert_state(std::move(__tmp));
-       36:  282:      }
+       44:  277:	auto __id = this->_M_subexpr_count++;
+       44:  278:	this->_M_paren_stack.push_back(__id);
+       44:  279:	_StateT __tmp(_S_opcode_subexpr_begin);
+       44:  280:	__tmp._M_subexpr = __id;
+       88:  281:	return _M_insert_state(std::move(__tmp));
+       44:  282:      }
         -:  283:
         -:  284:      _StateIdT
-       36:  285:      _M_insert_subexpr_end()
+       44:  285:      _M_insert_subexpr_end()
         -:  286:      {
-       36:  287:	_StateT __tmp(_S_opcode_subexpr_end);
-       36:  288:	__tmp._M_subexpr = this->_M_paren_stack.back();
-       36:  289:	this->_M_paren_stack.pop_back();
-       72:  290:	return _M_insert_state(std::move(__tmp));
-       36:  291:      }
+       44:  287:	_StateT __tmp(_S_opcode_subexpr_end);
+       44:  288:	__tmp._M_subexpr = this->_M_paren_stack.back();
+       44:  289:	this->_M_paren_stack.pop_back();
+       88:  290:	return _M_insert_state(std::move(__tmp));
+       44:  291:      }
         -:  292:
         -:  293:      _StateIdT
         -:  294:      _M_insert_backref(size_t __index);
         -:  295:
         -:  296:      _StateIdT
-       21:  297:      _M_insert_line_begin()
-       21:  298:      { return _M_insert_state(_StateT(_S_opcode_line_begin_assertion)); }
+       26:  297:      _M_insert_line_begin()
+       26:  298:      { return _M_insert_state(_StateT(_S_opcode_line_begin_assertion)); }
         -:  299:
         -:  300:      _StateIdT
-       21:  301:      _M_insert_line_end()
-       21:  302:      { return _M_insert_state(_StateT(_S_opcode_line_end_assertion)); }
+       26:  301:      _M_insert_line_end()
+       26:  302:      { return _M_insert_state(_StateT(_S_opcode_line_end_assertion)); }
         -:  303:
         -:  304:      _StateIdT
     #####:  305:      _M_insert_word_bound(bool __neg)
@@ -320,20 +320,20 @@
     #####:  319:      }
         -:  320:
         -:  321:      _StateIdT
-       74:  322:      _M_insert_dummy()
-       74:  323:      { return _M_insert_state(_StateT(_S_opcode_dummy)); }
+       90:  322:      _M_insert_dummy()
+       90:  323:      { return _M_insert_state(_StateT(_S_opcode_dummy)); }
         -:  324:
         -:  325:      _StateIdT
-      346:  326:      _M_insert_state(_StateT __s)
+      424:  326:      _M_insert_state(_StateT __s)
         -:  327:      {
-      346:  328:	this->push_back(std::move(__s));
-      346:  329:	if (this->size() > _GLIBCXX_REGEX_STATE_LIMIT)
+      424:  328:	this->push_back(std::move(__s));
+      424:  329:	if (this->size() > _GLIBCXX_REGEX_STATE_LIMIT)
     #####:  330:	  __throw_regex_error(
         -:  331:	    regex_constants::error_space,
         -:  332:	    "Number of NFA states exceeds limit. Please use shorter regex "
         -:  333:	    "string, or use smaller brace expression, or make "
         -:  334:	    "_GLIBCXX_REGEX_STATE_LIMIT larger.");
-      346:  335:	return this->size() - 1;
+      424:  335:	return this->size() - 1;
         -:  336:      }
         -:  337:
         -:  338:      // Eliminate dummy node in this NFA to make it compact.
@@ -358,29 +358,29 @@
         -:  357:      typedef _NFA<_TraitsT> _RegexT;
         -:  358:
         -:  359:    public:
-      190:  360:      _StateSeq(_RegexT& __nfa, _StateIdT __s)
-      190:  361:      : _M_nfa(__nfa), _M_start(__s), _M_end(__s)
-      190:  362:      { }
+      233:  360:      _StateSeq(_RegexT& __nfa, _StateIdT __s)
+      233:  361:      : _M_nfa(__nfa), _M_start(__s), _M_end(__s)
+      233:  362:      { }
         -:  363:
-       60:  364:      _StateSeq(_RegexT& __nfa, _StateIdT __s, _StateIdT __end)
-       60:  365:      : _M_nfa(__nfa), _M_start(__s), _M_end(__end)
-       60:  366:      { }
+       73:  364:      _StateSeq(_RegexT& __nfa, _StateIdT __s, _StateIdT __end)
+       73:  365:      : _M_nfa(__nfa), _M_start(__s), _M_end(__end)
+       73:  366:      { }
         -:  367:
         -:  368:      // Append a state on *this and change *this to the new sequence.
         -:  369:      void
-      117:  370:      _M_append(_StateIdT __id)
+      144:  370:      _M_append(_StateIdT __id)
         -:  371:      {
-      117:  372:	_M_nfa[_M_end]._M_next = __id;
-      117:  373:	_M_end = __id;
-      117:  374:      }
+      144:  372:	_M_nfa[_M_end]._M_next = __id;
+      144:  373:	_M_end = __id;
+      144:  374:      }
         -:  375:
         -:  376:      // Append a sequence on *this and change *this to the new sequence.
         -:  377:      void
-      210:  378:      _M_append(const _StateSeq& __s)
+      257:  378:      _M_append(const _StateSeq& __s)
         -:  379:      {
-      210:  380:	_M_nfa[_M_end]._M_next = __s._M_start;
-      210:  381:	_M_end = __s._M_end;
-      210:  382:      }
+      257:  380:	_M_nfa[_M_end]._M_next = __s._M_start;
+      257:  381:	_M_end = __s._M_end;
+      257:  382:      }
         -:  383:
         -:  384:      // Clones an entire sequence.
         -:  385:      _StateSeq

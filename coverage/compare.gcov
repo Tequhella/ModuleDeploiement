@@ -57,7 +57,7 @@
         -:   56:
         -:   57:    struct __unspec
         -:   58:    {
-      343:   59:      constexpr __unspec(__unspec*) noexcept { }
+      409:   59:      constexpr __unspec(__unspec*) noexcept { }
         -:   60:    };
         -:   61:  }
         -:   62:
@@ -262,8 +262,8 @@
         -:  261:    operator==(strong_ordering, strong_ordering) noexcept = default;
         -:  262:
         -:  263:    friend constexpr bool
-      343:  264:    operator< (strong_ordering __v, __cmp_cat::__unspec) noexcept
-      343:  265:    { return __v._M_value < 0; }
+      409:  264:    operator< (strong_ordering __v, __cmp_cat::__unspec) noexcept
+      409:  265:    { return __v._M_value < 0; }
         -:  266:
         -:  267:    friend constexpr bool
         -:  268:    operator> (strong_ordering __v, __cmp_cat::__unspec) noexcept

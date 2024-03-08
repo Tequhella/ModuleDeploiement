@@ -199,17 +199,17 @@
         -:  198:    static_cast<syntax_option_type>(1 << _S_polynomial);
         -:  199:
         -:  200:  constexpr inline syntax_option_type
-      456:  201:  operator&(syntax_option_type __a, syntax_option_type __b)
+      559:  201:  operator&(syntax_option_type __a, syntax_option_type __b)
         -:  202:  {
         -:  203:    return (syntax_option_type)(static_cast<unsigned int>(__a)
-      456:  204:				& static_cast<unsigned int>(__b));
+      559:  204:				& static_cast<unsigned int>(__b));
         -:  205:  }
         -:  206:
         -:  207:  constexpr inline syntax_option_type
-      147:  208:  operator|(syntax_option_type __a, syntax_option_type __b)
+      181:  208:  operator|(syntax_option_type __a, syntax_option_type __b)
         -:  209:  {
         -:  210:    return (syntax_option_type)(static_cast<unsigned int>(__a)
-      147:  211:				| static_cast<unsigned int>(__b));
+      181:  211:				| static_cast<unsigned int>(__b));
         -:  212:  }
         -:  213:
         -:  214:  constexpr inline syntax_option_type
@@ -391,10 +391,10 @@
         -:  390:    static_cast<match_flag_type>(1 << _S_first_only);
         -:  391:
         -:  392:  constexpr inline match_flag_type
-       78:  393:  operator&(match_flag_type __a, match_flag_type __b)
+       97:  393:  operator&(match_flag_type __a, match_flag_type __b)
         -:  394:  {
         -:  395:    return (match_flag_type)(static_cast<unsigned int>(__a)
-       78:  396:				& static_cast<unsigned int>(__b));
+       97:  396:				& static_cast<unsigned int>(__b));
         -:  397:  }
         -:  398:
         -:  399:  constexpr inline match_flag_type

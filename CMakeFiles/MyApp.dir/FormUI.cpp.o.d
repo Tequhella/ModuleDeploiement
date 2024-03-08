@@ -1,7 +1,6 @@
-CMakeFiles/MyApp.dir/main.cpp.o: \
- /home/tequhella/Documents/VScode/ModuleDeploiement/main.cpp \
- /usr/include/stdc-predef.h \
+CMakeFiles/MyApp.dir/FormUI.cpp.o: \
  /home/tequhella/Documents/VScode/ModuleDeploiement/FormUI.cpp \
+ /usr/include/stdc-predef.h \
  /home/tequhella/Documents/VScode/ModuleDeploiement/Form.cpp \
  /usr/include/c++/11/regex /usr/include/c++/11/algorithm \
  /usr/include/c++/11/utility \

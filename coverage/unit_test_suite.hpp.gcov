@@ -385,14 +385,14 @@
         -:  384:#endif
         -:  385:
         -:  386:#ifdef BOOST_TEST_ALTERNATIVE_INIT_API
-        2:  387:bool init_unit_test()                   {
+        1:  387:bool init_unit_test()                   {
         -:  388:#else
         -:  389:::boost::unit_test::test_suite*
         -:  390:init_unit_test_suite( int, char* [] )   {
         -:  391:#endif
         -:  392:
         -:  393:#ifdef BOOST_TEST_ALTERNATIVE_INIT_API
-        2:  394:    return true;
+        1:  394:    return true;
         -:  395:}
         -:  396:#else
         -:  397:    return 0;

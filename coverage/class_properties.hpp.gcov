@@ -52,12 +52,12 @@
         -:   51:public:
         -:   52:    // Constructor
         -:   53:                    class_property() : value( PropertyType() ) {}
-      51*:   54:    explicit        class_property( write_param_t init_value )
-      51*:   55:    : value( init_value ) {}
+      28*:   54:    explicit        class_property( write_param_t init_value )
+      28*:   55:    : value( init_value ) {}
 ------------------
 _ZN5boost9unit_test14class_propertyIbEC2Eb:
-       51:   54:    explicit        class_property( write_param_t init_value )
-       51:   55:    : value( init_value ) {}
+       28:   54:    explicit        class_property( write_param_t init_value )
+       28:   55:    : value( init_value ) {}
 ------------------
 _ZN5boost9unit_test14class_propertyIbEC2Eb:
     #####:   54:    explicit        class_property( write_param_t init_value )
@@ -67,7 +67,7 @@ _ZN5boost9unit_test14class_propertyIbEC2Eb:
         -:   57:    // Access methods
         -:   58:    operator        read_access_t() const   { return value; }
         -:   59:    read_access_t   get() const             { return value; }
-        6:   60:    bool            operator!() const       { return !value; }
+        3:   60:    bool            operator!() const       { return !value; }
         -:   61:    address_res_t   operator&() const       { return &value; }
         -:   62:
         -:   63:    // Data members
@@ -138,10 +138,10 @@ _ZN5boost9unit_test14class_propertyIbEC2Eb:
         -:  128:public:
         -:  129:    // Constructor
         -:  130:                    readonly_property() {}
-      51*:  131:    explicit        readonly_property( write_param_t init_value ) : base_prop( init_value ) {}
+      28*:  131:    explicit        readonly_property( write_param_t init_value ) : base_prop( init_value ) {}
 ------------------
 _ZN5boost9unit_test17readonly_propertyIbEC2Eb:
-       51:  131:    explicit        readonly_property( write_param_t init_value ) : base_prop( init_value ) {}
+       28:  131:    explicit        readonly_property( write_param_t init_value ) : base_prop( init_value ) {}
 ------------------
 _ZN5boost9unit_test17readonly_propertyIbEC2Eb:
     #####:  131:    explicit        readonly_property( write_param_t init_value ) : base_prop( init_value ) {}

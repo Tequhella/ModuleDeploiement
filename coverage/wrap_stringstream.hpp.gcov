@@ -62,10 +62,10 @@
         -:   61:
         -:   62:template <typename CharT, typename T>
         -:   63:inline basic_wrap_stringstream<CharT>&
-     485*:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
+     315*:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
         -:   65:{
-     485*:   66:    targ.stream() << t;
-     485*:   67:    return targ;
+     315*:   66:    targ.stream() << t;
+     315*:   67:    return targ;
         -:   68:}
 ------------------
 _ZN5boostlsIcA23_cEERNS_23basic_wrap_stringstreamIT_EES5_RKT0_:
@@ -83,10 +83,10 @@ _ZN5boostlsIccEERNS_23basic_wrap_stringstreamIT_EES4_RKT0_:
         -:   68:}
 ------------------
 _ZN5boostlsIcA12_cEERNS_23basic_wrap_stringstreamIT_EES5_RKT0_:
-       20:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
+       25:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
         -:   65:{
-       20:   66:    targ.stream() << t;
-       20:   67:    return targ;
+       25:   66:    targ.stream() << t;
+       25:   67:    return targ;
         -:   68:}
 ------------------
 _ZN5boostlsIcA15_cEERNS_23basic_wrap_stringstreamIT_EES5_RKT0_:
@@ -139,10 +139,10 @@ _ZN5boostlsIcA21_cEERNS_23basic_wrap_stringstreamIT_EES5_RKT0_:
         -:   68:}
 ------------------
 _ZN5boostlsIcA27_cEERNS_23basic_wrap_stringstreamIT_EES5_RKT0_:
-       20:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
+       10:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
         -:   65:{
-       20:   66:    targ.stream() << t;
-       20:   67:    return targ;
+       10:   66:    targ.stream() << t;
+       10:   67:    return targ;
         -:   68:}
 ------------------
 _ZN5boostlsIcA20_cEERNS_23basic_wrap_stringstreamIT_EES5_RKT0_:
@@ -153,52 +153,52 @@ _ZN5boostlsIcA20_cEERNS_23basic_wrap_stringstreamIT_EES5_RKT0_:
         -:   68:}
 ------------------
 _ZN5boostlsIccEERNS_23basic_wrap_stringstreamIT_EES4_RKT0_:
-      175:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
+      105:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
         -:   65:{
-      175:   66:    targ.stream() << t;
-      175:   67:    return targ;
+      105:   66:    targ.stream() << t;
+      105:   67:    return targ;
         -:   68:}
 ------------------
 _ZN5boostlsIcA17_cEERNS_23basic_wrap_stringstreamIT_EES5_RKT0_:
-       40:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
+       20:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
         -:   65:{
-       40:   66:    targ.stream() << t;
-       40:   67:    return targ;
+       20:   66:    targ.stream() << t;
+       20:   67:    return targ;
         -:   68:}
 ------------------
 _ZN5boostlsIcA15_cEERNS_23basic_wrap_stringstreamIT_EES5_RKT0_:
-       85:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
+       57:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
         -:   65:{
-       85:   66:    targ.stream() << t;
-       85:   67:    return targ;
+       57:   66:    targ.stream() << t;
+       57:   67:    return targ;
         -:   68:}
 ------------------
 _ZN5boostlsIcA16_cEERNS_23basic_wrap_stringstreamIT_EES5_RKT0_:
-       45:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
+       31:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
         -:   65:{
-       45:   66:    targ.stream() << t;
-       45:   67:    return targ;
+       31:   66:    targ.stream() << t;
+       31:   67:    return targ;
         -:   68:}
 ------------------
 _ZN5boostlsIcA13_cEERNS_23basic_wrap_stringstreamIT_EES5_RKT0_:
-       35:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
+       21:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
         -:   65:{
-       35:   66:    targ.stream() << t;
-       35:   67:    return targ;
+       21:   66:    targ.stream() << t;
+       21:   67:    return targ;
         -:   68:}
 ------------------
 _ZN5boostlsIcA19_cEERNS_23basic_wrap_stringstreamIT_EES5_RKT0_:
-       35:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
+       21:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
         -:   65:{
-       35:   66:    targ.stream() << t;
-       35:   67:    return targ;
+       21:   66:    targ.stream() << t;
+       21:   67:    return targ;
         -:   68:}
 ------------------
 _ZN5boostlsIcA30_cEERNS_23basic_wrap_stringstreamIT_EES5_RKT0_:
-       10:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
+        5:   64:operator<<( basic_wrap_stringstream<CharT>& targ, T const& t )
         -:   65:{
-       10:   66:    targ.stream() << t;
-       10:   67:    return targ;
+        5:   66:    targ.stream() << t;
+        5:   67:    return targ;
         -:   68:}
 ------------------
         -:   69:
@@ -206,15 +206,15 @@ _ZN5boostlsIcA30_cEERNS_23basic_wrap_stringstreamIT_EES5_RKT0_:
         -:   71:
         -:   72:template <typename CharT>
         -:   73:inline typename basic_wrap_stringstream<CharT>::wrapped_stream&
-     525*:   74:basic_wrap_stringstream<CharT>::stream()
+     315*:   74:basic_wrap_stringstream<CharT>::stream()
         -:   75:{
-     525*:   76:    return m_stream;
+     315*:   76:    return m_stream;
         -:   77:}
 ------------------
 _ZN5boost23basic_wrap_stringstreamIcE6streamB5cxx11Ev:
-      525:   74:basic_wrap_stringstream<CharT>::stream()
+      315:   74:basic_wrap_stringstream<CharT>::stream()
         -:   75:{
-      525:   76:    return m_stream;
+      315:   76:    return m_stream;
         -:   77:}
 ------------------
 _ZN5boost23basic_wrap_stringstreamIcE6streamB5cxx11Ev:
@@ -228,15 +228,15 @@ _ZN5boost23basic_wrap_stringstreamIcE6streamB5cxx11Ev:
         -:   80:
         -:   81:template <typename CharT>
         -:   82:inline basic_wrap_stringstream<CharT>&
-     175*:   83:basic_wrap_stringstream<CharT>::ref()
+     105*:   83:basic_wrap_stringstream<CharT>::ref()
         -:   84:{
-     175*:   85:    return *this;
+     105*:   85:    return *this;
         -:   86:}
 ------------------
 _ZN5boost23basic_wrap_stringstreamIcE3refEv:
-      175:   83:basic_wrap_stringstream<CharT>::ref()
+      105:   83:basic_wrap_stringstream<CharT>::ref()
         -:   84:{
-      175:   85:    return *this;
+      105:   85:    return *this;
         -:   86:}
 ------------------
 _ZN5boost23basic_wrap_stringstreamIcE3refEv:
@@ -250,17 +250,17 @@ _ZN5boost23basic_wrap_stringstreamIcE3refEv:
         -:   89:
         -:   90:template <typename CharT>
         -:   91:inline std::basic_string<CharT> const&
-     175*:   92:basic_wrap_stringstream<CharT>::str()
+     105*:   92:basic_wrap_stringstream<CharT>::str()
         -:   93:{
         -:   94:
         -:   95:#ifdef BOOST_NO_STRINGSTREAM
         -:   96:    m_str.assign( m_stream.str(), m_stream.pcount() );
         -:   97:    m_stream.freeze( false );
         -:   98:#else
-     175*:   99:    m_str = m_stream.str();
+     105*:   99:    m_str = m_stream.str();
         -:  100:#endif
         -:  101:
-     175*:  102:    return m_str;
+     105*:  102:    return m_str;
         -:  103:}
         -:  104:
         -:  105://____________________________________________________________________________//

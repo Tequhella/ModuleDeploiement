@@ -71,7 +71,7 @@ CMakeFiles/coverage:
 	mkdir -p coverage
 	gcov -o /home/tequhella/Documents/VScode/ModuleDeploiement/CMakeFiles/MyTests.dir/ test_Age.cpp.gcno test_Form.cpp.gcno
 	mv *.gcov coverage/
-	gcovr -e test_Age.cpp -e test_Form.cpp -e main.cpp
+	gcovr -e test_Age.cpp -e test_Form.cpp -e FormUI.cpp -e main.cpp
 
 coverage: CMakeFiles/coverage
 coverage: CMakeFiles/coverage.dir/build.make

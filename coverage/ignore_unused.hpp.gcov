@@ -16,7 +16,7 @@
         -:   15:
         -:   16:template <typename... Ts>
         -:   17:BOOST_FORCEINLINE BOOST_CXX14_CONSTEXPR void ignore_unused(Ts const& ...)
-        7:   18:{}
+        4:   18:{}
         -:   19:
         -:   20:template <typename... Ts>
         -:   21:BOOST_FORCEINLINE BOOST_CXX14_CONSTEXPR void ignore_unused()

@@ -296,4 +296,73 @@ _ZN9FormTestsL22TestIsNotValid_invokerEv:
         1:  109:BOOST_AUTO_TEST_CASE(TestIsNotValid)
 ------------------
         -:  120:
-        -:  121:BOOST_AUTO_TEST_SUITE_END()
+        2:  121:BOOST_AUTO_TEST_CASE(TestIsEmpty)
+        -:  122:{
+        1:  123:    Form form;
+        9:  124:    std::vector<std::string> entries = { "", "", "", "", "", "" };
+        1:  125:    BOOST_CHECK_EQUAL(form.isEmpty(entries), true);
+        1:  126:}
+------------------
+_ZN9FormTests11TestIsEmpty11test_methodEv:
+        1:  121:BOOST_AUTO_TEST_CASE(TestIsEmpty)
+        -:  122:{
+        1:  123:    Form form;
+        9:  124:    std::vector<std::string> entries = { "", "", "", "", "", "" };
+        1:  125:    BOOST_CHECK_EQUAL(form.isEmpty(entries), true);
+        1:  126:}
+------------------
+_ZN9FormTestsL19TestIsEmpty_invokerEv:
+        1:  121:BOOST_AUTO_TEST_CASE(TestIsEmpty)
+------------------
+        -:  127:
+        2:  128:BOOST_AUTO_TEST_CASE(TestIsNotEmpty)
+        -:  129:{
+        1:  130:    Form form;
+        9:  131:    std::vector<std::string> entries = { "John", "Doe", "john.doe@example.com", "1990-01-01", "12345", "New York" };
+        1:  132:    BOOST_CHECK_EQUAL(form.isEmpty(entries), false);
+        1:  133:}
+------------------
+_ZN9FormTests14TestIsNotEmpty11test_methodEv:
+        1:  128:BOOST_AUTO_TEST_CASE(TestIsNotEmpty)
+        -:  129:{
+        1:  130:    Form form;
+        9:  131:    std::vector<std::string> entries = { "John", "Doe", "john.doe@example.com", "1990-01-01", "12345", "New York" };
+        1:  132:    BOOST_CHECK_EQUAL(form.isEmpty(entries), false);
+        1:  133:}
+------------------
+_ZN9FormTestsL22TestIsNotEmpty_invokerEv:
+        1:  128:BOOST_AUTO_TEST_CASE(TestIsNotEmpty)
+------------------
+        -:  134:
+        2:  135:BOOST_AUTO_TEST_CASE(TestPrintErrors)
+        -:  136:{
+        1:  137:    Form form;
+        1:  138:    form.setName("John");
+        1:  139:    form.setFirstName("Doe");
+        1:  140:    form.setMail("");
+        1:  141:    form.setBirthday("1990-01-01");
+        1:  142:    form.setCity("New York");
+        1:  143:    form.setZipCode("12345");
+        1:  144:    if (!form.isValid())
+        1:  145:        form.printErrors();
+        1:  146:}
+------------------
+_ZN9FormTests15TestPrintErrors11test_methodEv:
+        1:  135:BOOST_AUTO_TEST_CASE(TestPrintErrors)
+        -:  136:{
+        1:  137:    Form form;
+        1:  138:    form.setName("John");
+        1:  139:    form.setFirstName("Doe");
+        1:  140:    form.setMail("");
+        1:  141:    form.setBirthday("1990-01-01");
+        1:  142:    form.setCity("New York");
+        1:  143:    form.setZipCode("12345");
+        1:  144:    if (!form.isValid())
+        1:  145:        form.printErrors();
+        1:  146:}
+------------------
+_ZN9FormTestsL23TestPrintErrors_invokerEv:
+        1:  135:BOOST_AUTO_TEST_CASE(TestPrintErrors)
+------------------
+        -:  147:
+        -:  148:BOOST_AUTO_TEST_SUITE_END()

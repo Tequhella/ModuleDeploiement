@@ -104,10 +104,10 @@
         -:  103:	  static constexpr unsigned char _S_under = 1 << 0;
         -:  104:	  static constexpr unsigned char _S_valid_mask = 0x1;
         -:  105:
-      101:  106:	  constexpr _RegexMask(_BaseType __base = 0,
+      124:  106:	  constexpr _RegexMask(_BaseType __base = 0,
         -:  107:			       unsigned char __extended = 0)
-      101:  108:	  : _M_base(__base), _M_extended(__extended)
-      101:  109:	  { }
+      124:  108:	  : _M_base(__base), _M_extended(__extended)
+      124:  109:	  { }
         -:  110:
         -:  111:	  constexpr _RegexMask
     #####:  112:	  operator&(_RegexMask __other) const
@@ -117,10 +117,10 @@
         -:  116:	  }
         -:  117:
         -:  118:	  constexpr _RegexMask
-       31:  119:	  operator|(_RegexMask __other) const
+       38:  119:	  operator|(_RegexMask __other) const
         -:  120:	  {
-       62:  121:	    return _RegexMask(_M_base | __other._M_base,
-       31:  122:			      _M_extended | __other._M_extended);
+       76:  121:	    return _RegexMask(_M_base | __other._M_base,
+       38:  122:			      _M_extended | __other._M_extended);
         -:  123:	  }
         -:  124:
         -:  125:	  constexpr _RegexMask
@@ -139,19 +139,19 @@
         -:  138:	  { return *this = (*this) & __other; }
         -:  139:
         -:  140:	  _RegexMask&
-       31:  141:	  operator|=(_RegexMask __other)
-       31:  142:	  { return *this = (*this) | __other; }
+       38:  141:	  operator|=(_RegexMask __other)
+       38:  142:	  { return *this = (*this) | __other; }
         -:  143:
         -:  144:	  _RegexMask&
         -:  145:	  operator^=(_RegexMask __other)
         -:  146:	  { return *this = (*this) ^ __other; }
         -:  147:
         -:  148:	  constexpr bool
-       31:  149:	  operator==(_RegexMask __other) const
+       38:  149:	  operator==(_RegexMask __other) const
         -:  150:	  {
-       31:  151:	    return (_M_extended & _S_valid_mask)
-       31:  152:		   == (__other._M_extended & _S_valid_mask)
-      31*:  153:		     && _M_base == __other._M_base;
+       38:  151:	    return (_M_extended & _S_valid_mask)
+       38:  152:		   == (__other._M_extended & _S_valid_mask)
+      38*:  153:		     && _M_base == __other._M_base;
         -:  154:	  }
         -:  155:
         -:  156:#if __cpp_impl_three_way_comparison < 201907L
@@ -168,7 +168,7 @@
         -:  167:      /**
         -:  168:       * @brief Constructs a default traits object.
         -:  169:       */
-       21:  170:      regex_traits() { }
+       26:  170:      regex_traits() { }
         -:  171:
         -:  172:      /**
         -:  173:       * @brief Gives the length of a C-style string starting at @p __p.
@@ -181,8 +181,8 @@
         -:  180:       * characters.
         -:  181:       */
         -:  182:      static std::size_t
-       21:  183:      length(const char_type* __p)
-       21:  184:      { return string_type::traits_type::length(__p); }
+       26:  183:      length(const char_type* __p)
+       26:  184:      { return string_type::traits_type::length(__p); }
         -:  185:
         -:  186:      /**
         -:  187:       * @brief Performs the identity translation.
@@ -234,13 +234,13 @@
         -:  233:       */
         -:  234:      template<typename _Fwd_iter>
         -:  235:	string_type
-    9294*:  236:	transform(_Fwd_iter __first, _Fwd_iter __last) const
+   11433*:  236:	transform(_Fwd_iter __first, _Fwd_iter __last) const
         -:  237:	{
         -:  238:	  typedef std::collate<char_type> __collate_type;
-    9294*:  239:	  const __collate_type& __fclt(use_facet<__collate_type>(_M_locale));
-    9294*:  240:	  string_type __s(__first, __last);
-   18588*:  241:	  return __fclt.transform(__s.data(), __s.data() + __s.size());
-    9294*:  242:	}
+   11433*:  239:	  const __collate_type& __fclt(use_facet<__collate_type>(_M_locale));
+   11433*:  240:	  string_type __s(__first, __last);
+   22866*:  241:	  return __fclt.transform(__s.data(), __s.data() + __s.size());
+   11433*:  242:	}
 ------------------
 _ZNKSt7__cxx1112regex_traitsIcE9transformIN9__gnu_cxx17__normal_iteratorIPcNS_12basic_stringIcSt11char_traitsIcESaIcEEEEEEESA_T_SC_:
     #####:  236:	transform(_Fwd_iter __first, _Fwd_iter __last) const
@@ -252,13 +252,13 @@ _ZNKSt7__cxx1112regex_traitsIcE9transformIN9__gnu_cxx17__normal_iteratorIPcNS_12
     #####:  242:	}
 ------------------
 _ZNKSt7__cxx1112regex_traitsIcE9transformIPcEENS_12basic_stringIcSt11char_traitsIcESaIcEEET_S9_:
-     9294:  236:	transform(_Fwd_iter __first, _Fwd_iter __last) const
+    11433:  236:	transform(_Fwd_iter __first, _Fwd_iter __last) const
         -:  237:	{
         -:  238:	  typedef std::collate<char_type> __collate_type;
-     9294:  239:	  const __collate_type& __fclt(use_facet<__collate_type>(_M_locale));
-     9294:  240:	  string_type __s(__first, __last);
-    18588:  241:	  return __fclt.transform(__s.data(), __s.data() + __s.size());
-     9294:  242:	}
+    11433:  239:	  const __collate_type& __fclt(use_facet<__collate_type>(_M_locale));
+    11433:  240:	  string_type __s(__first, __last);
+    22866:  241:	  return __fclt.transform(__s.data(), __s.data() + __s.size());
+    11433:  242:	}
 ------------------
         -:  243:
         -:  244:      /**
@@ -277,7 +277,7 @@ _ZNKSt7__cxx1112regex_traitsIcE9transformIPcEENS_12basic_stringIcSt11char_traits
         -:  257:       */
         -:  258:      template<typename _Fwd_iter>
         -:  259:	string_type
-    9294*:  260:	transform_primary(_Fwd_iter __first, _Fwd_iter __last) const
+   11433*:  260:	transform_primary(_Fwd_iter __first, _Fwd_iter __last) const
         -:  261:	{
         -:  262:	  // TODO : this is not entirely correct.
         -:  263:	  // This function requires extra support from the platform.
@@ -286,11 +286,11 @@ _ZNKSt7__cxx1112regex_traitsIcE9transformIPcEENS_12basic_stringIcSt11char_traits
         -:  266:	  // http://www.open-std.org/Jtc1/sc22/wg21/docs/papers/2003/n1429.htm
         -:  267:	  // for details.
         -:  268:	  typedef std::ctype<char_type> __ctype_type;
-    9294*:  269:	  const __ctype_type& __fctyp(use_facet<__ctype_type>(_M_locale));
-    9294*:  270:	  std::vector<char_type> __s(__first, __last);
-    9294*:  271:	  __fctyp.tolower(__s.data(), __s.data() + __s.size());
-   18588*:  272:	  return this->transform(__s.data(), __s.data() + __s.size());
-    9294*:  273:	}
+   11433*:  269:	  const __ctype_type& __fctyp(use_facet<__ctype_type>(_M_locale));
+   11433*:  270:	  std::vector<char_type> __s(__first, __last);
+   11433*:  271:	  __fctyp.tolower(__s.data(), __s.data() + __s.size());
+   22866*:  272:	  return this->transform(__s.data(), __s.data() + __s.size());
+   11433*:  273:	}
 ------------------
 _ZNKSt7__cxx1112regex_traitsIcE17transform_primaryIPcEENS_12basic_stringIcSt11char_traitsIcESaIcEEET_S9_:
     #####:  260:	transform_primary(_Fwd_iter __first, _Fwd_iter __last) const
@@ -309,7 +309,7 @@ _ZNKSt7__cxx1112regex_traitsIcE17transform_primaryIPcEENS_12basic_stringIcSt11ch
     #####:  273:	}
 ------------------
 _ZNKSt7__cxx1112regex_traitsIcE17transform_primaryIPKcEENS_12basic_stringIcSt11char_traitsIcESaIcEEET_SA_:
-     9294:  260:	transform_primary(_Fwd_iter __first, _Fwd_iter __last) const
+    11433:  260:	transform_primary(_Fwd_iter __first, _Fwd_iter __last) const
         -:  261:	{
         -:  262:	  // TODO : this is not entirely correct.
         -:  263:	  // This function requires extra support from the platform.
@@ -318,11 +318,11 @@ _ZNKSt7__cxx1112regex_traitsIcE17transform_primaryIPKcEENS_12basic_stringIcSt11c
         -:  266:	  // http://www.open-std.org/Jtc1/sc22/wg21/docs/papers/2003/n1429.htm
         -:  267:	  // for details.
         -:  268:	  typedef std::ctype<char_type> __ctype_type;
-     9294:  269:	  const __ctype_type& __fctyp(use_facet<__ctype_type>(_M_locale));
-     9294:  270:	  std::vector<char_type> __s(__first, __last);
-     9294:  271:	  __fctyp.tolower(__s.data(), __s.data() + __s.size());
-    18588:  272:	  return this->transform(__s.data(), __s.data() + __s.size());
-     9294:  273:	}
+    11433:  269:	  const __ctype_type& __fctyp(use_facet<__ctype_type>(_M_locale));
+    11433:  270:	  std::vector<char_type> __s(__first, __last);
+    11433:  271:	  __fctyp.tolower(__s.data(), __s.data() + __s.size());
+    22866:  272:	  return this->transform(__s.data(), __s.data() + __s.size());
+    11433:  273:	}
 ------------------
         -:  274:
         -:  275:      /**
@@ -422,10 +422,10 @@ _ZNKSt7__cxx1112regex_traitsIcE17transform_primaryIPKcEENS_12basic_stringIcSt11c
         -:  369:       *       use invalidates all cached data held by *this.
         -:  370:       */
         -:  371:      locale_type
-       21:  372:      imbue(locale_type __loc)
+       26:  372:      imbue(locale_type __loc)
         -:  373:      {
-       21:  374:	std::swap(_M_locale, __loc);
-       21:  375:	return __loc;
+       26:  374:	std::swap(_M_locale, __loc);
+       26:  375:	return __loc;
         -:  376:      }
         -:  377:
         -:  378:      /**
@@ -503,8 +503,8 @@ _ZNKSt7__cxx1112regex_traitsIcE17transform_primaryIPKcEENS_12basic_stringIcSt11c
         -:  450:       * @throws regex_error if @p __p is not a valid regular expression.
         -:  451:       */
         -:  452:      explicit
-       21:  453:      basic_regex(const _Ch_type* __p, flag_type __f = ECMAScript)
-       21:  454:      { _M_compile(__p, __p + _Rx_traits::length(__p), __f); }
+       26:  453:      basic_regex(const _Ch_type* __p, flag_type __f = ECMAScript)
+       26:  454:      { _M_compile(__p, __p + _Rx_traits::length(__p), __f); }
         -:  455:
         -:  456:      /**
         -:  457:       * @brief Constructs a basic regular expression from the sequence
@@ -584,8 +584,8 @@ _ZNKSt7__cxx1112regex_traitsIcE17transform_primaryIPKcEENS_12basic_stringIcSt11c
         -:  531:      /**
         -:  532:       * @brief Destroys a basic regular expression.
         -:  533:       */
-       21:  534:      ~basic_regex()
-       21:  535:      { }
+       26:  534:      ~basic_regex()
+       26:  535:      { }
         -:  536:
         -:  537:      /**
         -:  538:       * @brief Assigns one regular expression to another.
@@ -783,8 +783,8 @@ _ZNKSt7__cxx1112regex_traitsIcE17transform_primaryIPKcEENS_12basic_stringIcSt11c
         -:  730:       * or in the last call to assign().
         -:  731:       */
         -:  732:      flag_type
-       21:  733:      flags() const noexcept
-       21:  734:      { return _M_flags; }
+       26:  733:      flags() const noexcept
+       26:  734:      { return _M_flags; }
         -:  735:
         -:  736:      // [7.8.5] locale
         -:  737:      /**
@@ -832,13 +832,13 @@ _ZNKSt7__cxx1112regex_traitsIcE17transform_primaryIPKcEENS_12basic_stringIcSt11c
         -:  779:      typedef std::shared_ptr<const __detail::_NFA<_Rx_traits>> _AutomatonPtr;
         -:  780:
         -:  781:      void
-       21:  782:      _M_compile(const _Ch_type* __first, const _Ch_type* __last,
+       26:  782:      _M_compile(const _Ch_type* __first, const _Ch_type* __last,
         -:  783:		 flag_type __f)
         -:  784:      {
-       21:  785:	__detail::_Compiler<_Rx_traits> __c(__first, __last, _M_loc, __f);
-       21:  786:	_M_automaton = __c._M_get_nfa();
-       21:  787:	_M_flags = __f;
-       21:  788:      }
+       26:  785:	__detail::_Compiler<_Rx_traits> __c(__first, __last, _M_loc, __f);
+       26:  786:	_M_automaton = __c._M_get_nfa();
+       26:  787:	_M_flags = __f;
+       26:  788:      }
         -:  789:
         -:  790:      template<typename _Bp, typename _Ap, typename _Cp, typename _Rp,
         -:  791:	__detail::_RegexExecutorPolicy, bool>
@@ -953,7 +953,7 @@ _ZNKSt7__cxx1112regex_traitsIcE17transform_primaryIPKcEENS_12basic_stringIcSt11c
         -:  900:
         -:  901:      bool matched;
         -:  902:
-       21:  903:      constexpr sub_match() noexcept : matched() { }
+       26:  903:      constexpr sub_match() noexcept : matched() { }
         -:  904:
         -:  905:      /// Gets the length of the matching sequence.
         -:  906:      difference_type
@@ -970,8 +970,8 @@ _ZNKSt7__cxx1112regex_traitsIcE17transform_primaryIPKcEENS_12basic_stringIcSt11c
         -:  917:       * unexpected places and cause a great deal of confusion and cursing
         -:  918:       * from the unwary.
         -:  919:       */
-       12:  920:      operator string_type() const
-       12:  921:      { return str(); }
+       15:  920:      operator string_type() const
+       15:  921:      { return str(); }
         -:  922:
         -:  923:      /**
         -:  924:       * @brief Gets the matching sequence as a string.
@@ -979,11 +979,11 @@ _ZNKSt7__cxx1112regex_traitsIcE17transform_primaryIPKcEENS_12basic_stringIcSt11c
         -:  926:       * @returns the matching sequence as a string.
         -:  927:       */
         -:  928:      string_type
-       12:  929:      str() const
+       15:  929:      str() const
         -:  930:      {
-       12:  931:	return this->matched
-       12:  932:	  ? string_type(this->first, this->second)
-      24*:  933:	  : string_type();
+       15:  931:	return this->matched
+       15:  932:	  ? string_type(this->first, this->second)
+      30*:  933:	  : string_type();
         -:  934:      }
         -:  935:
         -:  936:      /**
@@ -1802,16 +1802,16 @@ _ZNKSt7__cxx1112regex_traitsIcE17transform_primaryIPKcEENS_12basic_stringIcSt11c
         -: 1749:       * @brief Constructs a default %match_results container.
         -: 1750:       * @post size() returns 0 and str() returns an empty string.
         -: 1751:       */
-       21: 1752:      match_results() : match_results(_Alloc()) { }
+       26: 1752:      match_results() : match_results(_Alloc()) { }
         -: 1753:
         -: 1754:      /**
         -: 1755:       * @brief Constructs a default %match_results container.
         -: 1756:       * @post size() returns 0 and str() returns an empty string.
         -: 1757:       */
         -: 1758:      explicit
-       21: 1759:      match_results(const _Alloc& __a) noexcept
-       21: 1760:      : _Base_type(__a)
-       21: 1761:      { }
+       26: 1759:      match_results(const _Alloc& __a) noexcept
+       26: 1760:      : _Base_type(__a)
+       26: 1761:      { }
         -: 1762:
         -: 1763:      /**
         -: 1764:       * @brief Copy constructs a %match_results.
@@ -1838,7 +1838,7 @@ _ZNKSt7__cxx1112regex_traitsIcE17transform_primaryIPKcEENS_12basic_stringIcSt11c
         -: 1785:      /**
         -: 1786:       * @brief Destroys a %match_results object.
         -: 1787:       */
-       21: 1788:      ~match_results() = default;
+       26: 1788:      ~match_results() = default;
         -: 1789:
         -: 1790:      ///@}
         -: 1791:
@@ -1865,8 +1865,8 @@ _ZNKSt7__cxx1112regex_traitsIcE17transform_primaryIPKcEENS_12basic_stringIcSt11c
         -: 1812:       * @returns the number of matches found.
         -: 1813:       */
         -: 1814:      size_type
-       12: 1815:      size() const noexcept
-      12*: 1816:      { return _Base_type::empty() ? 0 : _Base_type::size() - 3; }
+       15: 1815:      size() const noexcept
+      15*: 1816:      { return _Base_type::empty() ? 0 : _Base_type::size() - 3; }
         -: 1817:
         -: 1818:      size_type
         -: 1819:      max_size() const noexcept
@@ -1940,12 +1940,12 @@ _ZNKSt7__cxx1112regex_traitsIcE17transform_primaryIPKcEENS_12basic_stringIcSt11c
         -: 1887:       * special value indicating no submatch.
         -: 1888:       */
         -: 1889:      const_reference
-       12: 1890:      operator[](size_type __sub) const
+       15: 1890:      operator[](size_type __sub) const
         -: 1891:      {
-      12*: 1892:	__glibcxx_assert( ready() );
-       12: 1893:	return __sub < size()
-       12: 1894:	       ? _Base_type::operator[](__sub)
-      12*: 1895:	       : _M_unmatched_sub();
+      15*: 1892:	__glibcxx_assert( ready() );
+       15: 1893:	return __sub < size()
+       15: 1894:	       ? _Base_type::operator[](__sub)
+      15*: 1895:	       : _M_unmatched_sub();
         -: 1896:      }
         -: 1897:
         -: 1898:      /**
@@ -2119,17 +2119,17 @@ _ZNKSt7__cxx1112regex_traitsIcE17transform_primaryIPKcEENS_12basic_stringIcSt11c
         -: 2066:      // Reset contents to __size unmatched sub_match objects
         -: 2067:      // (plus additional objects for prefix, suffix and unmatched sub).
         -: 2068:      void
-       21: 2069:      _M_resize(unsigned int __size)
-       21: 2070:      { _Base_type::assign(__size + 3, sub_match<_Bi_iter>{}); }
+       26: 2069:      _M_resize(unsigned int __size)
+       26: 2070:      { _Base_type::assign(__size + 3, sub_match<_Bi_iter>{}); }
         -: 2071:
         -: 2072:      // Set state to a failed match for the given past-the-end iterator.
         -: 2073:      void
-        6: 2074:      _M_establish_failed_match(_Bi_iter __end)
+        7: 2074:      _M_establish_failed_match(_Bi_iter __end)
         -: 2075:      {
-        6: 2076:	sub_match<_Bi_iter> __sm;
-        6: 2077:	__sm.first = __sm.second = __end;
-        6: 2078:	_Base_type::assign(3, __sm);
-        6: 2079:      }
+        7: 2076:	sub_match<_Bi_iter> __sm;
+        7: 2077:	__sm.first = __sm.second = __end;
+        7: 2078:	_Base_type::assign(3, __sm);
+        7: 2079:      }
         -: 2080:
         -: 2081:      const_reference
     #####: 2082:      _M_unmatched_sub() const
@@ -2144,16 +2144,16 @@ _ZNKSt7__cxx1112regex_traitsIcE17transform_primaryIPKcEENS_12basic_stringIcSt11c
         -: 2091:      { return _Base_type::operator[](_Base_type::size() - 2); }
         -: 2092:
         -: 2093:      sub_match<_Bi_iter>&
-       15: 2094:      _M_prefix()
-       15: 2095:      { return _Base_type::operator[](_Base_type::size() - 2); }
+       19: 2094:      _M_prefix()
+       19: 2095:      { return _Base_type::operator[](_Base_type::size() - 2); }
         -: 2096:
         -: 2097:      const_reference
         -: 2098:      _M_suffix() const
         -: 2099:      { return _Base_type::operator[](_Base_type::size() - 1); }
         -: 2100:
         -: 2101:      sub_match<_Bi_iter>&
-       15: 2102:      _M_suffix()
-       15: 2103:      { return _Base_type::operator[](_Base_type::size() - 1); }
+       19: 2102:      _M_suffix()
+       19: 2103:      { return _Base_type::operator[](_Base_type::size() - 1); }
         -: 2104:
         -: 2105:      _Bi_iter _M_begin {};
         -: 2106:      /// @endcond
@@ -2245,7 +2245,7 @@ _ZNKSt7__cxx1112regex_traitsIcE17transform_primaryIPKcEENS_12basic_stringIcSt11c
         -: 2192:  template<typename _Bi_iter, typename _Alloc,
         -: 2193:	   typename _Ch_type, typename _Rx_traits>
         -: 2194:    inline bool
-       21: 2195:    regex_match(_Bi_iter				 __s,
+       26: 2195:    regex_match(_Bi_iter				 __s,
         -: 2196:		_Bi_iter				 __e,
         -: 2197:		match_results<_Bi_iter, _Alloc>&	 __m,
         -: 2198:		const basic_regex<_Ch_type, _Rx_traits>& __re,
@@ -2254,7 +2254,7 @@ _ZNKSt7__cxx1112regex_traitsIcE17transform_primaryIPKcEENS_12basic_stringIcSt11c
         -: 2201:    {
         -: 2202:      return __detail::__regex_algo_impl<_Bi_iter, _Alloc, _Ch_type, _Rx_traits,
         -: 2203:	__detail::_RegexExecutorPolicy::_S_auto, true>
-       21: 2204:	  (__s, __e, __m, __re, __flags);
+       26: 2204:	  (__s, __e, __m, __re, __flags);
         -: 2205:    }
         -: 2206:
         -: 2207:  /**
@@ -2273,14 +2273,14 @@ _ZNKSt7__cxx1112regex_traitsIcE17transform_primaryIPKcEENS_12basic_stringIcSt11c
         -: 2220:   */
         -: 2221:  template<typename _Bi_iter, typename _Ch_type, typename _Rx_traits>
         -: 2222:    inline bool
-       16: 2223:    regex_match(_Bi_iter __first, _Bi_iter __last,
+       20: 2223:    regex_match(_Bi_iter __first, _Bi_iter __last,
         -: 2224:		const basic_regex<_Ch_type, _Rx_traits>& __re,
         -: 2225:		regex_constants::match_flag_type __flags
         -: 2226:		= regex_constants::match_default)
         -: 2227:    {
-       16: 2228:      match_results<_Bi_iter> __what;
-       32: 2229:      return regex_match(__first, __last, __what, __re, __flags);
-       16: 2230:    }
+       20: 2228:      match_results<_Bi_iter> __what;
+       40: 2229:      return regex_match(__first, __last, __what, __re, __flags);
+       20: 2230:    }
         -: 2231:
         -: 2232:  /**
         -: 2233:   * @brief Determines if there is a match between the regular expression @p e
@@ -2322,13 +2322,13 @@ _ZNKSt7__cxx1112regex_traitsIcE17transform_primaryIPKcEENS_12basic_stringIcSt11c
         -: 2269:  template<typename _Ch_traits, typename _Ch_alloc,
         -: 2270:	   typename _Alloc, typename _Ch_type, typename _Rx_traits>
         -: 2271:    inline bool
-        5: 2272:    regex_match(const basic_string<_Ch_type, _Ch_traits, _Ch_alloc>& __s,
+        6: 2272:    regex_match(const basic_string<_Ch_type, _Ch_traits, _Ch_alloc>& __s,
         -: 2273:		match_results<typename basic_string<_Ch_type,
         -: 2274:		_Ch_traits, _Ch_alloc>::const_iterator, _Alloc>& __m,
         -: 2275:		const basic_regex<_Ch_type, _Rx_traits>& __re,
         -: 2276:		regex_constants::match_flag_type __flags
         -: 2277:		= regex_constants::match_default)
-        5: 2278:    { return regex_match(__s.begin(), __s.end(), __m, __re, __flags); }
+        6: 2278:    { return regex_match(__s.begin(), __s.end(), __m, __re, __flags); }
         -: 2279:
         -: 2280:  // _GLIBCXX_RESOLVE_LIB_DEFECTS
         -: 2281:  // 2329. regex_match() with match_results should forbid temporary strings
@@ -2380,11 +2380,11 @@ _ZNKSt7__cxx1112regex_traitsIcE17transform_primaryIPKcEENS_12basic_stringIcSt11c
         -: 2327:  template<typename _Ch_traits, typename _Str_allocator,
         -: 2328:	   typename _Ch_type, typename _Rx_traits>
         -: 2329:    inline bool
-       16: 2330:    regex_match(const basic_string<_Ch_type, _Ch_traits, _Str_allocator>& __s,
+       20: 2330:    regex_match(const basic_string<_Ch_type, _Ch_traits, _Str_allocator>& __s,
         -: 2331:		const basic_regex<_Ch_type, _Rx_traits>& __re,
         -: 2332:		regex_constants::match_flag_type __flags
         -: 2333:		= regex_constants::match_default)
-       16: 2334:    { return regex_match(__s.begin(), __s.end(), __re, __flags); }
+       20: 2334:    { return regex_match(__s.begin(), __s.end(), __re, __flags); }
         -: 2335:
         -: 2336:  // [7.11.3] Function template regex_search
         -: 2337:  /**

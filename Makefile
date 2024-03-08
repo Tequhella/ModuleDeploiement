@@ -216,6 +216,30 @@ Form.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyApp.dir/build.make CMakeFiles/MyApp.dir/Form.cpp.s
 .PHONY : Form.cpp.s
 
+FormUI.o: FormUI.cpp.o
+.PHONY : FormUI.o
+
+# target to build an object file
+FormUI.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyApp.dir/build.make CMakeFiles/MyApp.dir/FormUI.cpp.o
+.PHONY : FormUI.cpp.o
+
+FormUI.i: FormUI.cpp.i
+.PHONY : FormUI.i
+
+# target to preprocess a source file
+FormUI.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyApp.dir/build.make CMakeFiles/MyApp.dir/FormUI.cpp.i
+.PHONY : FormUI.cpp.i
+
+FormUI.s: FormUI.cpp.s
+.PHONY : FormUI.s
+
+# target to generate assembly for a file
+FormUI.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyApp.dir/build.make CMakeFiles/MyApp.dir/FormUI.cpp.s
+.PHONY : FormUI.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -306,6 +330,9 @@ help:
 	@echo "... Form.o"
 	@echo "... Form.i"
 	@echo "... Form.s"
+	@echo "... FormUI.o"
+	@echo "... FormUI.i"
+	@echo "... FormUI.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

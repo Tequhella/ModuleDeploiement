@@ -162,21 +162,21 @@
         -:  161:#else
         -:  162:      void
         -:  163:#endif
-      135:  164:      deque<_Tp, _Alloc>::
+      166:  164:      deque<_Tp, _Alloc>::
         -:  165:      emplace_back(_Args&&... __args)
         -:  166:      {
-      135:  167:	if (this->_M_impl._M_finish._M_cur
-      135:  168:	    != this->_M_impl._M_finish._M_last - 1)
+      166:  167:	if (this->_M_impl._M_finish._M_cur
+      166:  168:	    != this->_M_impl._M_finish._M_last - 1)
         -:  169:	  {
-      135:  170:	    _Alloc_traits::construct(this->_M_impl,
+      166:  170:	    _Alloc_traits::construct(this->_M_impl,
         -:  171:				     this->_M_impl._M_finish._M_cur,
         -:  172:				     std::forward<_Args>(__args)...);
-      135:  173:	    ++this->_M_impl._M_finish._M_cur;
+      166:  173:	    ++this->_M_impl._M_finish._M_cur;
         -:  174:	  }
         -:  175:	else
     #####:  176:	  _M_push_back_aux(std::forward<_Args>(__args)...);
         -:  177:#if __cplusplus > 201402L
-      135:  178:	return back();
+      166:  178:	return back();
         -:  179:#endif
         -:  180:      }
         -:  181:#endif

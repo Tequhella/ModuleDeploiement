@@ -89,14 +89,14 @@
         -:   88:    };
         -:   89:
         -:   90:  protected:
-       21:   91:    _ScannerBase(_FlagT __flags)
-       21:   92:    : _M_state(_S_state_normal),
-       21:   93:    _M_flags(__flags),
-       42:   94:    _M_escape_tbl(_M_is_ecma()
-      21*:   95:		  ? _M_ecma_escape_tbl
+       26:   91:    _ScannerBase(_FlagT __flags)
+       26:   92:    : _M_state(_S_state_normal),
+       26:   93:    _M_flags(__flags),
+       52:   94:    _M_escape_tbl(_M_is_ecma()
+      26*:   95:		  ? _M_ecma_escape_tbl
         -:   96:		  : _M_awk_escape_tbl),
-       21:   97:    _M_spec_char(_M_is_ecma()
-      21*:   98:		 ? _M_ecma_spec_char
+       26:   97:    _M_spec_char(_M_is_ecma()
+      26*:   98:		 ? _M_ecma_spec_char
     #####:   99:		 : _M_flags & regex_constants::basic
     #####:  100:		 ? _M_basic_spec_char
     #####:  101:		 : _M_flags & regex_constants::extended
@@ -108,27 +108,27 @@
     #####:  107:		 : _M_flags & regex_constants::awk
     #####:  108:		 ? _M_extended_spec_char
         -:  109:		 : nullptr),
-       42:  110:    _M_at_bracket_start(false)
-       21:  111:    { __glibcxx_assert(_M_spec_char); }
+       52:  110:    _M_at_bracket_start(false)
+       26:  111:    { __glibcxx_assert(_M_spec_char); }
         -:  112:
         -:  113:  protected:
         -:  114:    const char*
-       35:  115:    _M_find_escape(char __c)
+       43:  115:    _M_find_escape(char __c)
         -:  116:    {
-       35:  117:      auto __it = _M_escape_tbl;
-      280:  118:      for (; __it->first != '\0'; ++__it)
-      245:  119:	if (__it->first == __c)
+       43:  117:      auto __it = _M_escape_tbl;
+      344:  118:      for (; __it->first != '\0'; ++__it)
+      301:  119:	if (__it->first == __c)
     #####:  120:	  return &__it->second;
-       35:  121:      return nullptr;
+       43:  121:      return nullptr;
         -:  122:    }
         -:  123:
         -:  124:    bool
-      110:  125:    _M_is_ecma() const
-      110:  126:    { return _M_flags & regex_constants::ECMAScript; }
+      136:  125:    _M_is_ecma() const
+      136:  126:    { return _M_flags & regex_constants::ECMAScript; }
         -:  127:
         -:  128:    bool
-       42:  129:    _M_is_basic() const
-       42:  130:    { return _M_flags & (regex_constants::basic | regex_constants::grep); }
+       51:  129:    _M_is_basic() const
+       51:  130:    { return _M_flags & (regex_constants::basic | regex_constants::grep); }
         -:  131:
         -:  132:    bool
         -:  133:    _M_is_extended() const
@@ -223,12 +223,12 @@
         -:  222:      _M_advance();
         -:  223:
         -:  224:      _TokenT
-     2357:  225:      _M_get_token() const noexcept
-     2357:  226:      { return _M_token; }
+     2895:  225:      _M_get_token() const noexcept
+     2895:  226:      { return _M_token; }
         -:  227:
         -:  228:      const _StringT&
-      319:  229:      _M_get_value() const noexcept
-      319:  230:      { return _M_value; }
+      393:  229:      _M_get_value() const noexcept
+      393:  230:      { return _M_value; }
         -:  231:
         -:  232:#ifdef _GLIBCXX_DEBUG
         -:  233:      std::ostream&

@@ -125,20 +125,20 @@
         -:  124:
         -:  125:public:
         -:  126:
-      51*:  127:    BOOST_CONSTEXPR shared_count() BOOST_SP_NOEXCEPT: pi_(0)
+      28*:  127:    BOOST_CONSTEXPR shared_count() BOOST_SP_NOEXCEPT: pi_(0)
         -:  128:#if defined(BOOST_SP_ENABLE_DEBUG_HOOKS)
         -:  129:        , id_(shared_count_id)
         -:  130:#endif
         -:  131:    {
-      51*:  132:    }
+      28*:  132:    }
 ------------------
 _ZN5boost6detail12shared_countC2Ev:
-       51:  127:    BOOST_CONSTEXPR shared_count() BOOST_SP_NOEXCEPT: pi_(0)
+       28:  127:    BOOST_CONSTEXPR shared_count() BOOST_SP_NOEXCEPT: pi_(0)
         -:  128:#if defined(BOOST_SP_ENABLE_DEBUG_HOOKS)
         -:  129:        , id_(shared_count_id)
         -:  130:#endif
         -:  131:    {
-       51:  132:    }
+       28:  132:    }
 ------------------
 _ZN5boost6detail12shared_countC2Ev:
     #####:  127:    BOOST_CONSTEXPR shared_count() BOOST_SP_NOEXCEPT: pi_(0)
@@ -445,22 +445,22 @@ _ZN5boost6detail12shared_countC2Ev:
         -:  427:        r.release();
         -:  428:    }
         -:  429:
-      51*:  430:    ~shared_count() /*BOOST_SP_NOEXCEPT*/
+      28*:  430:    ~shared_count() /*BOOST_SP_NOEXCEPT*/
         -:  431:    {
-      51*:  432:        if( pi_ != 0 ) pi_->release();
+      28*:  432:        if( pi_ != 0 ) pi_->release();
         -:  433:#if defined(BOOST_SP_ENABLE_DEBUG_HOOKS)
         -:  434:        id_ = 0;
         -:  435:#endif
-      51*:  436:    }
+      28*:  436:    }
 ------------------
 _ZN5boost6detail12shared_countD2Ev:
-       51:  430:    ~shared_count() /*BOOST_SP_NOEXCEPT*/
+       28:  430:    ~shared_count() /*BOOST_SP_NOEXCEPT*/
         -:  431:    {
-      51*:  432:        if( pi_ != 0 ) pi_->release();
+      28*:  432:        if( pi_ != 0 ) pi_->release();
         -:  433:#if defined(BOOST_SP_ENABLE_DEBUG_HOOKS)
         -:  434:        id_ = 0;
         -:  435:#endif
-       51:  436:    }
+       28:  436:    }
 ------------------
 _ZN5boost6detail12shared_countD2Ev:
     #####:  430:    ~shared_count() /*BOOST_SP_NOEXCEPT*/

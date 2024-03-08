@@ -48,22 +48,22 @@
         -:   47:	   _RegexExecutorPolicy __policy,
         -:   48:	   bool __match_mode>
         -:   49:    bool
-       21:   50:    __regex_algo_impl(_BiIter                              __s,
+       26:   50:    __regex_algo_impl(_BiIter                              __s,
         -:   51:		      _BiIter                              __e,
         -:   52:		      match_results<_BiIter, _Alloc>&      __m,
         -:   53:		      const basic_regex<_CharT, _TraitsT>& __re,
         -:   54:		      regex_constants::match_flag_type     __flags)
         -:   55:    {
-       21:   56:      if (__re._M_automaton == nullptr)
+       26:   56:      if (__re._M_automaton == nullptr)
     #####:   57:	return false;
         -:   58:
-       21:   59:      typename match_results<_BiIter, _Alloc>::_Base_type& __res = __m;
-       21:   60:      __m._M_begin = __s;
-       21:   61:      __m._M_resize(__re._M_automaton->_M_sub_count());
+       26:   59:      typename match_results<_BiIter, _Alloc>::_Base_type& __res = __m;
+       26:   60:      __m._M_begin = __s;
+       26:   61:      __m._M_resize(__re._M_automaton->_M_sub_count());
         -:   62:
         -:   63:      bool __ret;
-       21:   64:      if ((__re.flags() & regex_constants::__polynomial)
-      21*:   65:	  || (__policy == _RegexExecutorPolicy::_S_alternate
+       26:   64:      if ((__re.flags() & regex_constants::__polynomial)
+      26*:   65:	  || (__policy == _RegexExecutorPolicy::_S_alternate
         -:   66:	      && !__re._M_automaton->_M_has_backref))
         -:   67:	{
         -:   68:	  _Executor<_BiIter, _Alloc, _TraitsT, false>
@@ -76,27 +76,27 @@
         -:   75:      else
         -:   76:	{
         -:   77:	  _Executor<_BiIter, _Alloc, _TraitsT, true>
-       21:   78:	    __executor(__s, __e, __m, __re, __flags);
+       26:   78:	    __executor(__s, __e, __m, __re, __flags);
         -:   79:	  if (__match_mode)
-       21:   80:	    __ret = __executor._M_match();
+       26:   80:	    __ret = __executor._M_match();
         -:   81:	  else
         -:   82:	    __ret = __executor._M_search();
-       21:   83:	}
-       21:   84:      if (__ret)
+       26:   83:	}
+       26:   84:      if (__ret)
         -:   85:	{
-       87:   86:	  for (auto& __it : __res)
-       72:   87:	    if (!__it.matched)
-       45:   88:	      __it.first = __it.second = __e;
-       15:   89:	  auto& __pre = __m._M_prefix();
-       15:   90:	  auto& __suf = __m._M_suffix();
+      110:   86:	  for (auto& __it : __res)
+       91:   87:	    if (!__it.matched)
+       57:   88:	      __it.first = __it.second = __e;
+       19:   89:	  auto& __pre = __m._M_prefix();
+       19:   90:	  auto& __suf = __m._M_suffix();
         -:   91:	  if (__match_mode)
         -:   92:	    {
-       15:   93:	      __pre.matched = false;
-       15:   94:	      __pre.first = __s;
-       15:   95:	      __pre.second = __s;
-       15:   96:	      __suf.matched = false;
-       15:   97:	      __suf.first = __e;
-       15:   98:	      __suf.second = __e;
+       19:   93:	      __pre.matched = false;
+       19:   94:	      __pre.first = __s;
+       19:   95:	      __pre.second = __s;
+       19:   96:	      __suf.matched = false;
+       19:   97:	      __suf.first = __e;
+       19:   98:	      __suf.second = __e;
         -:   99:	    }
         -:  100:	  else
         -:  101:	    {
@@ -110,9 +110,9 @@
         -:  109:	}
         -:  110:      else
         -:  111:	{
-        6:  112:	  __m._M_establish_failed_match(__e);
+        7:  112:	  __m._M_establish_failed_match(__e);
         -:  113:	}
-       21:  114:      return __ret;
+       26:  114:      return __ret;
         -:  115:    }
         -:  116:  /// @endcond
         -:  117:} // namespace __detail
@@ -278,11 +278,11 @@
         -:  277:  template<typename _Ch_type>
         -:  278:  template<typename _Fwd_iter>
         -:  279:    typename regex_traits<_Ch_type>::char_class_type
-       31:  280:    regex_traits<_Ch_type>::
+       38:  280:    regex_traits<_Ch_type>::
         -:  281:    lookup_classname(_Fwd_iter __first, _Fwd_iter __last, bool __icase) const
         -:  282:    {
         -:  283:      typedef std::ctype<char_type> __ctype_type;
-       31:  284:      const __ctype_type& __fctyp(use_facet<__ctype_type>(_M_locale));
+       38:  284:      const __ctype_type& __fctyp(use_facet<__ctype_type>(_M_locale));
         -:  285:
         -:  286:      // Mappings from class name to class mask.
         -:  287:      static const pair<const char*, char_class_type> __classnames[] =
@@ -304,50 +304,50 @@
         -:  303:	{"xdigit", ctype_base::xdigit},
         -:  304:      };
         -:  305:
-       31:  306:      string __s;
-       62:  307:      for (; __first != __last; ++__first)
-       31:  308:	__s += __fctyp.narrow(__fctyp.tolower(*__first), 0);
+       38:  306:      string __s;
+       76:  307:      for (; __first != __last; ++__first)
+       38:  308:	__s += __fctyp.narrow(__fctyp.tolower(*__first), 0);
         -:  309:
-       55:  310:      for (const auto& __it : __classnames)
-       55:  311:	if (__s == __it.first)
+       68:  310:      for (const auto& __it : __classnames)
+       68:  311:	if (__s == __it.first)
         -:  312:	  {
-       31:  313:	    if (__icase
-      31*:  314:		&& ((__it.second
-      31*:  315:		     & (ctype_base::lower | ctype_base::upper)) != 0))
+       38:  313:	    if (__icase
+      38*:  314:		&& ((__it.second
+      38*:  315:		     & (ctype_base::lower | ctype_base::upper)) != 0))
     #####:  316:	      return ctype_base::alpha;
-       31:  317:	    return __it.second;
+       38:  317:	    return __it.second;
         -:  318:	  }
     #####:  319:      return 0;
-       31:  320:    }
+       38:  320:    }
         -:  321:
         -:  322:  template<typename _Ch_type>
         -:  323:    bool
-     9556:  324:    regex_traits<_Ch_type>::
+    11753:  324:    regex_traits<_Ch_type>::
         -:  325:    isctype(_Ch_type __c, char_class_type __f) const
         -:  326:    {
         -:  327:      typedef std::ctype<char_type> __ctype_type;
-     9556:  328:      const __ctype_type& __fctyp(use_facet<__ctype_type>(_M_locale));
+    11753:  328:      const __ctype_type& __fctyp(use_facet<__ctype_type>(_M_locale));
         -:  329:
-     9556:  330:      return __fctyp.is(__f._M_base, __c)
+    11753:  330:      return __fctyp.is(__f._M_base, __c)
         -:  331:	// [[:w:]]
-     9556:  332:	|| ((__f._M_extended & _RegexMask::_S_under)
-    9556*:  333:	    && __c == __fctyp.widen('_'));
+    11753:  332:	|| ((__f._M_extended & _RegexMask::_S_under)
+   11753*:  333:	    && __c == __fctyp.widen('_'));
         -:  334:    }
         -:  335:
         -:  336:  template<typename _Ch_type>
         -:  337:    int
-       19:  338:    regex_traits<_Ch_type>::
+       23:  338:    regex_traits<_Ch_type>::
         -:  339:    value(_Ch_type __ch, int __radix) const
         -:  340:    {
-       38:  341:      std::basic_istringstream<char_type> __is(string_type(1, __ch));
+       46:  341:      std::basic_istringstream<char_type> __is(string_type(1, __ch));
         -:  342:      long __v;
-       19:  343:      if (__radix == 8)
+       23:  343:      if (__radix == 8)
     #####:  344:	__is >> std::oct;
-       19:  345:      else if (__radix == 16)
+       23:  345:      else if (__radix == 16)
     #####:  346:	__is >> std::hex;
-       19:  347:      __is >> __v;
-      38*:  348:      return __is.fail() ? -1 : __v;
-       19:  349:    }
+       23:  347:      __is >> __v;
+      46*:  348:      return __is.fail() ? -1 : __v;
+       23:  349:    }
         -:  350:
         -:  351:  template<typename _Bi_iter, typename _Alloc>
         -:  352:  template<typename _Out_iter>

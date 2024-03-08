@@ -43,10 +43,10 @@
         -:   42:
         -:   43:namespace tt_detail {
         -:   44:
-      53*:   45:inline bool dummy_cond() { return false; }
+      29*:   45:inline bool dummy_cond() { return false; }
 ------------------
 _ZN5boost10test_tools9tt_detail10dummy_condEv:
-       53:   45:inline bool dummy_cond() { return false; }
+       29:   45:inline bool dummy_cond() { return false; }
 ------------------
 _ZN5boost10test_tools9tt_detail10dummy_condEv:
     #####:   45:inline bool dummy_cond() { return false; }

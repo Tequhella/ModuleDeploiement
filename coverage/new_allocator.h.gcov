@@ -77,7 +77,7 @@
         -:   76:#endif
         -:   77:
         -:   78:      _GLIBCXX20_CONSTEXPR
-     659*:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
+     810*:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
 ------------------
 _ZN9__gnu_cxx13new_allocatorISt4pairIlSt6vectorINSt7__cxx119sub_matchINS_17__normal_iteratorIPKcNS3_12basic_stringIcSt11char_traitsIcESaIcEEEEEEESaISE_EEEEC2Ev:
     #####:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
@@ -85,60 +85,60 @@ _ZN9__gnu_cxx13new_allocatorISt4pairIlSt6vectorINSt7__cxx119sub_matchINS_17__nor
 _ZN9__gnu_cxx13new_allocatorIcEC2Ev:
     #####:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
 ------------------
+_ZN9__gnu_cxx13new_allocatorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEC2Ev:
+       50:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
+------------------
 _ZN9__gnu_cxx13new_allocatorImEC2Ev:
-       21:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
+       26:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
 ------------------
 _ZN9__gnu_cxx13new_allocatorISt13_Rb_tree_nodeISt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES8_EEEC2Ev:
-       14:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
+       17:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
 ------------------
 _ZN9__gnu_cxx13new_allocatorINSt7__cxx119sub_matchINS_17__normal_iteratorIPKcNS1_12basic_stringIcSt11char_traitsIcESaIcEEEEEEEEC2Ev:
-       42:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
-------------------
-_ZN9__gnu_cxx13new_allocatorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEC2Ev:
-       39:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
+       52:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
 ------------------
 _ZN9__gnu_cxx13new_allocatorINSt8__detail4_NFAINSt7__cxx1112regex_traitsIcEEEEEC2Ev:
-       21:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
+       26:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
 ------------------
 _ZN9__gnu_cxx13new_allocatorISt4pairINS_17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEiEEC2Ev:
-       21:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
+       26:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
 ------------------
 _ZN9__gnu_cxx13new_allocatorINSt8__detail9_StateSeqINSt7__cxx1112regex_traitsIcEEEEEC2Ev:
-       21:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
+       26:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
 ------------------
 _ZN9__gnu_cxx13new_allocatorIPNSt8__detail9_StateSeqINSt7__cxx1112regex_traitsIcEEEEEC2Ev:
-       42:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
+       52:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
 ------------------
 _ZN9__gnu_cxx13new_allocatorIcEC2Ev:
     #####:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
 ------------------
 _ZN9__gnu_cxx13new_allocatorISt23_Sp_counted_ptr_inplaceINSt8__detail4_NFAINSt7__cxx1112regex_traitsIcEEEESaIS7_ELNS_12_Lock_policyE2EEEC2Ev:
-       42:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
+       52:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
 ------------------
 _ZN9__gnu_cxx13new_allocatorISt13_Rb_tree_nodeISt4pairIKllEEEC2Ev:
-       60:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
+       73:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
 ------------------
 _ZN9__gnu_cxx13new_allocatorISt4pairIccEEC2Ev:
-       39:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
+       48:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
 ------------------
 _ZN9__gnu_cxx13new_allocatorINSt7__cxx1112regex_traitsIcE10_RegexMaskEEC2Ev:
-       39:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
+       48:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
 ------------------
 _ZN9__gnu_cxx13new_allocatorISt4pairINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_EEC2Ev:
     #####:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
 ------------------
 _ZN9__gnu_cxx13new_allocatorIlEC2Ev:
-       79:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
+       96:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
 ------------------
 _ZN9__gnu_cxx13new_allocatorIPlEC2Ev:
-      158:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
+      192:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
 ------------------
 _ZN9__gnu_cxx13new_allocatorINSt8__detail6_StateIcEEEC2Ev:
-       21:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
+       26:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
 ------------------
         -:   80:
         -:   81:      _GLIBCXX20_CONSTEXPR
-     667*:   82:      new_allocator(const new_allocator&) _GLIBCXX_USE_NOEXCEPT { }
+     820*:   82:      new_allocator(const new_allocator&) _GLIBCXX_USE_NOEXCEPT { }
 ------------------
 _ZN9__gnu_cxx13new_allocatorIcEC2ERKS1_:
     #####:   82:      new_allocator(const new_allocator&) _GLIBCXX_USE_NOEXCEPT { }
@@ -147,25 +147,25 @@ _ZN9__gnu_cxx13new_allocatorISt4pairINSt7__cxx1112basic_stringIcSt11char_traitsI
     #####:   82:      new_allocator(const new_allocator&) _GLIBCXX_USE_NOEXCEPT { }
 ------------------
 _ZN9__gnu_cxx13new_allocatorINSt7__cxx1112regex_traitsIcE10_RegexMaskEEC2ERKS5_:
-      159:   82:      new_allocator(const new_allocator&) _GLIBCXX_USE_NOEXCEPT { }
+      194:   82:      new_allocator(const new_allocator&) _GLIBCXX_USE_NOEXCEPT { }
 ------------------
 _ZN9__gnu_cxx13new_allocatorISt4pairIccEEC2ERKS3_:
-      159:   82:      new_allocator(const new_allocator&) _GLIBCXX_USE_NOEXCEPT { }
+      194:   82:      new_allocator(const new_allocator&) _GLIBCXX_USE_NOEXCEPT { }
 ------------------
 _ZN9__gnu_cxx13new_allocatorINSt8__detail4_NFAINSt7__cxx1112regex_traitsIcEEEEEC2ERKS7_:
-       63:   82:      new_allocator(const new_allocator&) _GLIBCXX_USE_NOEXCEPT { }
+       78:   82:      new_allocator(const new_allocator&) _GLIBCXX_USE_NOEXCEPT { }
 ------------------
 _ZN9__gnu_cxx13new_allocatorISt4pairIlSt6vectorINSt7__cxx119sub_matchINS_17__normal_iteratorIPKcNS3_12basic_stringIcSt11char_traitsIcESaIcEEEEEEESaISE_EEEEC2ERKSI_:
     #####:   82:      new_allocator(const new_allocator&) _GLIBCXX_USE_NOEXCEPT { }
 ------------------
 _ZN9__gnu_cxx13new_allocatorISt4pairINS_17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEiEEC2ERKSD_:
-       42:   82:      new_allocator(const new_allocator&) _GLIBCXX_USE_NOEXCEPT { }
+       52:   82:      new_allocator(const new_allocator&) _GLIBCXX_USE_NOEXCEPT { }
 ------------------
 _ZN9__gnu_cxx13new_allocatorINSt7__cxx119sub_matchINS_17__normal_iteratorIPKcNS1_12basic_stringIcSt11char_traitsIcESaIcEEEEEEEEC2ERKSD_:
-       63:   82:      new_allocator(const new_allocator&) _GLIBCXX_USE_NOEXCEPT { }
+       78:   82:      new_allocator(const new_allocator&) _GLIBCXX_USE_NOEXCEPT { }
 ------------------
 _ZN9__gnu_cxx13new_allocatorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEC2ERKS7_:
-      159:   82:      new_allocator(const new_allocator&) _GLIBCXX_USE_NOEXCEPT { }
+      202:   82:      new_allocator(const new_allocator&) _GLIBCXX_USE_NOEXCEPT { }
 ------------------
 _ZN9__gnu_cxx13new_allocatorISt13_Rb_tree_nodeISt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES8_EEEC2ERKSC_:
        22:   82:      new_allocator(const new_allocator&) _GLIBCXX_USE_NOEXCEPT { }
@@ -193,7 +193,7 @@ _ZN9__gnu_cxx13new_allocatorIcEC2ERKS1_:
         -:  100:      // NB: __n is permitted to be 0.  The C++ standard says nothing
         -:  101:      // about what the return value is when __n == 0.
         -:  102:      _GLIBCXX_NODISCARD _Tp*
-   17862*:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
+   12606*:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
         -:  104:      {
         -:  105:#if __cplusplus >= 201103L
         -:  106:	 // _GLIBCXX_RESOLVE_LIB_DEFECTS
@@ -201,7 +201,7 @@ _ZN9__gnu_cxx13new_allocatorIcEC2ERKS1_:
         -:  108:	 static_assert(sizeof(_Tp) != 0, "cannot allocate incomplete types");
         -:  109:#endif
         -:  110:
-   17862*:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
+   12606*:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
         -:  112:	  {
         -:  113:	    // _GLIBCXX_RESOLVE_LIB_DEFECTS
         -:  114:	    // 3190. allocator::allocate sometimes returns too little storage
@@ -217,11 +217,11 @@ _ZN9__gnu_cxx13new_allocatorIcEC2ERKS1_:
         -:  124:	    return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp), __al));
         -:  125:	  }
         -:  126:#endif
-   17862*:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
+   12606*:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
         -:  128:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorINSt8__detail6_StateIcEEE8allocateEmPKv:
-      107:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
+      132:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
         -:  104:      {
         -:  105:#if __cplusplus >= 201103L
         -:  106:	 // _GLIBCXX_RESOLVE_LIB_DEFECTS
@@ -229,7 +229,7 @@ _ZN9__gnu_cxx13new_allocatorINSt8__detail6_StateIcEEE8allocateEmPKv:
         -:  108:	 static_assert(sizeof(_Tp) != 0, "cannot allocate incomplete types");
         -:  109:#endif
         -:  110:
-      107:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
+      132:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
         -:  112:	  {
         -:  113:	    // _GLIBCXX_RESOLVE_LIB_DEFECTS
         -:  114:	    // 3190. allocator::allocate sometimes returns too little storage
@@ -245,7 +245,7 @@ _ZN9__gnu_cxx13new_allocatorINSt8__detail6_StateIcEEE8allocateEmPKv:
         -:  124:	    return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp), __al));
         -:  125:	  }
         -:  126:#endif
-      107:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
+      132:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
         -:  128:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorIcE8allocateEmPKv:
@@ -276,8 +276,8 @@ _ZN9__gnu_cxx13new_allocatorIcE8allocateEmPKv:
     #####:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
         -:  128:      }
 ------------------
-_ZN9__gnu_cxx13new_allocatorISt13_Rb_tree_nodeISt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES8_EEE8allocateEmPKv:
-      126:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
+_ZN9__gnu_cxx13new_allocatorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE8allocateEmPKv:
+        4:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
         -:  104:      {
         -:  105:#if __cplusplus >= 201103L
         -:  106:	 // _GLIBCXX_RESOLVE_LIB_DEFECTS
@@ -285,7 +285,7 @@ _ZN9__gnu_cxx13new_allocatorISt13_Rb_tree_nodeISt4pairIKNSt7__cxx1112basic_strin
         -:  108:	 static_assert(sizeof(_Tp) != 0, "cannot allocate incomplete types");
         -:  109:#endif
         -:  110:
-      126:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
+        4:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
         -:  112:	  {
         -:  113:	    // _GLIBCXX_RESOLVE_LIB_DEFECTS
         -:  114:	    // 3190. allocator::allocate sometimes returns too little storage
@@ -301,10 +301,66 @@ _ZN9__gnu_cxx13new_allocatorISt13_Rb_tree_nodeISt4pairIKNSt7__cxx1112basic_strin
         -:  124:	    return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp), __al));
         -:  125:	  }
         -:  126:#endif
-      126:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
+        4:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
+        -:  128:      }
+------------------
+_ZN9__gnu_cxx13new_allocatorISt13_Rb_tree_nodeISt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES8_EEE8allocateEmPKv:
+      141:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
+        -:  104:      {
+        -:  105:#if __cplusplus >= 201103L
+        -:  106:	 // _GLIBCXX_RESOLVE_LIB_DEFECTS
+        -:  107:	 // 3308. std::allocator<void>().allocate(n)
+        -:  108:	 static_assert(sizeof(_Tp) != 0, "cannot allocate incomplete types");
+        -:  109:#endif
+        -:  110:
+      141:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
+        -:  112:	  {
+        -:  113:	    // _GLIBCXX_RESOLVE_LIB_DEFECTS
+        -:  114:	    // 3190. allocator::allocate sometimes returns too little storage
+    #####:  115:	    if (__n > (std::size_t(-1) / sizeof(_Tp)))
+    #####:  116:	      std::__throw_bad_array_new_length();
+    #####:  117:	    std::__throw_bad_alloc();
+        -:  118:	  }
+        -:  119:
+        -:  120:#if __cpp_aligned_new
+        -:  121:	if (alignof(_Tp) > __STDCPP_DEFAULT_NEW_ALIGNMENT__)
+        -:  122:	  {
+        -:  123:	    std::align_val_t __al = std::align_val_t(alignof(_Tp));
+        -:  124:	    return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp), __al));
+        -:  125:	  }
+        -:  126:#endif
+      141:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
         -:  128:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorImE8allocateEmPKv:
+       32:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
+        -:  104:      {
+        -:  105:#if __cplusplus >= 201103L
+        -:  106:	 // _GLIBCXX_RESOLVE_LIB_DEFECTS
+        -:  107:	 // 3308. std::allocator<void>().allocate(n)
+        -:  108:	 static_assert(sizeof(_Tp) != 0, "cannot allocate incomplete types");
+        -:  109:#endif
+        -:  110:
+       32:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
+        -:  112:	  {
+        -:  113:	    // _GLIBCXX_RESOLVE_LIB_DEFECTS
+        -:  114:	    // 3190. allocator::allocate sometimes returns too little storage
+    #####:  115:	    if (__n > (std::size_t(-1) / sizeof(_Tp)))
+    #####:  116:	      std::__throw_bad_array_new_length();
+    #####:  117:	    std::__throw_bad_alloc();
+        -:  118:	  }
+        -:  119:
+        -:  120:#if __cpp_aligned_new
+        -:  121:	if (alignof(_Tp) > __STDCPP_DEFAULT_NEW_ALIGNMENT__)
+        -:  122:	  {
+        -:  123:	    std::align_val_t __al = std::align_val_t(alignof(_Tp));
+        -:  124:	    return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp), __al));
+        -:  125:	  }
+        -:  126:#endif
+       32:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
+        -:  128:      }
+------------------
+_ZN9__gnu_cxx13new_allocatorIPNSt8__detail9_StateSeqINSt7__cxx1112regex_traitsIcEEEEE8allocateEmPKv:
        26:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
         -:  104:      {
         -:  105:#if __cplusplus >= 201103L
@@ -332,64 +388,8 @@ _ZN9__gnu_cxx13new_allocatorImE8allocateEmPKv:
        26:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
         -:  128:      }
 ------------------
-_ZN9__gnu_cxx13new_allocatorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE8allocateEmPKv:
-    #####:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
-        -:  104:      {
-        -:  105:#if __cplusplus >= 201103L
-        -:  106:	 // _GLIBCXX_RESOLVE_LIB_DEFECTS
-        -:  107:	 // 3308. std::allocator<void>().allocate(n)
-        -:  108:	 static_assert(sizeof(_Tp) != 0, "cannot allocate incomplete types");
-        -:  109:#endif
-        -:  110:
-    #####:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
-        -:  112:	  {
-        -:  113:	    // _GLIBCXX_RESOLVE_LIB_DEFECTS
-        -:  114:	    // 3190. allocator::allocate sometimes returns too little storage
-    #####:  115:	    if (__n > (std::size_t(-1) / sizeof(_Tp)))
-    #####:  116:	      std::__throw_bad_array_new_length();
-    #####:  117:	    std::__throw_bad_alloc();
-        -:  118:	  }
-        -:  119:
-        -:  120:#if __cpp_aligned_new
-        -:  121:	if (alignof(_Tp) > __STDCPP_DEFAULT_NEW_ALIGNMENT__)
-        -:  122:	  {
-        -:  123:	    std::align_val_t __al = std::align_val_t(alignof(_Tp));
-        -:  124:	    return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp), __al));
-        -:  125:	  }
-        -:  126:#endif
-    #####:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
-        -:  128:      }
-------------------
-_ZN9__gnu_cxx13new_allocatorIPNSt8__detail9_StateSeqINSt7__cxx1112regex_traitsIcEEEEE8allocateEmPKv:
-       21:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
-        -:  104:      {
-        -:  105:#if __cplusplus >= 201103L
-        -:  106:	 // _GLIBCXX_RESOLVE_LIB_DEFECTS
-        -:  107:	 // 3308. std::allocator<void>().allocate(n)
-        -:  108:	 static_assert(sizeof(_Tp) != 0, "cannot allocate incomplete types");
-        -:  109:#endif
-        -:  110:
-       21:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
-        -:  112:	  {
-        -:  113:	    // _GLIBCXX_RESOLVE_LIB_DEFECTS
-        -:  114:	    // 3190. allocator::allocate sometimes returns too little storage
-    #####:  115:	    if (__n > (std::size_t(-1) / sizeof(_Tp)))
-    #####:  116:	      std::__throw_bad_array_new_length();
-    #####:  117:	    std::__throw_bad_alloc();
-        -:  118:	  }
-        -:  119:
-        -:  120:#if __cpp_aligned_new
-        -:  121:	if (alignof(_Tp) > __STDCPP_DEFAULT_NEW_ALIGNMENT__)
-        -:  122:	  {
-        -:  123:	    std::align_val_t __al = std::align_val_t(alignof(_Tp));
-        -:  124:	    return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp), __al));
-        -:  125:	  }
-        -:  126:#endif
-       21:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
-        -:  128:      }
-------------------
 _ZN9__gnu_cxx13new_allocatorINSt8__detail9_StateSeqINSt7__cxx1112regex_traitsIcEEEEE8allocateEmPKv:
-       21:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
+       26:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
         -:  104:      {
         -:  105:#if __cplusplus >= 201103L
         -:  106:	 // _GLIBCXX_RESOLVE_LIB_DEFECTS
@@ -397,7 +397,7 @@ _ZN9__gnu_cxx13new_allocatorINSt8__detail9_StateSeqINSt7__cxx1112regex_traitsIcE
         -:  108:	 static_assert(sizeof(_Tp) != 0, "cannot allocate incomplete types");
         -:  109:#endif
         -:  110:
-       21:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
+       26:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
         -:  112:	  {
         -:  113:	    // _GLIBCXX_RESOLVE_LIB_DEFECTS
         -:  114:	    // 3190. allocator::allocate sometimes returns too little storage
@@ -413,11 +413,11 @@ _ZN9__gnu_cxx13new_allocatorINSt8__detail9_StateSeqINSt7__cxx1112regex_traitsIcE
         -:  124:	    return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp), __al));
         -:  125:	  }
         -:  126:#endif
-       21:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
+       26:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
         -:  128:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorISt4pairINS_17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEiEE8allocateEmPKv:
-       21:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
+       26:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
         -:  104:      {
         -:  105:#if __cplusplus >= 201103L
         -:  106:	 // _GLIBCXX_RESOLVE_LIB_DEFECTS
@@ -425,7 +425,7 @@ _ZN9__gnu_cxx13new_allocatorISt4pairINS_17__normal_iteratorIPKcNSt7__cxx1112basi
         -:  108:	 static_assert(sizeof(_Tp) != 0, "cannot allocate incomplete types");
         -:  109:#endif
         -:  110:
-       21:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
+       26:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
         -:  112:	  {
         -:  113:	    // _GLIBCXX_RESOLVE_LIB_DEFECTS
         -:  114:	    // 3190. allocator::allocate sometimes returns too little storage
@@ -441,11 +441,11 @@ _ZN9__gnu_cxx13new_allocatorISt4pairINS_17__normal_iteratorIPKcNSt7__cxx1112basi
         -:  124:	    return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp), __al));
         -:  125:	  }
         -:  126:#endif
-       21:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
+       26:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
         -:  128:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorISt23_Sp_counted_ptr_inplaceINSt8__detail4_NFAINSt7__cxx1112regex_traitsIcEEEESaIS7_ELNS_12_Lock_policyE2EEE8allocateEmPKv:
-       21:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
+       26:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
         -:  104:      {
         -:  105:#if __cplusplus >= 201103L
         -:  106:	 // _GLIBCXX_RESOLVE_LIB_DEFECTS
@@ -453,7 +453,7 @@ _ZN9__gnu_cxx13new_allocatorISt23_Sp_counted_ptr_inplaceINSt8__detail4_NFAINSt7_
         -:  108:	 static_assert(sizeof(_Tp) != 0, "cannot allocate incomplete types");
         -:  109:#endif
         -:  110:
-       21:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
+       26:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
         -:  112:	  {
         -:  113:	    // _GLIBCXX_RESOLVE_LIB_DEFECTS
         -:  114:	    // 3190. allocator::allocate sometimes returns too little storage
@@ -469,11 +469,11 @@ _ZN9__gnu_cxx13new_allocatorISt23_Sp_counted_ptr_inplaceINSt8__detail4_NFAINSt7_
         -:  124:	    return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp), __al));
         -:  125:	  }
         -:  126:#endif
-       21:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
+       26:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
         -:  128:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorIcE8allocateEmPKv:
-    17243:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
+    11856:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
         -:  104:      {
         -:  105:#if __cplusplus >= 201103L
         -:  106:	 // _GLIBCXX_RESOLVE_LIB_DEFECTS
@@ -481,7 +481,7 @@ _ZN9__gnu_cxx13new_allocatorIcE8allocateEmPKv:
         -:  108:	 static_assert(sizeof(_Tp) != 0, "cannot allocate incomplete types");
         -:  109:#endif
         -:  110:
-    17243:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
+    11856:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
         -:  112:	  {
         -:  113:	    // _GLIBCXX_RESOLVE_LIB_DEFECTS
         -:  114:	    // 3190. allocator::allocate sometimes returns too little storage
@@ -497,11 +497,11 @@ _ZN9__gnu_cxx13new_allocatorIcE8allocateEmPKv:
         -:  124:	    return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp), __al));
         -:  125:	  }
         -:  126:#endif
-    17243:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
+    11856:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
         -:  128:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorINSt7__cxx119sub_matchINS_17__normal_iteratorIPKcNS1_12basic_stringIcSt11char_traitsIcESaIcEEEEEEEE8allocateEmPKv:
-       42:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
+       52:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
         -:  104:      {
         -:  105:#if __cplusplus >= 201103L
         -:  106:	 // _GLIBCXX_RESOLVE_LIB_DEFECTS
@@ -509,7 +509,7 @@ _ZN9__gnu_cxx13new_allocatorINSt7__cxx119sub_matchINS_17__normal_iteratorIPKcNS1
         -:  108:	 static_assert(sizeof(_Tp) != 0, "cannot allocate incomplete types");
         -:  109:#endif
         -:  110:
-       42:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
+       52:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
         -:  112:	  {
         -:  113:	    // _GLIBCXX_RESOLVE_LIB_DEFECTS
         -:  114:	    // 3190. allocator::allocate sometimes returns too little storage
@@ -525,7 +525,7 @@ _ZN9__gnu_cxx13new_allocatorINSt7__cxx119sub_matchINS_17__normal_iteratorIPKcNS1
         -:  124:	    return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp), __al));
         -:  125:	  }
         -:  126:#endif
-       42:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
+       52:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
         -:  128:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorISt4pairIlSt6vectorINSt7__cxx119sub_matchINS_17__normal_iteratorIPKcNS3_12basic_stringIcSt11char_traitsIcESaIcEEEEEEESaISE_EEEE8allocateEmPKv:
@@ -557,7 +557,7 @@ _ZN9__gnu_cxx13new_allocatorISt4pairIlSt6vectorINSt7__cxx119sub_matchINS_17__nor
         -:  128:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorIPlE8allocateEmPKv:
-       79:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
+       96:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
         -:  104:      {
         -:  105:#if __cplusplus >= 201103L
         -:  106:	 // _GLIBCXX_RESOLVE_LIB_DEFECTS
@@ -565,7 +565,7 @@ _ZN9__gnu_cxx13new_allocatorIPlE8allocateEmPKv:
         -:  108:	 static_assert(sizeof(_Tp) != 0, "cannot allocate incomplete types");
         -:  109:#endif
         -:  110:
-       79:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
+       96:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
         -:  112:	  {
         -:  113:	    // _GLIBCXX_RESOLVE_LIB_DEFECTS
         -:  114:	    // 3190. allocator::allocate sometimes returns too little storage
@@ -581,11 +581,11 @@ _ZN9__gnu_cxx13new_allocatorIPlE8allocateEmPKv:
         -:  124:	    return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp), __al));
         -:  125:	  }
         -:  126:#endif
-       79:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
+       96:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
         -:  128:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorIlE8allocateEmPKv:
-       79:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
+       96:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
         -:  104:      {
         -:  105:#if __cplusplus >= 201103L
         -:  106:	 // _GLIBCXX_RESOLVE_LIB_DEFECTS
@@ -593,7 +593,7 @@ _ZN9__gnu_cxx13new_allocatorIlE8allocateEmPKv:
         -:  108:	 static_assert(sizeof(_Tp) != 0, "cannot allocate incomplete types");
         -:  109:#endif
         -:  110:
-       79:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
+       96:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
         -:  112:	  {
         -:  113:	    // _GLIBCXX_RESOLVE_LIB_DEFECTS
         -:  114:	    // 3190. allocator::allocate sometimes returns too little storage
@@ -609,7 +609,7 @@ _ZN9__gnu_cxx13new_allocatorIlE8allocateEmPKv:
         -:  124:	    return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp), __al));
         -:  125:	  }
         -:  126:#endif
-       79:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
+       96:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
         -:  128:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorINSt7__cxx1112regex_traitsIcE10_RegexMaskEE8allocateEmPKv:
@@ -641,7 +641,7 @@ _ZN9__gnu_cxx13new_allocatorINSt7__cxx1112regex_traitsIcE10_RegexMaskEE8allocate
         -:  128:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorISt13_Rb_tree_nodeISt4pairIKllEEE8allocateEmPKv:
-       60:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
+       73:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
         -:  104:      {
         -:  105:#if __cplusplus >= 201103L
         -:  106:	 // _GLIBCXX_RESOLVE_LIB_DEFECTS
@@ -649,7 +649,7 @@ _ZN9__gnu_cxx13new_allocatorISt13_Rb_tree_nodeISt4pairIKllEEE8allocateEmPKv:
         -:  108:	 static_assert(sizeof(_Tp) != 0, "cannot allocate incomplete types");
         -:  109:#endif
         -:  110:
-       60:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
+       73:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
         -:  112:	  {
         -:  113:	    // _GLIBCXX_RESOLVE_LIB_DEFECTS
         -:  114:	    // 3190. allocator::allocate sometimes returns too little storage
@@ -665,11 +665,11 @@ _ZN9__gnu_cxx13new_allocatorISt13_Rb_tree_nodeISt4pairIKllEEE8allocateEmPKv:
         -:  124:	    return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp), __al));
         -:  125:	  }
         -:  126:#endif
-       60:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
+       73:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
         -:  128:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorISt4pairIccEE8allocateEmPKv:
-       16:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
+       20:  103:      allocate(size_type __n, const void* = static_cast<const void*>(0))
         -:  104:      {
         -:  105:#if __cplusplus >= 201103L
         -:  106:	 // _GLIBCXX_RESOLVE_LIB_DEFECTS
@@ -677,7 +677,7 @@ _ZN9__gnu_cxx13new_allocatorISt4pairIccEE8allocateEmPKv:
         -:  108:	 static_assert(sizeof(_Tp) != 0, "cannot allocate incomplete types");
         -:  109:#endif
         -:  110:
-       16:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
+       20:  111:	if (__builtin_expect(__n > this->_M_max_size(), false))
         -:  112:	  {
         -:  113:	    // _GLIBCXX_RESOLVE_LIB_DEFECTS
         -:  114:	    // 3190. allocator::allocate sometimes returns too little storage
@@ -693,7 +693,7 @@ _ZN9__gnu_cxx13new_allocatorISt4pairIccEE8allocateEmPKv:
         -:  124:	    return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp), __al));
         -:  125:	  }
         -:  126:#endif
-       16:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
+       20:  127:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
         -:  128:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorISt4pairINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_EE8allocateEmPKv:
@@ -727,7 +727,7 @@ _ZN9__gnu_cxx13new_allocatorISt4pairINSt7__cxx1112basic_stringIcSt11char_traitsI
         -:  129:
         -:  130:      // __p is not permitted to be a null pointer.
         -:  131:      void
-   17334*:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
+   12341*:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
         -:  133:      {
         -:  134:#if __cpp_aligned_new
         -:  135:	if (alignof(_Tp) > __STDCPP_DEFAULT_NEW_ALIGNMENT__)
@@ -740,7 +740,7 @@ _ZN9__gnu_cxx13new_allocatorISt4pairINSt7__cxx1112basic_stringIcSt11char_traitsI
         -:  142:	    return;
         -:  143:	  }
         -:  144:#endif
-   17334*:  145:	::operator delete(__p
+   12341*:  145:	::operator delete(__p
         -:  146:#if __cpp_sized_deallocation
         -:  147:			  , __t * sizeof(_Tp)
         -:  148:#endif
@@ -769,7 +769,7 @@ _ZN9__gnu_cxx13new_allocatorISt4pairIlSt6vectorINSt7__cxx119sub_matchINS_17__nor
         -:  150:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorImE10deallocateEPmm:
-       26:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
+       32:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
         -:  133:      {
         -:  134:#if __cpp_aligned_new
         -:  135:	if (alignof(_Tp) > __STDCPP_DEFAULT_NEW_ALIGNMENT__)
@@ -782,7 +782,7 @@ _ZN9__gnu_cxx13new_allocatorImE10deallocateEPmm:
         -:  142:	    return;
         -:  143:	  }
         -:  144:#endif
-       26:  145:	::operator delete(__p
+       32:  145:	::operator delete(__p
         -:  146:#if __cpp_sized_deallocation
         -:  147:			  , __t * sizeof(_Tp)
         -:  148:#endif
@@ -811,7 +811,7 @@ _ZN9__gnu_cxx13new_allocatorIcE10deallocateEPcm:
         -:  150:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE10deallocateEPS6_m:
-    #####:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
+        4:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
         -:  133:      {
         -:  134:#if __cpp_aligned_new
         -:  135:	if (alignof(_Tp) > __STDCPP_DEFAULT_NEW_ALIGNMENT__)
@@ -824,7 +824,7 @@ _ZN9__gnu_cxx13new_allocatorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE
         -:  142:	    return;
         -:  143:	  }
         -:  144:#endif
-    #####:  145:	::operator delete(__p
+        4:  145:	::operator delete(__p
         -:  146:#if __cpp_sized_deallocation
         -:  147:			  , __t * sizeof(_Tp)
         -:  148:#endif
@@ -832,7 +832,7 @@ _ZN9__gnu_cxx13new_allocatorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE
         -:  150:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorINSt7__cxx119sub_matchINS_17__normal_iteratorIPKcNS1_12basic_stringIcSt11char_traitsIcESaIcEEEEEEEE10deallocateEPSC_m:
-       42:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
+       52:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
         -:  133:      {
         -:  134:#if __cpp_aligned_new
         -:  135:	if (alignof(_Tp) > __STDCPP_DEFAULT_NEW_ALIGNMENT__)
@@ -845,7 +845,7 @@ _ZN9__gnu_cxx13new_allocatorINSt7__cxx119sub_matchINS_17__normal_iteratorIPKcNS1
         -:  142:	    return;
         -:  143:	  }
         -:  144:#endif
-       42:  145:	::operator delete(__p
+       52:  145:	::operator delete(__p
         -:  146:#if __cpp_sized_deallocation
         -:  147:			  , __t * sizeof(_Tp)
         -:  148:#endif
@@ -853,7 +853,7 @@ _ZN9__gnu_cxx13new_allocatorINSt7__cxx119sub_matchINS_17__normal_iteratorIPKcNS1
         -:  150:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorISt13_Rb_tree_nodeISt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES8_EEE10deallocateEPSB_m:
-      126:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
+      141:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
         -:  133:      {
         -:  134:#if __cpp_aligned_new
         -:  135:	if (alignof(_Tp) > __STDCPP_DEFAULT_NEW_ALIGNMENT__)
@@ -866,7 +866,7 @@ _ZN9__gnu_cxx13new_allocatorISt13_Rb_tree_nodeISt4pairIKNSt7__cxx1112basic_strin
         -:  142:	    return;
         -:  143:	  }
         -:  144:#endif
-      126:  145:	::operator delete(__p
+      141:  145:	::operator delete(__p
         -:  146:#if __cpp_sized_deallocation
         -:  147:			  , __t * sizeof(_Tp)
         -:  148:#endif
@@ -874,7 +874,7 @@ _ZN9__gnu_cxx13new_allocatorISt13_Rb_tree_nodeISt4pairIKNSt7__cxx1112basic_strin
         -:  150:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorIPNSt8__detail9_StateSeqINSt7__cxx1112regex_traitsIcEEEEE10deallocateEPS7_m:
-       21:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
+       26:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
         -:  133:      {
         -:  134:#if __cpp_aligned_new
         -:  135:	if (alignof(_Tp) > __STDCPP_DEFAULT_NEW_ALIGNMENT__)
@@ -887,7 +887,7 @@ _ZN9__gnu_cxx13new_allocatorIPNSt8__detail9_StateSeqINSt7__cxx1112regex_traitsIc
         -:  142:	    return;
         -:  143:	  }
         -:  144:#endif
-       21:  145:	::operator delete(__p
+       26:  145:	::operator delete(__p
         -:  146:#if __cpp_sized_deallocation
         -:  147:			  , __t * sizeof(_Tp)
         -:  148:#endif
@@ -895,7 +895,7 @@ _ZN9__gnu_cxx13new_allocatorIPNSt8__detail9_StateSeqINSt7__cxx1112regex_traitsIc
         -:  150:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorINSt8__detail9_StateSeqINSt7__cxx1112regex_traitsIcEEEEE10deallocateEPS6_m:
-       21:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
+       26:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
         -:  133:      {
         -:  134:#if __cpp_aligned_new
         -:  135:	if (alignof(_Tp) > __STDCPP_DEFAULT_NEW_ALIGNMENT__)
@@ -908,7 +908,7 @@ _ZN9__gnu_cxx13new_allocatorINSt8__detail9_StateSeqINSt7__cxx1112regex_traitsIcE
         -:  142:	    return;
         -:  143:	  }
         -:  144:#endif
-       21:  145:	::operator delete(__p
+       26:  145:	::operator delete(__p
         -:  146:#if __cpp_sized_deallocation
         -:  147:			  , __t * sizeof(_Tp)
         -:  148:#endif
@@ -916,7 +916,7 @@ _ZN9__gnu_cxx13new_allocatorINSt8__detail9_StateSeqINSt7__cxx1112regex_traitsIcE
         -:  150:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorISt4pairINS_17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEiEE10deallocateEPSC_m:
-       21:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
+       26:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
         -:  133:      {
         -:  134:#if __cpp_aligned_new
         -:  135:	if (alignof(_Tp) > __STDCPP_DEFAULT_NEW_ALIGNMENT__)
@@ -929,7 +929,7 @@ _ZN9__gnu_cxx13new_allocatorISt4pairINS_17__normal_iteratorIPKcNSt7__cxx1112basi
         -:  142:	    return;
         -:  143:	  }
         -:  144:#endif
-       21:  145:	::operator delete(__p
+       26:  145:	::operator delete(__p
         -:  146:#if __cpp_sized_deallocation
         -:  147:			  , __t * sizeof(_Tp)
         -:  148:#endif
@@ -937,7 +937,7 @@ _ZN9__gnu_cxx13new_allocatorISt4pairINS_17__normal_iteratorIPKcNSt7__cxx1112basi
         -:  150:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorIcE10deallocateEPcm:
-    16715:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
+    11591:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
         -:  133:      {
         -:  134:#if __cpp_aligned_new
         -:  135:	if (alignof(_Tp) > __STDCPP_DEFAULT_NEW_ALIGNMENT__)
@@ -950,7 +950,7 @@ _ZN9__gnu_cxx13new_allocatorIcE10deallocateEPcm:
         -:  142:	    return;
         -:  143:	  }
         -:  144:#endif
-    16715:  145:	::operator delete(__p
+    11591:  145:	::operator delete(__p
         -:  146:#if __cpp_sized_deallocation
         -:  147:			  , __t * sizeof(_Tp)
         -:  148:#endif
@@ -958,7 +958,7 @@ _ZN9__gnu_cxx13new_allocatorIcE10deallocateEPcm:
         -:  150:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorISt23_Sp_counted_ptr_inplaceINSt8__detail4_NFAINSt7__cxx1112regex_traitsIcEEEESaIS7_ELNS_12_Lock_policyE2EEE10deallocateEPSA_m:
-       21:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
+       26:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
         -:  133:      {
         -:  134:#if __cpp_aligned_new
         -:  135:	if (alignof(_Tp) > __STDCPP_DEFAULT_NEW_ALIGNMENT__)
@@ -971,7 +971,7 @@ _ZN9__gnu_cxx13new_allocatorISt23_Sp_counted_ptr_inplaceINSt8__detail4_NFAINSt7_
         -:  142:	    return;
         -:  143:	  }
         -:  144:#endif
-       21:  145:	::operator delete(__p
+       26:  145:	::operator delete(__p
         -:  146:#if __cpp_sized_deallocation
         -:  147:			  , __t * sizeof(_Tp)
         -:  148:#endif
@@ -979,7 +979,7 @@ _ZN9__gnu_cxx13new_allocatorISt23_Sp_counted_ptr_inplaceINSt8__detail4_NFAINSt7_
         -:  150:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorINSt8__detail6_StateIcEEE10deallocateEPS3_m:
-      107:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
+      132:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
         -:  133:      {
         -:  134:#if __cpp_aligned_new
         -:  135:	if (alignof(_Tp) > __STDCPP_DEFAULT_NEW_ALIGNMENT__)
@@ -992,7 +992,7 @@ _ZN9__gnu_cxx13new_allocatorINSt8__detail6_StateIcEEE10deallocateEPS3_m:
         -:  142:	    return;
         -:  143:	  }
         -:  144:#endif
-      107:  145:	::operator delete(__p
+      132:  145:	::operator delete(__p
         -:  146:#if __cpp_sized_deallocation
         -:  147:			  , __t * sizeof(_Tp)
         -:  148:#endif
@@ -1000,7 +1000,7 @@ _ZN9__gnu_cxx13new_allocatorINSt8__detail6_StateIcEEE10deallocateEPS3_m:
         -:  150:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorIPlE10deallocateEPS1_m:
-       79:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
+       96:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
         -:  133:      {
         -:  134:#if __cpp_aligned_new
         -:  135:	if (alignof(_Tp) > __STDCPP_DEFAULT_NEW_ALIGNMENT__)
@@ -1013,7 +1013,7 @@ _ZN9__gnu_cxx13new_allocatorIPlE10deallocateEPS1_m:
         -:  142:	    return;
         -:  143:	  }
         -:  144:#endif
-       79:  145:	::operator delete(__p
+       96:  145:	::operator delete(__p
         -:  146:#if __cpp_sized_deallocation
         -:  147:			  , __t * sizeof(_Tp)
         -:  148:#endif
@@ -1021,7 +1021,7 @@ _ZN9__gnu_cxx13new_allocatorIPlE10deallocateEPS1_m:
         -:  150:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorISt4pairIccEE10deallocateEPS2_m:
-       16:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
+       20:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
         -:  133:      {
         -:  134:#if __cpp_aligned_new
         -:  135:	if (alignof(_Tp) > __STDCPP_DEFAULT_NEW_ALIGNMENT__)
@@ -1034,7 +1034,7 @@ _ZN9__gnu_cxx13new_allocatorISt4pairIccEE10deallocateEPS2_m:
         -:  142:	    return;
         -:  143:	  }
         -:  144:#endif
-       16:  145:	::operator delete(__p
+       20:  145:	::operator delete(__p
         -:  146:#if __cpp_sized_deallocation
         -:  147:			  , __t * sizeof(_Tp)
         -:  148:#endif
@@ -1084,7 +1084,7 @@ _ZN9__gnu_cxx13new_allocatorISt4pairINSt7__cxx1112basic_stringIcSt11char_traitsI
         -:  150:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorIlE10deallocateEPlm:
-       79:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
+       96:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
         -:  133:      {
         -:  134:#if __cpp_aligned_new
         -:  135:	if (alignof(_Tp) > __STDCPP_DEFAULT_NEW_ALIGNMENT__)
@@ -1097,7 +1097,7 @@ _ZN9__gnu_cxx13new_allocatorIlE10deallocateEPlm:
         -:  142:	    return;
         -:  143:	  }
         -:  144:#endif
-       79:  145:	::operator delete(__p
+       96:  145:	::operator delete(__p
         -:  146:#if __cpp_sized_deallocation
         -:  147:			  , __t * sizeof(_Tp)
         -:  148:#endif
@@ -1105,7 +1105,7 @@ _ZN9__gnu_cxx13new_allocatorIlE10deallocateEPlm:
         -:  150:      }
 ------------------
 _ZN9__gnu_cxx13new_allocatorISt13_Rb_tree_nodeISt4pairIKllEEE10deallocateEPS5_m:
-       60:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
+       73:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
         -:  133:      {
         -:  134:#if __cpp_aligned_new
         -:  135:	if (alignof(_Tp) > __STDCPP_DEFAULT_NEW_ALIGNMENT__)
@@ -1118,7 +1118,7 @@ _ZN9__gnu_cxx13new_allocatorISt13_Rb_tree_nodeISt4pairIKllEEE10deallocateEPS5_m:
         -:  142:	    return;
         -:  143:	  }
         -:  144:#endif
-       60:  145:	::operator delete(__p
+       73:  145:	::operator delete(__p
         -:  146:#if __cpp_sized_deallocation
         -:  147:			  , __t * sizeof(_Tp)
         -:  148:#endif
@@ -1171,10 +1171,10 @@ _ZN9__gnu_cxx13new_allocatorISt13_Rb_tree_nodeISt4pairIKllEEE10deallocateEPS5_m:
         -:  194:
         -:  195:    private:
         -:  196:      _GLIBCXX_CONSTEXPR size_type
-   17862*:  197:      _M_max_size() const _GLIBCXX_USE_NOEXCEPT
+   12606*:  197:      _M_max_size() const _GLIBCXX_USE_NOEXCEPT
         -:  198:      {
         -:  199:#if __PTRDIFF_MAX__ < __SIZE_MAX__
-   17862*:  200:	return std::size_t(__PTRDIFF_MAX__) / sizeof(_Tp);
+   12606*:  200:	return std::size_t(__PTRDIFF_MAX__) / sizeof(_Tp);
         -:  201:#else
         -:  202:	return std::size_t(-1) / sizeof(_Tp);
         -:  203:#endif
