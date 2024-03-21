@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: check dependencies
-      run: sudo dep.sh
+      run: sudo ./dep.sh
 
   build:
 
