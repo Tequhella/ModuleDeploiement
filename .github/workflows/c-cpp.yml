@@ -7,8 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  dependancies:
-
+  setup:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,7 +16,7 @@ jobs:
       run: sudo sh ./dep.sh
 
   build:
-
+    needs: setup
     runs-on: ubuntu-latest
 
     steps:
