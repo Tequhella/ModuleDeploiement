@@ -29,6 +29,11 @@ jobs:
     - uses: actions/checkout@v4
     - name: check dependencies
       run: sudo sh ./dep.sh
+    - name: Install and start Xvfb
+      run: |
+        sudo apt-get install -y xvfb
+        Xvfb :99 &
+        export DISPLAY=:99
     - name: configure
       run: cmake .
     - name: test
