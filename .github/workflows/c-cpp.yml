@@ -27,6 +27,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: check dependencies
+      run: sudo sh ./dep.sh
     - name: configure
       run: cmake .
     - name: test
