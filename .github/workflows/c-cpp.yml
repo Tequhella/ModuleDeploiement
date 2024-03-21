@@ -20,3 +20,11 @@ jobs:
       run: make clean
     - name: make
       run: make
+    
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: test
+      run: make gcov
