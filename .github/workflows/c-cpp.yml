@@ -7,20 +7,13 @@ on:
     branches: [ "main" ]
 
 jobs:
-  setup:
+  build:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
     - name: check dependencies
       run: sudo sh ./dep.sh
-
-  build:
-    needs: setup
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v4
     - name: configure
       run: cmake .
     - name: clean
