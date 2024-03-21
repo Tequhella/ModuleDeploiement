@@ -7,35 +7,35 @@ on:
     branches: [ "main" ]
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: check dependencies
+      run: sudo sh ./dep.sh
+    - name: configure
+      run: cmake .
+    - name: clean
+      run: make clean
+    - name: make
+      run: make
     
-        steps:
-        - uses: actions/checkout@v4
-        - name: check dependencies
-          run: sudo sh ./dep.sh
-        - name: configure
-          run: cmake .
-        - name: clean
-          run: make clean
-        - name: make
-          run: make
-        
-    test:
-        needs: build
-        runs-on: ubuntu-latest
-    
-        steps:
-        - uses: actions/checkout@v4
-        - name: check dependencies
-          run: sudo sh ./dep.sh
-        - name: Install and start Xvfb
-          run: |
-            sudo apt-get install -y xvfb
-            Xvfb :99 &
-        - name: configure
-          run: cmake .
-        - name: test
-          run: make coverage
-          env:
-            DISPLAY: :99
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: check dependencies
+      run: sudo sh ./dep.sh
+    - name: Install and start Xvfb
+      run: |
+        sudo apt-get install -y xvfb
+        Xvfb :99 &
+    - name: configure
+      run: cmake .
+    - name: test
+      run: make coverage
+      env:
+        DISPLAY: :99
