@@ -27,5 +27,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: configure
+      run: cmake .
     - name: test
       run: make coverage
