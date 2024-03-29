@@ -16,10 +16,6 @@ BOOST_AUTO_TEST_CASE(TestCalculateAge)
     Date birth2 = { 2000, 1, 1 };
     BOOST_CHECK_EQUAL(Date::calculateAge(&birth2), 24);
 
-    // Test 3
-    Date birth3 = { 2010, 5, 13 };
-    BOOST_CHECK_EQUAL(Date::calculateAge(&birth3), 13);
-
     /*************NOT EQUAL************/
     // Test 4
     Date birth4 = { 1990, 1, 1 };
@@ -29,9 +25,14 @@ BOOST_AUTO_TEST_CASE(TestCalculateAge)
     Date birth5 = { 2000, 1, 1 };
     BOOST_CHECK_NE(Date::calculateAge(&birth5), 25);
 
-    // Test 6
-    Date birth6 = { 2010, 1, 1 };
-    BOOST_CHECK_NE(Date::calculateAge(&birth6), 15);
+    /*************LESS************/
+    // Test 7
+    Date birth7 = { 1990, 1, 1 };
+    BOOST_CHECK_LT(Date::calculateAge(&birth7), 35);
+
+    // Test 8
+    Date birth8 = { 2000, 8, 8 };
+    BOOST_CHECK_LT(Date::calculateAge(&birth8), 25);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
@@ -89,6 +90,21 @@ BOOST_AUTO_TEST_CASE(TestCalculateAgeFutureDate)
         {
             BOOST_TEST_MESSAGE("Exception thrown: " << e.what());
             return std::string(e.what()) == "La date envoyée est fausse";
+        }
+    );
+}
+
+BOOST_AUTO_TEST_CASE(TestCalculateAgeMinor)
+{
+    // Test 1
+    Date birth = { 2010, 1, 1 };
+    BOOST_CHECK_EXCEPTION(
+        Date::calculateAge(&birth),
+        std::invalid_argument,
+        [](const std::invalid_argument& e)
+        {
+            BOOST_TEST_MESSAGE("Exception thrown: " << e.what());
+            return std::string(e.what()) == "La personne est mineure";
         }
     );
 }

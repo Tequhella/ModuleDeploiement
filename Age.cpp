@@ -52,6 +52,11 @@ struct Date
             age--;
         }
 
+        if (age < 18)
+        {
+            throw std::invalid_argument("La personne est mineure");
+        }
+
         return age;
     }
 };
