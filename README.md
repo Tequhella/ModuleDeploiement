@@ -15,7 +15,7 @@ sudo sh ./dep.sh
 ```
 
 ## Configuration du projet
-Pour configurer ce projet, suivez les étapes suivantes :
+Pour configurer ce projet sur Linux, suivez les étapes suivantes :
 
 1. Clonez le dépôt sur votre machine locale.
 2. Naviguez jusqu'au répertoire du projet.
