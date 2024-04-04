@@ -12,6 +12,8 @@ private:
     std::unique_ptr<Gtk::Entry> entryCodePostal;
     std::unique_ptr<Gtk::Entry> entryVille;
 
+    Gtk::Button button;
+
 public:
     FormUI() {}
 
@@ -77,48 +79,63 @@ public:
         box.pack_start(label);
         // Crée une nouvelle entrée Nom et ajoute l'entrée à la boîte
         box.pack_start(*entryNom);
+        entryNom->signal_changed().connect(sigc::mem_fun(*this, &FormUI::onEntryChanged));
 
         // Crée un nouveau label avec le texte "Prénom" et ajoute le label à la boîte.
         Gtk::Label label2("Prénom");
         box.pack_start(label2);
         // Crée une nouvelle entrée Prénom et ajoute l'entrée à la boîte
         box.pack_start(*entryPrenom);
+        entryPrenom->signal_changed().connect(sigc::mem_fun(*this, &FormUI::onEntryChanged));
         
         // Crée un nouveau label avec le texte "Mail" et ajoute le label à la boîte.
         Gtk::Label label3("Mail");
         box.pack_start(label3);
         // Crée une nouvelle entrée Mail et ajoute l'entrée à la boîte
         box.pack_start(*entryMail);
+        entryMail->signal_changed().connect(sigc::mem_fun(*this, &FormUI::onEntryChanged));
 
         // Crée un nouveau label avec le texte "Date de naissance" et ajoute le label à la boîte.
         Gtk::Label label4("Date de naissance");
         box.pack_start(label4);
         // Crée une nouvelle entrée Date de naissance et ajoute l'entrée à la boîte
         box.pack_start(*entryDate);
+        entryDate->signal_changed().connect(sigc::mem_fun(*this, &FormUI::onEntryChanged));
 
         // Crée un nouveau label avec le texte "Code postal" et ajoute le label à la boîte.
         Gtk::Label label5("Code postal");
         box.pack_start(label5);
         // Crée une nouvelle entrée Code postal et ajoute l'entrée à la boîte
         box.pack_start(*entryCodePostal);
+        entryCodePostal->signal_changed().connect(sigc::mem_fun(*this, &FormUI::onEntryChanged));
         
         // Crée un nouveau label avec le texte "Ville" et ajoute le label à la boîte.
         Gtk::Label label6("Ville");
         box.pack_start(label6);
         // Crée une nouvelle entrée Ville et ajoute l'entrée à la boîte
         box.pack_start(*entryVille);
+        entryVille->signal_changed().connect(sigc::mem_fun(*this, &FormUI::onEntryChanged));
         
         // Crée un nouveau bouton avec le texte "Valider".
         // Connecte le signal "clicked" du bouton à la méthode "onButtonClicked".
         // Ajoute le bouton à la boîte.
-        Gtk::Button button("Valider");
+        button = Gtk::Button("Valider");
         button.signal_clicked().connect(sigc::mem_fun(*this, &FormUI::onButtonClicked));
         box.pack_start(button);
+
+        // Désactive le bouton au début
+        button.set_sensitive(false);
 
         // Affiche tous les enfants de la fenêtre.
         window.show_all_children();
 
         // Exécute l'application.
         app->run(window);
+    }
+
+    void onEntryChanged()
+    {
+        // Active le bouton si tous les champs sont remplis
+        button.set_sensitive(!entryNom->get_text().empty() && !entryPrenom->get_text().empty() && !entryMail->get_text().empty() && !entryDate->get_text().empty() && !entryCodePostal->get_text().empty() && !entryVille->get_text().empty());
     }
 };
