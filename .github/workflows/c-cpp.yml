@@ -36,6 +36,8 @@ jobs:
     - name: configure
       run: cmake .
     - name: test
-      run: make coverage
+      run: |
+        make coverage
+        gcovr -r . --fail-under-line=100
       env:
         DISPLAY: :99
