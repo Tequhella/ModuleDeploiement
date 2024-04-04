@@ -1,6 +1,7 @@
 #include <regex>
 #include <map>
 #include <gtkmm-3.0/gtkmm.h>
+#include <fstream>
 #include "Age.cpp"
 
 class Form {
@@ -22,6 +23,7 @@ public:
         errors["firstName"] = "";
         errors["birthday"] = "";
         errors["zipCode"] = "";
+        errors["save"] = "";
     }
 
     void setName(const std::string& name)
@@ -170,6 +172,37 @@ public:
             {
                 std::cout << error.second << std::endl;
             }
+        }
+    }
+
+    void saveData(const std::string& filename)
+    {
+        if (isValid())
+        {
+            // Save data to file
+            std::ofstream file(filename);
+            if (file.is_open())
+            {
+                file << "Nom: " << name << "\n";
+                file << "Prénom: " << firstName << "\n";
+                file << "Mail: " << mail << "\n";
+                file << "Date de naissance: " << birthday << "\n";
+                file << "Code Postal: " << zipCode << "\n";
+                file << "Ville: " << city << "\n";
+                file.close();
+
+                std::cout << "Data saved successfully." << std::endl;
+            }
+            else
+            {
+                // Display an error message if the file cannot be opened and throw an exception
+                errors["save"] = "Unable to open file.";
+                throw std::runtime_error("Unable to open file.");
+            }
+        } else
+        {
+            std::cout << "Data not saved" << std::endl;
+            errors["save"] = "Data not saved";
         }
     }
 };

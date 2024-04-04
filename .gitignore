@@ -12,3 +12,4 @@ _deps
 .vscode
 coverage
 build
+data.txt

@@ -43,6 +43,8 @@ public:
         form.setZipCode(entryCodePostal->get_text());
         form.setCity(entryVille->get_text());
 
+        form.saveData("data.txt");
+
         form.printErrors();
     }
 

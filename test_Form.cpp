@@ -143,6 +143,72 @@ BOOST_AUTO_TEST_CASE(TestPrintErrors)
     form.setZipCode("12345");
     if (!form.isValid())
         form.printErrors();
+
+    BOOST_CHECK_EQUAL(form.getErrors()["email"], "Invalid email");
+
+
+}
+
+BOOST_AUTO_TEST_CASE(TestSaveData)
+{
+    Form form;
+    form.setName("John");
+    form.setFirstName("Doe");
+    form.setMail("john.doe@example.com");
+    form.setBirthday("1990-01-01");
+    form.setCity("New York");
+    form.setZipCode("12345");
+    form.saveData("data.txt");
+    
+    BOOST_CHECK_EQUAL(form.getErrors()["save"], "");
+
+    // Verify that the data is saved correctly
+    std::ifstream file("data.txt");
+    std::string line;
+    std::vector<std::string> expectedData = {
+        "Nom: John",
+        "Prénom: Doe",
+        "Mail: john.doe@example.com",
+        "Date de naissance: 1990-01-01",
+        "Code Postal: 12345",
+        "Ville: New York"
+    };
+    for (const auto& expected : expectedData)
+    {
+        std::getline(file, line);
+        BOOST_CHECK_EQUAL(line, expected);
+    }
+    file.close();
+}
+
+BOOST_AUTO_TEST_CASE(TestSaveDataError)
+{
+    // Data not saved
+    Form form;
+    form.setName("John");
+    form.setFirstName("Doe");
+    form.setMail("");
+    form.setBirthday("1990-01-01");
+    form.setCity("New York");
+    form.setZipCode("12345");
+    form.saveData("data.txt");
+    
+    BOOST_CHECK_EQUAL(form.getErrors()["save"], "Data not saved");
+}
+
+BOOST_AUTO_TEST_CASE(TestFileError)
+{
+    // Unable to open file
+    Form form;
+    form.setName("John");
+    form.setFirstName("Doe");
+    form.setMail("john.doe@example.com");
+    form.setBirthday("1990-01-01");
+    form.setCity("New York");
+    form.setZipCode("12345");
+
+    BOOST_CHECK_THROW(form.saveData("/directory/data.txt"), std::runtime_error);
+    BOOST_CHECK_EQUAL(form.getErrors()["save"], "Unable to open file.");
 }
 
 BOOST_AUTO_TEST_SUITE_END()
