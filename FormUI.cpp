@@ -12,6 +12,13 @@ private:
     std::unique_ptr<Gtk::Entry> entryCodePostal;
     std::unique_ptr<Gtk::Entry> entryVille;
 
+    std::unique_ptr<Gtk::Label> errorNom;
+    std::unique_ptr<Gtk::Label> errorPrenom;
+    std::unique_ptr<Gtk::Label> errorMail;
+    std::unique_ptr<Gtk::Label> errorDate;
+    std::unique_ptr<Gtk::Label> errorCodePostal;
+    std::unique_ptr<Gtk::Label> errorVille;
+
     Gtk::Button button;
 
 public:
@@ -19,20 +26,28 @@ public:
 
     void onButtonClicked()
     {
+        // Reset error labels
+        errorNom->set_text("");
+        errorPrenom->set_text("");
+        errorMail->set_text("");
+        errorDate->set_text("");
+        errorCodePostal->set_text("");
+        errorVille->set_text("");
+
         if (form.isEmpty(std::vector<std::string> { entryNom->get_text(), entryPrenom->get_text(), entryMail->get_text(), entryDate->get_text(), entryCodePostal->get_text(), entryVille->get_text() }))
         {
             if (entryNom->get_text().empty())
-                form.getErrors()["name"] = "Veuillez remplir le champ nom.";
+                errorNom->set_text("Veuillez remplir le champ nom.");
             if (entryPrenom->get_text().empty())
-                form.getErrors()["firstName"] = "Veuillez remplir le champ prénom.";
+                errorPrenom->set_text("Veuillez remplir le champ prénom.");
             if (entryMail->get_text().empty())
-                form.getErrors()["email"] = "Veuillez remplir le champ mail.";
+                errorMail->set_text("Veuillez remplir le champ mail.");
             if (entryDate->get_text().empty())
-                form.getErrors()["birthday"] = "Veuillez remplir le champ date de naissance.";
+                errorDate->set_text("Veuillez remplir le champ date de naissance.");
             if (entryCodePostal->get_text().empty())
-                form.getErrors()["zipCode"] = "Veuillez remplir le champ code postal.";
+                errorCodePostal->set_text("Veuillez remplir le champ code postal.");
             if (entryVille->get_text().empty())
-                form.getErrors()["city"] = "Veuillez remplir le champ ville.";
+                errorVille->set_text("Veuillez remplir le champ ville.");
             
             return;
         }
@@ -42,6 +57,24 @@ public:
         form.setBirthday(entryDate->get_text());
         form.setZipCode(entryCodePostal->get_text());
         form.setCity(entryVille->get_text());
+
+        if (!form.isValid())
+        {
+            if (form.getErrors()["name"] != "")
+                errorNom->set_text(form.getErrors()["name"]);
+            if (form.getErrors()["firstName"] != "")
+                errorPrenom->set_text(form.getErrors()["firstName"]);
+            if (form.getErrors()["email"] != "")
+                errorMail->set_text(form.getErrors()["email"]);
+            if (form.getErrors()["birthday"] != "")
+                errorDate->set_text(form.getErrors()["birthday"]);
+            if (form.getErrors()["zipCode"] != "")
+                errorCodePostal->set_text(form.getErrors()["zipCode"]);
+            if (form.getErrors()["city"] != "")
+                errorVille->set_text(form.getErrors()["city"]);
+            
+            return;
+        }
 
         form.saveData("data.txt");
 
@@ -117,6 +150,31 @@ public:
         // Crée une nouvelle entrée Ville et ajoute l'entrée à la boîte
         box.pack_start(*entryVille);
         entryVille->signal_changed().connect(sigc::mem_fun(*this, &FormUI::onEntryChanged));
+
+        // Create error labels and add them to the box
+        errorNom = std::make_unique<Gtk::Label>();
+        errorNom->override_color(Gdk::RGBA("red"), Gtk::STATE_FLAG_NORMAL);
+        box.pack_start(*errorNom);
+
+        errorPrenom = std::make_unique<Gtk::Label>();
+        errorPrenom->override_color(Gdk::RGBA("red"), Gtk::STATE_FLAG_NORMAL);
+        box.pack_start(*errorPrenom);
+
+        errorMail = std::make_unique<Gtk::Label>();
+        errorMail->override_color(Gdk::RGBA("red"), Gtk::STATE_FLAG_NORMAL);
+        box.pack_start(*errorMail);
+
+        errorDate = std::make_unique<Gtk::Label>();
+        errorDate->override_color(Gdk::RGBA("red"), Gtk::STATE_FLAG_NORMAL);
+        box.pack_start(*errorDate);
+
+        errorCodePostal = std::make_unique<Gtk::Label>();
+        errorCodePostal->override_color(Gdk::RGBA("red"), Gtk::STATE_FLAG_NORMAL);
+        box.pack_start(*errorCodePostal);
+
+        errorVille = std::make_unique<Gtk::Label>();
+        errorVille->override_color(Gdk::RGBA("red"), Gtk::STATE_FLAG_NORMAL);
+        box.pack_start(*errorVille);
         
         // Crée un nouveau bouton avec le texte "Valider".
         // Connecte le signal "clicked" du bouton à la méthode "onButtonClicked".
