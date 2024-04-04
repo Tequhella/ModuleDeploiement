@@ -1,0 +1,51 @@
+\hypertarget{classFormUI}{}\doxysection{Form\+UI Class Reference}
+\label{classFormUI}\index{FormUI@{FormUI}}
+
+
+Represents a user interface for a form.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classFormUI_ac4c430204f9da6b3eefc78cb072c1319}\label{classFormUI_ac4c430204f9da6b3eefc78cb072c1319}} 
+void {\bfseries on\+Button\+Clicked} ()
+\item 
+void \mbox{\hyperlink{classFormUI_a490a52cda6adf63810d625dbefcc35e9}{fenetre}} ()
+\begin{DoxyCompactList}\small\item\em Create a new window with a form. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classFormUI_a410742507666a120eae886051d44406a}\label{classFormUI_a410742507666a120eae886051d44406a}} 
+void {\bfseries on\+Entry\+Changed} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a user interface for a form. 
+
+The \mbox{\hyperlink{classFormUI}{Form\+UI}} class provides a graphical user interface for a form that contains several fields such as name, email, date of birth, etc. It allows the user to fill in the form, validate the input, and save the data to a file. If the form is not valid, error messages are displayed in red. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classFormUI_a490a52cda6adf63810d625dbefcc35e9}\label{classFormUI_a490a52cda6adf63810d625dbefcc35e9}} 
+\index{FormUI@{FormUI}!fenetre@{fenetre}}
+\index{fenetre@{fenetre}!FormUI@{FormUI}}
+\doxysubsubsection{\texorpdfstring{fenetre()}{fenetre()}}
+{\footnotesize\ttfamily void Form\+UI\+::fenetre (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Create a new window with a form. 
+
+This function creates a new window with a form to fill in. The form contains the following fields\+:
+\begin{DoxyItemize}
+\item Nom
+\item Prénom
+\item Mail
+\item \mbox{\hyperlink{structDate}{Date}} de naissance
+\item Code postal
+\item Ville
+\end{DoxyItemize}
+
+The form also contains a \char`\"{}\+Valider\char`\"{} button that is disabled until all fields are filled in. When the button is clicked, the form is validated and the data is saved to a file. If the form is not valid, the errors are displayed in red. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Form\+UI.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,369 @@
+\hypertarget{classForm}{}\doxysection{Form Class Reference}
+\label{classForm}\index{Form@{Form}}
+
+
+Represents a form object.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classForm_a74d41f789dbfcfd081b241e2c44e576a}{Form}} ()
+\begin{DoxyCompactList}\small\item\em Constructs a new \mbox{\hyperlink{classForm}{Form}} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classForm_a4ce351c99376c89dc7fcdd207e1bb0a3}{set\+Name}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Sets the name of the form. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classForm_a1636b0643550a7b0ef6b99123c189cb9}{set\+First\+Name}} (const std\+::string \&first\+Name)
+\begin{DoxyCompactList}\small\item\em Sets the first name of the form. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classForm_ad58475dc40d03b5de939fb8cab75e8bd}{set\+Mail}} (const std\+::string \&mail)
+\begin{DoxyCompactList}\small\item\em Sets the email address for the form. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classForm_a5d1f89d637dc547a1943509d3a7d8dbe}{set\+Birthday}} (const std\+::string \&birthday)
+\begin{DoxyCompactList}\small\item\em Sets the birthday of the form. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classForm_a79a954f53a4be07abc9567bbc97fd9dc}{set\+City}} (const std\+::string \&city)
+\begin{DoxyCompactList}\small\item\em Sets the city for the form. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classForm_a98a36db294eba5b8832f6f6318963334}{set\+Zip\+Code}} (const std\+::string \&zip\+Code)
+\begin{DoxyCompactList}\small\item\em Sets the zip code for the form. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classForm_ae71e2efe68808d3b30710d0c41a08718}{validate\+Name}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Validates the given name. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classForm_ab8b63facbef38101fdf344a8e6aa30d4}{validate\+Firstname}} (const std\+::string \&first\+Name)
+\begin{DoxyCompactList}\small\item\em Validates the given first name. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classForm_ac80b23cc709d7628da75f3666acab1ad}{validate\+Email}} (const std\+::string \&email)
+\begin{DoxyCompactList}\small\item\em Validates the given email address. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classForm_a236f8e101de1527046c7ae08016e6f47}{validate\+Age}} (const std\+::string \&birthday)
+\begin{DoxyCompactList}\small\item\em Validates the age based on the given birthday. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classForm_a7711bc4c81637369bcff35058f95a0c4}{validate\+ZIP}} (const std\+::string \&zip\+Code)
+\begin{DoxyCompactList}\small\item\em Validates a ZIP code. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classForm_a4dbf875f3b753dd27b1e87239df01e7f}{get\+Error}} (const std\+::string \&key)
+\begin{DoxyCompactList}\small\item\em Retrieves the error message associated with the given key. \end{DoxyCompactList}\item 
+std\+::map$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{classForm_af6bf0652c863555f212fdc5f6a3fff12}{get\+Errors}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the errors map. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classForm_acf2549703c986624b69e19510e02e878}{is\+Valid}} ()
+\begin{DoxyCompactList}\small\item\em Checks if the form is valid. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classForm_afccc8ba661e93d752814092b02dba0e7}{is\+Empty}} (std\+::vector$<$ std\+::string $>$ entries)
+\begin{DoxyCompactList}\small\item\em Checks if a vector of strings is empty. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classForm_a8d0a0fd1ceb372b18f0f6fd9e175e604}{print\+Errors}} ()
+\begin{DoxyCompactList}\small\item\em Prints the errors stored in the \textquotesingle{}errors\textquotesingle{} container. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classForm_abaea1913e9b3120c6021164ac88a9a3c}{save\+Data}} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em Saves the data to a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a form object. 
+
+The \mbox{\hyperlink{classForm}{Form}} class is used to store and validate user input for a form. It provides methods to set and validate various form fields such as name, email, birthday, etc. It also provides methods to check if the form is valid, retrieve error messages, print errors, and save the form data to a file. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classForm_a74d41f789dbfcfd081b241e2c44e576a}\label{classForm_a74d41f789dbfcfd081b241e2c44e576a}} 
+\index{Form@{Form}!Form@{Form}}
+\index{Form@{Form}!Form@{Form}}
+\doxysubsubsection{\texorpdfstring{Form()}{Form()}}
+{\footnotesize\ttfamily Form\+::\+Form (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a new \mbox{\hyperlink{classForm}{Form}} object. 
+
+This constructor initializes the {\ttfamily errors} map with empty strings for the following keys\+:
+\begin{DoxyItemize}
+\item \char`\"{}email\char`\"{}
+\item \char`\"{}name\char`\"{}
+\item \char`\"{}first\+Name\char`\"{}
+\item \char`\"{}birthday\char`\"{}
+\item \char`\"{}zip\+Code\char`\"{}
+\item \char`\"{}save\char`\"{} 
+\end{DoxyItemize}
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classForm_a4dbf875f3b753dd27b1e87239df01e7f}\label{classForm_a4dbf875f3b753dd27b1e87239df01e7f}} 
+\index{Form@{Form}!getError@{getError}}
+\index{getError@{getError}!Form@{Form}}
+\doxysubsubsection{\texorpdfstring{getError()}{getError()}}
+{\footnotesize\ttfamily std\+::string Form\+::get\+Error (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieves the error message associated with the given key. 
+
+This function returns the error message corresponding to the given key from the {\ttfamily errors} map.
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key of the error message to retrieve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error message corresponding to the given key. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classForm_af6bf0652c863555f212fdc5f6a3fff12}\label{classForm_af6bf0652c863555f212fdc5f6a3fff12}} 
+\index{Form@{Form}!getErrors@{getErrors}}
+\index{getErrors@{getErrors}!Form@{Form}}
+\doxysubsubsection{\texorpdfstring{getErrors()}{getErrors()}}
+{\footnotesize\ttfamily std\+::map$<$std\+::string, std\+::string$>$ Form\+::get\+Errors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieves the errors map. 
+
+This function returns the {\ttfamily errors} map, which contains the error messages for each form field.
+
+\begin{DoxyReturn}{Returns}
+The errors map. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classForm_afccc8ba661e93d752814092b02dba0e7}\label{classForm_afccc8ba661e93d752814092b02dba0e7}} 
+\index{Form@{Form}!isEmpty@{isEmpty}}
+\index{isEmpty@{isEmpty}!Form@{Form}}
+\doxysubsubsection{\texorpdfstring{isEmpty()}{isEmpty()}}
+{\footnotesize\ttfamily bool Form\+::is\+Empty (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::string $>$}]{entries }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if a vector of strings is empty. 
+
+This function checks if any string in the provided vector is empty.
+
+
+\begin{DoxyParams}{Parameters}
+{\em entries} & The vector of strings to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if any string in the vector is empty, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classForm_acf2549703c986624b69e19510e02e878}\label{classForm_acf2549703c986624b69e19510e02e878}} 
+\index{Form@{Form}!isValid@{isValid}}
+\index{isValid@{isValid}!Form@{Form}}
+\doxysubsubsection{\texorpdfstring{isValid()}{isValid()}}
+{\footnotesize\ttfamily bool Form\+::is\+Valid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if the form is valid. 
+
+This function checks if all the form fields are valid, i.\+e., if all the error messages in the {\ttfamily errors} map are empty.
+
+\begin{DoxyReturn}{Returns}
+true if the form is valid, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classForm_a8d0a0fd1ceb372b18f0f6fd9e175e604}\label{classForm_a8d0a0fd1ceb372b18f0f6fd9e175e604}} 
+\index{Form@{Form}!printErrors@{printErrors}}
+\index{printErrors@{printErrors}!Form@{Form}}
+\doxysubsubsection{\texorpdfstring{printErrors()}{printErrors()}}
+{\footnotesize\ttfamily void Form\+::print\+Errors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Prints the errors stored in the \textquotesingle{}errors\textquotesingle{} container. 
+
+This function prints the error messages stored in the {\ttfamily errors} map to the standard output. \mbox{\Hypertarget{classForm_abaea1913e9b3120c6021164ac88a9a3c}\label{classForm_abaea1913e9b3120c6021164ac88a9a3c}} 
+\index{Form@{Form}!saveData@{saveData}}
+\index{saveData@{saveData}!Form@{Form}}
+\doxysubsubsection{\texorpdfstring{saveData()}{saveData()}}
+{\footnotesize\ttfamily void Form\+::save\+Data (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Saves the data to a file. 
+
+This function saves the form data to a file with the provided filename. If the form is valid, it writes the form data to the file. If the form is not valid, it sets an error message in the {\ttfamily errors} map and throws a std\+::runtime\+\_\+error.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The name of the file to save the data to. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & If the file could not be opened. \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classForm_a5d1f89d637dc547a1943509d3a7d8dbe}\label{classForm_a5d1f89d637dc547a1943509d3a7d8dbe}} 
+\index{Form@{Form}!setBirthday@{setBirthday}}
+\index{setBirthday@{setBirthday}!Form@{Form}}
+\doxysubsubsection{\texorpdfstring{setBirthday()}{setBirthday()}}
+{\footnotesize\ttfamily void Form\+::set\+Birthday (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{birthday }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the birthday of the form. 
+
+This function sets the birthday of the form to the specified value. It also validates the age based on the birthday.
+
+
+\begin{DoxyParams}{Parameters}
+{\em birthday} & The birthday to set. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classForm_a79a954f53a4be07abc9567bbc97fd9dc}\label{classForm_a79a954f53a4be07abc9567bbc97fd9dc}} 
+\index{Form@{Form}!setCity@{setCity}}
+\index{setCity@{setCity}!Form@{Form}}
+\doxysubsubsection{\texorpdfstring{setCity()}{setCity()}}
+{\footnotesize\ttfamily void Form\+::set\+City (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{city }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the city for the form. 
+
+This function sets the city for the form using the provided city string.
+
+
+\begin{DoxyParams}{Parameters}
+{\em city} & The city to set for the form. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classForm_a1636b0643550a7b0ef6b99123c189cb9}\label{classForm_a1636b0643550a7b0ef6b99123c189cb9}} 
+\index{Form@{Form}!setFirstName@{setFirstName}}
+\index{setFirstName@{setFirstName}!Form@{Form}}
+\doxysubsubsection{\texorpdfstring{setFirstName()}{setFirstName()}}
+{\footnotesize\ttfamily void Form\+::set\+First\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{first\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the first name of the form. 
+
+This function sets the first name of the form to the provided value. It also calls the validate\+Firstname function to validate the first name.
+
+
+\begin{DoxyParams}{Parameters}
+{\em first\+Name} & The first name to set. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classForm_ad58475dc40d03b5de939fb8cab75e8bd}\label{classForm_ad58475dc40d03b5de939fb8cab75e8bd}} 
+\index{Form@{Form}!setMail@{setMail}}
+\index{setMail@{setMail}!Form@{Form}}
+\doxysubsubsection{\texorpdfstring{setMail()}{setMail()}}
+{\footnotesize\ttfamily void Form\+::set\+Mail (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{mail }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the email address for the form. 
+
+This function sets the email address for the form and validates it using the validate\+Email function.
+
+
+\begin{DoxyParams}{Parameters}
+{\em mail} & The email address to be set. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classForm_a4ce351c99376c89dc7fcdd207e1bb0a3}\label{classForm_a4ce351c99376c89dc7fcdd207e1bb0a3}} 
+\index{Form@{Form}!setName@{setName}}
+\index{setName@{setName}!Form@{Form}}
+\doxysubsubsection{\texorpdfstring{setName()}{setName()}}
+{\footnotesize\ttfamily void Form\+::set\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the name of the form. 
+
+This function sets the name of the form to the provided value. It also calls the validate\+Name function to validate the name.
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name to set. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classForm_a98a36db294eba5b8832f6f6318963334}\label{classForm_a98a36db294eba5b8832f6f6318963334}} 
+\index{Form@{Form}!setZipCode@{setZipCode}}
+\index{setZipCode@{setZipCode}!Form@{Form}}
+\doxysubsubsection{\texorpdfstring{setZipCode()}{setZipCode()}}
+{\footnotesize\ttfamily void Form\+::set\+Zip\+Code (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{zip\+Code }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the zip code for the form. 
+
+This function sets the zip code for the form and validates it using the validate\+ZIP function.
+
+
+\begin{DoxyParams}{Parameters}
+{\em zip\+Code} & The zip code to set. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classForm_a236f8e101de1527046c7ae08016e6f47}\label{classForm_a236f8e101de1527046c7ae08016e6f47}} 
+\index{Form@{Form}!validateAge@{validateAge}}
+\index{validateAge@{validateAge}!Form@{Form}}
+\doxysubsubsection{\texorpdfstring{validateAge()}{validateAge()}}
+{\footnotesize\ttfamily void Form\+::validate\+Age (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{birthday }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Validates the age based on the given birthday. 
+
+This function checks if the provided birthday is in a valid format and calculates the age based on the birthday. If the birthday is invalid or the age is not within the valid range, it sets the corresponding error message in the {\ttfamily errors} map.
+
+
+\begin{DoxyParams}{Parameters}
+{\em birthday} & The birthday to validate in the format \char`\"{}\+YYYY-\/\+MM-\/\+DD\char`\"{}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classForm_ac80b23cc709d7628da75f3666acab1ad}\label{classForm_ac80b23cc709d7628da75f3666acab1ad}} 
+\index{Form@{Form}!validateEmail@{validateEmail}}
+\index{validateEmail@{validateEmail}!Form@{Form}}
+\doxysubsubsection{\texorpdfstring{validateEmail()}{validateEmail()}}
+{\footnotesize\ttfamily void Form\+::validate\+Email (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{email }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Validates the given email address. 
+
+This function checks if the provided email address is in a valid format. If the email address is invalid, it sets the corresponding error message in the {\ttfamily errors} map.
+
+
+\begin{DoxyParams}{Parameters}
+{\em email} & The email address to validate. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classForm_ab8b63facbef38101fdf344a8e6aa30d4}\label{classForm_ab8b63facbef38101fdf344a8e6aa30d4}} 
+\index{Form@{Form}!validateFirstname@{validateFirstname}}
+\index{validateFirstname@{validateFirstname}!Form@{Form}}
+\doxysubsubsection{\texorpdfstring{validateFirstname()}{validateFirstname()}}
+{\footnotesize\ttfamily void Form\+::validate\+Firstname (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{first\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Validates the given first name. 
+
+This function checks if the provided first name contains only alphabetic characters. If the first name is invalid, it sets the corresponding error message in the {\ttfamily errors} map.
+
+
+\begin{DoxyParams}{Parameters}
+{\em first\+Name} & The first name to be validated. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classForm_ae71e2efe68808d3b30710d0c41a08718}\label{classForm_ae71e2efe68808d3b30710d0c41a08718}} 
+\index{Form@{Form}!validateName@{validateName}}
+\index{validateName@{validateName}!Form@{Form}}
+\doxysubsubsection{\texorpdfstring{validateName()}{validateName()}}
+{\footnotesize\ttfamily void Form\+::validate\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Validates the given name. 
+
+This function checks if the provided name contains only alphabetic characters. If the name is invalid, it sets the corresponding error message in the {\ttfamily errors} map.
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name to be validated. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classForm_a7711bc4c81637369bcff35058f95a0c4}\label{classForm_a7711bc4c81637369bcff35058f95a0c4}} 
+\index{Form@{Form}!validateZIP@{validateZIP}}
+\index{validateZIP@{validateZIP}!Form@{Form}}
+\doxysubsubsection{\texorpdfstring{validateZIP()}{validateZIP()}}
+{\footnotesize\ttfamily void Form\+::validate\+ZIP (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{zip\+Code }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Validates a ZIP code. 
+
+This function checks if the provided ZIP code is in a valid format. If the ZIP code is invalid, it sets the corresponding error message in the {\ttfamily errors} map.
+
+
+\begin{DoxyParams}{Parameters}
+{\em zip\+Code} & The ZIP code to validate. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Form.\+cpp\end{DoxyCompactItemize}
