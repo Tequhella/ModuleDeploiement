@@ -1,6 +1,13 @@
 #include "Form.cpp"
 #include <gtkmm-3.0/gtkmm.h>
 
+/**
+ * @brief Represents a user interface for a form.
+ * 
+ * The FormUI class provides a graphical user interface for a form that contains several fields such as name, email, date of birth, etc.
+ * It allows the user to fill in the form, validate the input, and save the data to a file.
+ * If the form is not valid, error messages are displayed in red.
+ */
 class FormUI {
 private:
     Form form;
@@ -34,6 +41,7 @@ public:
         errorCodePostal->set_text("");
         errorVille->set_text("");
 
+        // Does not seem to be necessary, but in case the validate button is bypassed by the user, a double check is done
         if (form.isEmpty(std::vector<std::string> { entryNom->get_text(), entryPrenom->get_text(), entryMail->get_text(), entryDate->get_text(), entryCodePostal->get_text(), entryVille->get_text() }))
         {
             if (entryNom->get_text().empty())
@@ -57,7 +65,8 @@ public:
         form.setBirthday(entryDate->get_text());
         form.setZipCode(entryCodePostal->get_text());
         form.setCity(entryVille->get_text());
-
+        
+        // Check if the form is valid and print errors if not
         if (!form.isValid())
         {
             if (form.getErrors()["name"] != "")
@@ -82,26 +91,35 @@ public:
     }
 
     /**
-     * @brief Crée une fenêtre d'application GTK avec divers champs de saisie et un bouton.
+     * @brief Create a new window with a form.
      * 
-     * Cette fonction crée une fenêtre d'application GTK en utilisant la classe Gtk::Application. Elle définit la taille par défaut de la fenêtre à 800x800 pixels.
-     * Elle crée un conteneur de boîte verticale et l'ajoute à la fenêtre. À l'intérieur de la boîte, elle crée plusieurs étiquettes et champs de saisie pour capturer les informations de l'utilisateur.
-     * Enfin, elle crée un bouton intitulé "Valider" et connecte son signal "clicked" à la méthode onButtonClicked de la classe FormUI.
-     * La fonction affiche ensuite tous les enfants de la fenêtre et exécute l'application.
+     * This function creates a new window with a form to fill in.
+     * The form contains the following fields:
+     * - Nom
+     * - Prénom
+     * - Mail
+     * - Date de naissance
+     * - Code postal
+     * - Ville
+     * 
+     * The form also contains a "Valider" button that is disabled until all fields are filled in.
+     * When the button is clicked, the form is validated and the data is saved to a file.
+     * If the form is not valid, the errors are displayed in red.
      */
     void fenetre()
     {
-        // Crée une application GTK.
+        // Create a new application
         Glib::RefPtr<Gtk::Application> app = Gtk::Application::create("org.gtkmm.example");
         
-        // Crée une nouvelle fenêtre et définit la taille par défaut de la fenêtre.
+        // Create a new window with a default size of 800x800
         Gtk::Window window;
         window.set_default_size(800, 800);
         
-        // Crée une nouvelle boîte vertical et ajoute la boîte à la fenêtre.
+        // Create a new vertical box and add it to the window
         Gtk::Box box(Gtk::ORIENTATION_VERTICAL);
         window.add(box);
         
+        // Create a new entry for each field, using smart pointers
         entryNom        = std::make_unique<Gtk::Entry>();
         entryPrenom     = std::make_unique<Gtk::Entry>();
         entryMail       = std::make_unique<Gtk::Entry>();
@@ -109,45 +127,45 @@ public:
         entryCodePostal = std::make_unique<Gtk::Entry>();
         entryVille      = std::make_unique<Gtk::Entry>();
 
-        // Crée un nouveau label avec le texte "Nom" et ajoute le label à la boîte.
+        // Create a new label with the text "Nom" and add the label to the box.
         Gtk::Label label("Nom");
         box.pack_start(label);
-        // Crée une nouvelle entrée Nom et ajoute l'entrée à la boîte
+        // Create a new entry Nom and add the entry to the box
         box.pack_start(*entryNom);
         entryNom->signal_changed().connect(sigc::mem_fun(*this, &FormUI::onEntryChanged));
 
-        // Crée un nouveau label avec le texte "Prénom" et ajoute le label à la boîte.
+        // Create a new label with the text "Prénom" and add the label to the box.
         Gtk::Label label2("Prénom");
         box.pack_start(label2);
-        // Crée une nouvelle entrée Prénom et ajoute l'entrée à la boîte
+        // Create a new entry Prénom and add the entry to the box
         box.pack_start(*entryPrenom);
         entryPrenom->signal_changed().connect(sigc::mem_fun(*this, &FormUI::onEntryChanged));
         
-        // Crée un nouveau label avec le texte "Mail" et ajoute le label à la boîte.
+        // Create a new label with the text "Mail" and add the label to the box.
         Gtk::Label label3("Mail");
         box.pack_start(label3);
-        // Crée une nouvelle entrée Mail et ajoute l'entrée à la boîte
+        // Create a new entry Mail and add the entry to the box
         box.pack_start(*entryMail);
         entryMail->signal_changed().connect(sigc::mem_fun(*this, &FormUI::onEntryChanged));
 
-        // Crée un nouveau label avec le texte "Date de naissance" et ajoute le label à la boîte.
+        // Create a new label with the text "Date de naissance" and add the label to the box.
         Gtk::Label label4("Date de naissance");
         box.pack_start(label4);
-        // Crée une nouvelle entrée Date de naissance et ajoute l'entrée à la boîte
+        // Create a new entry Date de naissance and add the entry to the box
         box.pack_start(*entryDate);
         entryDate->signal_changed().connect(sigc::mem_fun(*this, &FormUI::onEntryChanged));
 
-        // Crée un nouveau label avec le texte "Code postal" et ajoute le label à la boîte.
+        // Create a new label with the text "Code postal" and add the label to the box.
         Gtk::Label label5("Code postal");
         box.pack_start(label5);
-        // Crée une nouvelle entrée Code postal et ajoute l'entrée à la boîte
+        // Create a new entry Code postal and add the entry to the box
         box.pack_start(*entryCodePostal);
         entryCodePostal->signal_changed().connect(sigc::mem_fun(*this, &FormUI::onEntryChanged));
         
-        // Crée un nouveau label avec le texte "Ville" et ajoute le label à la boîte.
+        // Create a new label with the text "Ville" and add the label to the box.
         Gtk::Label label6("Ville");
         box.pack_start(label6);
-        // Crée une nouvelle entrée Ville et ajoute l'entrée à la boîte
+        // Create a new entry Ville and add the entry to the box
         box.pack_start(*entryVille);
         entryVille->signal_changed().connect(sigc::mem_fun(*this, &FormUI::onEntryChanged));
 
@@ -176,26 +194,26 @@ public:
         errorVille->override_color(Gdk::RGBA("red"), Gtk::STATE_FLAG_NORMAL);
         box.pack_start(*errorVille);
         
-        // Crée un nouveau bouton avec le texte "Valider".
-        // Connecte le signal "clicked" du bouton à la méthode "onButtonClicked".
-        // Ajoute le bouton à la boîte.
+        // Create a new button "Valider" and add the button to the box.
+        // Connect the signal "clicked" to the function onButtonClicked.
+        // Add the button to the box.
         button = Gtk::Button("Valider");
         button.signal_clicked().connect(sigc::mem_fun(*this, &FormUI::onButtonClicked));
         box.pack_start(button);
 
-        // Désactive le bouton au début
+        // Disable the button by default
         button.set_sensitive(false);
 
-        // Affiche tous les enfants de la fenêtre.
+        // Show all children of the window
         window.show_all_children();
 
-        // Exécute l'application.
+        // Run the application
         app->run(window);
     }
 
     void onEntryChanged()
     {
-        // Active le bouton si tous les champs sont remplis
+        // Enable the button if all fields are filled in
         button.set_sensitive(!entryNom->get_text().empty() && !entryPrenom->get_text().empty() && !entryMail->get_text().empty() && !entryDate->get_text().empty() && !entryCodePostal->get_text().empty() && !entryVille->get_text().empty());
     }
 };

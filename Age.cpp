@@ -1,10 +1,10 @@
 #include <iostream>
 #include <ctime>
 
-struct Date 
 /**
  * @brief Structure representing a date.
  */
+struct Date 
 {
     int year; /**< The year of the date. */
     int month; /**< The month of the date. */
@@ -32,12 +32,12 @@ struct Date
             throw std::invalid_argument("Mauvais objet envoyé");
         }
 
-        // Obtenir la date actuelle
+        // Obtaining the current date
         std::time_t t = std::time(nullptr);
         std::tm* now = std::localtime(&t);
         Date current = { now->tm_year + 1900, now->tm_mon + 1, now->tm_mday };
 
-        // La date envoyée est fausse
+        // Check if the date is valid
         if (birth->year > current.year ||
             (birth->year == current.year && birth->month > current.month) ||
             (birth->year == current.year && birth->month == current.month && birth->day > current.day))
@@ -45,7 +45,7 @@ struct Date
             throw std::invalid_argument("La date envoyée est fausse");
         }
 
-        // Calculer l'âge
+        // Calculate the age
         int age = current.year - birth->year;
         if (current.month < birth->month || (current.month == birth->month && current.day < birth->day)) 
         {
